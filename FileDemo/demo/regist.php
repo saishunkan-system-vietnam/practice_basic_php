@@ -174,6 +174,7 @@
         </form>
     </div>
     <script src="./javascript.js"></script>
+    <script src="./regist.js"></script>
 </body>
 
 </html>
