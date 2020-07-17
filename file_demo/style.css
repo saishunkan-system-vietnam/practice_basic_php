@@ -1,0 +1,92 @@
+
+header, nav{
+    margin-top: -15px;
+}
+
+nav{
+    background: blanchedalmond;
+    height: 50px;
+    border-radius: 5px;
+}
+nav ul{
+    position: relative;
+    height: 50px;
+    float: left;
+}
+
+nav ul a{
+    font-size: 18px;
+    font-style: italic;
+    text-decoration: none;
+}
+
+.login ul {
+    float: right;
+}
+
+.tieude>p{
+    text-align: center;
+    font-family:inherit;
+    color: red;
+    font-size: 50px;
+}
+.myform{
+    width: 500px;
+    margin: auto;
+}
+.pagination{
+    width: 100px;
+    margin: auto;
+}
+.row{
+    margin: 10px;
+}
+.span{
+    float:left;
+    width: 150px;
+}
+
+#uname{
+    height: 20px;
+    width: 177px;
+}
+#sex{
+    height: 20px;
+    width: 40px;
+}
+#bday{
+    height: 20px;
+}
+
+#skill{
+    height: 20px;
+    width: 40px;
+}
+#mail{
+    height: 20px;
+    width: 177px;
+}
+#address{
+    width: 177px;
+}
+.table{
+    width: 500px;
+    margin: auto;
+}
+
+table, th, td {  
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.error{
+    margin-left: 150px;
+    font-style: italic;
+    color: red;
+}
+
+#confirm{
+    margin-left: 150px;
+}
+#save{
+    margin-left: 200px;
+}
