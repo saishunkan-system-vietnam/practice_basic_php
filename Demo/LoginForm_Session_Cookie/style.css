@@ -1,0 +1,16 @@
+h2 {
+    background: rgb(240,240,240);
+    color: black;
+    padding: 10px;    
+}
+
+.button-style{
+    padding: 1px;
+    margin: 10px;
+    background: whitesmoke;
+    color:green !important;
+    font-size: 20px;
+    border-color:whitesmoke;
+    height: 33px;
+    width: 120px;    
+}
