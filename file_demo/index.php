@@ -17,9 +17,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ngô Tá Sinh</title>
     <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="./valid.js"></script>
+    <!-- <script src="./valid.js"></script> -->
+    <script src="./ajax.js"></script>
 </head>
 
 <body>
@@ -50,7 +50,7 @@
     </div>
 
     <div class="myform">
-        <form action="process.php" method="POST" name="insert" onsubmit="return validateForm()">
+        <form action="process.php" id="api_form" method="POST" name="insert" onsubmit="return validateForm()">
             <div class="row">
                 <div class="span">
                     <span>Họ Tên:</span>
@@ -184,26 +184,9 @@
                     <th>Avatar</th>
                 </tr>
             </thead>
-            <?php while($row = $result->fetch_assoc()): ?>
-            <tr>
-                <td> <?php echo $row["Id"];?></td>
-                <td> <?php echo $row["name"];?></td>
-                <td> <?php 
-                    if($row["sex"] == 0) {
-                        echo "Nữ";
-                    }
-                    else{
-                        echo "Nam";
-                    }
-                    ?>
-                </td>
-                <td> <?php echo $row["skill"];?></td>
-                <td> <?php echo $row["mail"];?></td>
-                <td> <?php echo $row["address"];?></td>
-                <td></td>
-            </tr>
+            <tbody>
 
-            <?php endwhile ; ?>
+            </tbody>
         </table>
     </div>
     <br>
@@ -234,6 +217,9 @@
             }
         ?>
     </div>
+
+
+    
 </body>
 
 </html>
