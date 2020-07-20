@@ -7,5 +7,6 @@
 <body>
     <?include("./menu.php")?>
     <p>xin chào dcác bạn</p>
+    <input type="text" name="" id="">
 </body>
 </html>

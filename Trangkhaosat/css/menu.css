@@ -10,7 +10,7 @@
     padding: 0;
     margin: 0;
     background-color: #FFF;
-    height: 100px;
+    height: 70px;
     border-radius: 10px;
 }
 
@@ -43,13 +43,14 @@
 
 .mcd-menu li a i {
     display: block;
-    font-size: 40px;
+    font-size: 18px;
     margin-bottom: 10px;
 }
 
 .mcd-menu li a strong {
     display: block;
     text-transform: uppercase;
+    font-size: 15px;
 }
 
 .mcd-menu li:hover>a i {

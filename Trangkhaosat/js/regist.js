@@ -1,34 +1,24 @@
-$(document).ready(function () {
+$(document).ready(function() {
 
-    $("#btnregist").click(function () {
-        if (Validate())
-        {
+    $("#btnregist").click(function() {
+        if (Validate()) {
             // alert("Đăng ký thành công");
-            if( CheckExist() == 0)
-            { 
-                if(Regist())
-                {
-                     alert("Đăng ký thành công");
-                     $("#frm_Regist").submit();
-                }
-                else
-                {
+            if (CheckExist() == 0) {
+                if (Regist()) {
+                    alert("Đăng ký thành công");
+                    $("#frm_Regist").submit();
+                } else {
                     alert("Đăng ký thất bại");
                 }
+            } else {
+                alert("Không thể đăng ký vì email này đã tồn tại - Vui lòng kiểm tra lại");
             }
-            else
-            {
-                 alert("Không thể đăng ký vì email này đã tồn tại - Vui lòng kiểm tra lại");
-            }
-        }
-        else 
-        {
+        } else {
             alert("Vui lòng điền vào mẫu chính xác");
         }
     });
 
-    function Regist()
-    {
+    function Regist() {
         var result = false;
 
         $.ajax({
@@ -43,7 +33,7 @@ $(document).ready(function () {
                 tel: $.trim($("#tel").val()),
                 proc: "Regist",
             },
-            success: function (data) {
+            success: function(data) {
                 result = data;
             }
         });
@@ -52,7 +42,7 @@ $(document).ready(function () {
 
     function CheckExist() {
 
-         var result;
+        var result;
 
         $.ajax({
             async: false,
@@ -63,9 +53,9 @@ $(document).ready(function () {
                 proc: "CheckExistAccount",
             },
             datatype: "JSON",
-            success: function (data) {
-            result =  data[0].result;
-         
+            success: function(data) {
+                result = data[0].result;
+
                 // for (var i=0; i<msg.length; i++)
                 // {
                 //     console.log(msg[0].result);
@@ -74,7 +64,7 @@ $(document).ready(function () {
         });
 
         return result;
-        
+
     }
 
     function Validate() {
@@ -200,4 +190,36 @@ $(document).ready(function () {
 
         return true;
     }
+
+    var form = $(".warpper");
+    $("#btn_menu_regist").click(function(e) {
+        e.preventDefault();
+
+        form.css("visibility", "visible");
+        status = true;
+
+
+    });
+
+    $("#CloseRegist").click(function(e) {
+        e.preventDefault();
+        form.css("visibility", "hidden");
+        CloseForm();
+    });
+
+    function CloseForm() {
+        $("#fname").val("");
+        $("#lname").val("");
+        $("#uid").val("");
+        $("#ruid").val("");
+        $("#pass").val("");
+        $("#rpass").val("");
+        $("#tel").val("");
+    }
+    $(document).on('keydown', function(e) {
+        if (e.keyCode === 27) {
+            form.css("visibility", "hidden");
+            CloseForm();
+        }
+    });
 });
