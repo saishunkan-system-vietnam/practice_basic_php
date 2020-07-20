@@ -1,0 +1,22 @@
+body{
+    background-image: url('../IMG/mypham1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+table{
+    background-color: oldlace;
+    position: absolute;
+    padding: 30px;
+    height: 50%;
+    width: 30%;
+    left: 30%;
+    top: 10%;
+    border-radius: 5%;
+    border: solid 4px rgb(173, 127, 65);
+}
+#title_register{
+    text-align: center;
+    font-size: xx-large;
+    color: royalblue;
+}
+
