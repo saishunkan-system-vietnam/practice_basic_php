@@ -71,7 +71,7 @@
                     </a>
                 </li>
                 <li class="info-account">
-                    <a href="#">
+                    <a href="./login.php">
                         <i class="fa fa-sign-in" aria-hidden="true"></i>
                         <strong>Đăng Nhập</strong>
                     </a>

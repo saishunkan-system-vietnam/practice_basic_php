@@ -1,29 +1,80 @@
 $(document).ready(function () {
+
     $("#btnregist").click(function () {
-        if (Validate()) {
+        if (Validate())
+        {
             // alert("Đăng ký thành công");
-            CheckExist();
-        } else {
+            if( CheckExist() == 0)
+            { 
+                if(Regist())
+                {
+                     alert("Đăng ký thành công");
+                     $("#frm_Regist").submit();
+                }
+                else
+                {
+                    alert("Đăng ký thất bại");
+                }
+            }
+            else
+            {
+                 alert("Không thể đăng ký vì email này đã tồn tại - Vui lòng kiểm tra lại");
+            }
+        }
+        else 
+        {
             alert("Vui lòng điền vào mẫu chính xác");
         }
     });
 
-    function CheckExist() {
-        // var sql = "SELECT COUNT(*) as result FROM t_account WHERE uid = '" + $.trim($("#uid").val()) + "'"
-        var sql = "SELECT * FROM t_account";
+    function Regist()
+    {
+        var result = false;
 
         $.ajax({
+            async: false,
             type: "post",
-            url: "query.php",
+            url: "./lib/regist_ajax.php",
             data: {
-                sql: sql,
+                uid: $.trim($("#uid").val()),
+                fname: $.trim($("#fname").val()),
+                lname: $.trim($("#lname").val()),
+                pass: $.trim($("#pass").val()),
+                tel: $.trim($("#tel").val()),
+                proc: "Regist",
+            },
+            success: function (data) {
+                result = data;
+            }
+        });
+        return result;
+    }
+
+    function CheckExist() {
+
+         var result;
+
+        $.ajax({
+            async: false,
+            type: "post",
+            url: "./lib/regist_ajax.php",
+            data: {
+                uid: $.trim($("#uid").val()),
+                proc: "CheckExistAccount",
             },
             datatype: "JSON",
-            success: function (msg) {
-                console.log(msg);  
-
+            success: function (data) {
+            result =  data[0].result;
+         
+                // for (var i=0; i<msg.length; i++)
+                // {
+                //     console.log(msg[0].result);
+                // }
             },
         });
+
+        return result;
+        
     }
 
     function Validate() {
