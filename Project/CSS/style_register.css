@@ -1,22 +1,27 @@
 body{
-    background-image: url('../IMG/mypham1.jpg');
+    background: url('../IMG/mypham1.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    /* background: #e1e1e1 url(../IMG/mypham1.jpg) repeat-x; */
 }
-table{
-    background-color: oldlace;
-    position: absolute;
-    padding: 30px;
-    height: 50%;
-    width: 30%;
-    left: 30%;
-    top: 10%;
-    border-radius: 5%;
-    border: solid 4px rgb(173, 127, 65);
-}
-#title_register{
+.tieude>p{
     text-align: center;
-    font-size: xx-large;
-    color: royalblue;
+    font-family:inherit;
+    color: red;
+    font-size: 50px;
+}
+.myform{
+    position: absolute;
+    width: 60%;
+    height: 60%;
+    left: 40%;;
+}
+
+.row{
+    margin: 10px;
+}
+.span{
+    float: left;
+    
 }
 
