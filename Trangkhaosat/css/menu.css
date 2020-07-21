@@ -12,6 +12,7 @@
     background-color: #FFF;
     height: 70px;
     border-radius: 10px;
+    
 }
 
 .mcd-menu li.main-menu {
@@ -123,7 +124,7 @@
     visibility: visible;
     opacity: 1;
     -webkit-animation: moveFromTop 300ms ease-in-out;
-    top: 90px;
+    top: 69px;
     right: 0px;
 }
 

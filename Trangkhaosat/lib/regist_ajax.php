@@ -1,17 +1,13 @@
 <?
-    // Tạo đối tượng mysqli
-    $conn = new mysqli('localhost', 'root','', 'survey');
+    require("../config/config.php");
 
-    if(!$conn)
-    {
-        die("Connection failed: " . mysqlli_connect_error());
-    }
+    $conn = ConnectDB();
 
     if(isset($_POST["proc"]))
     {
         if($_POST["proc"] == "CheckExistAccount")
         {  
-             $myJSON = array();
+            $myJSON = array();
 
             if(isset($_POST["uid"]))
             {
@@ -19,7 +15,7 @@
                 $sql = "SELECT COUNT(*) as result FROM t_account WHERE uid = '{$uid}'";
                 $result = $conn->query($sql);
 
-                if ($result->num_rows > 0) 
+                if ($result->num_rows > 0)
                 {
                     while( $data = $result->fetch_assoc()) 
                     {
@@ -54,7 +50,7 @@
             else
                 echo false;    
         }
-    }
+    } 
 
-    mysqli_close($conn);
+    DisconnectDB($conn);
 ?>

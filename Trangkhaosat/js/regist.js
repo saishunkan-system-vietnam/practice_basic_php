@@ -3,15 +3,20 @@ $(document).ready(function() {
     $("#btnregist").click(function() {
         if (Validate()) {
             // alert("Đăng ký thành công");
-            if (CheckExist() == 0) {
+            let isExist = CheckExist();
+            if (isExist == 0) {
                 if (Regist()) {
                     alert("Đăng ký thành công");
                     $("#frm_Regist").submit();
-                } else {
+                } else{
                     alert("Đăng ký thất bại");
                 }
-            } else {
+            } else if(isExist > 0){
                 alert("Không thể đăng ký vì email này đã tồn tại - Vui lòng kiểm tra lại");
+            }
+            else
+            {
+                alert("Connection failed: Không thể kết nối đến máy chủ!");
             }
         } else {
             alert("Vui lòng điền vào mẫu chính xác");
@@ -34,6 +39,7 @@ $(document).ready(function() {
                 proc: "Regist",
             },
             success: function(data) {
+                
                 result = data;
             }
         });
@@ -55,7 +61,8 @@ $(document).ready(function() {
             datatype: "JSON",
             success: function(data) {
                 result = data[0].result;
-
+              
+                // console.log(data);
                 // for (var i=0; i<msg.length; i++)
                 // {
                 //     console.log(msg[0].result);
@@ -127,7 +134,7 @@ $(document).ready(function() {
         }
 
         // Nếu chưa nhập tell
-        if (tel.length <= 0) {
+        if (!isTel(tel)) {
             $("#tel").css("border-bottom", "2px solid #F90A0A");
             flag = false;
         } else {
@@ -137,68 +144,12 @@ $(document).ready(function() {
         return flag;
     }
 
-    function isEmail(emailStr) {
-        var emailPat = /^(.+)@(.+)$/;
-        var specialChars = '\\(\\)<>@,;:\\\\\\"\\.\\[\\]';
-        var validChars = "[^\\s" + specialChars + "]";
-        var quotedUser = '("[^"]*")';
-        var ipDomainPat = /^\[(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})\]$/;
-        var atom = validChars + "+";
-        var word = "(" + atom + "|" + quotedUser + ")";
-        var userPat = new RegExp("^" + word + "(\\." + word + ")*$");
-        var domainPat = new RegExp("^" + atom + "(\\." + atom + ")*$");
-        var matchArray = emailStr.match(emailPat);
-        if (matchArray == null) {
-            return false;
-        }
-        var user = matchArray[1];
-        var domain = matchArray[2];
-
-        // See if "user" is valid
-        if (user.match(userPat) == null) {
-            return false;
-        }
-        var IPArray = domain.match(ipDomainPat);
-        if (IPArray != null) {
-            // this is an IP address
-            for (var i = 1; i <= 4; i++) {
-                if (IPArray[i] > 255) {
-                    return false;
-                }
-            }
-            return true;
-        }
-        var domainArray = domain.match(domainPat);
-        if (domainArray == null) {
-            return false;
-        }
-
-        var atomPat = new RegExp(atom, "g");
-        var domArr = domain.match(atomPat);
-        var len = domArr.length;
-
-        if (
-            domArr[domArr.length - 1].length < 2 ||
-            domArr[domArr.length - 1].length > 3
-        ) {
-            return false;
-        }
-
-        if (len < 2) {
-            return false;
-        }
-
-        return true;
-    }
-
     var form = $(".warpper");
     $("#btn_menu_regist").click(function(e) {
         e.preventDefault();
 
         form.css("visibility", "visible");
         status = true;
-
-
     });
 
     $("#CloseRegist").click(function(e) {
@@ -216,6 +167,7 @@ $(document).ready(function() {
         $("#rpass").val("");
         $("#tel").val("");
     }
+
     $(document).on('keydown', function(e) {
         if (e.keyCode === 27) {
             form.css("visibility", "hidden");

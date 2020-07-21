@@ -4,21 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Menu</title>
+    <?require('config/router.php')?>
+    <?require('config/config.php')?>
 
-    <link rel="stylesheet" href="stylesheet.css?<?time()?>">
-    <link rel="stylesheet" href="./css/menu.css?<?time()?>">
-    <link rel="stylesheet" href="./css/regist.css?<?time()?>">
-    <link rel="stylesheet" href="./css/login.css?<?time()?>">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    <link rel="stylesheet" href= <?=FILE_CSS_STYLESHEET?>>
+    <link rel="stylesheet" href=<?= FILE_CSS_MENU?>>
+    <link rel="stylesheet" href=<?= FILE_CSS_REGIST?>>
+    <link rel="stylesheet" href=<?= FILE_CSS_LOGIN?>>
+    <link href= <?="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"?> rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <script src="./js/regist.js?<?time()?>"></script>
-    <script src="./js/login.js?<?time()?>"></script>
 </head>
 
 <body>
-    <?$infoLogin = false?>
     <div class="container">
         <nav>
             <ul class="mcd-menu">
@@ -51,7 +50,7 @@
                 <li class="info-account">
                     <a href="#">
                         <i class="fa fa-user" aria-hidden="true"></i>
-                        <strong><?=isset($_SESSION['InfoLogin']) ? $_SESSION['InfoLogin'] : "N/A"?></strong>
+                        <strong><?=isset($_SESSION['dataLogin']) ? $_SESSION['dataLogin'] : "N/A"?></strong>
                     </a>
                     <ul>
                         <li>
@@ -61,7 +60,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="./logout.php">
                                 <i class="fa fa-sign-out" aria-hidden="true"></i>
                                 <small>Đăng xuất</small>
                             </a>
@@ -134,20 +133,25 @@
         </div>
     </div>
 
+    <!-- ==================================== -->
+    <?
+     $user = GetCookieUid();    
+    ?>
+    <!-- ==================================== -->
     <div class="warpper_login">
         <div class="main_login">
             <h1>💻 Đăng Nhập</h1>
             <form action="" method="post" id="frm_login">
                 <!-- input Email -->
                 <p>
-                    <input type="email" name="uid" placeholder="✉ Email*" class="intpt_login" id="uid">
+                    <input type="email" name="uid" placeholder="✉ Email*" <?="value = '{$user}'"?> class="intpt_login" id="uid_login">
                 </p>
                 <!-- input Mật khẩu -->
                 <p>
-                    <input type="password" name="pass" placeholder="⌨ Mật khẩu*" class="intpt" id="pass">
+                    <input type="password" name="pass" placeholder="⌨ Mật khẩu*" class="intpt" id="pass_login">
                 </p>
                 <div class="bott">
-                    <p><input type="button" id="btnregist" value="Login" class="btn fl"></p>
+                    <p><input type="button" id="btnlogin" value="Login" class="btn fl"></p>
                 </div>
                 <div class="cuoi">
                     <p><input type="checkbox" name="chksave" id="chksave" class="checksave">
@@ -159,6 +163,11 @@
             </form>
         </div>
     </div>
+
+    
+    <script src=<?= FILE_JS_REGIST?>></script>
+    <script src=<?= FILE_JS_LOGIN?>></script>
+    <script src=<?= FILE_JS_COMMON?>></script>
 </body>
 
 </html>

@@ -1,3 +1,4 @@
+<?session_start()?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,13 @@
     <title>KHẢO SÁT TRỰC TUYẾN</title>  
 </head>
 <body>
-    <?include("./menu.php")?>
+
+    <?
+    $infoLogin = false;
+    if(!empty($_SESSION['dataLogin'])){
+        $infoLogin = true;
+    }
+    include("./menu.php");?>
     <p>xin chào dcác bạn</p>
     <input type="text" name="" id="">
 </body>
