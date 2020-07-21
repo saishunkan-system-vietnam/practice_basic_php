@@ -1,0 +1,21 @@
+.site-footer
+{
+  /* position: absolute;  */
+  background-color:#26272b;
+  bottom: 0px; 
+  font-size:14px;
+  color: #ffffff;  
+  width: 100%;
+  position: relative;
+  /* z-index: 1; */
+}
+.tablef
+{
+  width: 800px;
+}
+#thf1{
+  text-align: center;
+}
+#thf2{
+  text-align: left;
+}
