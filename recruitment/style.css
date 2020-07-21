@@ -1,0 +1,156 @@
+body {
+    font-family: "Arial", "helvetica neue", "Helvetica", "sans-serif";
+}
+
+.wrapper {
+
+    margin           : auto;
+    /* display       : flex;
+    flex-direction   : column; */
+    align-items      : center;
+    border           : 1px solid #ccc;
+    /* background       : rgb(228, 226, 221); */
+}
+
+.header {
+    background: rgb(26, 26, 26);
+    height    : 40px;
+    width     : 100%;
+    /* margin : 0; */
+}
+
+.main {
+    /* background: #e1e1e1 url(http://portal.finnandconway.com/images/bg-product.png) repeat-x; */
+    background: red;
+    /* height       : 100px; */
+    /* width        : 1000px; */
+    margin          : auto;
+}
+
+.main .container ul {
+    margin : 0px;
+    padding: 0px;
+}
+
+.main .container ul li {
+    list-style: none;
+    clear: left;
+    border-bottom: 2px solid rgba(174, 233, 255, 0.986);
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.main .container ul li img {
+    float       : left;
+    margin-right: 15px;
+    width: 116px;
+    height: 120px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    margin-left: 10px;
+}
+
+.main .container ul li h2 {
+    font-size: 14px;
+}
+
+.banner {
+    background   : #F0F8FF;
+    height       : auto;
+    width        : 100%;
+    /* margin    : auto */
+    margin-bottom: 5px;
+}
+
+.banner img {
+    width: 99%;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.left {
+    background: rgba(174, 233, 255, 0.986);
+    width     : 20%;
+    min-height: 800px;
+    float     : left;
+}
+
+.container {
+    background: #dcf0fa;
+    width     : 60%;
+    min-height: 800px;
+    /* float     : left; */
+    margin: 0 auto;
+}
+
+.right {
+    background: rgba(174, 233, 255, 0.986);
+    width     : 20%;
+    min-height: 800px;
+    float     : right;
+}
+
+.pagination{
+    margin-top: 0px;
+    background-color: lightgray;
+    clear:both;
+    height:25px;        
+}
+
+.footer {
+    background : rgb(43, 43, 43);
+    width      : 200px;
+    text-align : center;
+    clear      : left;
+    height     : 87px;
+    color      : floralwhite;
+    width      : 100%;
+    /* line-height: 40px; */
+    }
+    
+.footer div{
+    padding-top:7 px;
+    padding-bottom:7px
+}
+
+.header ul {
+    margin : 0px;
+    padding: 0px;
+}
+
+.header ul li {
+    list-style: none;
+    float     : left;
+}
+
+.header ul li a {
+    text-decoration: none;
+    display        : block;
+    height         : 40px;
+    /*bằng chiều cao header*/
+    /*bằng chiều cao header, cho text căn giữa*/
+    line-height    : 40px;
+    color          : white;
+    padding        : 0px 15px 0px 15px;
+    border-right   : 1px solid #eeeeee;
+}
+
+.header ul li a:active,
+a:hover {
+    background-color     : rgb(31, 88, 112);
+    text-decoration-color: black;
+}
+
+@media (min-width: 992px) and (max-width: 1366px) {
+    .banner img{
+        width: 99%;
+    }
+  }
+
+  @media (max-width: 992px)  {
+    .banner img{
+        width: 98%;
+    }
+  }

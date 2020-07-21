@@ -5,6 +5,7 @@ $(document).ready(function () {
         var error = $("#error");
         // alert (Validate());
         // alert(email);
+
         if (Validate()) {
             alert("true");
             CheckExistUser();
@@ -41,27 +42,18 @@ $(document).ready(function () {
         function CheckExistUser() {
             var sql = "SELECT COUNT(*) as result FROM usertbl where email='" + $.trim($("#email").val()) + "' and password='" + $.trim($("#password").val()) + "' and del_flag=0";
             var result;
-            alert("sadsa");
             $.ajax({
                 async: false,
                 type: "post",
-                url: "./query.php",
+                url: "/recruitment/query.php",
                 data: {
                     sql: sql,
                     query: "SELECT",
                 },
                 // datatype: "JSON",
                 success: function (data) {
-                    alert(data);
-
-                    // result = data[0].result;
-                    // console.log(data);
-                    // console.log(data[0].result);
-                    // alert(result);
-                                        // for (var i=0; i<msg.length; i++)
-                    // {
-                    //     console.log(msg[0].result);
-                    // }
+                    alert(data[0].result);
+                    console.log("Hello");
                 },
             });
 
