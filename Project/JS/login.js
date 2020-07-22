@@ -1,23 +1,27 @@
-$(document).ready(function() {
-    $('a.login-window').click(function() {
-        //lấy giá trị thuộc tính href - chính là phần tử "#login-box"
-        var loginBox = $(this).attr('href');
- 
-        //cho hiện hộp đăng nhập trong 300ms
-        $(loginBox).fadeIn(300);
- 
-        // thêm phần tử id="over" vào sau body
-        $('body').append('<div id="over">');
-        $('#over').fadeIn(300);
- 
-        return false;
- });
- 
- // khi click đóng hộp thoại
- $(document).on('click', "a.close, #over", function() {
-       $('#over, .login').fadeOut(300 , function() {
-           $('#over').remove();
-       });
-      return false;
- });
+$(document).ready(function () {
+    var isExists;
+    $("#btnlogin").click(function () {
+
+        $.ajax({
+            url: "./login_submit.php",
+            method: "post",
+            data: {
+                uid: $.trim($("#uid").val()),
+                pass: $.trim($("#pass").val()),
+                save: $.trim($("#save").val()),
+            },
+            success: function (data) {
+                isExists = data;
+                if (isExists) {
+                    // document.getElementById('login').style.display='none';
+                    alert("Đăng nhập thành công");
+                }
+                else{
+                    alert("Tài khoản hoặc mật khẩu chưa chính xác")
+                }
+            }
+        });
+    });
+
+
 });

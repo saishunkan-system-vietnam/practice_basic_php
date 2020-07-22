@@ -1,21 +1,28 @@
 <?php
     session_start();
-    include 'connect.php';
-    require 'config.php';
+    require './config/router.php';
+    require FILE_PHP_CONNECT;
+    require FILE_PHP_CONFIG;
+    $isExists = false;
 
-    $userName = $_POST["Username"];
-    $passWord = $_POST["Password"];
-    $result = $mysqli->query("SELECT * FROM user WHERE userName = '$userName' AND passWord = '$passWord'") or die ($mysqli->error);
-    if ($result->num_rows) {
-        $_SESSION[COOKIE_USERNAME] = $userName;
-        if ($_POST["saveAccount"] == 1) {
-            setcookie(COOKIE_USERNAME, $userName, time() + 14400);
-        }
-        // Đóng kết nối
-        $mysqli -> close();
+    if (isset($_POST["uid"]) && isset($_POST["pass"]) && isset($_POST["save"]) ) {
+        $email = $_POST["uid"];
+        $password = md5($_POST["pass"]);
 
-        header("location: index.php");
-    }   
+        $result = $mysqli->query("SELECT * FROM account WHERE email = '$email' AND password = '$password'") or die ($mysqli->error);
+        if ($result->num_rows) {
+            $_SESSION[SESSION_USERNAME] = $email;
+
+            if ($_POST["save"] == "1") {
+                setcookie(COOKIE_USERNAME, $email, time() + 14400);
+                setcookie(COOKIE_PASSWORD, $password, time() + 14400);
+            }
+            $notExists = true;       
+        }   
+
+        echo json_encode($notExists);
+    }
+
     // Đóng kết nối
     $mysqli -> close();
 ?>

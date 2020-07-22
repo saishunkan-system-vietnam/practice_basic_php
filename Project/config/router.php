@@ -20,6 +20,12 @@
     // JS
     define('FILE_JS_LOGIN','./JS/login.js');
     define('FILE_JS_VALIDATE','./JS/validate.js');
+    define('FILE_JS_SLIDESHOW','./JS/slideshow_auto.js');
+
+
+    // IMG
+    define('FILE_IMG_AVARTA','./img/avatar.png');
+    define('FILE_IMG_LOGO','./img/logo.png');
 
     // LINK
     define('LINK_ICON','https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');

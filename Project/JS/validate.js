@@ -3,15 +3,15 @@ $(document).ready(function()
     $('#form_register').submit(function(){
  
         // BƯỚC 1: Lấy dữ liệu từ form
-        var name    = $.trim($('#name').val());
-        var password    = $.trim($('#password').val());
-        var re_password = $.trim($('#re_password').val());
-        var sex         = $.trim($('#sex').val());
+        var fullname    = $.trim($('#fullname').val());
+        var sex         = $.trim($('.sex:checked').val());
+        var phone       = $.trim($('#phone').val());
         var bday        = $.trim($('#bday').val());
         var email       = $.trim($('#email').val());
-        var phone       = $.trim($('#phone').val());
         var address     = $.trim($('#address').val());
-        var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+        var password    = $.trim($('#password').val());
+        var re_password = $.trim($('#re_password').val());
+
  
         // BƯỚC 2: Validate dữ liệu
         // Biến cờ hiệu

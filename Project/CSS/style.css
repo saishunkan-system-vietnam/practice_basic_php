@@ -31,7 +31,7 @@
     height: 15px;
     width: 15px;
     margin: 0 2px;
-    background-color: #bbb;
+    background-color: rgb(148, 241, 184);
     border-radius: 50%;
     display: inline-block;
     transition: background-color 0.6s ease;
@@ -62,4 +62,49 @@
   /* On smaller screens, decrease text size */
   @media only screen and (max-width: 300px) {
     .text {font-size: 11px}
+  }
+
+  .card {
+    width: 23%;
+    height: 20%;
+    margin: 0 1% 20px;
+    box-shadow: 0 4px 9px 0 #eee!important;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    float: left;
+  }
+  
+ h3{
+    white-space: nowrap; 
+    width: 100%; 
+    
+    overflow: hidden;
+    text-overflow: ellipsis; 
+  }
+  .price {
+    color: grey;
+    font-size: 22px;
+  }
+  
+  .card button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .card button:hover {
+    opacity: 0.7;
+  }
+
+  .pagination{
+    text-align: center;
+    color: black;
+    font-size: 15px;
+    
   }

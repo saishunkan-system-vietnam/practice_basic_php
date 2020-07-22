@@ -1,27 +1,120 @@
-body{
-    background: url('../IMG/mypham1.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    /* background: #e1e1e1 url(../IMG/mypham1.jpg) repeat-x; */
+* {box-sizing: border-box}
+/* The Modal (background) */
+.popup_regist {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+  padding-left: 25%;
+  padding-right: 25%;
 }
-.tieude>p{
-    text-align: center;
-    font-family:inherit;
+
+/* Modal Content/Box */
+.form_regist {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+
+/* Full-width input fields */
+input[type=text], input[type=password],input[type=date] {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0px 10px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+  }
+  
+  input[type=text]:focus, input[type=password],input[type=date]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+
+  input[type=radio]{
+    margin: 5px 0px 15px 0;
+  }
+
+  h1 {
     color: red;
-    font-size: 50px;
-}
-.myform{
-    position: absolute;
-    width: 60%;
-    height: 60%;
-    left: 40%;;
-}
-
-.row{
-    margin: 10px;
-}
-.span{
+    text-align: center;
+  }
+  
+  hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+  }
+  
+  /* Extra styles for the cancel button */
+  .cancel {
+    padding: 14px 20px;
+    background-color: #f44336;
+  }
+  
+  /* Float cancel and signup buttons and add an equal width */
+  .cancel, .registbtn {
     float: left;
-    
+    width: 50%;
+  }
+  
+  /* Add padding to container elements */
+  .regist_container {
+    padding: 16px;
+  }
+  
+  /* Clear floats */
+  .regist_clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  .regist_close {
+    float: right;
+    right: 25px;
+    color: #000;
+    font-size: 45px;
+    font-weight: bold;
+  }
+
+  .regist_close:hover,
+  .regist_close:focus {
+    color: red;
+    cursor: pointer;
+  }
+  
+  /* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
 }
 
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancel {
+     width: 100%;
+  }
+}
