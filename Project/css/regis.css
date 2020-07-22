@@ -1,0 +1,67 @@
+body {
+    margin     : 0;
+}
+
+.dk {
+    width: 400px;
+    margin: 0 auto;
+}
+
+.regis {
+    height: 50px;
+    text-align: center;
+    background-color: #2099f5;
+}
+
+.tt {
+    margin-top: 17px;
+    width: 400px;
+    height: 30px;
+}
+
+.fnamelb {
+    width: 80px;
+    height: 30px;
+    margin-top: 5px;
+    float: left;
+}
+
+.errFnamelb {
+    float: right;
+    color: red;
+    font-size: 12px;
+}
+
+.fnameip {
+    float: right;
+    width: 320px;
+}
+
+.fip {
+    width: 312px;
+    height: 26px;
+}
+.btnfrmDN {
+    width:120px; 
+    height:30px; 
+    font-size: 20px;
+}
+
+.tdbtn {
+    width: 400px;
+    text-align: center;
+}
+
+.btn {
+    width: 100px;
+    border-radius: 5px;
+    transition-duration: 0.2s;
+    color: black;
+    background-color: white;
+    border: 2px solid #4CAF50;
+}
+
+.btn:hover {
+    background-color: #4CAF50;
+    /* Green */
+}

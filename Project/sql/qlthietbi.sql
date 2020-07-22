@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 20, 2020 at 12:39 PM
+-- Generation Time: Jul 22, 2020 at 12:22 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -81,12 +81,20 @@ CREATE TABLE `taikhoan` (
   `IDTaiKhoan` int(11) NOT NULL,
   `UserName` text NOT NULL,
   `Password` text NOT NULL,
-  `Password_Old` text NOT NULL,
   `Email` text NOT NULL,
-  `DiaChi` text NOT NULL,
-  `Del_Flg` int(11) NOT NULL,
-  `GhiChu` int(11) NOT NULL
+  `DiaChi` text DEFAULT NULL,
+  `Avatar` text DEFAULT NULL,
+  `Del_Flg` bit(1) NOT NULL DEFAULT b'0',
+  `Admin_Flg` bit(1) DEFAULT NULL,
+  `GhiChu` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `taikhoan`
+--
+
+INSERT INTO `taikhoan` (`IDTaiKhoan`, `UserName`, `Password`, `Email`, `DiaChi`, `Avatar`, `Del_Flg`, `Admin_Flg`, `GhiChu`) VALUES
+(1, 'NhanVP', '1', 'shadowin1811@gmail.com', 'Phú thượng', NULL, b'0', NULL, '1212');
 
 -- --------------------------------------------------------
 
@@ -120,17 +128,28 @@ CREATE TABLE `thietbi` (
   `TenThietBi` text NOT NULL,
   `MaTheLoai` int(11) NOT NULL,
   `HangSanXuat` int(11) DEFAULT NULL,
-  `Del_Flg` bit(1) NOT NULL
+  `Del_Flg` bit(1) NOT NULL,
+  `Img` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `thietbi`
 --
 
-INSERT INTO `thietbi` (`MaThietBi`, `TenThietBi`, `MaTheLoai`, `HangSanXuat`, `Del_Flg`) VALUES
-(1, 'Máy Tính Desknote Dell OptiPlex 9010', 1, 4, b'0'),
-(2, 'Balo Leo núi', 3, 2, b'0'),
-(3, 'Bộ đồ bảo hộ lao động', 2, 3, b'0');
+INSERT INTO `thietbi` (`MaThietBi`, `TenThietBi`, `MaTheLoai`, `HangSanXuat`, `Del_Flg`, `Img`) VALUES
+(1, 'Máy Tính Desknote Dell OptiPlex 9010', 1, 4, b'0', NULL),
+(2, 'Balo Leo núi', 3, 2, b'0', NULL),
+(3, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL),
+(4, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL),
+(5, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL),
+(6, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL),
+(7, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL),
+(8, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL),
+(9, 'Máy Tính Desknote Dell OptiPlex 9010', 1, 4, b'0', NULL),
+(10, 'Máy Tính Desknote Dell OptiPlex 9010', 1, 4, b'0', NULL),
+(11, 'Balo Leo núi', 3, 2, b'0', NULL),
+(12, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL),
+(13, 'Máy Tính Desknote DELL OptiPlex 9010', 1, 4, b'0', NULL);
 
 --
 -- Indexes for dumped tables
@@ -196,7 +215,7 @@ ALTER TABLE `muontra`
 -- AUTO_INCREMENT for table `taikhoan`
 --
 ALTER TABLE `taikhoan`
-  MODIFY `IDTaiKhoan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDTaiKhoan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `theloai`
@@ -208,7 +227,7 @@ ALTER TABLE `theloai`
 -- AUTO_INCREMENT for table `thietbi`
 --
 ALTER TABLE `thietbi`
-  MODIFY `MaThietBi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `MaThietBi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables

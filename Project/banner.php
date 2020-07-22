@@ -1,16 +1,14 @@
-
-
 <link rel="stylesheet" href=<?= FILE_CSS_BANNER?>>
 
 <div class="slideshow-container">
 <div class="mySlides fade">
-    <img src="./img/Banner_1.jpg" style="width: 1350px; height: 374px;">
+    <img src=<?= IMG_BANNER1?>  style="width: 1350px; height: 374px;">
 </div>
 <div class="mySlides fade">
-    <img src="./img/Banner_2.png" style="width: 1350px; height: 374px;">
+    <img src=<?= IMG_BANNER2?>  style="width: 1350px; height: 374px;">
 </div>
 <div class="mySlides fade">
-    <img src="./img/Banner_3.jpg" style="width: 1350px; height: 374px;">
+    <img src=<?= IMG_BANNER3?> style="width: 1350px; height: 374px;">
 </div>
 </div>
 <br>
