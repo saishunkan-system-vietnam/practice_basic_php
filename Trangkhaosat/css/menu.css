@@ -1,18 +1,19 @@
 .container {
     width: 100%;
-    position: relative;
+    position: fixed;
     margin: 5px auto;
     padding: 0;
+    z-index: 1;
 }
 
 .mcd-menu {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0px 5px 0px 5px;
     background-color: #FFF;
+    box-shadow: 0 0 5px #DDD;
     height: 70px;
     border-radius: 10px;
-    
 }
 
 .mcd-menu li.main-menu {
@@ -30,7 +31,8 @@
     text-decoration: none;
     padding: 12px 20px;
     text-align: center;
-    color: #777;
+    /* color: #777; */
+    color: #3f3b3b;
     /* border-right: 1px solid #E7E7E7; */
 }
 
@@ -45,7 +47,7 @@
 .mcd-menu li a i {
     display: block;
     font-size: 18px;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
 }
 
 .mcd-menu li a strong {
@@ -60,13 +62,14 @@
 }
 
 .mcd-menu li:hover>a {
+    /* color: #e67e22; */
     color: #e67e22;
     border: 0;
     border-top: 4px solid;
     border-bottom: 4px solid;
     margin-top: -4px;
     /* box-shadow: 0 0 5px #DDD; */
-    box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 5px #025583;
 }
 
 .mcd-menu li:hover>a::before {
@@ -101,7 +104,7 @@
     min-width: 200px;
     padding: 0;
     margin: 0;
-    background: #FFF;
+    background-color: #fff;
     border-top: 4px solid #e67e22;
     opacity: 0;
     visibility: hidden;
@@ -131,6 +134,7 @@
 .mcd-menu li ul li {
     float: none;
     list-style: none;
+    color: #3f3b3b;
 }
 
 .mcd-menu li ul li a {

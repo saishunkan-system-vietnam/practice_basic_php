@@ -9,6 +9,7 @@ define('FILE_CSS_LOGIN','./css/login.css?');
 define('FILE_CSS_MENU','./css/menu.css?');
 define('FILE_CSS_REGIST','./css/regist.css');
 define('FILE_CSS_STYLESHEET','./css/stylesheet.css');
+define('FILE_CSS_INDEX','./css/index.css');
 
 //JS
 define('FILE_JS_LOGIN','./js/login.js?');
@@ -20,7 +21,7 @@ define('FILE_LIB_LOGIN','./lib/login_ajax.php');
 define('FILE_LIB_REGIST','./js/regist_ajax.php');
 
 //CONFIG
-define('FILE_CONFIG','"./config/config.php"');
+define('FILE_CONFIG','./config/config.php');
 
 
 ?>

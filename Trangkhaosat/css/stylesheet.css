@@ -1,5 +1,6 @@
 body {
-    background: #EEE !important;
+    background: #fff;
     overflow-x: hidden !important;
     color: #777 !important;
+    font: 14px/24px arial;
 }

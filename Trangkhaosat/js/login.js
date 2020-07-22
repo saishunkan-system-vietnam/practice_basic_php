@@ -10,10 +10,6 @@ $(document).ready(function() {
     $("#btn_menu_login").click(function(e) {
         e.preventDefault();
         form.css("visibility", "visible");
-        
-        $("#frm_login").submit(function (e) { 
-            return true;            
-        });
 
     });
 

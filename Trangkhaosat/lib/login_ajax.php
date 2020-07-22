@@ -33,11 +33,11 @@
 
             if($save == "true")
             {
-                setcookie(COOKIE_NAME,"uid=".$uid."&pass=".$pass,time() + $cookie_time);
+                setcookie(COOKIE_NAME,"uid=".$uid."&pass=".$pass,time() + $cookie_time,'/');
             }
             else
             {
-                setcookie( COOKIE_NAME, "", time()- 60);
+                setcookie( COOKIE_NAME, "", time()- 60,'/');
             }
             echo true;            
         }

@@ -35,4 +35,19 @@ function GetCookieUid()
     return $result;
 }
 
+function GetCookiePass()
+{
+  $result = "";
+  
+    if(isset($_COOKIE[COOKIE_NAME]))
+    { 
+            //======
+            parse_str($_COOKIE['lieu']);
+
+            $result = $pass;
+    }
+    return $result;
+}
+
+
 ?>

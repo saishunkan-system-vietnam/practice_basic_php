@@ -1,0 +1,127 @@
+body {
+    padding: 0;
+    margin: 0;
+    font: 14px/24px arial;
+    color: #212529;
+    text-align: left;
+    position: relative;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+div {
+    display: block;
+}
+
+.ks-fast {
+    float: left;
+    width: 100%;
+    padding-bottom: 30px;
+}
+
+.container-home {
+    max-width: 1140px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+h1 {
+    width: 100%;
+    float: left;
+    padding: 20px 0;
+    font: 'Roboto Condensed';
+    text-align: center;
+    color: #3f3b3b;
+}
+
+.col-r1 {
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    float: left;
+    width: 100%;
+    min-height: 460px;
+    /* background-color: #fff; */
+    background-color:#fff;
+    /* box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5); */
+    box-shadow: 9px 9px 16px rgba(0, 0, 0, 0.7);
+    height: 100%;
+}
+
+.col {
+    flex: 0 0 50%;
+    max-width: 50%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-bottom: 1rem;
+}
+
+.date {
+    float: left;
+    width: 100%;
+    color: #c9c9c9;
+    margin-bottom: 5px;
+}
+
+.text-nd-ksn {
+    
+    float: left;
+    width: 100%;
+}
+
+.btn-reply {
+    position: absolute;
+    background: #3a91a4;
+    color: #fff;
+    padding: 7px 10px;
+    border-radius: 10px;
+    margin-right: 10px;
+    float: left;
+    font-weight: bold;
+    left: 10px;
+    bottom: 10px;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+.title{
+    background-color:#01579B;
+    color: white;
+    margin-top: 0em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 7%;
+    border-top-left-radius: 19px;
+    border-top-right-radius: 19px;
+    text-transform: uppercase;
+    
+}
+
+.detail{
+    position: relative;
+    margin: 0px 3% 0px 20px;
+    min-height: 29%;
+    max-height: 29%;
+    color: black;
+    font-size: 13px;
+    float: left;
+    width: 96%;
+    border-bottom: 1px solid #e8e8e8;
+}
