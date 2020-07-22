@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 20, 2020 at 02:33 PM
+-- Generation Time: Jul 22, 2020 at 07:49 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.2.31
 
@@ -18,459 +18,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `cakephp`
---
-CREATE DATABASE IF NOT EXISTS `cakephp` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `cakephp`;
---
--- Database: `phpmyadmin`
---
-CREATE DATABASE IF NOT EXISTS `phpmyadmin` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
-USE `phpmyadmin`;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__bookmark`
---
-
-CREATE TABLE `pma__bookmark` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `dbase` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `user` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `label` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
-  `query` text COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Bookmarks';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__central_columns`
---
-
-CREATE TABLE `pma__central_columns` (
-  `db_name` varchar(64) COLLATE utf8_bin NOT NULL,
-  `col_name` varchar(64) COLLATE utf8_bin NOT NULL,
-  `col_type` varchar(64) COLLATE utf8_bin NOT NULL,
-  `col_length` text COLLATE utf8_bin DEFAULT NULL,
-  `col_collation` varchar(64) COLLATE utf8_bin NOT NULL,
-  `col_isNull` tinyint(1) NOT NULL,
-  `col_extra` varchar(255) COLLATE utf8_bin DEFAULT '',
-  `col_default` text COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Central list of columns';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__column_info`
---
-
-CREATE TABLE `pma__column_info` (
-  `id` int(5) UNSIGNED NOT NULL,
-  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `table_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `column_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `comment` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
-  `mimetype` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
-  `transformation` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `transformation_options` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `input_transformation` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `input_transformation_options` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Column information for phpMyAdmin';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__designer_settings`
---
-
-CREATE TABLE `pma__designer_settings` (
-  `username` varchar(64) COLLATE utf8_bin NOT NULL,
-  `settings_data` text COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Settings related to Designer';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__export_templates`
---
-
-CREATE TABLE `pma__export_templates` (
-  `id` int(5) UNSIGNED NOT NULL,
-  `username` varchar(64) COLLATE utf8_bin NOT NULL,
-  `export_type` varchar(10) COLLATE utf8_bin NOT NULL,
-  `template_name` varchar(64) COLLATE utf8_bin NOT NULL,
-  `template_data` text COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Saved export templates';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__favorite`
---
-
-CREATE TABLE `pma__favorite` (
-  `username` varchar(64) COLLATE utf8_bin NOT NULL,
-  `tables` text COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Favorite tables';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__history`
---
-
-CREATE TABLE `pma__history` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `username` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `db` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `table` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `timevalue` timestamp NOT NULL DEFAULT current_timestamp(),
-  `sqlquery` text COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='SQL history for phpMyAdmin';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__navigationhiding`
---
-
-CREATE TABLE `pma__navigationhiding` (
-  `username` varchar(64) COLLATE utf8_bin NOT NULL,
-  `item_name` varchar(64) COLLATE utf8_bin NOT NULL,
-  `item_type` varchar(64) COLLATE utf8_bin NOT NULL,
-  `db_name` varchar(64) COLLATE utf8_bin NOT NULL,
-  `table_name` varchar(64) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Hidden items of navigation tree';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__pdf_pages`
---
-
-CREATE TABLE `pma__pdf_pages` (
-  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `page_nr` int(10) UNSIGNED NOT NULL,
-  `page_descr` varchar(50) CHARACTER SET utf8 NOT NULL DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='PDF relation pages for phpMyAdmin';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__recent`
---
-
-CREATE TABLE `pma__recent` (
-  `username` varchar(64) COLLATE utf8_bin NOT NULL,
-  `tables` text COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Recently accessed tables';
-
---
--- Dumping data for table `pma__recent`
---
-
-INSERT INTO `pma__recent` (`username`, `tables`) VALUES
-('root', '[{\"db\":\"survey\",\"table\":\"t_account\"},{\"db\":\"survey\",\"table\":\"account\"}]');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__relation`
---
-
-CREATE TABLE `pma__relation` (
-  `master_db` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `master_table` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `master_field` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `foreign_db` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `foreign_table` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `foreign_field` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Relation table';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__savedsearches`
---
-
-CREATE TABLE `pma__savedsearches` (
-  `id` int(5) UNSIGNED NOT NULL,
-  `username` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `search_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `search_data` text COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Saved searches';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__table_coords`
---
-
-CREATE TABLE `pma__table_coords` (
-  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `table_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `pdf_page_number` int(11) NOT NULL DEFAULT 0,
-  `x` float UNSIGNED NOT NULL DEFAULT 0,
-  `y` float UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table coordinates for phpMyAdmin PDF output';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__table_info`
---
-
-CREATE TABLE `pma__table_info` (
-  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `table_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `display_field` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table information for phpMyAdmin';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__table_uiprefs`
---
-
-CREATE TABLE `pma__table_uiprefs` (
-  `username` varchar(64) COLLATE utf8_bin NOT NULL,
-  `db_name` varchar(64) COLLATE utf8_bin NOT NULL,
-  `table_name` varchar(64) COLLATE utf8_bin NOT NULL,
-  `prefs` text COLLATE utf8_bin NOT NULL,
-  `last_update` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tables'' UI preferences';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__tracking`
---
-
-CREATE TABLE `pma__tracking` (
-  `db_name` varchar(64) COLLATE utf8_bin NOT NULL,
-  `table_name` varchar(64) COLLATE utf8_bin NOT NULL,
-  `version` int(10) UNSIGNED NOT NULL,
-  `date_created` datetime NOT NULL,
-  `date_updated` datetime NOT NULL,
-  `schema_snapshot` text COLLATE utf8_bin NOT NULL,
-  `schema_sql` text COLLATE utf8_bin DEFAULT NULL,
-  `data_sql` longtext COLLATE utf8_bin DEFAULT NULL,
-  `tracking` set('UPDATE','REPLACE','INSERT','DELETE','TRUNCATE','CREATE DATABASE','ALTER DATABASE','DROP DATABASE','CREATE TABLE','ALTER TABLE','RENAME TABLE','DROP TABLE','CREATE INDEX','DROP INDEX','CREATE VIEW','ALTER VIEW','DROP VIEW') COLLATE utf8_bin DEFAULT NULL,
-  `tracking_active` int(1) UNSIGNED NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Database changes tracking for phpMyAdmin';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__userconfig`
---
-
-CREATE TABLE `pma__userconfig` (
-  `username` varchar(64) COLLATE utf8_bin NOT NULL,
-  `timevalue` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `config_data` text COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='User preferences storage for phpMyAdmin';
-
---
--- Dumping data for table `pma__userconfig`
---
-
-INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
-('root', '2020-07-20 03:57:23', '{\"Console\\/Mode\":\"collapse\"}');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__usergroups`
---
-
-CREATE TABLE `pma__usergroups` (
-  `usergroup` varchar(64) COLLATE utf8_bin NOT NULL,
-  `tab` varchar(64) COLLATE utf8_bin NOT NULL,
-  `allowed` enum('Y','N') COLLATE utf8_bin NOT NULL DEFAULT 'N'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='User groups with configured menu items';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__users`
---
-
-CREATE TABLE `pma__users` (
-  `username` varchar(64) COLLATE utf8_bin NOT NULL,
-  `usergroup` varchar(64) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Users and their assignments to user groups';
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `pma__bookmark`
---
-ALTER TABLE `pma__bookmark`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `pma__central_columns`
---
-ALTER TABLE `pma__central_columns`
-  ADD PRIMARY KEY (`db_name`,`col_name`);
-
---
--- Indexes for table `pma__column_info`
---
-ALTER TABLE `pma__column_info`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `db_name` (`db_name`,`table_name`,`column_name`);
-
---
--- Indexes for table `pma__designer_settings`
---
-ALTER TABLE `pma__designer_settings`
-  ADD PRIMARY KEY (`username`);
-
---
--- Indexes for table `pma__export_templates`
---
-ALTER TABLE `pma__export_templates`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `u_user_type_template` (`username`,`export_type`,`template_name`);
-
---
--- Indexes for table `pma__favorite`
---
-ALTER TABLE `pma__favorite`
-  ADD PRIMARY KEY (`username`);
-
---
--- Indexes for table `pma__history`
---
-ALTER TABLE `pma__history`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `username` (`username`,`db`,`table`,`timevalue`);
-
---
--- Indexes for table `pma__navigationhiding`
---
-ALTER TABLE `pma__navigationhiding`
-  ADD PRIMARY KEY (`username`,`item_name`,`item_type`,`db_name`,`table_name`);
-
---
--- Indexes for table `pma__pdf_pages`
---
-ALTER TABLE `pma__pdf_pages`
-  ADD PRIMARY KEY (`page_nr`),
-  ADD KEY `db_name` (`db_name`);
-
---
--- Indexes for table `pma__recent`
---
-ALTER TABLE `pma__recent`
-  ADD PRIMARY KEY (`username`);
-
---
--- Indexes for table `pma__relation`
---
-ALTER TABLE `pma__relation`
-  ADD PRIMARY KEY (`master_db`,`master_table`,`master_field`),
-  ADD KEY `foreign_field` (`foreign_db`,`foreign_table`);
-
---
--- Indexes for table `pma__savedsearches`
---
-ALTER TABLE `pma__savedsearches`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `u_savedsearches_username_dbname` (`username`,`db_name`,`search_name`);
-
---
--- Indexes for table `pma__table_coords`
---
-ALTER TABLE `pma__table_coords`
-  ADD PRIMARY KEY (`db_name`,`table_name`,`pdf_page_number`);
-
---
--- Indexes for table `pma__table_info`
---
-ALTER TABLE `pma__table_info`
-  ADD PRIMARY KEY (`db_name`,`table_name`);
-
---
--- Indexes for table `pma__table_uiprefs`
---
-ALTER TABLE `pma__table_uiprefs`
-  ADD PRIMARY KEY (`username`,`db_name`,`table_name`);
-
---
--- Indexes for table `pma__tracking`
---
-ALTER TABLE `pma__tracking`
-  ADD PRIMARY KEY (`db_name`,`table_name`,`version`);
-
---
--- Indexes for table `pma__userconfig`
---
-ALTER TABLE `pma__userconfig`
-  ADD PRIMARY KEY (`username`);
-
---
--- Indexes for table `pma__usergroups`
---
-ALTER TABLE `pma__usergroups`
-  ADD PRIMARY KEY (`usergroup`,`tab`,`allowed`);
-
---
--- Indexes for table `pma__users`
---
-ALTER TABLE `pma__users`
-  ADD PRIMARY KEY (`username`,`usergroup`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `pma__bookmark`
---
-ALTER TABLE `pma__bookmark`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `pma__column_info`
---
-ALTER TABLE `pma__column_info`
-  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `pma__export_templates`
---
-ALTER TABLE `pma__export_templates`
-  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `pma__history`
---
-ALTER TABLE `pma__history`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `pma__pdf_pages`
---
-ALTER TABLE `pma__pdf_pages`
-  MODIFY `page_nr` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `pma__savedsearches`
---
-ALTER TABLE `pma__savedsearches`
-  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;
---
 -- Database: `survey`
 --
-CREATE DATABASE IF NOT EXISTS `survey` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `survey`;
 
 -- --------------------------------------------------------
 
@@ -498,8 +47,188 @@ CREATE TABLE `t_account` (
 --
 
 INSERT INTO `t_account` (`uid`, `fname`, `lname`, `pass`, `tel`, `gender`, `birthdate`, `del_flg`, `create_datetime`, `upadte_datetime`, `upd_count`, `admin_flg`) VALUES
+('abc@bcf.com', 'eqwe', 'eqwe', '1', '0365654521', NULL, NULL, 0, '2020-07-21 21:48:30', '2020-07-21 21:48:30', 0, 0),
 ('abc@gmail.com', 'asd', 'dasdas', '123456', '32132', NULL, NULL, 0, '2020-07-19 21:14:43', '2020-07-19 21:14:43', 0, 0),
+('admin1@gmail.com', 'eqwe', 'eqwe', '1', '1', NULL, NULL, 0, '2020-07-20 22:33:45', '2020-07-20 22:33:45', 0, 0),
 ('admin@gmail.com', 'nguyen', 'duc lieu', '123456', '123', NULL, NULL, 0, '2020-07-19 20:37:32', '2020-07-19 20:37:32', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_answer`
+--
+
+CREATE TABLE `t_answer` (
+  `id` varchar(30) NOT NULL COMMENT 'id',
+  `id_hdr` varchar(30) NOT NULL COMMENT 'id header',
+  `id_dtl` varchar(30) NOT NULL COMMENT 'id detail',
+  `usr_id` varchar(100) NOT NULL COMMENT 'user id',
+  `create_datetime` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'ngày trả lời',
+  `del_flg` smallint(1) NOT NULL DEFAULT 0 COMMENT 'cờ xóa'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_category`
+--
+
+CREATE TABLE `t_category` (
+  `id` varchar(30) NOT NULL,
+  `content` varchar(300) NOT NULL,
+  `create_datetime` datetime NOT NULL DEFAULT current_timestamp(),
+  `update_datetime` datetime NOT NULL DEFAULT current_timestamp(),
+  `update_count` tinyint(1) NOT NULL DEFAULT 0,
+  `del_flg` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `t_category`
+--
+
+INSERT INTO `t_category` (`id`, `content`, `create_datetime`, `update_datetime`, `update_count`, `del_flg`) VALUES
+('CT_001', 'Cuộc sống', '2020-07-21 20:41:25', '2020-07-21 20:41:25', 0, 0),
+('CT_002', 'Gia đình', '2020-07-21 20:41:54', '2020-07-21 20:41:54', 0, 0),
+('CT_003', 'Thể thao', '2020-07-21 20:42:03', '2020-07-21 20:42:03', 0, 0),
+('CT_004', 'Du lịch', '2020-07-21 20:42:22', '2020-07-21 20:42:22', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_surveydtl`
+--
+
+CREATE TABLE `t_surveydtl` (
+  `id` varchar(30) NOT NULL COMMENT 'Id',
+  `id_hdr` varchar(30) NOT NULL COMMENT 'Id header',
+  `answer` varchar(500) NOT NULL COMMENT 'câu trả lời',
+  `create_datetime` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'ngày tạo',
+  `update_datetime` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'ngày update',
+  `update_count` smallint(1) NOT NULL DEFAULT 0 COMMENT 'số lần update',
+  `del_flg` smallint(1) NOT NULL DEFAULT 0 COMMENT 'cờ xóa'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `t_surveydtl`
+--
+
+INSERT INTO `t_surveydtl` (`id`, `id_hdr`, `answer`, `create_datetime`, `update_datetime`, `update_count`, `del_flg`) VALUES
+('DT_001', 'HD_001', 'Do hoàn cảnh gia đình, bố mẹ không có cách giáo dục đúng đắn', '2020-07-21 20:45:29', '2020-07-21 20:45:29', 0, 0),
+('DT_002', 'HD_001', 'Do thiếu kiến thức chủ quan cho rằng bản thân sẽ không nghiện', '2020-07-21 20:46:05', '2020-07-21 20:46:05', 0, 0),
+('DT_003', 'HD_001', 'Do bạn bè rủ rê lôi kéo', '2020-07-21 20:46:25', '2020-07-21 20:46:25', 0, 0),
+('DT_004', 'HD_001', 'Khác.', '2020-07-21 20:46:37', '2020-07-21 20:46:37', 0, 0),
+('DT_005', 'HD_002', 'Đi du lịch', '2020-07-21 20:49:49', '2020-07-21 20:49:49', 0, 0),
+('DT_006', 'HD_002', 'Ăn món mình muốn', '2020-07-21 20:50:09', '2020-07-21 20:50:09', 0, 0),
+('DT_007', 'HD_002', 'Có thật nhiều tiền', '2020-07-21 20:50:21', '2020-07-21 20:50:21', 0, 0),
+('DT_008', 'HD_002', 'Giảm cân', '2020-07-21 20:50:32', '2020-07-21 20:50:32', 0, 0),
+('DT_009', 'HD_002', 'Dành thời gian cho gia đinh và người thân', '2020-07-21 20:50:43', '2020-07-21 20:50:43', 0, 0),
+('DT_010', 'HD_002', 'Khác', '2020-07-21 20:51:00', '2020-07-21 20:51:00', 0, 0),
+('DT_011', 'HD_003', 'Sẽ rất phát triển mạnh mẽ', '2020-07-21 20:51:52', '2020-07-21 20:51:52', 0, 0),
+('DT_012', 'HD_003', 'Có phát triển nhưng không phải lĩnh vực nào cũng có thể sử dụng hình thức online được.', '2020-07-21 20:53:25', '2020-07-21 20:53:25', 0, 0),
+('DT_013', 'HD_003', 'Vẫn duy trì tình trạng hiện tại', '2020-07-21 20:53:25', '2020-07-21 20:53:25', 0, 0),
+('DT_014', 'HD_003', 'Sẽ khó mà duy trì được', '2020-07-21 20:53:25', '2020-07-21 20:53:25', 0, 0),
+('DT_015', 'HD_003', 'Tôi không biết ra sao hoặc không quan tâm.', '2020-07-21 20:53:25', '2020-07-21 20:53:25', 0, 0),
+('DT_016', 'HD_003', 'Khác', '2020-07-21 20:53:25', '2020-07-21 20:53:25', 0, 0),
+('DT_017', 'HD_004', 'Rất thường xuyên', '2020-07-21 20:56:18', '2020-07-21 20:56:18', 0, 0),
+('DT_018', 'HD_004', 'Thường xuyên', '2020-07-21 20:56:18', '2020-07-21 20:56:18', 0, 0),
+('DT_019', 'HD_004', 'Bình thường', '2020-07-21 20:56:18', '2020-07-21 20:56:18', 0, 0),
+('DT_020', 'HD_004', 'Hiếm khi', '2020-07-21 20:56:18', '2020-07-21 20:56:18', 0, 0),
+('DT_021', 'HD_004', 'Chưa bao giờ', '2020-07-21 20:56:18', '2020-07-21 20:56:18', 0, 0),
+('DT_022', 'HD_005', 'Huda', '2020-07-21 20:59:37', '2020-07-21 20:59:37', 0, 0),
+('DT_023', 'HD_005', 'heliken', '2020-07-21 20:59:37', '2020-07-21 20:59:37', 0, 0),
+('DT_024', 'HD_005', 'Bia Hà Nội', '2020-07-21 20:59:37', '2020-07-21 20:59:37', 0, 0),
+('DT_025', 'HD_005', '333', '2020-07-21 20:59:37', '2020-07-21 20:59:37', 0, 0),
+('DT_026', 'HD_005', 'Sư tử trắng', '2020-07-21 20:59:37', '2020-07-21 20:59:37', 0, 0),
+('DT_027', 'HD_005', 'Khác', '2020-07-21 20:59:37', '2020-07-21 20:59:37', 0, 0),
+('DT_028', 'HD_006', 'Đi du lịch', '2020-07-21 21:02:32', '2020-07-21 21:02:32', 0, 0),
+('DT_029', 'HD_006', 'Thay đổi chỗ ở (mua/ thuê ... nhà mới )', '2020-07-21 21:02:32', '2020-07-21 21:02:32', 0, 0),
+('DT_030', 'HD_006', 'Gửi ngân hàng', '2020-07-21 21:02:32', '2020-07-21 21:02:32', 0, 0),
+('DT_031', 'HD_006', 'Khác', '2020-07-21 21:02:32', '2020-07-21 21:02:32', 0, 0),
+('DT_032', 'HD_007', 'Cách giáo dục của phụ huynh', '2020-07-21 21:05:05', '2020-07-21 21:05:05', 0, 0),
+('DT_033', 'HD_007', 'Sự phát triển của internet', '2020-07-21 21:05:05', '2020-07-21 21:05:05', 0, 0),
+('DT_034', 'HD_007', 'Do nhà trường không tập trung phát triển điểm mạnh của học sinh', '2020-07-21 21:05:05', '2020-07-21 21:05:05', 0, 0),
+('DT_035', 'HD_007', 'Do cách hành xử của những người sung quanh', '2020-07-21 21:05:05', '2020-07-21 21:05:05', 0, 0),
+('DT_036', 'HD_008', 'Rèn con tính tự lập , kỷ luật tốt', '2020-07-21 21:06:41', '2020-07-21 21:06:41', 0, 0),
+('DT_037', 'HD_008', 'Phát triển khả năng tập trung', '2020-07-21 21:06:41', '2020-07-21 21:06:41', 0, 0),
+('DT_038', 'HD_008', 'Phát triển tư duy', '2020-07-21 21:06:41', '2020-07-21 21:06:41', 0, 0),
+('DT_039', 'HD_008', 'Ý kiến khác', '2020-07-21 21:06:41', '2020-07-21 21:06:41', 0, 0),
+('DT_040', 'HD_009', 'Vì người trẻ là những người chỉ thích hưởng thụ, không muốn hi sinh bản thân cho gia đình', '2020-07-21 21:08:05', '2020-07-21 21:08:05', 0, 0),
+('DT_041', 'HD_009', 'Được tự do làm những điều mình thích', '2020-07-21 21:08:05', '2020-07-21 21:08:05', 0, 0),
+('DT_042', 'HD_009', 'Không tìm được người bạn đời phù hợp', '2020-07-21 21:08:05', '2020-07-21 21:08:05', 0, 0),
+('DT_043', 'HD_009', 'Có quá nhiều vấn đề gây áp lực như kinh tế, công việc, nhà cửa', '2020-07-21 21:08:05', '2020-07-21 21:08:05', 0, 0),
+('DT_044', 'HD_010', 'Tài chính', '2020-07-21 21:09:06', '2020-07-21 21:09:06', 0, 0),
+('DT_045', 'HD_010', 'Tình bạn', '2020-07-21 21:09:06', '2020-07-21 21:09:06', 0, 0),
+('DT_046', 'HD_010', 'Tình yêu', '2020-07-21 21:09:06', '2020-07-21 21:09:06', 0, 0),
+('DT_047', 'HD_010', 'Gia đình', '2020-07-21 21:09:06', '2020-07-21 21:09:06', 0, 0),
+('DT_048', 'HD_011', 'Nên cấm vì ảnh hưởng tới sự ổn định của xã hội', '2020-07-21 21:10:14', '2020-07-21 21:10:14', 0, 0),
+('DT_049', 'HD_011', 'Không nên cấm vì có rất nhiều khoản nợ cần phải có sự hỗ trợ của họ', '2020-07-21 21:10:14', '2020-07-21 21:10:14', 0, 0),
+('DT_050', 'HD_011', 'Ý kiến khác', '2020-07-21 21:10:14', '2020-07-21 21:10:14', 0, 0),
+('DT_051', 'HD_012', 'Sức khỏe', '2020-07-21 21:11:42', '2020-07-21 21:11:42', 0, 0),
+('DT_052', 'HD_012', 'Tiền tài', '2020-07-21 21:11:42', '2020-07-21 21:11:42', 0, 0),
+('DT_053', 'HD_012', 'Hạnh phúc', '2020-07-21 21:11:42', '2020-07-21 21:11:42', 0, 0),
+('DT_054', 'HD_012', 'khác', '2020-07-21 21:11:42', '2020-07-21 21:11:42', 0, 0),
+('DT_055', 'HD_013', 'Châu Âu', '2020-07-21 21:13:11', '2020-07-21 21:13:11', 0, 0),
+('DT_056', 'HD_013', 'Châu Á', '2020-07-21 21:13:11', '2020-07-21 21:13:11', 0, 0),
+('DT_057', 'HD_013', 'Châu Phi', '2020-07-21 21:13:11', '2020-07-21 21:13:11', 0, 0),
+('DT_058', 'HD_013', 'Châu Mỹ', '2020-07-21 21:13:11', '2020-07-21 21:13:11', 0, 0),
+('DT_059', 'HD_013', 'Ở nhà ngủ', '2020-07-21 21:13:11', '2020-07-21 21:13:11', 0, 0),
+('DT_060', 'HD_014', 'Dùng bình thường, không có vấn đề gì', '2020-07-21 21:14:19', '2020-07-21 21:14:19', 0, 0),
+('DT_061', 'HD_014', 'Không nên dùng vì rất có hại cho trẻ', '2020-07-21 21:14:19', '2020-07-21 21:14:19', 0, 0),
+('DT_062', 'HD_014', 'Chỉ cho sử dụng những khi cần thiết', '2020-07-21 21:14:19', '2020-07-21 21:14:19', 0, 0),
+('DT_063', 'HD_014', 'Ý kiến khác', '2020-07-21 21:14:19', '2020-07-21 21:14:19', 0, 0),
+('DT_064', 'HD_015', 'Lạnh lùng', '2020-07-21 21:15:55', '2020-07-21 21:15:55', 0, 0),
+('DT_065', 'HD_015', 'Trầm tính, ít nói', '2020-07-21 21:15:55', '2020-07-21 21:15:55', 0, 0),
+('DT_066', 'HD_015', 'Vui vẻ, hoà đồng', '2020-07-21 21:15:55', '2020-07-21 21:15:55', 0, 0),
+('DT_067', 'HD_015', 'Khác', '2020-07-21 21:15:55', '2020-07-21 21:15:55', 0, 0),
+('DT_068', 'HD_016', 'Ảnh hưởng đến công việc', '2020-07-21 21:17:34', '2020-07-21 21:17:34', 0, 0),
+('DT_069', 'HD_016', 'Ảnh hưởng đến kinh tế', '2020-07-21 21:17:34', '2020-07-21 21:17:34', 0, 0),
+('DT_070', 'HD_016', 'Ảnh hưởng đến sức khỏe', '2020-07-21 21:17:34', '2020-07-21 21:17:34', 0, 0),
+('DT_071', 'HD_016', 'Tất cả các ý trên', '2020-07-21 21:17:34', '2020-07-21 21:17:34', 0, 0),
+('DT_072', 'HD_017', 'Bill gates', '2020-07-21 21:19:55', '2020-07-21 21:19:55', 0, 0),
+('DT_073', 'HD_017', 'Mark Zuckerberg', '2020-07-21 21:19:55', '2020-07-21 21:19:55', 0, 0),
+('DT_074', 'HD_017', 'Jack ma', '2020-07-21 21:19:55', '2020-07-21 21:19:55', 0, 0),
+('DT_075', 'HD_017', 'Warren Buffett', '2020-07-21 21:19:55', '2020-07-21 21:19:55', 0, 0),
+('DT_076', 'HD_017', 'Phạm Nhật Vượng', '2020-07-21 21:19:55', '2020-07-21 21:19:55', 0, 0),
+('DT_077', 'HD_017', 'Khác', '2020-07-21 21:19:55', '2020-07-21 21:19:55', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_surveyhdr`
+--
+
+CREATE TABLE `t_surveyhdr` (
+  `id` varchar(30) NOT NULL COMMENT 'Id',
+  `id_category` varchar(30) NOT NULL COMMENT 'mã loại khảo sát',
+  `content` varchar(500) NOT NULL COMMENT 'nội dung khảo sát',
+  `create_datetime` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'ngày tạo',
+  `update_datetime` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'ngày update',
+  `update_count` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'số lần update',
+  `del_flg` smallint(1) NOT NULL DEFAULT 0 COMMENT 'cờ xóa'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `t_surveyhdr`
+--
+
+INSERT INTO `t_surveyhdr` (`id`, `id_category`, `content`, `create_datetime`, `update_datetime`, `update_count`, `del_flg`) VALUES
+('HD_001', 'CT_001', 'Theo bạn đâu là nguyên nhân dẫn đến sự trẻ hóa trong việc sử dụng chất kích thích', '2020-07-21 20:43:54', '2020-07-21 20:43:54', 0, 0),
+('HD_002', 'CT_001', 'Ước mơ bạn chưa thực hiện được là gì?', '2020-07-21 20:49:06', '2020-07-21 20:49:06', 0, 0),
+('HD_003', 'CT_001', 'Bạn nghĩ thế nào về sự thay đổi cửa các hình thức online - trực tuyến vào cuốc sống toàn cầu sau dịch Covid 19 toàn cầu vừa qua ?', '2020-07-21 20:51:36', '2020-07-21 20:51:36', 0, 0),
+('HD_004', 'CT_004', 'Bạn có thường xuyên cập nhật trạng thái và đăng ảnh trên facebook không?', '2020-07-21 20:53:59', '2020-07-21 20:53:59', 0, 0),
+('HD_005', 'CT_001', 'Bạn thích uống loại bia nào nhất?', '2020-07-21 20:57:03', '2020-07-21 20:57:03', 0, 0),
+('HD_006', 'CT_002', 'Nếu trúng số giải đặc biệt bạn sẽ làm gì trước nhất?', '2020-07-21 21:00:32', '2020-07-21 21:00:32', 0, 0),
+('HD_007', 'CT_002', 'Theo bạn tại sao giới trẻ hiện nay không thể xác định ước mơ của mình là gì', '2020-07-21 21:03:05', '2020-07-21 21:03:05', 0, 0),
+('HD_008', 'CT_002', 'Phương pháp dạy con theo kiểu Nhật giúp Mẹ Việt những gì ?', '2020-07-21 21:05:56', '2020-07-21 21:05:56', 0, 0),
+('HD_009', 'CT_002', 'Theo bạn tại sao giới trẻ lại có xu hướng chọn cuộc sống độc thân?', '2020-07-21 21:07:24', '2020-07-21 21:07:24', 0, 0),
+('HD_010', 'CT_002', 'Bạn đang gặp vấn đề về lĩnh vực gì?', '2020-07-21 21:08:33', '2020-07-21 21:08:33', 0, 0),
+('HD_011', 'CT_003', 'Bạn nghĩ gì về việc cấm các công ty đòi nợ thuê hoạt động?', '2020-07-21 21:09:43', '2020-07-21 21:09:43', 0, 0),
+('HD_012', 'CT_003', 'Trong tương lai, bạn mong muốn điều gì ?', '2020-07-21 21:10:51', '2020-07-21 21:10:51', 0, 0),
+('HD_013', 'CT_003', 'Bạn thích đi du lịch ở đâu ?', '2020-07-21 21:12:29', '2020-07-21 21:12:29', 0, 0),
+('HD_014', 'CT_003', 'Bạn thấy thế nào về việc cho trẻ em dùng điện thoại thông minh ?', '2020-07-21 21:13:49', '2020-07-21 21:13:49', 0, 0),
+('HD_015', 'CT_003', 'Ban cho rằng bản thân mình thuộc kiểu người nào ?', '2020-07-21 21:15:17', '2020-07-21 21:15:17', 0, 0),
+('HD_016', 'CT_004', 'Dịch covid -19 đã ảnh hưởng như thế nào đến bạn ?', '2020-07-21 21:17:02', '2020-07-21 21:17:02', 0, 0),
+('HD_017', 'CT_004', 'Bạn lấy cảm hứng làm giàu từ người nào?', '2020-07-21 21:19:08', '2020-07-21 21:19:08', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -510,11 +239,30 @@ INSERT INTO `t_account` (`uid`, `fname`, `lname`, `pass`, `tel`, `gender`, `birt
 --
 ALTER TABLE `t_account`
   ADD PRIMARY KEY (`uid`);
+
 --
--- Database: `test`
+-- Indexes for table `t_answer`
 --
-CREATE DATABASE IF NOT EXISTS `test` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `test`;
+ALTER TABLE `t_answer`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `t_category`
+--
+ALTER TABLE `t_category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `t_surveydtl`
+--
+ALTER TABLE `t_surveydtl`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `t_surveyhdr`
+--
+ALTER TABLE `t_surveyhdr`
+  ADD PRIMARY KEY (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
