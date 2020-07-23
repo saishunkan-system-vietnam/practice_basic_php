@@ -10,6 +10,7 @@ define('FILE_CSS_MENU','./css/menu.css?');
 define('FILE_CSS_REGIST','./css/regist.css');
 define('FILE_CSS_STYLESHEET','./css/stylesheet.css');
 define('FILE_CSS_INDEX','./css/index.css');
+define('FILE_CSS_LISTSURVEY','./css/listsurvey.css');
 
 //JS
 define('FILE_JS_LOGIN','./js/login.js?');

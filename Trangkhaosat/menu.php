@@ -29,7 +29,7 @@
                     </a>
                 </li>
                 <li class="main-menu">
-                    <a href="#" class="active">
+                    <a href="./listsurvey.php" class="active">
                         <i class="fa fa-list-alt" aria-hidden="true"></i>
                         <strong>Danh sách khảo sát</strong>
                     </a>

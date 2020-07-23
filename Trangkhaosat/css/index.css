@@ -53,7 +53,7 @@ h1 {
     width: 100%;
     min-height: 460px;
     /* background-color: #fff; */
-    background-color:#fff;
+    background-color: #fff;
     /* box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5); */
     box-shadow: 9px 9px 16px rgba(0, 0, 0, 0.7);
     height: 100%;
@@ -76,7 +76,6 @@ h1 {
 }
 
 .text-nd-ksn {
-    
     float: left;
     width: 100%;
 }
@@ -100,8 +99,9 @@ a {
     background-color: transparent;
     -webkit-text-decoration-skip: objects;
 }
-.title{
-    background-color:#01579B;
+
+.title {
+    background-color: #01579B;
     color: white;
     margin-top: 0em;
     display: flex;
@@ -111,17 +111,16 @@ a {
     border-top-left-radius: 19px;
     border-top-right-radius: 19px;
     text-transform: uppercase;
-    
 }
 
-.detail{
+.detail {
     position: relative;
-    margin: 0px 3% 0px 20px;
+    margin: 0px 3% 0px 3%;
     min-height: 29%;
     max-height: 29%;
     color: black;
     font-size: 13px;
     float: left;
-    width: 96%;
+    width: 93%;
     border-bottom: 1px solid #e8e8e8;
 }

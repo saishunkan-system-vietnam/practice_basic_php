@@ -24,7 +24,7 @@
 
 
     <div>
-        <img class="banner" src="/image/banner.jpg" style="width:100%">
+        <img class="banner" src="./image/banner.jpg" style="width:100%">
     </div>
 
 
@@ -45,11 +45,9 @@
             type: "post",
             url: "./lib/home_ajax.php",
             data: {
-                uid: 'test',
+                uid: '',
             },
             success: function(data) {
-                console.log(data[0].row_num);
-                console.log(data);
                 var element = "";
                 data.forEach(function(item) 
                 {
@@ -60,7 +58,7 @@
                             '<div class="title"><b>' + item.category + '<b></div>' :
                             "\n") +
                         ' <div class="detail">' +
-                        ' <span class="date">' + item.create_datetime + '</span>' +
+                        ' <span class="date"> <i class="fa fa-clock-o" aria-hidden="true" style = "margin-right: 5px"></i>' + item.create_datetime + '</span>' +
                         ' <span class="text-nd-ksn">' + item.content + '</span>' +
                         '  <a href="<?= $infoLogin == true ? '#': ''?>" class="btn-reply"> Trả lời ngay' +
                         '</a></div>' +

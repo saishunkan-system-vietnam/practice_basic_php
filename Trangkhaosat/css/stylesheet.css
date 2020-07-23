@@ -1,6 +1,13 @@
 body {
     background: #fff;
-    overflow-x: hidden !important;
-    color: #777 !important;
+    overflow-x: hidden;
+    color: #212529;
     font: 14px/24px arial;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+div {
+    display: block;
 }

@@ -16,7 +16,7 @@
 
         $myJSON = array();
 
-        $sql = "SELECT uid, admin_flg, pass FROM t_account WHERE uid = '{$uid}' and pass = '{$pass}'";
+        $sql = "SELECT uid, admin_flg, pass FROM t_account WHERE uid = '{$uid}' and pass = '{$pass}' and del_flg = '0'";
     
         $result = $conn->query($sql);
         
