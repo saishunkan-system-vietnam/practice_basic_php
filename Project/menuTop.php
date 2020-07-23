@@ -8,7 +8,7 @@ require(SITE_CONFIG); ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href=<?= FILE_CSS_MENUTOP ?>>
     <script src=<?= LINK_JQUERY ?>></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src=<?= LINK_JQUERY_VALIDATE?>></script>
     <div class="navbar">
         <div style="float: left; margin-left: 3px;">
             <img width="60px" height="46px" src="./img/logo.png" alt="">
@@ -28,14 +28,14 @@ require(SITE_CONFIG); ?>
             echo "<a href='" . SITE_DANGNHAP . "'>Đăng Nhập</a>";
             echo "</div>";
             echo "<div style='float: right;'>";
-            echo "<a href='./Index.php'>Đăng Ký</a>";
+            echo "<a href='" . SITE_DANGKY . "'>Đăng Ký</a>";
             echo "</div>";
         } else if (!isset($_COOKIE[COOKIE_LOGIN]) && !isset($_SESSION['txtUsername'])) {
             echo "<div style='float: right;'>";
             echo "<a href='" . SITE_DANGNHAP . "'>Đăng Nhập</a>";
             echo "</div>";
             echo "<div style='float: right;'>";
-            echo "<a href='./Index.php'>Đăng Ký</a>";
+            echo "<a href='" . SITE_DANGKY . "'>Đăng Ký</a>";
             echo "</div>";
         } else if (!isset($_SESSION['txtUsername'])) {
             $dataSaveUser = json_decode($_COOKIE[COOKIE_LOGIN], true);

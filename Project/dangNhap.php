@@ -43,6 +43,7 @@ include(SITE_MENUTOP);
             // Kiểm tra tài khoản
             header("location:./".SITE_INDEX."");
         }
+        mysqli_close($connect);
     }
     ?>
 </body>

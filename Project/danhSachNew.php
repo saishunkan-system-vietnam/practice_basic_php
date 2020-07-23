@@ -43,29 +43,6 @@
         </table>
     </div>
     <div style=" margin-top: 5px; min-height: 17vh;" align="center">
-        <?php 
-        if ($current_page > $total_page){
-            $current_page = $total_page;
-        }
-        else if ($current_page < 1){
-            $current_page = 1;
-        }
-            if ($current_page > 1 && $total_page > 1){
-                echo URL_INDEX.($current_page-1).'">Prev</a> | ';
-            }
- 
-            for ($i = 1; $i <= $total_page; $i++){
-                if ($i == $current_page){
-                    echo '<span>'.$i.'</span> | ';
-                }
-                else{
-                    echo URL_INDEX.$i.'">'.$i.'</a> | ';
-                }
-            }
- 
-            if ($current_page < $total_page && $total_page > 1){
-                echo URL_INDEX.($current_page+1).'">Next</a> | ';
-            }
-           ?>
+       
     </div>
 </body>

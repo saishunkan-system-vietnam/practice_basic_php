@@ -54,7 +54,7 @@
             $current_page = 1;
         }
             if ($current_page > 1 && $total_page > 1){
-                echo URL_DANHSACHTHIETBI.($current_page-1).'">Prev</a> | ';
+                echo '<a href="'.SITE_DANHSACHTHIETBI.'?page='.($current_page-1).'">Prev</a> | ';
             }
  
             for ($i = 1; $i <= $total_page; $i++){
@@ -62,12 +62,12 @@
                     echo '<span>'.$i.'</span> | ';
                 }
                 else{
-                    echo URL_DANHSACHTHIETBI.$i.'">'.$i.'</a> | ';
+                    echo '<a href="'.SITE_DANHSACHTHIETBI.'?page='.$i.'">'.$i.'</a> | ';
                 }
             }
  
             if ($current_page < $total_page && $total_page > 1){
-                echo URL_DANHSACHTHIETBI.($current_page+1).'">Next</a> | ';
+                echo '<a href="'.SITE_DANHSACHTHIETBI.'?page='.($current_page+1).'">Next</a>';
             }
            ?>
     </div>
