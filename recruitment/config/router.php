@@ -1,5 +1,6 @@
 <?php
 define("SITE_URL", 'http://minhnn.com');
+define("FILE_PHP_INDEX", "index.php");
 define("FILE_LOGIN", 'http://minhnn.com/login.php');
 define("FILE_CSS", './css/style.css');
 define("FILE_HEADER", 'header.php');

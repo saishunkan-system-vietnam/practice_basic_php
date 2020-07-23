@@ -46,6 +46,7 @@
             <!-- <div class="left">left</div> -->
             <div class="container">
                 <div>
+                <!-- <div  style="width: 96.5%; margin-left: 13px; margin-right: 13px;"> -->
                     <ul>
                         <?php
                         require "./config/config.php";
@@ -97,19 +98,19 @@
                 <div class="pagination">
                     <?php
                     if ($current_page > 1 && $total_page > 1) {
-                        echo '<a href="home.php?page=' . ($current_page - 1) . '"><b>&#8678;</b></a> | ';
+                        echo '<a href="' . FILE_PHP_INDEX . '?page=' . ($current_page - 1) . '"><b>&#8678;</b></a> | ';
                     }
 
                     for ($i = 1; $i <= $total_page; $i++) {
                         if ($i == $current_page) {
                             echo '<span style="color: #1a75ff;"><b>' . $i . '</b></span> | ';
                         } else {
-                            echo '<a href="home.php?page=' . $i . '">' . $i . '</a> | ';
+                            echo '<a href="' . FILE_PHP_INDEX . '?page=' . $i . '">' . $i . '</a> | ';
                         }
                     }
 
                     if ($current_page < $total_page) {
-                        echo '<a href="home.php?page=' . ($current_page + 1) . '"><b>&#8680;</b></a>';
+                        echo '<a href="' . FILE_PHP_INDEX . '?page=' . ($current_page + 1) . '"><b>&#8680;</b></a>';
                     }
                     ?>
                 </div>

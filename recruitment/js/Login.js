@@ -167,38 +167,29 @@
 
 
 
-$(document).ready(function () {
-    // Khai báo validate cho thẻ form
-
-    // console.log($("#email"));
-    // console.log(document.getElementsByName('email')[0].value);
-    // console.log("hoang");
-    // alert($("#email").val());
-
-
-    // $("#myform").validate({
-    // });
-    $("#btnlogin").click(function () {
-        // alert($("#email").val());
-        // var email = document.getElementsByName('email')[0].value;
-        var email = document.getElementById('email').value;
-        var password = document.getElementById("password").value;
-        document.getElementById("email").setCustomValidity('');
+// $(document).ready(function () {
+  
+//     $("#btnlogin").click(function () {
+//         // alert($("#email").val());
+//         // var email = document.getElementsByName('email')[0].value;
+//         var email = document.getElementById('email').value;
+//         var password = document.getElementById("password").value;
+//         document.getElementById("email").setCustomValidity('');
         
-        if (email == "") {
-            document.getElementById("email").style.borderColor = "red";
-            document.getElementById("email").setCustomValidity("Vui lòng nhập Em");
-            return;
-        }
+//         if (email == "") {
+//             document.getElementById("email").style.borderColor = "red";
+//             document.getElementById("email").setCustomValidity("Vui lòng nhập Em");
+//             return;
+//         }
 
        
-        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-            return;
-        } else {
-            document.getElementById("email").setCustomValidity("Định dạng Email không hợp lệ!");
-            document.getElementById("email").style.borderColor = "red";
-            // alert("Định dạng Email không hợp lệ!");
-            return;
-        }
-    });
-});
+//         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+//             return;
+//         } else {
+//             document.getElementById("email").setCustomValidity("Định dạng Email không hợp lệ!");
+//             document.getElementById("email").style.borderColor = "red";
+//             // alert("Định dạng Email không hợp lệ!");
+//             return;
+//         }
+//     });
+// });
