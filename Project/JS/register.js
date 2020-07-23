@@ -1,5 +1,7 @@
 $(document).ready(function () {
-    $("#registbtn").click(function () {
+    var isExists;
+    $('#form_register').on('submit', function (event) {
+        event.preventDefault();
         var fullname    = $.trim($('#fullname').val());
         var sex         = $.trim($('.sex:checked').val());
         var phone       = $.trim($('#phone').val());
@@ -7,20 +9,10 @@ $(document).ready(function () {
         var email       = $.trim($('#email').val());
         var address     = $.trim($('#address').val());
         var password    = $.trim($('#password').val());
-        var re_password = $.trim($('#re_password').val());
-        var isExists;
 
-        $.ajax({
-            url: "./register.php",
-            method: "GET",
-            data: email,
-            success: function (data) {
-                console.log(data);
-                isExists = data;               
-            }
-        });
+        ;
 
-        if (isExists) {
+        if (isExistsEmail(email)) {
             alert("Email của bạn đã được đăng ký!!!!")
         }
         else{
@@ -47,7 +39,70 @@ $(document).ready(function () {
                     }
                 }
             });
-        }
-        
+        }   
     });
 });
+
+function InvalidMsg(textbox) {
+    if (textbox.value != $.trim($('#password').val())) {
+        textbox.setCustomValidity('Mật khẩu không trùng khớp');
+    }
+    else {
+        textbox.setCustomValidity('');
+    }
+    return true;
+}
+
+function isEmail(emailStr)
+    {
+        var emailPat=/^(.+)@(.+)$/
+        var specialChars="\\(\\)<>@,;:\\\\\\\"\\.\\[\\]"
+        var validChars="\[^\\s" + specialChars + "\]"
+        var quotedUser="(\"[^\"]*\")"
+        var ipDomainPat=/^\[(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})\]$/
+        var atom=validChars + '+'
+        var word="(" + atom + "|" + quotedUser + ")"
+        var userPat=new RegExp("^" + word + "(\\." + word + ")*$")
+        var domainPat=new RegExp("^" + atom + "(\\." + atom +")*$")
+        var matchArray=emailStr.match(emailPat)
+        if (matchArray==null) {
+                return false
+        }
+        var user=matchArray[1]
+        var domain=matchArray[2]
+ 
+        // See if "user" is valid
+        if (user.match(userPat)==null) {
+            return false
+        }
+        var IPArray=domain.match(ipDomainPat)
+        if (IPArray!=null) {
+            // this is an IP address
+                  for (var i=1;i<=4;i++) {
+                    if (IPArray[i]>255) {
+                        return false
+                    }
+            }
+            return true
+        }
+        var domainArray=domain.match(domainPat)
+        if (domainArray==null) {
+            return false
+        }
+ 
+        var atomPat=new RegExp(atom,"g")
+        var domArr=domain.match(atomPat)
+        var len=domArr.length
+ 
+        if (domArr[domArr.length-1].length<2 ||
+            domArr[domArr.length-1].length>3) {
+           return false
+        }
+ 
+        if (len<2)
+        {
+           return false
+        }
+ 
+        return true;
+    }

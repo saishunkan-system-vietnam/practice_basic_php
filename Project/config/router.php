@@ -2,6 +2,9 @@
     // SITE
     define('SITE_URL','index.php');
     define('SITE_LOGOUT','index.php?type=logout');
+    define('SITE_PRODUCT','product.php');
+    define('SITE_FORGOTPASS','forgotpass.php');
+    
     // PHP
     define('FILE_PHP_CONNECT','./config/connect.php');
     define('FILE_PHP_CONFIG','./config/config.php');
@@ -20,6 +23,7 @@
     // JS
     define('FILE_JS_LOGIN','./JS/login.js');
     define('FILE_JS_REGISTER','./JS/register.js');
+    define('FILE_JS_COMMON','./JS/common.js');
     define('FILE_JS_VALIDATE','./JS/validate.js');
     define('FILE_JS_SLIDESHOW','./JS/slideshow_auto.js');
 
@@ -27,6 +31,9 @@
     // IMG
     define('FILE_IMG_AVARTA','./img/avatar.png');
     define('FILE_IMG_LOGO','./img/logo.png');
+    define('FILE_IMG_BANNER1','./IMG/img1.png');
+    define('FILE_IMG_BANNER2','./IMG/img2.png');
+    define('FILE_IMG_BANNER3','./IMG/img3.png');
 
     // LINK
     define('LINK_ICON','https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');

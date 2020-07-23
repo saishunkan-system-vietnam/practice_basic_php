@@ -1,12 +1,12 @@
 <?php
-    session_start();
     require './config/router.php';
-    require FILE_PHP_CONNECT;
     require FILE_PHP_CONFIG;
     $isExists = false;
 
     if (isset($_GET["email"])) {
+        $email = $_GET["email"];
         $result = $mysqli->query("SELECT * FROM account WHERE email = '$email'");
+
         if ($result->num_rows){
             $isExists = true;
         }

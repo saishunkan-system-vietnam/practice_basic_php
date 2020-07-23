@@ -1,7 +1,6 @@
 <?php
     session_start();
     require './config/router.php';
-    require FILE_PHP_CONNECT;
     require FILE_PHP_CONFIG;
     $resultlogin = false;
 
@@ -9,7 +8,7 @@
         $email = $_POST["uid"];
         $password = md5($_POST["pass"]);
 
-        $result = $mysqli->query("SELECT * FROM account WHERE email = '$email' AND password = '$password'") or die ($mysqli->error);
+        $result = $mysqli->query("SELECT * FROM account WHERE email = '$email' AND password = '$password'");
         if ($result->num_rows) {
             $_SESSION[SESSION_USERNAME] = $email;
 
@@ -20,7 +19,7 @@
             $resultlogin = true;       
         }   
 
-        echo json_encode($resultlogin);
+        echo $resultlogin;
     }
 
     // Đóng kết nối

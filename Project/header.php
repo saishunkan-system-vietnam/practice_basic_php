@@ -1,6 +1,5 @@
 <?php 
     session_start();
-    require FILE_PHP_CONNECT;
     require FILE_PHP_CONFIG;
 
     //Kiểm tra SESSION
@@ -32,6 +31,7 @@
     <link rel="stylesheet" href=<?= FILE_CSS_STYLE_REGISTER?>>
     <link rel="stylesheet" href=<?= FILE_CSS_STYLE_LOGIN?>>
     <script src=<?= LINK_JQUERY ?>></script>
+    <script src=<?= FILE_JS_COMMON ?>></script>
     <script src=<?= FILE_JS_REGISTER ?>></script>
 </head>
 
@@ -39,7 +39,7 @@
     <nav>
         <ul>
             <li id="active"><a href=<?= SITE_URL ?>><i class="fa fa-home"></i>&nbsp;Trang chủ</a></li>
-            <li><a href=""><i class="fa fa-th-large" aria-hidden="true"></i>&nbsp;Sản Phẩm</a></li>
+            <li><a href=<?= SITE_PRODUCT?>><i class="fa fa-th-large" aria-hidden="true"></i>&nbsp;Sản Phẩm</a></li>
             <li><a href=""><i class="fa fa-share-alt" aria-hidden="true"></i>&nbsp;Giới thiệu</a></li>
             <li><a href=""><i class="fa fa-fw fa-envelope"></i>&nbsp;Liên hệ</a></li>
             <li style="float: right;">
@@ -58,10 +58,11 @@
 
     <!-- Đăng ký tài khoản -->
     <div id="regist" class="popup_regist">
-        <span onclick="document.getElementById('regist').style.display='none'" class="regist_close"
-            title="Close">&times;</span>
-        <form class="form_regist animate" id ="form_register" action=<?= FILE_PHP_REGISTER_SUBMIT ?> method="POST" style="border:1px solid #ccc">
+        <form class="form_regist animate" id="form_register" action=<?= FILE_PHP_REGISTER_SUBMIT ?> method="POST"
+            style="border:1px solid #ccc">
             <div class="regist_container">
+                <span onclick="document.getElementById('regist').style.display='none'" class="regist_close"
+                    title="Close">&times;</span>
                 <h1>Đăng ký tài khoản</h1>
                 <p>Xin vui lòng điện đầy đủ thông tin bên dưới.</p>
                 <hr>
@@ -77,22 +78,22 @@
 
                 <label for="phone"><b>Số điện thoại</b></label>
                 <input type="text" name="phone" placeholder="Nhập số đện thoại" id="phone"
-                    pattern="^(09|03|07|08|05)+([0-9]{8})" required>
+                    pattern=<?= PATTERN_PHONE ?>required>
 
                 <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Nhập Email" name="email" id="email"
-                    pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                <input type="text" placeholder="Nhập Email" name="email" id="email" pattern=<?= PATTERN_EMAIL ?>
+                    required>
 
                 <label for="address"><b>Địa chỉ</b></label>
                 <input type="text" placeholder="Nhập địa chỉ" name="address" id="address" required>
 
                 <label for="psw"><b>Mật khẩu</b></label>
                 <input type="password" placeholder="Nhập mật khẩu" name="password" id="password"
-                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    pattern=<?= PATTERN_PASSWORD ?>
                     title="Phải chứa ít nhất một số và một chữ hoa và chữ thường và ít nhất 8 ký tự trở lên" required>
 
                 <label for="re_password"><b>Mật khẩu xác nhận</b></label>
-                <input type="password" placeholder="Xác nhận mật khẩu" name="re_password" id="re_password" required>
+                <input type="password" placeholder="Xác nhận mật khẩu" name="re_password"  oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required>
 
                 <label>
                     <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
@@ -101,7 +102,7 @@
                 <div class="regist_clearfix">
                     <button type="button" onclick="document.getElementById('regist').style.display='none'"
                         class="cancel">Cancel</button>
-                    <button type="button" class="registbtn" id = "registbtn" name="registbtn">Đăng Ký</button>
+                    <button type="submit" class="registbtn" id="registbtn" name="registbtn">Đăng Ký</button>
                 </div>
             </div>
         </form>
@@ -110,7 +111,7 @@
     <!-- Đăng nhập -->
     <div id="login" class="modal">
 
-        <form class="modal-content animate" id ="form_login" action="" method="post">
+        <form class="modal-content animate" id="form_login" action="" method="post">
             <div class="imgcontainer">
                 <span onclick="document.getElementById('login').style.display='none'" class="close"
                     title="Close Modal">&times;</span>
@@ -121,17 +122,17 @@
 
             <div class="container">
                 <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Nhập Email" id ="uid" name="email" required>
+                <input type="text" placeholder="Nhập Email" id="uid" name="email" required>
 
                 <label for="psw"><b>Mật khẩu</b></label>
-                <input type="password" placeholder="Nhập mật khẩu" id = "pass" name="password" required>
+                <input type="password" placeholder="Nhập mật khẩu" id="pass" name="password" required>
 
                 <label>
-                    <input type="checkbox" checked="checked" id = "save" name="remember" value="1"> Lưu tài khoản
+                    <input type="checkbox" checked="checked" id="save" name="remember" value="1"> Lưu tài khoản
                 </label>
-                <button type="button" id = "loginbtn" name = "login_name">Đăng nhập</button>
+                <button type="submit" id="loginbtn" name="login_name">Đăng nhập</button>
 
-                <span class="psw">Quên <a href="#">mật khẩu?</a></span>
+                <span class="psw"><a href=<?= SITE_FORGOTPASS?>>Quên mật khẩu?</a></span>
             </div>
         </form>
     </div>

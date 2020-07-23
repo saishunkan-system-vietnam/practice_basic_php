@@ -1,6 +1,7 @@
 <?php 
     require './config/router.php';
     require FILE_PHP_HEADER;
+    
 ?>
 
 <!-- Slideshow container -->
@@ -30,29 +31,37 @@
     <span class="dot"></span>
     <span class="dot"></span>
 </div>
-<h1>Danh sách sản phẩm mới nhất</h1>
-<hr>
-<?php
-    // Select dữ liệu
-    $result = $mysqli->query("SELECT * FROM `product` ORDER BY `product`.`production_time` DESC LIMIT 12");   
-    
-    // Đóng kết nối
-    $mysqli -> close();
-?>
-<?php while($row = $result->fetch_assoc()): ?>
-<div class="card">
-    <img src=<?= $row["avarta"];?> alt="Denim Jeans" style="width:200px; height:250px;">
-    <h3><?= $row["name"] ?></h3>
-    <p class="price"><?= $row["price"].'K' ?></p>
-    <p><?= $row["note"] ?></p>
-    <p><button>Add to Cart</button></p>
-</div>
-<?php endwhile ; ?>
+<style type="text/css">
+ input{
+ border:1px solid olive;
+ border-radius:5px;
+ }
+ h1{
+  color:darkgreen;
+  font-size:22px;
+  text-align:center;
+ }
+
+</style>
+
+<h1>Forgot Password<h1>
+        <form action='' method='post'>
+            <table cellspacing='5' align='center'>
+                <tr>
+                    <td>user id:</td>
+                    <td><input type='text' name='user_id' /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type='submit' name='submit' value='Submit' /></td>
+                </tr>
+            </table>
+        </form>
 
 
-<link rel="stylesheet" href=<?= FILE_CSS_STYLE ?>>
-<script src=<?= FILE_JS_SLIDESHOW ?>></script>
-</body>
+        <link rel="stylesheet" href=<?= FILE_CSS_STYLE ?>>
+        <script src=<?= FILE_JS_SLIDESHOW ?>></script>
+        </body>
 
-<!-- include footer -->
-<?php require FILE_PHP_FOOTER ?>
+        <!-- include footer -->
+        <?php require FILE_PHP_FOOTER ?>

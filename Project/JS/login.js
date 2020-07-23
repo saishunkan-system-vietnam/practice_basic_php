@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    $("#loginbtn").click(function () {
+    $('#form_login').on('submit', function (event) {
+        event.preventDefault();
         $.ajax({
             url: "./login.php",
             method: "post",

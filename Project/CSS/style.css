@@ -1,5 +1,3 @@
-
-
 /* Slideshow container */
 .slideshow-container {
     position: relative;
@@ -66,7 +64,7 @@
 
   .card {
     width: 23%;
-    height: 20%;
+    height: 47%;
     margin: 0 1% 20px;
     box-shadow: 0 4px 9px 0 #eee!important;
     padding: 10px;
