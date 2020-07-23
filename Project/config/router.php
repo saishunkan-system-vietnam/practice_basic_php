@@ -1,7 +1,7 @@
 <?php
     // SITE
     define('SITE_URL','index.php');
-
+    define('SITE_LOGOUT','index.php?type=logout');
     // PHP
     define('FILE_PHP_CONNECT','./config/connect.php');
     define('FILE_PHP_CONFIG','./config/config.php');
@@ -19,6 +19,7 @@
     define('FILE_CSS_STYLE_REGISTER','./CSS/style_register.css');
     // JS
     define('FILE_JS_LOGIN','./JS/login.js');
+    define('FILE_JS_REGISTER','./JS/register.js');
     define('FILE_JS_VALIDATE','./JS/validate.js');
     define('FILE_JS_SLIDESHOW','./JS/slideshow_auto.js');
 

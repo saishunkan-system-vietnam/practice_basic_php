@@ -3,12 +3,20 @@
     require FILE_PHP_CONNECT;
     require FILE_PHP_CONFIG;
 
-    // Kiểm tra SESSION
-    // if(empty($_SESSION[SESSION_USERNAME])) {
-    //     if(isset($_COOKIE[COOKIE_USERNAME])){
-    //         $_SESSION[SESSION_USERNAME] = $_COOKIE[COOKIE_USERNAME];
-    //     }    
-    // }
+    //Kiểm tra SESSION
+    if(empty($_SESSION[SESSION_USERNAME])) {
+        if(isset($_COOKIE[COOKIE_USERNAME])){
+            $_SESSION[SESSION_USERNAME] = $_COOKIE[COOKIE_USERNAME];
+        }    
+    }
+
+    if(isset($_REQUEST['type']) && $_REQUEST['type'] == 'logout'){
+        // xoa session
+        unset($_SESSION[SESSION_USERNAME]);
+
+        // Xóa cookie
+        setcookie(COOKIE_USERNAME, '', time() - 14400);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +32,7 @@
     <link rel="stylesheet" href=<?= FILE_CSS_STYLE_REGISTER?>>
     <link rel="stylesheet" href=<?= FILE_CSS_STYLE_LOGIN?>>
     <script src=<?= LINK_JQUERY ?>></script>
+    <script src=<?= FILE_JS_REGISTER ?>></script>
 </head>
 
 <body>
@@ -40,7 +49,7 @@
                 <a class="registration button" onclick="document.getElementById('regist').style.display='block'"><i
                         class="fa fa-address-card" aria-hidden="true"></i></i>&nbsp;Đăng Kí</a>
                 <?php else: ?>
-                <a href="login.php?type=logout">Đăng xuất &emsp;</a>
+                <a href=<?= SITE_LOGOUT?>>Đăng xuất &emsp;</a>
                 <a href=""><?= $_SESSION[SESSION_USERNAME]?></a>
                 <?php endif ?>
             </li>
@@ -92,7 +101,7 @@
                 <div class="regist_clearfix">
                     <button type="button" onclick="document.getElementById('regist').style.display='none'"
                         class="cancel">Cancel</button>
-                    <button type="submit" class="registbtn" name="registbtn">Đăng Ký</button>
+                    <button type="button" class="registbtn" id = "registbtn" name="registbtn">Đăng Ký</button>
                 </div>
             </div>
         </form>
@@ -120,7 +129,7 @@
                 <label>
                     <input type="checkbox" checked="checked" id = "save" name="remember" value="1"> Lưu tài khoản
                 </label>
-                <button type="button" id = "btnlogin" name = "login_name">Đăng nhập</button>
+                <button type="button" id = "loginbtn" name = "login_name">Đăng nhập</button>
 
                 <span class="psw">Quên <a href="#">mật khẩu?</a></span>
             </div>

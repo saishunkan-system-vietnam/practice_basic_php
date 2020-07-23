@@ -1,9 +1,7 @@
 $(document).ready(function () {
-    var isExists;
-    $("#btnlogin").click(function () {
-
+    $("#loginbtn").click(function () {
         $.ajax({
-            url: "./login_submit.php",
+            url: "./login.php",
             method: "post",
             data: {
                 uid: $.trim($("#uid").val()),
@@ -11,17 +9,13 @@ $(document).ready(function () {
                 save: $.trim($("#save").val()),
             },
             success: function (data) {
-                isExists = data;
-                if (isExists) {
-                    // document.getElementById('login').style.display='none';
-                    alert("Đăng nhập thành công");
+                if (data) {
+                    document.getElementById('login').style.display = 'none';
                 }
-                else{
+                else {
                     alert("Tài khoản hoặc mật khẩu chưa chính xác")
                 }
             }
         });
     });
-
-
 });
