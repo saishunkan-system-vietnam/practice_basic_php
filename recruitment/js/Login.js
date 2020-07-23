@@ -183,14 +183,15 @@ $(document).ready(function () {
         // var email = document.getElementsByName('email')[0].value;
         var email = document.getElementById('email').value;
         var password = document.getElementById("password").value;
-
+        document.getElementById("email").setCustomValidity('');
+        
         if (email == "") {
             document.getElementById("email").style.borderColor = "red";
             document.getElementById("email").setCustomValidity("Vui lòng nhập Em");
             return;
         }
 
-        document.getElementById("email").setCustomValidity('');
+       
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
             return;
         } else {
