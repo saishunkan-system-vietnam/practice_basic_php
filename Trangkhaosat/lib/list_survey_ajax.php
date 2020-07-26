@@ -5,7 +5,6 @@ require("../config/config.php");
     $conn = ConnectDB();
   
         $myJSON = array();
-
         $content = array();
 
     if(isset($_POST["curentpage"]) && isset($_POST["limit"]))
@@ -13,18 +12,13 @@ require("../config/config.php");
 
         $sql = "SELECT COUNT(*) as result FROM t_surveyhdr WHERE del_flg = 0";
         
-    
         $row = $conn->query($sql);
         $data = $row->fetch_assoc();
-        // Tổng số re cecord
-        $total_records = $data['result'];
-        
-        // trang hiện tại
-        $current_page = $_POST["curentpage"];
 
+        $total_records = $data['result'];
+        $current_page = $_POST["curentpage"];
         $limit = $_POST["limit"];
     
-        // tổng số trang
         $total_page = ceil($total_records / $limit);
         
         if ($current_page > $total_page){
@@ -34,10 +28,7 @@ require("../config/config.php");
             $current_page = 1;
         }
 
-        
-
         $start = ($current_page - 1) *  $limit ;
-        
 
         $sql = "with A AS (SELECT COUNT(id_hdr) as index_asw, id_hdr  from t_answer GROUP BY id_hdr),\n"
         . "B AS(\n"
@@ -61,13 +52,6 @@ require("../config/config.php");
             $content += ["data" => $myJSON];
             header('Content-Type: application/json');
             echo (json_encode($content));
-
-
-            // $content = ($total_page, json_encode($myJSON));
-            // $content = ($total_page ,  $myJSON);
-            // die ($content);
-            //  header('Content-Type: application/json');  
-            //  echo json_encode($myJSON);    
         }  
         else{
             echo ("err");

@@ -15,19 +15,17 @@
     include_once(FILE_MENU);
     ?>
     <link rel="stylesheet" href="<?= FILE_CSS_INDEX?>">
-    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="<?= FILE_CSS_STYLESHEET?>">
+    <link rel="stylesheet" href="<?= FILE_CSS_SURVEY?>">
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+   
 </head>
 
 <body>
-
-
     <div>
         <img class="banner" src="./image/banner.jpg" style="width:100%">
     </div>
-
-
     <div class="warpper-home">
         <div class="ks-fast">
             <div class="container-home">
@@ -37,45 +35,24 @@
             </div>
         </div>
     </div>
+    
+    <div class="warpper-survey">
+        <div class="container-survey" id = "container-survey">
+        </div>
+        
+    </div>
 
     <script>
-    $(document).ready(function() {
-        $.ajax({
-            async: false,
-            type: "post",
-            url: "./lib/home_ajax.php",
-            data: {
-                uid: '',
-            },
-            success: function(data) {
-                var element = "";
-                data.forEach(function(item) 
-                {
-                    element = element + (
-                        (item.row_num == '1' ?
-                            '<div class="col">' +
-                            '<div class="col-r1">' +
-                            '<div class="title"><b>' + item.category + '<b></div>' :
-                            "\n") +
-                        ' <div class="detail">' +
-                        ' <span class="date"> <i class="fa fa-clock-o" aria-hidden="true" style = "margin-right: 5px"></i>' + item.create_datetime + '</span>' +
-                        ' <span class="text-nd-ksn">' + item.content + '</span>' +
-                        '  <a href="<?= $infoLogin == true ? '#': ''?>" class="btn-reply"> Trả lời ngay' +
-                        '</a></div>' +
-                        (item.row_num == '3' ?
-                            ' </div></div></div>' : "\n"));
-
-                });
-                console.log(element);
-                $("#content").append(element);
-            }
-        });
-    });
+    var infoLogin = '<?= empty($_SESSION['dataLogin']) ? "login" : "survey" ?>';
     </script>
+
+    <script src="<?= FILE_JS_INDEDX?>"></script>
+    <script src="<?= FILE_JS_COMMON?>"></script>
+    <script src="<?= FILE_JS_SURVEY?>"></script>
 </body>
 
 <footer>
-    <?include("./footer.php")?>
+    <?include(FILE_FOOTER)?>
 </footer>
 
 </html>

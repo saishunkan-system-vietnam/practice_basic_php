@@ -1,12 +1,3 @@
-body {
-    padding: 0;
-    margin: 0;
-    font: 14px/24px arial;
-    color: #212529;
-    text-align: left;
-    position: relative;
-}
-
 * {
     box-sizing: border-box;
 }
@@ -16,9 +7,11 @@ div {
 }
 
 .ks-fast {
+    position: relative;
     float: left;
     width: 100%;
     padding-bottom: 30px;
+    height: auto;
 }
 
 .container-home {
@@ -91,13 +84,15 @@ h1 {
     font-weight: bold;
     left: 10px;
     bottom: 10px;
+    border: none;
+}
+
+.btn-reply:hover {
+    background-color: #86b434;
 }
 
 a {
-    color: #007bff;
     text-decoration: none;
-    background-color: transparent;
-    -webkit-text-decoration-skip: objects;
 }
 
 .title {
@@ -123,4 +118,8 @@ a {
     float: left;
     width: 93%;
     border-bottom: 1px solid #e8e8e8;
+}
+
+footer {
+    position: unset;
 }
