@@ -12,6 +12,7 @@
         color: #eee;
         text-align: center;
         bottom: 0;
+
     }
 
     .foot_dt {

@@ -56,26 +56,8 @@ function isTel(tel) {
     return pattern.test(tel);
 }
 
-function GetInfoSurvey(id) {
-
-    var result;
-    $.ajax({
-        async: false,
-        type: "post",
-        url: "./lib/survey_ajax.php",
-        data: {
-            id: id,
-            getInfoSurvey: true,
-        },
-        success: function(data) {
-            result = data;
-        }
-    });
-
-    return result;
-}
-
 function CreateReply(id_hdr, id_dtl) {
+    var form = $(".warpper-survey");
     var result;
     $.ajax({
         async: false,
@@ -91,6 +73,70 @@ function CreateReply(id_hdr, id_dtl) {
         }
     });
 
+    if (result == true) {
+        form.css("visibility", "hidden");
+        alert("Trả lời thành công");
+    } else {
+        alert("Trả lời thất bại");
+    }
+
     return result;
 
 }
+
+function OpenForm_Login() {
+    $(".warpper_login").css("visibility", "visible");
+
+    $.ajax({
+        async: false,
+        type: "post",
+        url: "./lib/getcookie_ajax.php",
+        success: function(data) {
+            $("#uid_login").val(data.uid);
+            $("#pass_login").val(data.pass);
+            $("#chksave").prop("checked", data.pass == "" ? false : true);
+        }
+    });
+}
+
+    function ShowFormSurvey(id)
+    {
+        var data = GetInfoSurvey(id);
+            var element = "";
+            data.forEach(function(item) {
+
+                if (element == "") {
+                    element += '<div class="question"><p>' + item.content + '</p></div><div class="answer"><ul>';
+                }
+                element += '<li><input type="radio" name="asw" ';
+
+                if (item.sl_asw == "1") {
+                    element += ' checked ';
+                }
+                element += ' value="' + item.id_dtl + '"><label for="asw">' + item.answer + '</label></li>';
+            });
+
+            element += '</ul></div>' +
+                ' <div class="kq">' +
+                '<button class="btn-reply-survey" id = "' + data[0].id_hdr + '">Trả lời</button></div>';
+
+                return element;
+    }
+
+    function GetInfoSurvey(id) {
+        var result;
+        $.ajax({
+            async: false,
+            type: "post",
+            url: "./lib/survey_ajax.php",
+            data: {
+                id: id,
+                getInfoSurvey: true,
+            },
+            success: function(data) {
+                result = data;
+            }
+        });
+    
+        return result;
+    }

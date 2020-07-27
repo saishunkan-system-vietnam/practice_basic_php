@@ -28,11 +28,11 @@ require("../config/config.php");
             $current_page = 1;
         }
 
-        $start = ($current_page - 1) *  $limit ;
+        $start = (($current_page - 1) *  $limit ) + 1;
 
         $sql = "with A AS (SELECT COUNT(id_hdr) as index_asw, id_hdr  from t_answer GROUP BY id_hdr),\n"
         . "B AS(\n"
-        . "select DENSE_RANK() OVER(PARTITION BY 'a' ORDER by hdr.create_datetime DESC) num_row , hdr.create_datetime , ct.content as category,IFNULL(asw.index_asw,0) as index_asw, hdr.content from t_surveyhdr hdr \n"
+        . "select DENSE_RANK() OVER(PARTITION BY 'a' ORDER by hdr.create_datetime DESC) num_row , hdr.create_datetime , hdr.id, ct.content as category,IFNULL(asw.index_asw,0) as index_asw, hdr.content from t_surveyhdr hdr \n"
         . "join t_category ct on hdr.id_category = ct.id\n"
         . "left join A asw on hdr.id = asw.id_hdr\n"
         . "where hdr.del_flg = 0)\n"

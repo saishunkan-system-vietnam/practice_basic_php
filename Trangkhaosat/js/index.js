@@ -26,4 +26,33 @@ $(document).ready(function() {
             $("#content").append(element);
         }
     });
+
+    $(document).on('keydown', function(e) {
+        if (e.keyCode === 27) {
+            $(".warpper-survey").css("visibility", "hidden");
+            $(".container-survey").css("display", "none");
+        }
+    });
+
+    $(document).on("click", ".btn-reply", function() {
+        if ($(this).attr("name") == "survey") {
+            $(".question").remove();
+            $(".answer").remove();
+            $(".kq").remove();
+            
+            var element = ShowFormSurvey($(this).attr("id"));
+
+            $("#container-survey").append(element);
+
+            $(".warpper-survey").css("visibility", "visible");
+            $(".container-survey").css("display", "block");
+
+        } else {
+            OpenForm_Login();
+        }
+    });
+
+    $(document).on("click", ".btn-reply-survey", function() {
+        CreateReply($(this).attr("id"), $('input[name=asw]:checked').val());
+    });
 });

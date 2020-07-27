@@ -35,7 +35,7 @@
                     </a>
                 </li>
                 <li class="main-menu">
-                    <a href="<?URL_LISTSURVEY?>" class="active">
+                    <a href="<?= URL_LISTSURVEY?>" class="active">
                         <i class="fa fa-list-alt" aria-hidden="true"></i>
                         <strong>Danh sách khảo sát</strong>
                     </a>
@@ -139,7 +139,7 @@
                 <div class="bott">
                     <p><input type="button" id="btnlogin" value="Login" class="btn fl"></p>
                 </div>
-                <div class="cuoi">
+                <div class="last">
                     <p><input type="checkbox" name="chksave" id="chksave"
                             class="checksave">
                         <label for="chksave">Lưu mật khẩu</label>
@@ -150,7 +150,6 @@
             </form>
         </div>
     </div>
-
 
     <script src=<?= FILE_JS_REGIST?>></script>
     <script src=<?= FILE_JS_LOGIN?>></script>

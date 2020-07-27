@@ -38,8 +38,7 @@
     
     <div class="warpper-survey">
         <div class="container-survey" id = "container-survey">
-        </div>
-        
+        </div> 
     </div>
 
     <script>
@@ -47,8 +46,6 @@
     </script>
 
     <script src="<?= FILE_JS_INDEDX?>"></script>
-    <script src="<?= FILE_JS_COMMON?>"></script>
-    <script src="<?= FILE_JS_SURVEY?>"></script>
 </body>
 
 <footer>

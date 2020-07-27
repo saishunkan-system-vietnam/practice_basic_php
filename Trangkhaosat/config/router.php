@@ -22,7 +22,7 @@ define('FILE_JS_LOGIN','./js/login.js?'.time());
 define('FILE_JS_REGIST','./js/regist.js?'.time());
 define('FILE_JS_COMMON','./js/common.js?'.time());
 define('FILE_JS_INDEDX','./js/index.js?'.time());
-define('FILE_JS_SURVEY','./js/survey.js?'.time());
+define('FILE_JS_LISTSURVEY','./js/listsurvey.js?'.time());
 
 //LIB
 define('FILE_LIB_LOGIN','./lib/login_ajax.php?'.time());

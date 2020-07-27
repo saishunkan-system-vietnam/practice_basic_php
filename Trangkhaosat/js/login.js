@@ -42,7 +42,7 @@ $(document).ready(function() {
                 success: function(data) {
                     if (data == true) {
                         form.css("visibility", "hidden");
-                        window.location.href = './index.php';
+                        location.reload();
                     } else if (data == false) {
                         alert("Tài khoản đăng nhập hoặc mật khẩu không chính xác");
                     } else {
