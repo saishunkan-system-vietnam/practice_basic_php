@@ -1,0 +1,144 @@
+* {
+    box-sizing: border-box;
+}
+
+div {
+    display: block;
+}
+
+.warpper-sv {
+    width: 100%;
+    height: auto;
+    float: left;
+    margin-top: 7%;
+    display: flex;
+    justify-content: center;
+    padding: 0px 20px 20px 20px;
+    position: relative;
+}
+
+h1 {
+    width: 100%;
+    margin: 20px 0;
+    text-align: center;
+    color: #3f3b3b;
+    float: left;
+    position: absolute;
+}
+
+.container-sv {
+    width: 70%;
+    margin-top: 40px;
+    border-radius: 5px;
+    position: absolute;
+}
+
+.detail {
+    margin: 20px;
+    background: #fff;
+    float: left;
+    width: 90%;
+    border-radius: 5px;
+    margin-bottom: 18px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #025583;
+}
+
+.col1,
+.col2 {
+    width: 50%;
+    float: left;
+    border-right: 1px solid #ccc;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+
+.row {
+    position: relative;
+    margin: 0px 3% 0px 20px;
+    min-height: 150px;
+    max-height: 150px;
+    color: black;
+    font-size: 13px;
+    float: left;
+    width: 96%;
+    border-bottom: 1px solid #ccc;
+}
+
+.btn-reply {
+    position: absolute;
+    background: #3a91a4;
+    color: #fff;
+    padding: 7px 10px;
+    border-radius: 10px;
+    margin-right: 10px;
+    float: left;
+    font-weight: bold;
+    left: 10px;
+    bottom: 10px;
+}
+
+.title {
+    float: left;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.content {
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+    text-transform: uppercase;
+    color: #007bff;
+}
+
+body {
+	font-family: arial;
+}
+
+.pagination {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #ccc;
+	overflow: auto;
+	display: inline-block;
+	border-radius: 5px; 
+}
+.pagination li {
+	float: left;
+}
+.pagination li a {
+	height: 36px;
+	width: 36px;
+	line-height: 36px;
+	display: block;
+	color: #444;
+	text-align: center;
+	text-decoration: none;
+	font-size: 14px;
+	border-left: 1px solid #ccc;
+}
+.pagination li a:hover {
+	background: #ccc;
+}
+.pagination li a.active {
+	background: #004990;
+	color: #fff;
+}
+.pagination .disabled {
+	opacity: .5;
+	pointer-events: none;
+}
+
+.pg_dtl{
+    text-align: center;
+    width: 90%;
+}
