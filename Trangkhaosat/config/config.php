@@ -1,16 +1,11 @@
 <?
-// Khai Báo hằng
-
 define('COOKIE_NAME','lieu');
-
-
 
 function ConnectDB()
 {
-    // Tạo đối tượng mysqli
-    $conn = new mysqli('localhost', 'root','', 'survey');
-   // Check connection
-if ($conn->connect_error) {
+  $conn = new mysqli('localhost', 'root','', 'survey');
+
+  if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
   }
   return $conn;
@@ -18,7 +13,7 @@ if ($conn->connect_error) {
 
 function DisconnectDB($conn)
 {
-    mysqli_close($conn);
+  mysqli_close($conn);
 }
  
 function GetCookieUid()
@@ -28,7 +23,7 @@ function GetCookieUid()
     if(isset($_COOKIE[COOKIE_NAME]))
     { 
             //======
-            parse_str($_COOKIE['lieu']);
+            parse_str($_COOKIE[COOKIE_NAME]);
 
             $result = $uid;
     }
@@ -42,12 +37,10 @@ function GetCookiePass()
     if(isset($_COOKIE[COOKIE_NAME]))
     { 
             //======
-            parse_str($_COOKIE['lieu']);
+            parse_str($_COOKIE[COOKIE_NAME]);
 
             $result = $pass;
     }
     return $result;
 }
-
-
 ?>

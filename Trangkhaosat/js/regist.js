@@ -2,20 +2,17 @@ $(document).ready(function() {
 
     $("#btnregist").click(function() {
         if (Validate()) {
-            // alert("Đăng ký thành công");
             let isExist = CheckExist();
             if (isExist == 0) {
                 if (Regist()) {
                     alert("Đăng ký thành công");
                     $("#frm_Regist").submit();
-                } else{
+                } else {
                     alert("Đăng ký thất bại");
                 }
-            } else if(isExist > 0){
+            } else if (isExist > 0) {
                 alert("Không thể đăng ký vì email này đã tồn tại - Vui lòng kiểm tra lại");
-            }
-            else
-            {
+            } else {
                 alert("Connection failed: Không thể kết nối đến máy chủ!");
             }
         } else {
@@ -39,7 +36,7 @@ $(document).ready(function() {
                 proc: "Regist",
             },
             success: function(data) {
-                
+
                 result = data;
             }
         });
@@ -61,12 +58,6 @@ $(document).ready(function() {
             datatype: "JSON",
             success: function(data) {
                 result = data[0].result;
-              
-                // console.log(data);
-                // for (var i=0; i<msg.length; i++)
-                // {
-                //     console.log(msg[0].result);
-                // }
             },
         });
 
@@ -85,7 +76,6 @@ $(document).ready(function() {
 
         var flag = true;
 
-        // Nếu chưa nhập Họ
         if (fname.length <= 0) {
             $("#fname").css("border-bottom", "2px solid #F90A0A");
             flag = false;
@@ -93,7 +83,6 @@ $(document).ready(function() {
             $("#fname").css("border-bottom", "0px");
         }
 
-        // Nếu chưa nhập Tên
         if (lname.length <= 0) {
             $("#lname").css("border-bottom", "2px solid #F90A0A");
             flag = false;
@@ -101,7 +90,6 @@ $(document).ready(function() {
             $("#lname").css("border-bottom", "0px");
         }
 
-        // Email
         if (!isEmail(uid)) {
             $("#uid").css("border-bottom", "2px solid #F90A0A");
             flag = false;
@@ -109,7 +97,6 @@ $(document).ready(function() {
             $("#uid").css("border-bottom", "0px");
         }
 
-        // Xác nhận Email
         if (uid != ruid) {
             $("#ruid").css("border-bottom", "2px solid #F90A0A");
             flag = false;
@@ -117,7 +104,6 @@ $(document).ready(function() {
             $("#ruid").css("border-bottom", "0px");
         }
 
-        // Nếu chưa nhập Pass
         if (pass.length <= 0) {
             $("#pass").css("border-bottom", "2px solid #F90A0A");
             flag = false;
@@ -125,7 +111,6 @@ $(document).ready(function() {
             $("#pass").css("border-bottom", "0px");
         }
 
-        // Xác nhận Mật khẩu
         if (pass != rpass) {
             $("#rpass").css("border-bottom", "2px solid #F90A0A");
             flag = false;
@@ -133,7 +118,6 @@ $(document).ready(function() {
             $("#rpass").css("border-bottom", "0px");
         }
 
-        // Nếu chưa nhập tell
         if (!isTel(tel)) {
             $("#tel").css("border-bottom", "2px solid #F90A0A");
             flag = false;

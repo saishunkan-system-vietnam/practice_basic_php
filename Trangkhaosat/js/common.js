@@ -1,4 +1,4 @@
- function isEmail(emailStr) {
+function isEmail(emailStr) {
     var emailPat = /^(.+)@(.+)$/;
     var specialChars = '\\(\\)<>@,;:\\\\\\"\\.\\[\\]';
     var validChars = "[^\\s" + specialChars + "]";
@@ -15,13 +15,11 @@
     var user = matchArray[1];
     var domain = matchArray[2];
 
-    // See if "user" is valid
     if (user.match(userPat) == null) {
         return false;
     }
     var IPArray = domain.match(ipDomainPat);
     if (IPArray != null) {
-        // this is an IP address
         for (var i = 1; i <= 4; i++) {
             if (IPArray[i] > 255) {
                 return false;
@@ -52,9 +50,47 @@
     return true;
 }
 
-function isTel(tel)
-{
+function isTel(tel) {
     pattern = /((09|03|07|08|05)+([0-9]{8})\b)/g;
 
     return pattern.test(tel);
+}
+
+function GetInfoSurvey(id) {
+
+    var result;
+    $.ajax({
+        async: false,
+        type: "post",
+        url: "./lib/survey_ajax.php",
+        data: {
+            id: id,
+            getInfoSurvey: true,
+        },
+        success: function(data) {
+            result = data;
+        }
+    });
+
+    return result;
+}
+
+function CreateReply(id_hdr, id_dtl) {
+    var result;
+    $.ajax({
+        async: false,
+        type: "post",
+        url: "./lib/survey_ajax.php",
+        data: {
+            id_hdr: id_hdr,
+            id_dtl: id_dtl,
+            createSurvey: true,
+        },
+        success: function(data) {
+            result = data;
+        }
+    });
+
+    return result;
+
 }

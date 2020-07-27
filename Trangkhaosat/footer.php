@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <style>
+    .footer {
+        background-color: black;
+        display: block;
+        width: 100%;
+        float: left;
+        box-sizing: border-box;
+        color: #eee;
+        text-align: center;
+        bottom: 0;
+    }
+
+    .foot_dt {
+        text-decoration: none;
+        color: #01579B;
+    }
+
+    .foot_dt:hover {
+        color: red;
+        text-decoration: none;
+    }
+    </style>
 </head>
+
 <body>
     <div class="footer">
-    <ul class="mcd-foorter">
-                <li>
-                    <a href="index.php">
-                        <i class="fa fa-home" aria-hidden="true"></i>
-                        <strong>Trang chủ</strong>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="active">
-                        <i class="fa fa-list-alt" aria-hidden="true"></i>
-                        <strong>Danh sách khảo sát</strong>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-newspaper-o" aria-hidden="true"></i>
-                        <strong>Giới thiệu</strong>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-hand-o-down" aria-hidden="true"></i>
-                        <strong>Liên hệ</strong>
-                    </a>
-                </li>
-            </ul>
+        <p>Copyright © 2020 <a class="foot_dt" href="./index.php">SSV-Survey</a> All Right Reserved</p>
     </div>
 </body>
+
 </html>

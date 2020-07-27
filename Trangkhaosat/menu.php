@@ -7,7 +7,7 @@
     <?require_once('config/router.php')?>
     <?require_once('config/config.php')?>
 
-  
+
     <link rel="stylesheet" href=<?= FILE_CSS_MENU?>>
     <link rel="stylesheet" href=<?= FILE_CSS_REGIST?>>
     <link rel="stylesheet" href=<?= FILE_CSS_LOGIN?>>
@@ -21,21 +21,27 @@
 <body>
     <div class="container">
         <nav>
-            <ul class="mcd-menu">
+            <ul class="mcd-menu main-menu">
+                <a href="<?= SITE_URL?>">
+                    <img class="logo" src="./image/logo.png">
+                </a>
                 <li class="main-menu">
-                    <a href="index.php">
+
+                </li>
+                <li class="main-menu">
+                    <a href="<?= SITE_URL?>">
                         <i class="fa fa-home" aria-hidden="true"></i>
                         <strong>Trang chủ</strong>
                     </a>
                 </li>
                 <li class="main-menu">
-                    <a href="./listsurvey.php" class="active">
+                    <a href="<?URL_LISTSURVEY?>" class="active">
                         <i class="fa fa-list-alt" aria-hidden="true"></i>
                         <strong>Danh sách khảo sát</strong>
                     </a>
                 </li>
                 <li class="main-menu">
-                    <a href="#">
+                    <a href="<?= URL_INTRODUCE?>">
                         <i class="fa fa-newspaper-o" aria-hidden="true"></i>
                         <strong>Giới thiệu</strong>
                     </a>
@@ -46,9 +52,8 @@
                         <strong>Liên hệ</strong>
                     </a>
                 </li>
-                <!--Menu bên phải-->
                 <?if($infoLogin){?>
-                <li class="info-account">
+                <li class="info-account last">
                     <a href="#">
                         <i class="fa fa-user" aria-hidden="true"></i>
                         <strong><?=isset($_SESSION['dataLogin']) ? $_SESSION['dataLogin'] : "N/A"?></strong>
@@ -91,37 +96,24 @@
         <div class="main">
             <h1>✍ Đăng ký tài khoản</h1>
             <form action="" method="post" id="frm_Regist">
-                <!-- input Họ -->
                 <p>
                     <input type="text" name="fname" placeholder="☞ Họ*" class="intpt" id="fname">
                 </p>
-
-                <!-- input tên -->
                 <p>
                     <input type="text" name="lname" placeholder="☞ Tên*" class="intpt" id="lname">
                 </p>
-
-                <!-- input Email -->
                 <p>
                     <input type="email" name="uid" placeholder="✉ Email*" class="intpt" id="uid">
                 </p>
-
-                <!-- input Xác nhận email -->
                 <p>
                     <input type="email" name="ruid" placeholder="✉ Xác nhận Email*" class="intpt" id="ruid">
                 </p>
-
-                <!-- input Mật khẩu -->
                 <p>
                     <input type="password" name="pass" placeholder="⌨ Mật khẩu*" class="intpt" id="pass">
                 </p>
-
-                <!-- input Xác nhận mật khẩu -->
                 <p>
                     <input type="password" name="rpass" placeholder="⌨ Xác nhận mật khẩu*" class="intpt" id="rpass">
                 </p>
-
-                <!-- input Số điện thoại -->
                 <p>
                     <input type="tel" name="tel" placeholder="☎ Số điện thoại*" class="intpt" id="tel">
                 </p>
@@ -133,30 +125,23 @@
         </div>
     </div>
 
-    <!-- ==================================== -->
-    <?
-     $user = GetCookieUid();
-     $pass = GetCookiePass();  
-    ?>
-    <!-- ==================================== -->
-    <div class="warpper_login" style="visibility: <?= $infoLogin == true ? "hidden": "visible"?>;">
+    <div class="warpper_login" >
         <div class="main_login">
             <h1>💻 Đăng Nhập</h1>
             <form action="" method="post" id="frm_login">
-                <!-- input Email -->
                 <p>
-                    <input type="email" name="uid" placeholder="✉ Email*" <?="value = '{$user}'"?> class="intpt_login"
+                    <input type="email" name="uid" placeholder="✉ Email*" class="intpt_login"
                         id="uid_login">
                 </p>
-                <!-- input Mật khẩu -->
                 <p>
-                    <input type="password" name="pass" placeholder="⌨ Mật khẩu*" <?="value = '{$pass}'"?> class="intpt" id="pass_login">
+                    <input type="password" name="pass" placeholder="⌨ Mật khẩu*" class="intpt" id="pass_login">
                 </p>
                 <div class="bott">
                     <p><input type="button" id="btnlogin" value="Login" class="btn fl"></p>
                 </div>
                 <div class="cuoi">
-                    <p><input type="checkbox" name="chksave" id="chksave" <?=$pass != "" ?'checked':''?> class="checksave">
+                    <p><input type="checkbox" name="chksave" id="chksave"
+                            class="checksave">
                         <label for="chksave">Lưu mật khẩu</label>
                         <br>
                         <a href="" class="checksave">Quên mật khẩu</a>
