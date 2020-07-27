@@ -40,8 +40,8 @@
         <ul>
             <li id="active"><a href=<?= SITE_URL ?>><i class="fa fa-home"></i>&nbsp;Trang chủ</a></li>
             <li><a href=<?= SITE_PRODUCT?>><i class="fa fa-th-large" aria-hidden="true"></i>&nbsp;Sản Phẩm</a></li>
-            <li><a href=""><i class="fa fa-share-alt" aria-hidden="true"></i>&nbsp;Giới thiệu</a></li>
-            <li><a href=""><i class="fa fa-fw fa-envelope"></i>&nbsp;Liên hệ</a></li>
+            <li><a href="sentMail.php"><i class="fa fa-share-alt" aria-hidden="true"></i>&nbsp;Giới thiệu</a></li>
+            <li><a href="forgotpass.php"><i class="fa fa-fw fa-envelope"></i>&nbsp;Liên hệ</a></li>
             <li style="float: right;">
                 <?php if (!isset($_SESSION[SESSION_USERNAME])): ?>
                 <a class="login-window button" onclick="document.getElementById('login').style.display='block'"><i

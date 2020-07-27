@@ -45,11 +45,11 @@
 </style>
 
 <h1>Forgot Password<h1>
-        <form action='' method='post'>
+        <form action='' id ="form_forgotPass" method='post'>
             <table cellspacing='5' align='center'>
                 <tr>
-                    <td>user id:</td>
-                    <td><input type='text' name='user_id' /></td>
+                    <td>Email:</td>
+                    <td><input type='text' name='email_confirm' id ="email_confirm" /></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -58,10 +58,10 @@
             </table>
         </form>
 
-
-        <link rel="stylesheet" href=<?= FILE_CSS_STYLE ?>>
-        <script src=<?= FILE_JS_SLIDESHOW ?>></script>
-        </body>
-
-        <!-- include footer -->
-        <?php require FILE_PHP_FOOTER ?>
+    <link rel="stylesheet" href=<?= FILE_CSS_STYLE ?>>
+    <script src=<?= FILE_JS_SLIDESHOW ?>></script>
+    <script src=<?= FILE_JS_COMMON ?>></script>
+    <script src=<?= FILE_JS_FORGOTPASS ?>></script>
+    </body>
+    <!-- include footer -->
+    <?php require FILE_PHP_FOOTER ?>

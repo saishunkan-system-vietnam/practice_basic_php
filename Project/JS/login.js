@@ -12,6 +12,7 @@ $(document).ready(function () {
             success: function (data) {
                 if (data) {
                     document.getElementById('login').style.display = 'none';
+                    location.reload();
                 }
                 else {
                     alert("Tài khoản hoặc mật khẩu chưa chính xác")

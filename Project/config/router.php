@@ -24,8 +24,10 @@
     define('FILE_JS_LOGIN','./JS/login.js');
     define('FILE_JS_REGISTER','./JS/register.js');
     define('FILE_JS_COMMON','./JS/common.js');
+    define('FILE_JS_FORGOTPASS','./JS/forgotpass.js');
     define('FILE_JS_VALIDATE','./JS/validate.js');
     define('FILE_JS_SLIDESHOW','./JS/slideshow_auto.js');
+    define('FILE_JS_CHANGEPASS','./JS/changePassword.js');
 
 
     // IMG

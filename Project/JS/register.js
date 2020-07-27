@@ -1,18 +1,16 @@
 $(document).ready(function () {
     var isExists;
     $('#form_register').on('submit', function (event) {
-        event.preventDefault();
+
         var fullname    = $.trim($('#fullname').val());
-        var sex         = $.trim($('.sex:checked').val());
+        var sex         = $.trim($('input[name="sex"]:checked').val());
         var phone       = $.trim($('#phone').val());
         var bday        = $.trim($('#bday').val());
         var email       = $.trim($('#email').val());
         var address     = $.trim($('#address').val());
         var password    = $.trim($('#password').val());
 
-        ;
-
-        if (isExistsEmail(email)) {
+        if (isExistsEmail(email) ==1) {
             alert("Email của bạn đã được đăng ký!!!!")
         }
         else{
