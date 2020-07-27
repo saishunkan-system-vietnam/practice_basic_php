@@ -33,11 +33,14 @@ include(SITE_MENUTOP);
             echo "<script type='text/javascript'>alert('Đăng nhập không thành công!');</script>";
             die;
         } else {
-            //var_dump($result_login ); 
+            $row = mysqli_fetch_assoc($result_login);
             $_SESSION['txtUsername'] = $username;
+            $_SESSION['txtId'] = $row['IDTaiKhoan'];
+            
             if ($_check == 1) {
                 $dataCookie['usr'] = $username;
                 $dataCookie['hash'] = $pass;
+                $dataCookie['id'] = $row['IDTaiKhoan'];
                 setcookie(COOKIE_LOGIN, json_encode($dataCookie), time() + $cookie_time);
             }
             // Kiểm tra tài khoản

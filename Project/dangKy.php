@@ -48,7 +48,6 @@ if (!$connect) {
         $uName = $_POST['inpUser'];
         $email = $_POST['inpEmail'];
         $pass = $_POST['inpPass'];
-        
 
         $sqlInsert = "INSERT INTO taikhoan (UserName, Password, Email) VALUES ('$uName', '$pass', '$email')";
 
@@ -57,6 +56,7 @@ if (!$connect) {
             die;
         } else {
             echo "<script type='text/javascript'>alert('Chúc mừng bạn đã đăng ký thành công ');</script>";
+            header('location: dangNhap.php');
         }
     }
 }
