@@ -23,7 +23,7 @@
         $result = mysqli_query($connect, "SELECT tb.TenThietBi, tl.TenTheLoai, hsx.TenHang, tb.Img FROM theloai tl INNER JOIN thietbi tb ON tl.MaTheLoai = tb.MaTheLoai INNER JOIN HangSanXuat hsx on tb.HangSanXuat = hsx.MaHang LIMIT $start, $limit  ");
         //$result = mysqli_query($connect, "SELECT TenThietBi, Img FROM thietbi LIMIT $start, $limit  ");
         ?>
-    <div  style ="margin-top: 10px;">
+    <div style ="margin-top: 10px;">
         <table id="tbl" width="1000" border="1" align="center">
             <?php while ($row = mysqli_fetch_assoc($result)):?>
             <tr>

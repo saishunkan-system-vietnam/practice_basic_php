@@ -2,7 +2,7 @@
 $query = "SELECT MaThietBi, TenThietBi FROM thietbi WHERE Del_Flg = 0";
 $result = mysqli_query($connect, $query);
 ?>
-<link rel="stylesheet" href="./css/popup.css">
+<link rel="stylesheet" href=<?= FILE_CSS_POPUP?>>
 <div id="modal-wrapper" class="modal">
 
     <form class="modal-content" action="" id="form_Muon" method="POST">

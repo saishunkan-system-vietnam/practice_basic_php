@@ -8,7 +8,7 @@ include(SITE_MENUTOP);
 <body>
     <form id="myForm" action='' method='POST'>
         <div class="loginbox">
-            <img src=<?= IMG_AVATAR ?> class="avatar">
+            <img src=<?= IMG_LOGO ?> class="avatar">
             <h1>Create an account</h1>
             <form name="login">
                 <div class="tt">
@@ -19,6 +19,7 @@ include(SITE_MENUTOP);
                 <div class="tt">
                     <p>Email</p>
                     <input id="inpEmail" type="text" name='inpEmail' placeholder="Enter Email">
+                    <span id="mail-result"></span>
                 </div>
                 <div class="tt">
                     <p>Password</p>
@@ -39,7 +40,7 @@ include(SITE_MENUTOP);
         </div>
     </form>
 </body>
-<script src="./js/validate.js"></script>
+<script src=<?= FILE_JS_VALIDATE ?>></script>
 <?php
 if (!$connect) {
     die('Kết nối không thành công!');

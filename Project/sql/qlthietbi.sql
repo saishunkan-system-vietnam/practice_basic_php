@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2020 at 12:22 PM
+-- Generation Time: Jul 28, 2020 at 12:23 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -28,13 +28,28 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `chitietmuontra` (
+  `id` int(11) NOT NULL,
   `MaMuonTra` int(11) NOT NULL,
   `MaThietBi` int(11) NOT NULL,
+  `SoLuong` int(11) NOT NULL,
   `DaTra` bit(1) NOT NULL,
-  `NgayTra` date NOT NULL,
+  `NgayTra` date DEFAULT NULL,
   `Del_Flg` bit(1) NOT NULL,
-  `GhiChu` text NOT NULL
+  `Lydo` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `chitietmuontra`
+--
+
+INSERT INTO `chitietmuontra` (`id`, `MaMuonTra`, `MaThietBi`, `SoLuong`, `DaTra`, `NgayTra`, `Del_Flg`, `Lydo`) VALUES
+(1, 1, 2, 2, b'0', NULL, b'0', 'Leo núi'),
+(2, 1, 2, 1, b'0', NULL, b'0', ''),
+(4, 1, 1, 3, b'0', NULL, b'0', ''),
+(7, 1, 1, 1, b'0', NULL, b'0', '<p>Chơi game</p>'),
+(8, 24, 1, 1, b'0', NULL, b'0', '<p>Chơi game</p>'),
+(9, 25, 11, 10, b'0', NULL, b'0', '<p>Đi lao n&uacute;i cuối tuần</p>'),
+(10, 26, 7, 1, b'0', NULL, b'0', '<p>Đi l&agrave;m thợ nề</p>');
 
 -- --------------------------------------------------------
 
@@ -71,6 +86,20 @@ CREATE TABLE `muontra` (
   `NgayMuon` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `muontra`
+--
+
+INSERT INTO `muontra` (`MaMuonTra`, `IDTaiKhoan`, `NgayMuon`) VALUES
+(1, 1, '2020-07-27'),
+(2, 1, '2020-07-27'),
+(21, 1, '2020-07-27'),
+(22, 1, '2020-07-27'),
+(23, 1, '2020-07-27'),
+(24, 1, '2020-07-27'),
+(25, 1, '2020-07-27'),
+(26, 2, '2020-07-27');
+
 -- --------------------------------------------------------
 
 --
@@ -85,7 +114,7 @@ CREATE TABLE `taikhoan` (
   `DiaChi` text DEFAULT NULL,
   `Avatar` text DEFAULT NULL,
   `Del_Flg` bit(1) NOT NULL DEFAULT b'0',
-  `Admin_Flg` bit(1) DEFAULT NULL,
+  `Admin_Flg` bit(1) NOT NULL DEFAULT b'0',
   `GhiChu` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -94,7 +123,8 @@ CREATE TABLE `taikhoan` (
 --
 
 INSERT INTO `taikhoan` (`IDTaiKhoan`, `UserName`, `Password`, `Email`, `DiaChi`, `Avatar`, `Del_Flg`, `Admin_Flg`, `GhiChu`) VALUES
-(1, 'NhanVP', '1', 'shadowin1811@gmail.com', 'Phú thượng', NULL, b'0', NULL, '1212');
+(1, 'NhanVP', '1', 'shadowin1811@gmail.com', 'Phú thượng', NULL, b'0', b'1', '1212'),
+(2, 'NhanVIP', 'Nhan12345!', 'phungnhan0935488044@gmail.com', NULL, NULL, b'0', b'0', NULL);
 
 -- --------------------------------------------------------
 
@@ -159,6 +189,7 @@ INSERT INTO `thietbi` (`MaThietBi`, `TenThietBi`, `MaTheLoai`, `HangSanXuat`, `D
 -- Indexes for table `chitietmuontra`
 --
 ALTER TABLE `chitietmuontra`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `MaMuonTra` (`MaMuonTra`),
   ADD KEY `MaThietBi` (`MaThietBi`);
 
@@ -200,6 +231,12 @@ ALTER TABLE `thietbi`
 --
 
 --
+-- AUTO_INCREMENT for table `chitietmuontra`
+--
+ALTER TABLE `chitietmuontra`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `hangsanxuat`
 --
 ALTER TABLE `hangsanxuat`
@@ -209,13 +246,13 @@ ALTER TABLE `hangsanxuat`
 -- AUTO_INCREMENT for table `muontra`
 --
 ALTER TABLE `muontra`
-  MODIFY `MaMuonTra` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MaMuonTra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `taikhoan`
 --
 ALTER TABLE `taikhoan`
-  MODIFY `IDTaiKhoan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IDTaiKhoan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `theloai`

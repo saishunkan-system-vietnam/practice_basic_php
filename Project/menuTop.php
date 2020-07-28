@@ -14,7 +14,7 @@ require(SITE_CONFIG); ?>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div class="navbar">
         <div style="float: left; margin-left: 3px;">
-            <img width="60px" height="46px" src="./img/logo.png" alt="">
+            <img width="60px" height="46px" src=<?= IMG_LOGO?> alt="">
         </div>
         <div><a href=<?= SITE_INDEX ?>>Trang chủ</a></div>
         <div><a href=<?= SITE_DANHSACHTHIETBI ?>>Thiết bị</a></div>

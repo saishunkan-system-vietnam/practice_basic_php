@@ -1,10 +1,10 @@
 $(document).ready(function () {
     $.validator.addMethod(
         "regex",
-        function(value, element, regexp) {
+        function (value, element, regexp) {
             return this.optional(element) || regexp.test(value);
         },
-        "Làm ơn nhập đúng định dạng"
+        "Vui lòng nhập đúng định dạng"
     );
     $("#myForm").validate({
         // Specify validation rules
@@ -33,27 +33,27 @@ $(document).ready(function () {
         messages: {
             inpUser:
             {
-                required: "Làm ơn UserName",
+                required: "Vui lòng UserName",
                 minlength: "Nhập nhiều hơn 4 kí tự",
             },
             inpEmail: {
-                required: "Làm ơn nhập Email",
+                required: "Vui lòng nhập Email",
             },
             inpPass: {
-                required: "Làm ơn nhập mật khẩu",
+                required: "Vui lòng nhập mật khẩu",
             },
             inpRePass: {
-                required: "Làm ơn nhập mật khẩu",
+                required: "Vui lòng nhập mật khẩu",
                 equalTo: "Nhập Confirm Password giống Password"
 
             },
-            check: "Làm Hãy đồng ý điều khoản",
+            check: "Hãy đồng ý điều khoản",
         },
         submitHandler: function (form) {
-
             form.submit();
         },
         errorPlacement: function (error, element) {
+
             element.css('background', '#ffc107');
             error.insertAfter(element);
         },
@@ -67,15 +67,20 @@ $(document).ready(function () {
             $(element).css('background', '#000000');
             $(element).css('opacity', '85%');
             $(element).css('color', '#fff');
-            $(element.check).css('border', '1px', 'solid');
         },
-
     });
 });
 
-$("#inpUser").keyup(function () { 
-    var username = $(this).val(); 
-    $.post('checkUser.php', {'inpUser':username}, function(data) { 
-    $("#user-result").html(data);
+$("#inpUser").keyup(function () {
+    var username = $(this).val();
+    $.post('checkExist.php', { 'inpUser': username }, function (data) {
+        $("#user-result").html(data);
     });
- });    
+});
+
+$("#inpEmail").keyup(function () {
+    var mail = $(this).val();
+    $.post('checkExist.php', { 'inpEmail': mail }, function (data) {
+        $("#mail-result").html(data);
+    });
+});    

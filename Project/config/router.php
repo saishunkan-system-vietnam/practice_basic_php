@@ -6,10 +6,12 @@ define('SITE_DANHSACHNEW','danhSachNew.php');
 define('SITE_FOOTER','footer.php');
 define('SITE_INDEX','index.php');
 define('SITE_CONFIG','./config/config.php');
+define('SITE_API_CONFIG','../config/config.php');
 define('SITE_DANGNHAP','dangnhap.php');
 define('SITE_DANGKY','dangky.php');
 define('SITE_DANHSACHTHIETBI','danhSachThietBi.php');
-define('SITE_POPUPMUONTB','popupmuontb.php');
+define('SITE_POPUPMUONTB','./popupmuontb.php');
+define('SITE_SENDMAIL','sendMail.php');
 
 // LINK JQUERY
 define('LINK_JQUERY','https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js');
@@ -23,17 +25,22 @@ define('FILE_CSS_LOGIN','./css/login.css');
 define('FILE_CSS_REGISTER','./css/register.css');
 define('FILE_CSS_REGIS','./css/regis.css');
 define('FILE_CSS_QLTHIETBI','./css/qlthietbi.css');
+define('FILE_CSS_SENDMAIL','./css/sendmail.css');
+define('FILE_CSS_POPUP','./css/popup.css');
 
 //URL FILE JS
 define('FILE_JS_BANNER','./js/banner.js');
 define('FILE_JS_VALIDATE','./js/validate.js');
-define('FILE_JS_AJAX','./js/ajaxPopup.js');
+define('FILE_JS_AJAX','./js/ajaxMuonthietbi.js');
 define('FILE_JS_COMMOM','./js/commom.js');
+define('FILE_JS_SENDMAIL','./js/sendmail.js');
+
 // URL FILE IMG
 define('IMG_BANNER1','./img/Banner_1.jpg');
 define('IMG_BANNER2','./img/Banner_2.png');
 define('IMG_BANNER3','./img/Banner_3.png');
 define('IMG_AVATAR','./img/avatar.png');
+define('IMG_LOGO','./img/logo.png');
 
 ?>
 
