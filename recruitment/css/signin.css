@@ -1,0 +1,89 @@
+.wrapper_signin {
+    height         : 100%;
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    margin         : auto;
+}
+
+.signin_page {
+    /* z-index: 1; */
+    background-color: lemonchiffon;
+    margin          : auto;
+    box-sizing      : border-box;
+    /* opacity      : 0.8; */
+    /* z-index      : 999; */
+    /* text-align   : center; */
+    border          : 1px solid #ccc;
+    max-width       : 400px;
+    margin-top      : 25px;
+    margin-bottom   : 25px;
+    height          : auto;
+    padding         : 14px;
+    border-radius   : 12px;
+    box-shadow      : 0 6px 9px 0 #ccc;
+    width           : 40%;
+}
+
+.signin_page div {
+    display: block;
+}
+
+.signin_page .title {
+    /* margin-top     : 10px; */
+    /* padding     : 50px; */
+    width          : 100%;
+    color          : green;
+    /* rgb(40, 40, 179); */
+    font-weight    : bold;
+    font-family    : sans-serif;
+    padding-bottom : 10px;
+    text-align     : center;
+    /* padding-left: 0px; */
+    clear          : both;
+    font-weight    : bold;
+}
+
+.signin_page .close {
+    float       : right;
+    margin-right: 2px;
+}
+
+.signin_page .label {
+    /* margin-top: 20px; */
+    margin-left : 0px;
+    padding-left: 0px;
+    padding-top : 12px;
+    clear       : both;
+}
+
+.signin_page input[type=text],
+input[type=password],
+input[type=date] {
+    border      : 1px solid #ddd;
+    margin-top  : 10px;
+    width       : 100%;
+    height      : 30px;
+    padding-left: 7 px;
+}
+
+.signin_page .btnsignin {
+    margin-top     : 15px;
+    margin-bottom  : 5px;
+    /* float       : right; */
+    /* border-color: green; */
+    border         : 1px solid lightskyblue;
+    background     : white;
+    padding        : 4px 4px;
+    border-radius  : 4px;
+    color          : blue;
+    width          : 100%;
+}
+
+.error_message {
+    height        : 10px;
+    padding-top   : 5px;
+    padding-bottom: 5px;
+    font-size     : 12px;
+    float         : right
+}

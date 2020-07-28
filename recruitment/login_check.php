@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "./config/config.php";
 require_once "./config/router.php";
 if (isset($_POST["email"])&&isset($_POST["password"])&&isset($_POST["remember"])) {

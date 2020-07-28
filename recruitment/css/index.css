@@ -1,6 +1,7 @@
-*{
+* {
     box-sizing: border-box;
 }
+
 body {
     font-family: "Arial", "helvetica neue", "Helvetica", "sans-serif";
     margin     : 0;
@@ -14,14 +15,6 @@ body {
     align-items         : center;
     border              : 1px solid #ccc;
     /* background       : rgb(228, 226, 221); */
-}
-
-.wrapper_login{
-    height: 90vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
 }
 
 .header {
@@ -64,7 +57,7 @@ body {
     border-bottom: 2px solid rgb(141 146 148 / 99%);
     float        : left;
     width        : 100%;
-    margin-top   : 22px !important;
+    margin-bottom   : 22px !important;    
     padding      : 15px;
     border-radius: 12px;
     box-shadow   : 0 4px 9px 0 #ccc !important;
@@ -89,7 +82,7 @@ body {
     height       : auto;
     width        : 100%;
     /* margin    : auto */
-    margin-bottom: 5px;
+    margin-bottom: 22px;
 }
 
 .banner img {
@@ -129,8 +122,9 @@ body {
     clear              : both;
     height             : 25px;
     margin-bottom      : 10px;
-    padding-top        : 20px;
-    padding-bottom: 20px; /*add*/
+    padding-top        : 0px;
+    padding-bottom     : 20px;
+    /*add*/
 }
 
 .footer {
@@ -142,8 +136,8 @@ body {
     color         : floralwhite;
     width         : 100%;
     /* line-height: 40px; */
-    /* position: absolute;
-    bottom: 0; */
+    /* position   : absolute;
+    bottom        : 0; */
 }
 
 .footer div {
@@ -181,95 +175,14 @@ a:hover {
 
 @media (min-width: 992px) and (max-width: 1366px) {
     .banner img {
-        width: 99%;
+        width: 100%;
     }
 }
 
 @media (max-width: 992px) {
     .banner img {
-        width: 98%;
+        width: 100%;
     }
-}
-
-
-.login_page {
-    /* z-index: 1; */
-    background-color: #F5EFEF;
-    margin          : auto;
-    box-sizing      : border-box;
-    /* opacity      : 0.8; */
-    /* z-index      : 999; */
-    /* text-align   : center; */
-    border          : 1px solid #ccc;
-    max-width       : 400px;
-    margin-top      : 25px;
-    margin-bottom   : 25px;
-    height          : 500px;
-    padding         : 14px;
-    border-radius   : 12px;
-    box-shadow      : 0 6px 9px 0 #ccc;
-    width: 40%;
-}
-
-.login_page div {
-    display: block;
-}
-
-.login_page .title {
-    margin-top     : 25px;
-    /* padding     : 50px; */
-    width          : 100%;
-    color          : green;
-    /* rgb(40, 40, 179); */
-    font-weight    : bold;
-    font-family    : sans-serif;
-    padding-bottom : 10px;
-    text-align     : center;
-    /* padding-left: 0px; */
-    clear          : both;
-    font-weight    : bold;
-}
-
-.login_page .close {
-    float       : right;
-    margin-right: 2px;
-}
-
-.login_page .label {
-    /* margin-top: 20px; */
-    margin-left : 0px;
-    padding-left: 0px;
-    padding-top : 15px;
-}
-
-.login_page input[type=text],
-input[type=password] {
-    border      : 1px solid #ddd;
-    margin-top  : 10px;
-    width       : 100%;
-    height      : 30px;
-    padding-left: 7 px;
-}
-
-.login_page .forget {
-    margin-top: 37px;
-    font-size : 12px;
-    float     : left;
-}
-
-.login_page .btnlogin {
-    margin-top     : 37px;
-    float          : right;
-    /* border-color: green; */
-    border         : 1px solid lightskyblue;
-    background     : white;
-    padding        : 4px 4px;
-    border-radius  : 4px;
-    color          : blue;
-}
-
-.login_page .check {
-    margin-top: 15px;
 }
 
 .error_message {
@@ -280,8 +193,9 @@ input[type=password] {
     font-size    : 14px;
 }
 
-#password-error, #email-error {
-    color        : red;
-    clear: both;
-    font-size    : 10px;
+#password-error,
+#email-error {
+    color    : red;
+    clear    : both;
+    font-size: 10px;
 }
