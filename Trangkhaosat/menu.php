@@ -23,7 +23,7 @@
         <nav>
             <ul class="mcd-menu main-menu">
                 <a href="<?= SITE_URL?>">
-                    <img class="logo" src="./image/logo.png">
+                    <img class="logo" src="<?= FILE_IMG_LOGO?>">
                 </a>
                 <li class="main-menu">
 
@@ -53,7 +53,7 @@
                     </a>
                 </li>
                 <?if($infoLogin){?>
-                <li class="info-account last">
+                <li class="info-account last-menu">
                     <a href="#">
                         <i class="fa fa-user" aria-hidden="true"></i>
                         <strong><?=isset($_SESSION['dataLogin']) ? $_SESSION['dataLogin'] : "N/A"?></strong>
@@ -63,6 +63,12 @@
                             <a href="#">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                 <small>Chỉnh sửa thông tin</small>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./admin/survey_manager.php">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                <small>Quản lý danh sách khảo sát</small>
                             </a>
                         </li>
                         <li>

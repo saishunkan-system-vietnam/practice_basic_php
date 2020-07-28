@@ -8,7 +8,7 @@
     <?
     require_once('./config/router.php');
     
-    $infoLogin = true;
+    $infoLogin = false;
     if(!empty($_SESSION['dataLogin'])){        
         $infoLogin = true;
     }

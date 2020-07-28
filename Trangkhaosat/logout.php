@@ -1,6 +1,11 @@
 <?session_start();
+
+    require_once('./config/router.php');
+
     unset($_SESSION['dataLogin'] );
 
-    header("Location: ./index.php");
+    $homepage = "Location: ". SITE_URL;
+
+    header($homepage);
 
 ?>

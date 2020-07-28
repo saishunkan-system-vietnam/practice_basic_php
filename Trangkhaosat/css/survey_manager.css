@@ -1,0 +1,123 @@
+
+.warpper_ad_survey {
+    top: 100px;
+    position: absolute; 
+    width: 100%;
+}
+
+
+.find {
+    margin: 20px 15%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.content_sv_mn {
+    margin: 0px 15%;
+    width: 70%;
+}
+
+table{
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #025583;
+    background: #fff;
+}
+th{
+
+    color: #01579B;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.ff{
+    border-right: 1px solid #ccc;
+}
+
+td{
+    border-bottom: 1px solid #ccc;
+    font-weight: bold;
+    font-size: 13.5px;
+}
+.btn_edit{
+    background-color: #fb8c00;
+    border-color: #fb8c00;
+}
+
+.btn_del{
+    background-color: rgb(255, 82, 82);
+    border-color: rgb(255, 82, 82);
+}
+
+select,button{
+    height: 36px;
+    min-width: 64px;
+    padding: 5px;
+    color: #fff;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    align-items: center;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: .875rem;
+    letter-spacing: .0892857143em;
+    justify-content: center;
+    outline: 0;
+    position: relative;
+    text-indent: .0892857143em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+    border-style: none;
+    overflow: visible;
+    margin: 5px;
+}
+
+button:hover
+{
+    background-color:rgb(245, 245, 245);
+    border-bottom-color: rgb(118, 118, 118);
+    color: rgba(0, 0, 0, 0.87);
+
+}
+
+select {
+    margin: 5px;
+    background-color:rgb(245, 245, 245);
+    border-bottom-color: rgb(118, 118, 118);
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.btn_find{
+    background-color: rgb(24, 103, 192);
+    border-color: rgb(24, 103, 192);
+}
+
+
+.btn_ins{
+    position: absolute;
+    left: 18%;
+    background-color: rgb(76, 175, 80);
+    border-color: rgb(76, 175, 80);
+}
+.txt_find
+{
+    font-weight: 500;
+    font-size: .875rem;
+    outline: none;
+    background-color: transparent;
+    border-style: none;
+    margin: 5px;
+    border-bottom: 1.4px solid rgb(24, 103, 192);
+    width: 30%;
+    padding: 0px;
+    font-size: 16px;
+}
+
+
+
+
+

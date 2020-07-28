@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2020 at 07:49 PM
+-- Generation Time: Jul 28, 2020 at 07:32 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.2.31
 
@@ -66,6 +66,23 @@ CREATE TABLE `t_answer` (
   `create_datetime` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'ngày trả lời',
   `del_flg` smallint(1) NOT NULL DEFAULT 0 COMMENT 'cờ xóa'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `t_answer`
+--
+
+INSERT INTO `t_answer` (`id`, `id_hdr`, `id_dtl`, `usr_id`, `create_datetime`, `del_flg`) VALUES
+('1595814688', 'HD_005', 'DT_025', 'abc@gmail.com', '2020-07-27 08:51:28', 0),
+('1595814883', 'HD_017', 'DT_074', 'abc@gmail.com', '2020-07-27 08:54:43', 0),
+('1595818525', 'HD_014', 'DT_063', 'abc@gmail.com', '2020-07-27 09:55:25', 0),
+('1595821886', 'HD_015', 'DT_067', 'abc@gmail.com', '2020-07-27 10:51:26', 0),
+('1595824272', 'HD_016', 'DT_071', 'abc@gmail.com', '2020-07-27 11:31:12', 0),
+('1595825112', 'HD_010', 'DT_045', 'abc@gmail.com', '2020-07-27 11:45:12', 0),
+('1595828940', 'HD_013', 'DT_056', 'abc@gmail.com', '2020-07-27 12:49:00', 0),
+('1595828957', 'HD_012', 'DT_051', 'abc@gmail.com', '2020-07-27 12:49:17', 0),
+('1595836339', 'HD_015', 'DT_067', 'admin@gmail.com', '2020-07-27 14:52:19', 0),
+('1595910959', 'HD_008', 'DT_039', 'abc@gmail.com', '2020-07-28 11:35:59', 0),
+('1595923094', 'HD_009', 'DT_043', 'abc@gmail.com', '2020-07-28 14:58:14', 0);
 
 -- --------------------------------------------------------
 

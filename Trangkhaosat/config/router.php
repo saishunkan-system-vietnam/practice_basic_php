@@ -1,34 +1,42 @@
 <?
+
+define('BASE_PATH',dirname(__FILE__,2));
+
 // URL SITE
-define('SITE_URL','./index.php');
-define('FILE_MENU','./menu.php');
-define('FILE_FOOTER','./footer.php');
-define('URL_LOGOUT','./logout.php');
-define('URL_INTRODUCE','./introduce.php');
-define('URL_LISTSURVEY','./listsurvey.php');
+define('SITE_URL','http://lieund.com');
+
+define('FILE_MENU',BASE_PATH.'/menu.php');
+define('FILE_FOOTER',BASE_PATH.'/footer.php');
+define('URL_LOGOUT',SITE_URL.'/logout.php');
+define('URL_INTRODUCE',SITE_URL.'/introduce.php');
+define('URL_LISTSURVEY',SITE_URL.'/listsurvey.php');
 
 //CSS
-define('FILE_CSS_LOGIN','./css/login.css?'.time());
-define('FILE_CSS_MENU','./css/menu.css?'.time());
-define('FILE_CSS_REGIST','./css/regist.css?'.time());
-define('FILE_CSS_STYLESHEET','./css/stylesheet.css?'.time());
-define('FILE_CSS_INDEX','./css/index.css?'.time());
-define('FILE_CSS_LISTSURVEY','./css/listsurvey.css?'.time());
-define('FILE_CSS_INTRODUCE','./css/introduce.css?'.time());
-define('FILE_CSS_SURVEY','./css/survey.css?'.time());
+define('FILE_CSS_LOGIN',SITE_URL.'/css/login.css');
+define('FILE_CSS_MENU',SITE_URL.'/css/menu.css');
+define('FILE_CSS_REGIST',SITE_URL.'/css/regist.css');
+define('FILE_CSS_STYLESHEET',SITE_URL.'/css/stylesheet.css');
+define('FILE_CSS_INDEX',SITE_URL.'/css/index.css');
+define('FILE_CSS_LISTSURVEY',SITE_URL.'/css/listsurvey.css');
+define('FILE_CSS_INTRODUCE',SITE_URL.'/css/introduce.css');
+define('FILE_CSS_SURVEY',SITE_URL.'/css/survey.css');
+define('FILE_CSS_SURVEY_MANAGER',SITE_URL.'/css/survey_manager.css');
 
 //JS
-define('FILE_JS_LOGIN','./js/login.js?'.time());
-define('FILE_JS_REGIST','./js/regist.js?'.time());
-define('FILE_JS_COMMON','./js/common.js?'.time());
-define('FILE_JS_INDEDX','./js/index.js?'.time());
-define('FILE_JS_LISTSURVEY','./js/listsurvey.js?'.time());
+define('FILE_JS_LOGIN',SITE_URL.'/js/login.js');
+define('FILE_JS_REGIST',SITE_URL.'/js/regist.js');
+define('FILE_JS_COMMON',SITE_URL.'/js/common.js');
+define('FILE_JS_INDEDX',SITE_URL.'/js/index.js');
+define('FILE_JS_LISTSURVEY',SITE_URL.'/js/listsurvey.js');
 
 //LIB
-define('FILE_LIB_LOGIN','./lib/login_ajax.php?'.time());
-define('FILE_LIB_REGIST','./js/regist_ajax.php?'.time());
-define('FILE_LIB_HOME','./js/home_ajax.php?'.time());
+define('FILE_LIB_LOGIN',BASE_PATH.'/lib/login_ajax.php');
+define('FILE_LIB_REGIST',BASE_PATH.'/js/regist_ajax.php');
+define('FILE_LIB_HOME',BASE_PATH.'/js/home_ajax.php');
+
+// IMAGE
+define('FILE_IMG_LOGO',SITE_URL."/image/logo.png");
 
 //CONFIG
-define('FILE_CONFIG','./config/config.php?'.time());
+define('FILE_CONFIG',BASE_PATH.'/config/config.php');
 ?>

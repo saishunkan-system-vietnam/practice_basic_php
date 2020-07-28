@@ -71,17 +71,15 @@
 }
 
 .mcd-menu li:hover>a {
-    /* color: #e67e22; */
     color: #e67e22;
     border: 0;
     border-top: 4px solid;
     border-bottom: 4px solid;
     margin-top: -4px;
-    /* box-shadow: 0 0 5px #DDD; */
     box-shadow: 0 0 5px #025583;
 }
 
-.last:hover>a {
+.last-menu:hover>a {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }

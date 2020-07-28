@@ -11,7 +11,7 @@
         box-sizing: border-box;
         color: #eee;
         text-align: center;
-        bottom: 0;
+        bottom: 0px;
 
     }
 
