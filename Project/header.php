@@ -33,6 +33,9 @@
     <script src=<?= LINK_JQUERY ?>></script>
     <script src=<?= FILE_JS_COMMON ?>></script>
     <script src=<?= FILE_JS_REGISTER ?>></script>
+    <script>
+        var isLogin =<?= (empty($_SESSION[SESSION_USERNAME]) == true) ? 0 : 1 ?>;
+    </script>
 </head>
 
 <body>
@@ -40,8 +43,8 @@
         <ul>
             <li id="active"><a href=<?= SITE_URL ?>><i class="fa fa-home"></i>&nbsp;Trang chủ</a></li>
             <li><a href=<?= SITE_PRODUCT?>><i class="fa fa-th-large" aria-hidden="true"></i>&nbsp;Sản Phẩm</a></li>
-            <li><a href="sentMail.php"><i class="fa fa-share-alt" aria-hidden="true"></i>&nbsp;Giới thiệu</a></li>
-            <li><a href="forgotpass.php"><i class="fa fa-fw fa-envelope"></i>&nbsp;Liên hệ</a></li>
+            <li><a href=""><i class="fa fa-share-alt" aria-hidden="true"></i>&nbsp;Giới thiệu</a></li>
+            <li><a href="./admin/index.php"><i class="fa fa-fw fa-envelope"></i>&nbsp;Liên hệ</a></li>
             <li style="float: right;">
                 <?php if (!isset($_SESSION[SESSION_USERNAME])): ?>
                 <a class="login-window button" onclick="document.getElementById('login').style.display='block'"><i
@@ -58,7 +61,7 @@
 
     <!-- Đăng ký tài khoản -->
     <div id="regist" class="popup_regist">
-        <form class="form_regist animate" id="form_register" action=<?= FILE_PHP_REGISTER_SUBMIT ?> method="POST"
+        <form class="form_regist animate" id="form_register" action="" method="POST"
             style="border:1px solid #ccc">
             <div class="regist_container">
                 <span onclick="document.getElementById('regist').style.display='none'" class="regist_close"

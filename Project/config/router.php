@@ -20,6 +20,7 @@
     define('FILE_CSS_STYLE','./CSS/style.css');
     define('FILE_CSS_STYLE_FOOTER','./CSS/style_footer.css');
     define('FILE_CSS_STYLE_REGISTER','./CSS/style_register.css');
+
     // JS
     define('FILE_JS_LOGIN','./JS/login.js');
     define('FILE_JS_REGISTER','./JS/register.js');
@@ -28,6 +29,8 @@
     define('FILE_JS_VALIDATE','./JS/validate.js');
     define('FILE_JS_SLIDESHOW','./JS/slideshow_auto.js');
     define('FILE_JS_CHANGEPASS','./JS/changePassword.js');
+    define('FILE_JS_ADDTOCART','./JS/addToCart.js');
+
 
 
     // IMG

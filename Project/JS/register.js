@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    var isExists;
     $('#form_register').on('submit', function (event) {
 
         var fullname    = $.trim($('#fullname').val());

@@ -41,17 +41,20 @@
 ?>
 <?php while($row = $result->fetch_assoc()): ?>
 <div class="card">
-    <img src=<?= $row["avarta"];?> alt="Denim Jeans" style="width:200px; height:250px;">
+    <img onclick="location.href='http\:\/\/sinh.com/product.php'" src=<?= $row["avarta"];?> alt="Denim Jeans" style="width:200px; height:250px;">
     <h3><?= $row["name"] ?></h3>
     <p class="price"><?= $row["price"].'K' ?></p>
-    <p><?= $row["note"] ?></p>
-    <p><button>Add to Cart</button></p>
+    <input type="hidden" id= "productId" value=<?= $row["id"] ?>>
+    <input type="hidden" id= "productName" value=<?= $row["name"] ?>>
+    <input type="hidden" id= "productPrice" value=<?= $row["price"] ?>>
+    <button type="button" class="btncart"><i class="fa fa-shopping-cart" ></i></button>
 </div>
 <?php endwhile ; ?>
 
 
 <link rel="stylesheet" href=<?= FILE_CSS_STYLE ?>>
 <script src=<?= FILE_JS_SLIDESHOW ?>></script>
+<script src=<?= FILE_JS_ADDTOCART ?>></script>
 </body>
 
 <!-- include footer -->
