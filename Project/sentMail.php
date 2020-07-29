@@ -21,7 +21,7 @@
         $mail             = new PHPMailer();
         $body             = 'Dear '.$_POST['email'].', 
                             <br/>Gần đây, một yêu cầu đã được gửi để thiết lập lại mật khẩu cho tài khoản của bạn. Nếu đây là một sai lầm, chỉ cần bỏ qua email này và sẽ không có gì xảy ra.
-                            <br/>Để đặt lại mật khẩu của bạn, hãy truy cập liên kết sau: <a href="'.$resetPassLink.'">'.$resetPassLink.'</a>
+                            <br/>Để đặt lại mật khẩu của bạn, hãy truy cập liên kết sau: <a href="'.$resetPassLink.'">click vào đây</a>
                             <br/><br/>Trân trọng,
                             <br/>Ngô Tá Sinh';
         $title = 'Quên mật khẩu';  
@@ -44,7 +44,7 @@
 
         // thuc thi lenh gui mail 
     if(!$mail->Send()) {
-        echo 'Co loi!';
+        echo 'Có lỗi!';
          
     } else {
          

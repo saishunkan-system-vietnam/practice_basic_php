@@ -23,19 +23,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ngô Tá Sinh</title>
-
     <link rel="stylesheet" href=<?= LINK_ICON ?>>
     <link rel="stylesheet" href=<?= FILE_CSS_STYLE_HEADER ?>>
     <link rel="stylesheet" href=<?= FILE_CSS_STYLE_FOOTER ?>>
     <link rel="stylesheet" href=<?= FILE_CSS_STYLE_REGISTER?>>
     <link rel="stylesheet" href=<?= FILE_CSS_STYLE_LOGIN?>>
     <script src=<?= LINK_JQUERY ?>></script>
-    <script src=<?= FILE_JS_COMMON ?>></script>
-    <script src=<?= FILE_JS_REGISTER ?>></script>
-    <script>
-        var isLogin =<?= (empty($_SESSION[SESSION_USERNAME]) == true) ? 0 : 1 ?>;
-    </script>
 </head>
 
 <body>
@@ -52,6 +45,7 @@
                 <a class="registration button" onclick="document.getElementById('regist').style.display='block'"><i
                         class="fa fa-address-card" aria-hidden="true"></i></i>&nbsp;Đăng Kí</a>
                 <?php else: ?>
+                <a href=<?= FILE_PHP_CART?>><i class="fa fa-shopping-cart"></i></a>
                 <a href=<?= SITE_LOGOUT?>>Đăng xuất &emsp;</a>
                 <a href=""><?= $_SESSION[SESSION_USERNAME]?></a>
                 <?php endif ?>
@@ -61,8 +55,7 @@
 
     <!-- Đăng ký tài khoản -->
     <div id="regist" class="popup_regist">
-        <form class="form_regist animate" id="form_register" action="" method="POST"
-            style="border:1px solid #ccc">
+        <form class="form_regist animate" id="form_register" action="" method="POST" style="border:1px solid #ccc">
             <div class="regist_container">
                 <span onclick="document.getElementById('regist').style.display='none'" class="regist_close"
                     title="Close">&times;</span>
@@ -96,7 +89,8 @@
                     title="Phải chứa ít nhất một số và một chữ hoa và chữ thường và ít nhất 8 ký tự trở lên" required>
 
                 <label for="re_password"><b>Mật khẩu xác nhận</b></label>
-                <input type="password" placeholder="Xác nhận mật khẩu" name="re_password"  oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required>
+                <input type="password" placeholder="Xác nhận mật khẩu" name="re_password" oninvalid="InvalidMsg(this);"
+                    oninput="InvalidMsg(this);" required>
 
                 <label>
                     <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
@@ -139,3 +133,12 @@
             </div>
         </form>
     </div>
+    <br>
+
+    <script src=<?= FILE_JS_COMMON ?>></script>
+    <script src=<?= FILE_JS_LOGIN ?>></script>
+    <script src=<?= FILE_JS_REGISTER ?>></script>
+    <script>
+        var isLogin = <?= (empty($_SESSION[SESSION_USERNAME]) == true) ? 0 : 1?> 
+    </script>
+</body>

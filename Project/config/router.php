@@ -8,9 +8,11 @@
     // PHP
     define('FILE_PHP_CONNECT','./config/connect.php');
     define('FILE_PHP_CONFIG','./config/config.php');
-    define('FILE_PHP_REGISTER','register.php');
-    define('FILE_PHP_HEADER','header.php');
-    define('FILE_PHP_FOOTER','footer.php');
+    define('FILE_PHP_REGISTER','./register.php');
+    define('FILE_PHP_MENUTOP','./menuTop.php');
+    define('FILE_PHP_FOOTER','./footer.php');
+    define('FILE_PHP_CART','./cart.php');
+    define('FILE_PHP_ADDTOCART','./addToCart.php');
     define('FILE_PHP_REGISTER_SUBMIT','regitster_submit.php');
 
 
@@ -18,8 +20,10 @@
     define('FILE_CSS_STYLE_HEADER','./css/style_header.css');
     define('FILE_CSS_STYLE_LOGIN','./CSS/style_login.css');
     define('FILE_CSS_STYLE','./CSS/style.css');
+    define('FILE_CSS_STYLE_CART','./CSS/style_cart.css');
     define('FILE_CSS_STYLE_FOOTER','./CSS/style_footer.css');
     define('FILE_CSS_STYLE_REGISTER','./CSS/style_register.css');
+    define('FILE_CSS_STYLE_CHANGEPASS','./CSS/style_changePass.css');
 
     // JS
     define('FILE_JS_LOGIN','./JS/login.js');

@@ -1,8 +1,17 @@
 <?php 
     require './config/router.php';
-    require FILE_PHP_HEADER;
+    require FILE_PHP_MENUTOP;
     
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Quên mật khẩu</title>
+</head>
+<body>
+    
+</body>
+</html>
 
 <!-- Slideshow container -->
 <div class="slideshow-container">
@@ -111,4 +120,4 @@ h2 {
 <script src=<?= FILE_JS_FORGOTPASS ?>></script>
 </body>
 <!-- include footer -->
-<?php require FILE_PHP_FOOTER ?>
+<?php include FILE_PHP_FOOTER ?>

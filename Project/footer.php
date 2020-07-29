@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
 <br>
 <hr>
 <footer class="footer">
@@ -7,6 +10,4 @@
         <p>Liên hệ & Hợp tác: Mr.Gấu</p>
     </div>
 </footer>
-<script src=<?= FILE_JS_LOGIN ?>></script>
-
-</html>
+</body>
