@@ -8,6 +8,7 @@ $(document).ready(function() {
 
     function GetData(currentPage) {
         $.ajax({
+            async: false,
             type: "post",
             url: "./lib/list_survey_ajax.php",
             data: {
@@ -24,7 +25,7 @@ $(document).ready(function() {
     {
         $("#col1").remove();
         $("#col2").remove();
-        $("#test").remove();
+        $("#pg_dtl").remove();
         element1 = '<div class="col1" id="col1">';
         element2 = '<div class="col2" id = "col2">';
         var index = 1;
@@ -68,12 +69,12 @@ $(document).ready(function() {
                 curentpage = parseInt(data.current_page);
                 if(curentpage == 1)
                 {
-                    paginationHtml += "<div id = 'test'><li><a class='disabled' href='#'><<</a></li><li><a class='disabled' href='#'><</a></li>";
+                    paginationHtml += "<div id = 'pg_dtl'><li><a class='disabled' href='#'><<</a></li><li><a class='disabled' href='#'><</a></li>";
                 }
                 else
                 {
                     var prev = curentpage -1;
-                    paginationHtml += "<div id = 'test'><li><a href='./listsurvey.php?page=1'><<</a></li><li><a href='./listsurvey.php?page="+ prev +"'><</a></li>";
+                    paginationHtml += "<div id = 'pg_dtl'><li><a href='./listsurvey.php?page=1'><<</a></li><li><a href='./listsurvey.php?page="+ prev +"'><</a></li>";
                 }
 
                 for (var i = 1; i <= totalPages; i++) {

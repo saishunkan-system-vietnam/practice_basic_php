@@ -28,6 +28,7 @@ define('FILE_JS_REGIST',SITE_URL.'/js/regist.js');
 define('FILE_JS_COMMON',SITE_URL.'/js/common.js');
 define('FILE_JS_INDEDX',SITE_URL.'/js/index.js');
 define('FILE_JS_LISTSURVEY',SITE_URL.'/js/listsurvey.js');
+define('FILE_JS_SVMANAGER',SITE_URL.'/js/sv_manager.js');
 
 //LIB
 define('FILE_LIB_LOGIN',BASE_PATH.'/lib/login_ajax.php');

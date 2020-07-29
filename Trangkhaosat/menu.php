@@ -72,7 +72,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="./logout.php">
+                            <a href=<?= URL_LOGOUT?>>
                                 <i class="fa fa-sign-out" aria-hidden="true"></i>
                                 <small>Đăng xuất</small>
                             </a>

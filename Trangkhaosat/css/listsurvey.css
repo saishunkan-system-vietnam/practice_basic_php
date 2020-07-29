@@ -144,6 +144,7 @@ body {
 }
 .pagination li {
   float: left;
+  background-color: #fff;
 }
 .pagination li a {
   height: 36px;
@@ -168,7 +169,7 @@ body {
   pointer-events: none;
 }
 
-.pg_dtl {
+.pg_nd {
   text-align: center;
   width: 100%;
 }

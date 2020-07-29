@@ -11,15 +11,6 @@ require("../config/config.php");
     {
 
         $sql = "SELECT COUNT(*) as result FROM t_surveyhdr WHERE del_flg = 0";
-
-        if(isset($_POST["id_catogery"]))
-        {
-            if($_POST["id_catogery"] != "All")
-            {
-                $id_category = $_POST["id_catogery"] ;
-                $sql = "SELECT COUNT(*) as result FROM t_surveyhdr WHERE del_flg = 0 and id_category = '{$id_category}'";
-            }
-        }
         
         $row = $conn->query($sql);
         $data = $row->fetch_assoc();
@@ -46,38 +37,6 @@ require("../config/config.php");
         . "left join A asw on hdr.id = asw.id_hdr\n"
         . "where hdr.del_flg = 0)\n"
         . "SELECT * FROM B WHERE num_row >= {$start} LIMIT {$limit}";
-
-        if(isset($_POST["id_catogery"]) && isset($_POST["fnd_content"]))
-        {
-            $fnd_content = $_POST["fnd_content"];
-            if($_POST["id_catogery"] != "All")
-            {
-                $id_category = $_POST["id_catogery"] ;
-
-                 $sql = "with A AS (SELECT COUNT(id_hdr) as index_asw, id_hdr  from t_answer GROUP BY id_hdr),\n"
-                . "B AS(\n"
-                . "select DENSE_RANK() OVER(PARTITION BY 'a' ORDER by hdr.create_datetime DESC) num_row , hdr.create_datetime , hdr.id, ct.content as category,IFNULL(asw.index_asw,0) as index_asw, hdr.content from t_surveyhdr hdr \n"
-                . "join t_category ct on hdr.id_category = ct.id and ct.id = '{$id_category}'\n"
-                . "left join A asw on hdr.id = asw.id_hdr\n"
-                . "where hdr.del_flg = and hdr.content like '%{$fnd_content}%' 0)\n"
-                . "SELECT * FROM B WHERE num_row >= {$start} LIMIT {$limit}";
-            }
-            else
-            {
-                if($_POST["id_catogery"] != "All")
-            {
-                $id_category = $_POST["id_catogery"] ;
-
-                 $sql = "with A AS (SELECT COUNT(id_hdr) as index_asw, id_hdr  from t_answer GROUP BY id_hdr),\n"
-                . "B AS(\n"
-                . "select DENSE_RANK() OVER(PARTITION BY 'a' ORDER by hdr.create_datetime DESC) num_row , hdr.create_datetime , hdr.id, ct.content as category,IFNULL(asw.index_asw,0) as index_asw, hdr.content from t_surveyhdr hdr \n"
-                . "join t_category ct on hdr.id_category = ct.id'\n"
-                . "left join A asw on hdr.id = asw.id_hdr\n"
-                . "where hdr.del_flg = and hdr.content like '%{$fnd_content}%' 0)\n"
-                . "SELECT * FROM B WHERE num_row >= {$start} LIMIT {$limit}";
-            }
-            }
-        }
         
         $result = $conn->query($sql);
 

@@ -37,7 +37,7 @@
         <div class="container-sv" id = "tl">
             <div class="detail" id="nd">
             </div>
-            <div class="pg_dtl">
+            <div class="pg_nd">
             <ul class="pagination" id="pg">
             </ul>
             </div>
