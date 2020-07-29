@@ -1,76 +1,87 @@
-    <?php 
-        require('./config/router.php');
-        include(SITE_MENUTOP);
-        include(SITE_BANNER);
-        $result = mysqli_query($connect, 'SELECT count(*) as total FROM thietbi');
-        $row = mysqli_fetch_assoc($result);
-        $total_records = $row['total'];
- 
-        $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-        $limit = 12;
- 
-        $total_page = ceil($total_records / $limit);
- 
-        if ($current_page > $total_page){
-            $current_page = $total_page;
-        }
-        else if ($current_page < 1){
-            $current_page = 1;
-        }
- 
-        $start = ($current_page - 1) * $limit;
- 
-        $result = mysqli_query($connect, "SELECT tb.TenThietBi, tl.TenTheLoai, hsx.TenHang, tb.Img FROM theloai tl INNER JOIN thietbi tb ON tl.MaTheLoai = tb.MaTheLoai INNER JOIN HangSanXuat hsx on tb.HangSanXuat = hsx.MaHang LIMIT $start, $limit  ");
-        //$result = mysqli_query($connect, "SELECT TenThietBi, Img FROM thietbi LIMIT $start, $limit  ");
-        ?>
-    <div style ="margin-top: 10px;">
+<?php
+require('./config/router.php');
+include(SITE_MENUTOP);
+include(SITE_BANNER);
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danh sách thiết bị</title>
+</head>
+
+<body>
+    <?php
+    $result = mysqli_query($connect, 'SELECT count(*) as total FROM thietbi');
+    $row = mysqli_fetch_assoc($result);
+    $total_records = $row['total'];
+
+    $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+    $limit = 12;
+
+    $total_page = ceil($total_records / $limit);
+
+    if ($current_page > $total_page) {
+        $current_page = $total_page;
+    } else if ($current_page < 1) {
+        $current_page = 1;
+    }
+
+    $start = ($current_page - 1) * $limit;
+
+    $result = mysqli_query($connect, "SELECT tb.TenThietBi, tl.TenTheLoai, hsx.TenHang, tb.Img FROM theloai tl INNER JOIN thietbi tb ON tl.MaTheLoai = tb.MaTheLoai INNER JOIN HangSanXuat hsx on tb.HangSanXuat = hsx.MaHang LIMIT $start, $limit  ");
+    //$result = mysqli_query($connect, "SELECT TenThietBi, Img FROM thietbi LIMIT $start, $limit  ");
+    ?>
+    <div style="margin-top: 10px;">
         <table id="tbl" width="1000" border="1" align="center">
-            <?php while ($row = mysqli_fetch_assoc($result)):?>
-            <tr>
-                <td align="center" style="width: 150px; height: 150px;">
-                    <?php echo "<img src='./img/".$row['Img']."'>"?>
-                </td>
-                <td style="padding-left: 10px;">
-                    <?php 
-                        echo "<b>"."Tên thiết bị: "."</b>";
+            <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+                <tr>
+                    <td align="center" style="width: 150px; height: 150px;">
+                        <?php echo "<img src='./img/" . $row['Img'] . "'>" ?>
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <?php
+                        echo "<b>" . "Tên thiết bị: " . "</b>";
                         echo $row['TenThietBi'];
                         echo '</br></br>';
-                        echo "<b>"."Thể loại: "."</b>";
+                        echo "<b>" . "Thể loại: " . "</b>";
                         echo $row['TenTheLoai'];
                         echo '</br></br>';
-                        echo "<b>"."Hãng sản xuất: "."</b>";
-                        echo $row['TenHang'];?>
-                </td>
-            </tr>
-            <?php endwhile ; ?>
+                        echo "<b>" . "Hãng sản xuất: " . "</b>";
+                        echo $row['TenHang']; ?>
+                    </td>
+                </tr>
+            <?php endwhile; ?>
         </table>
     </div>
     <div style=" margin-top: 5px; min-height: 17vh;" align="center">
-        <?php 
-        if ($current_page > $total_page){
+        <?php
+        if ($current_page > $total_page) {
             $current_page = $total_page;
-        }
-        else if ($current_page < 1){
+        } else if ($current_page < 1) {
             $current_page = 1;
         }
-            if ($current_page > 1 && $total_page > 1){
-                echo '<a href="'.SITE_DANHSACHTHIETBI.'?page='.($current_page-1).'">Prev</a> | ';
+        if ($current_page > 1 && $total_page > 1) {
+            echo '<a href="' . SITE_DANHSACHTHIETBI . '?page=' . ($current_page - 1) . '">Prev</a> | ';
+        }
+
+        for ($i = 1; $i <= $total_page; $i++) {
+            if ($i == $current_page) {
+                echo '<span>' . $i . '</span> | ';
+            } else {
+                echo '<a href="' . SITE_DANHSACHTHIETBI . '?page=' . $i . '">' . $i . '</a> | ';
             }
- 
-            for ($i = 1; $i <= $total_page; $i++){
-                if ($i == $current_page){
-                    echo '<span>'.$i.'</span> | ';
-                }
-                else{
-                    echo '<a href="'.SITE_DANHSACHTHIETBI.'?page='.$i.'">'.$i.'</a> | ';
-                }
-            }
- 
-            if ($current_page < $total_page && $total_page > 1){
-                echo '<a href="'.SITE_DANHSACHTHIETBI.'?page='.($current_page+1).'">Next</a>';
-            }
-           ?>
+        }
+
+        if ($current_page < $total_page && $total_page > 1) {
+            echo '<a href="' . SITE_DANHSACHTHIETBI . '?page=' . ($current_page + 1) . '">Next</a>';
+        }
+        ?>
     </div>
-<?php
-include(SITE_FOOTER);
-?>
+    <?php
+        include(SITE_FOOTER);
+    ?>
+</body>
+
+</html>

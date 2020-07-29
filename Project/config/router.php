@@ -23,7 +23,7 @@ define('FILE_CSS_BANNER','./css/banner.css');
 define('FILE_CSS_FOOTER','./css/footer.css');
 define('FILE_CSS_LOGIN','./css/login.css');
 define('FILE_CSS_REGISTER','./css/register.css');
-define('FILE_CSS_REGIS','./css/regis.css');
+define('FILE_CSS_CHANGEPASS','./css/changepass.css');
 define('FILE_CSS_QLTHIETBI','./css/qlthietbi.css');
 define('FILE_CSS_SENDMAIL','./css/sendmail.css');
 define('FILE_CSS_POPUP','./css/popup.css');

@@ -4,35 +4,44 @@ require('../config/router.php');
 require(SITE_API_CONFIG);
 $to =  trim($_POST['mail']);
 $subject = 'Link đổi mật khẩu';
+// mb_internal_encoding('UTF-8');
+// $encoded_subject = mb_encode_mimeheader($subject, 'UTF-8', 'B', "\r\n", strlen('Subject: '));
+$encoded_subject = mb_encode_mimeheader($subject,"UTF-8");
 
+$from = 'shadowin1811@gmail.com';
+
+$token = substr(md5(rand(0, 100000)), 0, 16);
+$route = "http://nhanvp.com/Project/changePass.php?email=$to&token=$token";
+
+$headers = 'From: nhanvp.com' . "\r\n" .
+    'Reply-To: ' . $from . "\r\n" .
+    'X-Mailer: PHP/' . phpversion() . "\r\n" .
+    'Content-type: text/html; charset=UTF-8' .
+    'charset: UTF-8';
 $message = "
-<html>
-<body>
 <h2>Chào bạn,</h2>
         <p>Chúng tôi nhận được một yêu cầu của bạn về việc thay đổi mật khẩu.</p>
-        <p>Để thay đổi mật khẩu bạn hãy nhấp vào link sau <a href='http://https://alantien.com/'>đây</a></p>
-</body>
-</html>
-";
+        <p>Để thay đổi mật khẩu bạn hãy nhấp vào link sau <a href=$route>Tích vào đây</a></p>
+</body>";
 
-$header ="From: shadowin1811@gmail.com \r\n";
+$sql_select_mail = "SELECT * FROM taikhoan WHERE Email = '$to' AND Admin_Flg = 0 AND Del_Flg = 0";
+$result_select_mail = mysqli_query($connect, $sql_select_mail) or die("Lỗi truy vấn");
 
-$success= mail($to, $subject, $message, $header);
-
-$sql_select_mail = "SELECT * FROM taikhoan WHERE Email = '$to' AND Admin_Flg = 0";
-$result_select_mail = mysqli_query($connect, $sql_select_mail);
-
-if(!mysqli_num_rows($result_select_mail))
-{
+if (!mysqli_num_rows($result_select_mail)) {
     echo false;
-}
-else
-{
-    if($success){
-        echo true;
-    }
-    else{
+} else {
+
+    $sqlUPD = "UPDATE taikhoan SET Token = '$token' WHERE Email = '$to' AND Admin_Flg = 0 AND Del_Flg = 0";
+    if (mysqli_query($connect, $sqlUPD)) {
+        $success = mail($to, $encoded_subject, $message, $headers);
+
+        if ($success) {
+            echo true;
+        } else {
+            echo false;
+        }
+    } else {
         echo false;
     }
+    mysqli_close($connect);
 }
-// else

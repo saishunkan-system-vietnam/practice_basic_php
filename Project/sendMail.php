@@ -2,7 +2,13 @@
 require('./config/router.php');
 include(SITE_MENUTOP);
 ?>
-<link rel="stylesheet" type="text/css" href=<?= FILE_CSS_SENDMAIL ?>>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href=<?= FILE_CSS_SENDMAIL ?>>
+    <title>Quên mật khẩu</title>
+</head>
 
 <body>
     <form id='frm_send_mail' name="frm_send_mail" action='' method='POST'>
@@ -20,6 +26,7 @@ include(SITE_MENUTOP);
             </form>
         </div>
     </form>
+    <script src=<?= FILE_JS_SENDMAIL ?>></script>
 </body>
 
-<script src=<?= FILE_JS_SENDMAIL ?>></script>
+</html>

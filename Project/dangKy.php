@@ -1,16 +1,43 @@
 <?php
 require('./config/router.php');
 include(SITE_MENUTOP);
+
+if (!$connect) {
+    die('Kết nối không thành công!');
+} else {
+    if (isset($_POST['register'])) {
+        $uName = $_POST['inpUser'];
+        $email = $_POST['inpEmail'];
+        $pass = $_POST['inpPass'];
+
+        $sqlInsert = "INSERT INTO taikhoan (UserName, Password, Email) VALUES ('$uName', '$pass', '$email')";
+
+        if (!mysqli_query($connect, $sqlInsert)) {
+            echo "<script type='text/javascript'>alert('Đăng ký không thành công!');</script>";
+            die;
+        } else {
+            echo "<script type='text/javascript'>alert('Chúc mừng bạn đã đăng ký thành công ');</script>";
+            header('location: dangNhap.php');
+        }
+    }
+}
+mysqli_close($connect);
 ?>
-<title>Create an account</title>
-<link rel="stylesheet" type="text/css" href=<?= FILE_CSS_REGISTER ?>>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Đăng ký</title>
+    <link rel="stylesheet" type="text/css" href=<?= FILE_CSS_REGISTER ?>>
+</head>
 
 <body>
     <form id="myForm" action='' method='POST'>
-        <div class="loginbox">
+        <div class="registerbox">
             <img src=<?= IMG_LOGO ?> class="avatar">
             <h1>Create an account</h1>
-            <form name="login">
+            <form name="register">
                 <div class="tt">
                     <p>Username</p>
                     <input id="inpUser" type="text" name="inpUser" placeholder="Enter Username" />
@@ -34,32 +61,12 @@ include(SITE_MENUTOP);
                     khoản.
                 </div>
                 <div class="tt">
-                    <input class="inpSub" id="inpSub" type="submit" name="register" value="Đăng ký">
+                    <input class="inpSub" id="inpSub" type="submit" name="register" value="Regist">
                 </div>
             </form>
         </div>
     </form>
+    <script src=<?= FILE_JS_VALIDATE ?>></script>
 </body>
-<script src=<?= FILE_JS_VALIDATE ?>></script>
-<?php
-if (!$connect) {
-    die('Kết nối không thành công!');
-} else {
-    if (isset($_POST['register'])) {
-        $uName = $_POST['inpUser'];
-        $email = $_POST['inpEmail'];
-        $pass = $_POST['inpPass'];
 
-        $sqlInsert = "INSERT INTO taikhoan (UserName, Password, Email) VALUES ('$uName', '$pass', '$email')";
-
-        if (!mysqli_query($connect, $sqlInsert)) {
-            echo "<script type='text/javascript'>alert('Đăng ký không thành công!');</script>";
-            die;
-        } else {
-            echo "<script type='text/javascript'>alert('Chúc mừng bạn đã đăng ký thành công ');</script>";
-            header('location: dangNhap.php');
-        }
-    }
-}
-mysqli_close($connect);
-?>
+</html>

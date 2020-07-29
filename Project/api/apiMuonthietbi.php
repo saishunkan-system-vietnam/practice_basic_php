@@ -26,5 +26,6 @@ else
     {
         echo true;
     }
+    mysqli_close($connect);
 }
 ?>

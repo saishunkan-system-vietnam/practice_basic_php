@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 28, 2020 at 12:23 PM
+-- Generation Time: Jul 29, 2020 at 12:31 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -49,7 +49,10 @@ INSERT INTO `chitietmuontra` (`id`, `MaMuonTra`, `MaThietBi`, `SoLuong`, `DaTra`
 (7, 1, 1, 1, b'0', NULL, b'0', '<p>Chơi game</p>'),
 (8, 24, 1, 1, b'0', NULL, b'0', '<p>Chơi game</p>'),
 (9, 25, 11, 10, b'0', NULL, b'0', '<p>Đi lao n&uacute;i cuối tuần</p>'),
-(10, 26, 7, 1, b'0', NULL, b'0', '<p>Đi l&agrave;m thợ nề</p>');
+(10, 26, 7, 1, b'0', NULL, b'0', '<p>Đi l&agrave;m thợ nề</p>'),
+(11, 27, 1, 1, b'0', NULL, b'0', ''),
+(12, 28, 1, 1, b'0', NULL, b'0', '<p><strong>Chơi ở nh&agrave; sướng hơn</strong></p>'),
+(13, 29, 1, 1, b'0', NULL, b'0', '<p><s><em><strong>chơi</strong></em></s></p>');
 
 -- --------------------------------------------------------
 
@@ -98,7 +101,10 @@ INSERT INTO `muontra` (`MaMuonTra`, `IDTaiKhoan`, `NgayMuon`) VALUES
 (23, 1, '2020-07-27'),
 (24, 1, '2020-07-27'),
 (25, 1, '2020-07-27'),
-(26, 2, '2020-07-27');
+(26, 2, '2020-07-27'),
+(27, 1, '2020-07-29'),
+(28, 1, '2020-07-29'),
+(29, 1, '2020-07-29');
 
 -- --------------------------------------------------------
 
@@ -115,16 +121,16 @@ CREATE TABLE `taikhoan` (
   `Avatar` text DEFAULT NULL,
   `Del_Flg` bit(1) NOT NULL DEFAULT b'0',
   `Admin_Flg` bit(1) NOT NULL DEFAULT b'0',
-  `GhiChu` text DEFAULT NULL
+  `Token` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `taikhoan`
 --
 
-INSERT INTO `taikhoan` (`IDTaiKhoan`, `UserName`, `Password`, `Email`, `DiaChi`, `Avatar`, `Del_Flg`, `Admin_Flg`, `GhiChu`) VALUES
+INSERT INTO `taikhoan` (`IDTaiKhoan`, `UserName`, `Password`, `Email`, `DiaChi`, `Avatar`, `Del_Flg`, `Admin_Flg`, `Token`) VALUES
 (1, 'NhanVP', '1', 'shadowin1811@gmail.com', 'Phú thượng', NULL, b'0', b'1', '1212'),
-(2, 'NhanVIP', 'Nhan12345!', 'phungnhan0935488044@gmail.com', NULL, NULL, b'0', b'0', NULL);
+(2, 'NhanVIP', 'Nhan123698741@', 'phungnhan0935488044@gmail.com', NULL, NULL, b'0', b'0', '617974172720b96d');
 
 -- --------------------------------------------------------
 
@@ -234,7 +240,7 @@ ALTER TABLE `thietbi`
 -- AUTO_INCREMENT for table `chitietmuontra`
 --
 ALTER TABLE `chitietmuontra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `hangsanxuat`
@@ -246,7 +252,7 @@ ALTER TABLE `hangsanxuat`
 -- AUTO_INCREMENT for table `muontra`
 --
 ALTER TABLE `muontra`
-  MODIFY `MaMuonTra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `MaMuonTra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `taikhoan`
@@ -281,7 +287,8 @@ ALTER TABLE `chitietmuontra`
 -- Constraints for table `muontra`
 --
 ALTER TABLE `muontra`
-  ADD CONSTRAINT `muontra_ibfk_1` FOREIGN KEY (`IDTaiKhoan`) REFERENCES `taikhoan` (`IDTaiKhoan`);
+  ADD CONSTRAINT `muontra_ibfk_1` FOREIGN KEY (`IDTaiKhoan`) REFERENCES `taikhoan` (`IDTaiKhoan`),
+  ADD CONSTRAINT `muontra_ibfk_2` FOREIGN KEY (`IDTaiKhoan`) REFERENCES `muontra` (`MaMuonTra`);
 
 --
 -- Constraints for table `thietbi`

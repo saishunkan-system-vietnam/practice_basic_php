@@ -10,11 +10,14 @@ require(SITE_CONFIG); ?>
     <link rel="stylesheet" href=<?= FILE_CSS_MENUTOP ?>>
     <link rel="stylesheet" href=<?= FILE_CSS_QLTHIETBI ?>>
     <script src=<?= LINK_JQUERY ?>></script>
-    <script src=<?= LINK_JQUERY_VALIDATE?>></script>
+    <script src=<?= LINK_JQUERY_VALIDATE ?>></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
     <div class="navbar">
         <div style="float: left; margin-left: 3px;">
-            <img width="60px" height="46px" src=<?= IMG_LOGO?> alt="">
+            <img width="60px" height="46px" src=<?= IMG_LOGO ?> alt="">
         </div>
         <div><a href=<?= SITE_INDEX ?>>Trang chủ</a></div>
         <div><a href=<?= SITE_DANHSACHTHIETBI ?>>Thiết bị</a></div>
@@ -66,4 +69,6 @@ require(SITE_CONFIG); ?>
         }
         ?>
     </div>
-</head>
+</body>
+
+</html>

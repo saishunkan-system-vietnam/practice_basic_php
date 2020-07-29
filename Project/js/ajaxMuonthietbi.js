@@ -2,7 +2,7 @@ $(document).ready(function () {
     $(document).on('submit', '#form_Muon', function () {
         $.ajax({
             async: false,
-            url: "../api/apiMuonthietbi.php",
+            url: "./api/apiMuonthietbi.php",
             method: "POST",
             data: {
                 idThietbi: $('#thietbi option:selected').val(),
