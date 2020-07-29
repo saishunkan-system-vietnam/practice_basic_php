@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 28, 2020 at 11:55 AM
+-- Generation Time: Jul 29, 2020 at 12:32 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.2.31
 
@@ -94,6 +94,8 @@ CREATE TABLE `usertbl` (
   `address` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `confirm` tinyint(1) NOT NULL DEFAULT 1,
   `role` varchar(10) COLLATE utf8_unicode_ci DEFAULT 'us',
+  `token` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `token_expire` datetime DEFAULT NULL,
   `del_flag` int(11) NOT NULL DEFAULT 0,
   `update_count` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -102,16 +104,17 @@ CREATE TABLE `usertbl` (
 -- Dumping data for table `usertbl`
 --
 
-INSERT INTO `usertbl` (`email`, `username`, `password`, `dob`, `gender`, `address`, `confirm`, `role`, `del_flag`, `update_count`) VALUES
-('minh@gmail.com', 'minhnn', '1', '', '', '', 1, 'us', 0, 0),
-('minh123@gmail.com', 'minh nguyen', '1', '2020-07-28', 'Female', 'aaddvdfbfdaaaaaaaa', 1, 'us', 0, 0),
-('minhmatloi@gmail.com', 'minhminh', '1', '2020-07-28', 'Male', 'bbbb', 1, 'us', 0, 0),
-('minhminh@gmail.com', 'minhminh', '1', '2020-07-25', 'Male', 'abc\nabcsssss', 1, 'us', 0, 0),
-('minhnn@gmail.com', 'Nguyen Minh', '123', '123', 'Male', 'Hue city', 1, 'us', 0, 0),
-('nam@gmail.com', 'nam nam', '1', '1998-03-03', 'Other', 'abc\nabc', 1, 'us', 0, 0),
-('nam12@gmail.com', 'nam nam', '1', '2020-07-31', 'Male', 'abc\nabc', 1, 'us', 0, 0),
-('nhan@gmail.com', 'nhan nahn', '1', '2020-07-28', 'Male', 'abc\nabc', 1, 'us', 0, 0),
-('nhavp@gmail.com', 'nhan vp', '1', '2020-07-07', 'Male', 'Hue', 1, 'us', 0, 0);
+INSERT INTO `usertbl` (`email`, `username`, `password`, `dob`, `gender`, `address`, `confirm`, `role`, `token`, `token_expire`, `del_flag`, `update_count`) VALUES
+('minh@gmail.com', 'minhnn', '1', '', '', '', 1, 'us', 'jhqwruxliz', '2020-07-29 11:20:57', 0, 0),
+('minh123@gmail.com', 'minh nguyen', '1', '2020-07-28', 'Female', 'aaddvdfbfdaaaaaaaa', 1, 'us', '', NULL, 0, 0),
+('minhmatloi@gmail.com', 'minhminh', '1', '2020-07-28', 'Male', 'bbbb', 1, 'us', '', NULL, 0, 0),
+('minhminh@gmail.com', 'minhminh', '1', '2020-07-25', 'Male', 'abc\nabcsssss', 1, 'us', '', NULL, 0, 0),
+('minhnn@gmail.com', 'Nguyen Minh', '123', '123', 'Male', 'Hue city', 1, 'us', 'jfv14n8ubl', '2020-07-29 10:57:50', 0, 0),
+('nam@gmail.com', 'nam nam', '1', '1998-03-03', 'Other', 'abc\nabc', 1, 'us', '', NULL, 0, 0),
+('nam12@gmail.com', 'nam nam', '1', '2020-07-31', 'Male', 'abc\nabc', 1, 'us', '', NULL, 0, 0),
+('nguyenminh15cdt1@gmail.com', 'nguyenminh1', '1', '2020-07-29', 'Male', 'aaaaaa', 1, 'us', '39qu0iri6k', '2020-07-29 17:29:30', 0, 0),
+('nhan@gmail.com', 'nhan nahn', '1', '2020-07-28', 'Male', 'abc\nabc', 1, 'us', 'ipo4zxfjgb', '2020-07-28 21:35:51', 0, 0),
+('nhavp@gmail.com', 'nhan vp', '1', '2020-07-07', 'Male', 'Hue', 1, 'us', '', NULL, 0, 0);
 
 --
 -- Indexes for dumped tables

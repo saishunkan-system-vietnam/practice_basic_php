@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <!-- <link href="./css/style.css" rel="stylesheet" /> -->
-    <?php require "./config/router.php"; ?>
+    <?php require_once "./config/router.php"; ?>
     <link href=<?php echo FILE_CSS_INDEX ?> rel="stylesheet" />
 </head>
 
@@ -22,7 +22,7 @@
                 <div>
                     <ul>
                         <?php
-                        require "./config/config.php";
+                        require_once "./config/config.php";
 
                         // $sqlCount = "SELECT count(*) as total FROM data where del_flag = 0";
                         // $result = $connect->query($sqlCount);

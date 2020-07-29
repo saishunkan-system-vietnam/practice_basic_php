@@ -7,14 +7,14 @@
     <title>Reset password</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    <?php require "./config/router.php"; ?>
+    <?php require_once "./config/router.php"; ?>
     <link href=<?php echo FILE_CSS_CHANGE_PASSWORD ?> rel="stylesheet" />
 </head>
 
 <body>
     <?php include FILE_PHP_HEADER ?>
     <div class="wrapper_change_password">
-        <div class="email_page"  >
+        <div class="email_page" id = "email_page" >
             <!-- <div class="close">
                 <a href="#">x</a>
             </div> -->
@@ -32,12 +32,12 @@
                     <input type="button" class="btnsend" id="btnsend" name="btnsend" value="Gửi"></input>
                 </div>
                 <div style="clear: both;padding-top:10px;font-size: 14px;">
-                    <label style="color:red" id="error_email_check" name="error_email_check"></label>
+                    <label id="error_email_check" name="error_email_check"></label>
                 </div>
             </form>
         </div>
 
-        <div class="password_page" style="display:none" >
+        <div class="password_page" id = "password_page" style="display:none" >
             <!-- <div class="close">
                 <a href="#">x</a>
             </div> -->
@@ -46,9 +46,6 @@
             </div>
 
             <form class="form" id="myform" name="myform" method="post">
-                <!-- <div class="label">
-                    Email:
-                </div> -->
                 <div class="label">
                     Nhập mật khẩu mới:
                 </div>

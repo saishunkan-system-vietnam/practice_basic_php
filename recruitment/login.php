@@ -47,7 +47,7 @@ ob_start();
                     <label for="remember">Nhớ mật khẩu</label><br>
                 </div>
                 <div class="forget">
-                    <a href="#">
+                    <a href="reset_password.php">
                         Quên mật khẩu?
                     </a>
                 </div>
@@ -61,7 +61,6 @@ ob_start();
         </div>
     </div>
     <?php include FILE_PHP_FOOTER ?>
+    <script src="<?= FILE_JS_LOGIN ?>"></script>
 </body>
-<script src="<?= FILE_JS_LOGIN ?>"></script>
-
 </html>
