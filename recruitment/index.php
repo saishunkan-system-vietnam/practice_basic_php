@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,11 +11,19 @@
     <title>Home Page</title>
     <!-- <link href="./css/style.css" rel="stylesheet" /> -->
     <?php require_once "./config/router.php"; ?>
+    <?php require_once FILE_PHP_SESSION_COOKIE ?>
     <link href=<?php echo FILE_CSS_INDEX ?> rel="stylesheet" />
 </head>
 
 <body>
-    <?php include FILE_PHP_HEADER ?>
+    <?php 
+    // $flg_login = false;
+    // if(!empty($_SESSION['flg_login'])){
+    //     $flg_login = true;
+    // }
+    include FILE_PHP_HEADER;
+    ?>
+
     <div class="wrapper">
         <div class="main">
             <div class="banner">
@@ -73,5 +85,4 @@
     </div>
     <?php include FILE_PHP_FOOTER ?>
 </body>
-
 </html>

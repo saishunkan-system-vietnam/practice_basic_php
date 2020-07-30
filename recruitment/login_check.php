@@ -13,6 +13,7 @@ if (isset($_POST["email"])&&isset($_POST["password"])&&isset($_POST["remember"])
         while ($row = $result->fetch_assoc()) {
             $_SESSION['email-login'] = $_POST['email'];
             $_SESSION['password-login'] = $_POST['password'];
+            $_SESSION['flg_login'] = 1;
             if ( $remember == 1) {
                 setcookie('userCookie', $_POST['email'], time() + 180); // 86400 = 1day
                 setcookie('passCookie', $_POST['password'], time() + 180);

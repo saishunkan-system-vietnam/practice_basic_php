@@ -101,6 +101,6 @@ session_start();
         </div>
     </div>
     <?php include FILE_PHP_FOOTER ?>
+    <script src="<?= FILE_JS_SIGNIN ?>"></script>
 </body>
-<script src="<?= FILE_JS_SIGNIN ?>"></script>
 </html>

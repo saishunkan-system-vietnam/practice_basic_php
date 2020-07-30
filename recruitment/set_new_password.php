@@ -21,8 +21,8 @@ if (isset($_GET['email']) && isset($_GET['token'])) {
         // header('location: reset_password.php');
         require_once "reset_password.php";
         echo "<script> $('#email_page').hide();$('#password_page').show();</script>";
-        echo "<script>$('#email_check').val('$email')</script>";
-        echo "<script>alert($('#email_check').val())</script>";
+        // echo "<script>$('#email_check').val('$email')</script>";
+        // echo "<script>alert($('#email_check').val())</script>";
     } else {
         header('location: index.php');
     }

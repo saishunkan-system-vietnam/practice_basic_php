@@ -21,6 +21,10 @@ $(document).ready(function () {
                 success: function (response) {
                     if (response == 1) {
                         window.location = 'index.php';
+                        // $('#login').show();
+                        // $('#signin').show();
+                        // $('#logout').show();
+                        // location.reload(true);
                     } else {
                         $("#error_message").text(response);
                         alert(response);

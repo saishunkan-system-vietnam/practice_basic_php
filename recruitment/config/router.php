@@ -2,6 +2,7 @@
 define("SITE_URL","http://minhnn.com");
 define('FILE_PHP_INDEX','index.php');
 define('FILE_PHP_LOGIN','login.php');
+define('FILE_PHP_LOGOUT','logout.php');
 define('FILE_PHP_SIGNIN','signin.php');
 define('FILE_PHP_RECRUITMENT','recruitment.php');
 define('FILE_PHP_HEADER','header_bar.php');

@@ -19,14 +19,15 @@
                 <a href="#">x</a>
             </div> -->
             <div class="title">
-                Nhập tên email đăng nhập
+                <!-- Nhập tên email đăng nhập -->
+                Link đổi mật khẩu sẽ được đến Email
             </div>
             <form class="form" id="myform" name="myform" method="post">
                 <!-- <div class="label">
                     Email:
                 </div> -->
                 <div>
-                    <input type="text" name="email_check" id="email_check" placeholder="Email" onkeypress="ClearError(id)" onchange="ClearError(id)" />
+                    <input type="text" name="email_check" id="email_check" placeholder="Nhập tên email đăng nhập" onkeypress="ClearError(id)" onchange="ClearError(id)" />
                 </div>
                 <div style="text-align:center;">
                     <input type="button" class="btnsend" id="btnsend" name="btnsend" value="Gửi"></input>

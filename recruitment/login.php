@@ -11,8 +11,7 @@ ob_start();
     <title>Đăng nhập</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    <?php require_once "./config/router.php"; ?>
-    <?php require_once FILE_PHP_SESSION_COOKIE ?>
+    <?php require_once "./config/router.php"; ?>    
     <link href=<?= FILE_CSS_LOGIN ?> rel="stylesheet" />
 </head>
 
