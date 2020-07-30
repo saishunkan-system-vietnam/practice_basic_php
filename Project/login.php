@@ -8,7 +8,7 @@
         $email = $_POST["uid"];
         $password = md5($_POST["pass"]);
 
-        $result = $mysqli->query("SELECT * FROM account WHERE email = '$email' AND password = '$password'");
+        $result = $mysqli->query("SELECT * FROM account WHERE id = '$email' AND password = '$password'");
         if ($result->num_rows) {
             $_SESSION[SESSION_USERNAME] = $email;
 

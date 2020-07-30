@@ -1,0 +1,31 @@
+.productDetail{
+    margin:25px 20% 0% 20%;
+    box-shadow: 0 4px 9px 0 #eee!important;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#btnAddCart{
+    width: 40%;
+}
+
+.productDTable{
+    margin: 2% 10%;
+}
+
+#quantityTable{
+    float: left;
+    width: 50px;
+    height: 41px;
+    margin-top: 8px;
+    margin-right: 2px;
+}
+
+.viewNote{
+    margin:10px 20% 2% 20%;
+    box-shadow: 0 4px 9px 0 #eee!important;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}

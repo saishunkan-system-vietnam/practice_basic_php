@@ -38,6 +38,14 @@
 	    }
 		$item_data = json_encode($cart_data);
 		setcookie('shopping_cart', $item_data, time() + (86400 * 30));
-		header("location: ./index.php");
+
+		if (isset($_POST["btnDetail"])) {
+			header("location: ./getProductById.php?id=".$_POST["productId"]);
+		}else if (isset($_POST["btnProduct"])) {
+			header("location: ./product.php");
+		}else{
+			header("location: ./index.php");
+		}
+		
     }
 ?>

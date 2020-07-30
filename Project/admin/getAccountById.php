@@ -6,7 +6,7 @@
         $id = $_POST["id"];
 
         // Select dữ liệu
-        $result = $mysqli->query("SELECT * FROM account WHERE id = $id "); 
+        $result = $mysqli->query("SELECT * FROM account WHERE id = '$id' "); 
         if ($result->num_rows) {
             while($row = $result->fetch_assoc()){
                 $data[] = $row;

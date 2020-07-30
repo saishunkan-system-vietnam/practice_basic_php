@@ -4,6 +4,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Trang chủ</title>
     <link rel="stylesheet" href=<?= FILE_CSS_STYLE ?>>
@@ -41,7 +42,7 @@
     <hr>
     <?php
 // Select dữ liệu
-$result = $mysqli->query("SELECT * FROM `product` ORDER BY `product`.`production_time` DESC LIMIT 12");   
+$result = $mysqli->query("SELECT * FROM `product` ORDER BY `product`.`create_datetime` DESC LIMIT 12");   
 
 // Đóng kết nối
 $mysqli -> close();
@@ -49,8 +50,9 @@ $mysqli -> close();
     <?php while($row = $result->fetch_assoc()): ?>
     <div class="card">
         <form action=<?= FILE_PHP_ADDTOCART ?> id="from_cart" onsubmit="return checkLogin()" method="POST">
-            <img onclick="location.href='http\:\/\/sinh.com/product.php'" src=<?= $row["avarta"];?> alt="Denim Jeans"
-                style="width:200px; height:250px;">
+            <a href="./getProductById.php?id=<?= $row["id"] ?>">
+                <img src=<?= $row["avarta"];?> alt=<?= $row["name"] ?> style="width:200px; height:250px;">
+            </a>
             <h3><?= $row["name"] ?></h3>
             <p class="price"><?= $row["price"].'K' ?></p>
             <input type="hidden" name="productId" value=<?= $row["id"] ?>>
@@ -58,7 +60,7 @@ $mysqli -> close();
             <input type="hidden" name="productPrice" value=<?= $row["price"] ?>>
             <input type="hidden" name="productAvarta" value=<?= $row["avarta"] ?>>
             <p><input type="number" name="quantity" id="quantity" value="1"></p>
-            <button type="submit" class="btncart"><i class="fa fa-shopping-cart"></i></button>
+            <button type="submit" name="btnIndex" class="btncart"><i class="fa fa-shopping-cart"></i></button>
         </form>
     </div>
     <?php endwhile ; ?>

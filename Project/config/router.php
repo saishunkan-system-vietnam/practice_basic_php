@@ -23,6 +23,7 @@
     define('FILE_CSS_STYLE_CART','./CSS/style_cart.css');
     define('FILE_CSS_STYLE_FOOTER','./CSS/style_footer.css');
     define('FILE_CSS_STYLE_REGISTER','./CSS/style_register.css');
+    define('FILE_CSS_STYLE_PRODUCTDETAIL','./CSS/style_productDetail.css');
     define('FILE_CSS_STYLE_CHANGEPASS','./CSS/style_changePass.css');
 
     // JS

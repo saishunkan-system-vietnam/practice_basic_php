@@ -173,7 +173,6 @@ hr {
         <table class="table" border="1 soid">
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Họ và Tên</th>
                     <th>Giới tính</th>
                     <th>Ngày Sinh</th>
@@ -182,7 +181,7 @@ hr {
                     <th>Địa Chỉ</th>
                     <th>Mật Khẩu</th>
                     <th>Del_Flg</th>
-                    <th>Lever</th>
+                    <th>Role</th>
                     <th><a>Edit</a></th>
                     <th>Delete</th>
                 </tr>
@@ -219,8 +218,8 @@ hr {
                 <label><b>Địa chỉ</b></label>
                 <input type="text" placeholder="Nhập địa chỉ" name="upd_address" id="upd_address" required>
 
-                <label><b>lever</b></label>
-                <input type="number" placeholder="Nhập lever" name="upd_lever" id="upd_lever" required>
+                <label><b>Role</b></label>
+                <input type="number" placeholder="Nhập Role" name="upd_role" id="upd_role" required>
 
                 <div class="upd_Account_clearfix">
                     <button type="button" onclick="document.getElementById('upd_Account').style.display='none'"
@@ -269,7 +268,7 @@ hr {
                             $("#upd_bday").val(e.birthday);
                             $("#upd_phone").val(e.phone);
                             $("#upd_address").val(e.address);
-                            $("#upd_lever").val(e.lever);
+                            $("#upd_role").val(e.role);
                             document.getElementById('upd_Account').style.display =
                                 'block'
                         });
@@ -286,7 +285,7 @@ hr {
                 var phone       = $.trim($('#upd_phone').val());
                 var bday        = $.trim($('#upd_bday').val());
                 var address     = $.trim($('#upd_address').val());
-                var lever       = $.trim($("#upd_lever").val());
+                var role       = $.trim($("#upd_role").val());
                 $.ajax({
                     url: "./updAccount.php",
                     method: "POST",
@@ -297,7 +296,7 @@ hr {
                       phone,  
                       bday,    
                       address, 
-                      lever      
+                      role      
                     },
                     dataType: 'JSON',
                     success: function(data) {

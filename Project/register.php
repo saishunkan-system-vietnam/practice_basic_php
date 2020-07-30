@@ -5,7 +5,7 @@
 
     if (isset($_GET["email"])) {
         $email = $_GET["email"];
-        $result = $mysqli->query("SELECT * FROM account WHERE email = '$email'");
+        $result = $mysqli->query("SELECT * FROM account WHERE id = '$email'");
 
         if ($result->num_rows){
             $isExists = true;
@@ -23,7 +23,7 @@
         $address = $_POST['address'];
         $password = md5($_POST['password']);
 
-        $sqlinsert="INSERT INTO account(`fullname`, `password`, `birthday`, `sex`, `phone`, `email`, `address`) VALUES ('$name','$password','$bday',$sex,'$phone','$email','$address')";
+        $sqlinsert="INSERT INTO account(`fullname`, `password`, `birthday`, `sex`, `phone`, `id`, `address`) VALUES ('$name','$password','$bday',$sex,'$phone','$email','$address')";
 
         if($mysqli->query($sqlinsert)){
             echo true;

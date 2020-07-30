@@ -9,10 +9,10 @@
         $bday = $_POST["bday"];
         $phone = $_POST["phone"];
         $address = $_POST["address"];
-        $lever = $_POST["lever"];
+        $role = $_POST["role"];
 
         // update dữ liệu
-        $sql = "UPDATE account SET fullname ='$fullname', sex =$sex , birthday = '$bday', phone = '$phone', address = '$address',  lever =$lever WHERE id = $id";
+        $sql = "UPDATE account SET fullname ='$fullname', sex =$sex , birthday = '$bday', phone = '$phone', address = '$address',  role =$role WHERE id = '$id'";
         $result = $mysqli->query($sql); 
         if ($result) {
             echo json_encode(['status'=>'success']);

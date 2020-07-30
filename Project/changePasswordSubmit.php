@@ -5,7 +5,7 @@
     if (isset($_POST["email"]) && isset($_POST["password"])) {
         $email = $_POST["email"];
         $password = md5($_POST["password"]);
-        $result = $mysqli->query("UPDATE account SET password='$password' WHERE email='$email'");
+        $result = $mysqli->query("UPDATE account SET password='$password' WHERE id='$email'");
 
         if ($result){
             echo 'Đổi mật khẩu thành công';

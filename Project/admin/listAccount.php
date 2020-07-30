@@ -10,18 +10,17 @@
             $sexStr = $row["sex"] =="1"?"Nam":"Nữ";
             $output .= '
             <tr>
-                <td>'.$row["id"].'</td>
                 <td>'.$row["fullname"].'</td>
                 <td>'.$sexStr.'</td>
                 <td>'.$row["birthday"].'</td>
                 <td>'.$row["phone"].'</td>
-                <td>'.$row["email"].'</td>
+                <td>'.$row["id"].'</td>
                 <td>'.$row["address"].'</td>
                 <td>'.$row["password"].'</td>
-                <td>'.$row["del_flag"].'</td>
-                <td>'.$row["lever"].'</td>
-                <td><button class="btn" id = "btnEdit" data-id='.$row["id"].'><span>Edit</span></button> </td>
-                <td><button class="btn" id = "btnDelete" data-id='.$row["id"].'><span>Delete</span></button> </td>
+                <td>'.$row["del_flg"].'</td>
+                <td>'.$row["role"].'</td>
+                <td><button class="btn" id = "btnEdit" data-id="'.$row["id"].'"><span>Edit</span></button> </td>
+                <td><button class="btn" id = "btnDelete" data-id="'.$row["id"].'"><span>Delete</span></button> </td>
             </tr>
         ';
         }   
