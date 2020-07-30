@@ -6,8 +6,9 @@
 
 <body>
     <?php
-    $query = "SELECT MaThietBi, TenThietBi FROM thietbi WHERE Del_Flg = 0";
+    $query = "SELECT id, device_name FROM t_device WHERE del_flg = 0";
     $result = mysqli_query($connect, $query);
+    mysqli_close($connect);
     ?>
     <link rel="stylesheet" href=<?= FILE_CSS_POPUP ?>>
     <div id="modal-wrapper" class="modal">
@@ -22,8 +23,8 @@
                 <select id="thietbi" name="thietbi">
                     <?php while ($row = mysqli_fetch_assoc($result)) {
                     ?>
-                        <option value=" <?php echo $row['MaThietBi']; ?> ">
-                            <?php echo $row['TenThietBi']; ?>
+                        <option value=" <?php echo $row['id']; ?> ">
+                            <?php echo $row['device_name']; ?>
                         </option>
                     <?php
                     }

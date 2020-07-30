@@ -10,8 +10,12 @@ define('SITE_API_CONFIG','../config/config.php');
 define('SITE_DANGNHAP','dangnhap.php');
 define('SITE_DANGKY','dangky.php');
 define('SITE_DANHSACHTHIETBI','danhSachThietBi.php');
+define('SITE_QLTHIETBIMUON','qlthietbimuon.php');
 define('SITE_POPUPMUONTB','./popupmuontb.php');
 define('SITE_SENDMAIL','sendMail.php');
+
+// ADMIN
+define('SITE_DANHSACHQANLYTHIETBI','qlthietbi.php');
 
 // LINK JQUERY
 define('LINK_JQUERY','https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js');
@@ -24,7 +28,8 @@ define('FILE_CSS_FOOTER','./css/footer.css');
 define('FILE_CSS_LOGIN','./css/login.css');
 define('FILE_CSS_REGISTER','./css/register.css');
 define('FILE_CSS_CHANGEPASS','./css/changepass.css');
-define('FILE_CSS_QLTHIETBI','./css/qlthietbi.css');
+define('FILE_CSS_QLTHIETBIMUON','./css/qlthietbimuon.css');
+define('FILE_CSS_QLTHIETBI','../css/qlthietbi.css');
 define('FILE_CSS_SENDMAIL','./css/sendmail.css');
 define('FILE_CSS_POPUP','./css/popup.css');
 

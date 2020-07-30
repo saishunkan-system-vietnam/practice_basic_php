@@ -10,13 +10,13 @@ if (!$connect) {
         $email = $_POST['inpEmail'];
         $pass = $_POST['inpPass'];
 
-        $sqlInsert = "INSERT INTO taikhoan (UserName, Password, Email) VALUES ('$uName', '$pass', '$email')";
+        $sqlInsert = "INSERT INTO t_account (user_name, password, email, create_datetime) VALUES ('$uName', '$pass', '$email', CURRENT_TIMESTAMP())";
 
         if (!mysqli_query($connect, $sqlInsert)) {
             echo "<script type='text/javascript'>alert('Đăng ký không thành công!');</script>";
             die;
         } else {
-            echo "<script type='text/javascript'>alert('Chúc mừng bạn đã đăng ký thành công ');</script>";
+            $_SESSION['success'] = "Đăng ký tài khoản thành công !!!";
             header('location: dangNhap.php');
         }
     }

@@ -20,7 +20,7 @@ if (empty($token) && empty($email)) {
     header("location: index.php");
 }
 
-$sql_check = "SELECT * FROM taikhoan WHERE Email = '$email' AND Token = '$token' AND Admin_Flg = 0 AND Del_Flg = 0";
+$sql_check = "SELECT * FROM t_account WHERE email = '$email' AND token = '$token' AND admin_flg = 0 AND del_flg = 0";
 $result_check = mysqli_query($connect, $sql_check) or die("Lỗi truy vấn");
 
 if (!mysqli_num_rows($result_check)) {
@@ -28,12 +28,16 @@ if (!mysqli_num_rows($result_check)) {
     header("location: index.php");
 }
 
-if (!$connect) {
-    die('Kết nối không thành công!');
+$sql_check_time_token = "SELECT * FROM t_account WHERE email = '$email' AND token = '$token' AND admin_flg = 0 AND del_flg = 0 AND ADDTIME(update_datetime,'0:05:00') > CURRENT_TIMESTAMP()";
+$result_time_token = mysqli_query($connect, $sql_check_time_token) or die("Lỗi truy vấn");
+
+if (!mysqli_num_rows($result_time_token)) {
+    $_SESSION['error'] = "Hết thời gian đổi mật khẩu";
+    header("location: index.php");
 } else {
     if (isset($_POST['changPass'])) {
         $pass = $_POST['inpPass'];
-        $sqlUpdPass = "UPDATE taikhoan SET Password = '$pass' WHERE Email = '$email' AND Token = '$token' AND Admin_Flg = 0 AND Del_Flg = 0";
+        $sqlUpdPass = "UPDATE t_account SET password = '$pass', update_datetime = CURRENT_TIMESTAMP() WHERE email = '$email' AND token = '$token' AND admin_flg = 0 AND del_flg = 0";
         $result_UpdPass = mysqli_query($connect, $sqlUpdPass) or die("Lỗi truy vấn");
 
         if (!$result_UpdPass) {
@@ -45,6 +49,7 @@ if (!$connect) {
         }
     }
 }
+
 mysqli_close($connect);
 
 ?>

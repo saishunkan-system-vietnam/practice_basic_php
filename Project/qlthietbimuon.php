@@ -15,8 +15,9 @@ include(SITE_POPUPMUONTB);
 
 <body>
     <?php
-    $result = mysqli_query($connect, 'SELECT count(*) as total FROM thietbi');
-    $row = mysqli_fetch_assoc($result);
+    $result = mysqli_query($connect, "SELECT count(*) as total FROM t_loan tl INNER JOIN t_loan_detail tld ON tl.id = tld.id_loan 
+    INNER JOIN t_device td ON td.id = tld.id_device  WHERE tld.del_flg = 0 AND tld.pay_flg = 0 AND tl.id_account = $_SESSION[txtId]");
+    $row = mysqli_fetch_assoc($result) or die("Lỗi truy vấn");
     $total_records = $row['total'];
 
     $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -39,10 +40,12 @@ include(SITE_POPUPMUONTB);
         $_SESSION['txtId'] =  $dataSaveUser['id'];
     };
 
-    $sqlInsert = "SELECT tb.img, tb.TenThietBi, ct.SoLuong, mt.NgayMuon, ct.LyDo FROM muontra mt INNER JOIN chitietmuontra ct ON ct.MaMuonTra = mt.MaMuonTra 
-                                                                                            INNER JOIN thietbi tb ON ct.MaThietBi = tb.MaThietBi 
-                                                                            WHERE ct.Del_Flg = 0 AND ct.DaTra = 0 AND mt.IDTaiKhoan = $_SESSION[txtId] LIMIT $start, $limit";
-    $resultInsert = mysqli_query($connect, $sqlInsert);
+    $sql = "SELECT td.img, td.device_name, tld.amount, tl.loan_date, tld.reason 
+            FROM t_loan tl INNER JOIN t_loan_detail tld ON tl.id = tld.id_loan 
+                           INNER JOIN t_device td ON td.id = tld.id_device 
+            WHERE tld.del_flg = 0 AND tld.pay_flg = 0 AND tl.id_account = $_SESSION[txtId] LIMIT $start, $limit";
+    $result = mysqli_query($connect, $sql);
+    mysqli_close($connect);
     ?>
     <div style="margin-top: 10px;">
         <div>
@@ -74,26 +77,51 @@ include(SITE_POPUPMUONTB);
                 </th>
             </tr>
 
-            <?php while ($row = mysqli_fetch_assoc($resultInsert)) : ?>
+            <?php while ($row = mysqli_fetch_assoc($result)) : ?>
                 <tr>
-                    <td align="center">
-                        <?php echo "<img src='img/" . $row['img'] . "'>" ?>
+                    <td align="center" style="width: 150px; height: 150px; padding: 5px;">
+                        <?php isset($row['img']) ? $row['img'] : $row['img'] = "img_null.jpg";
+                        echo "<img style='width: 150px; height: 130px;' src='./img/" . $row['img'] . "'>" ?>
                     </td>
                     <td>
-                        <?php echo $row['TenThietBi']; ?>
+                        <?php echo $row['device_name']; ?>
                     </td>
                     <td align="center">
-                        <?php echo $row['SoLuong']; ?>
+                        <?php echo $row['amount']; ?>
                     </td>
                     <td align="center">
-                        <?php echo $row['NgayMuon']; ?>
+                        <?php echo $row['loan_date']; ?>
                     </td>
                     <td>
-                        <?php echo $row['LyDo'] ?>
+                        <?php echo $row['reason'] ?>
                     </td>
                 </tr>
             <?php endwhile; ?>
         </table>
+    </div>
+    <div style=" margin-top: 5px; min-height: 17vh;" align="center">
+        <?php
+        if ($current_page > $total_page) {
+            $current_page = $total_page;
+        } else if ($current_page < 1) {
+            $current_page = 1;
+        }
+        if ($current_page > 1 && $total_page > 1) {
+            echo '<a href="' . SITE_QLTHIETBIMUON . '?page=' . ($current_page - 1) . '">Prev</a> | ';
+        }
+
+        for ($i = 1; $i <= $total_page; $i++) {
+            if ($i == 1) {
+                echo '<span>' . $i . '</span> | ';
+            } else {
+                echo '<a href="' . SITE_QLTHIETBIMUON . '?page=' . $i . '">' . $i . '</a> | ';
+            }
+        }
+
+        if ($current_page < $total_page && $total_page > 1) {
+            echo '<a href="' . SITE_QLTHIETBIMUON . '?page=' . ($current_page + 1) . '">Next</a>';
+        }
+        ?>
     </div>
     <div style=" margin-top: 5px; min-height: 17vh;" align="center">
     </div>

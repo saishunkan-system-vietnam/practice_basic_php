@@ -2,26 +2,30 @@
 require('./config/router.php');
 include(SITE_MENUTOP);
 
+if (isset($_SESSION['success'])) {
+    echo "<script type='text/javascript'>alert('$_SESSION[success]');</script>";
+    unset($_SESSION['success']);
+}
+
 if (isset($_POST['submit'])) {
     $username = $_POST['txtUsername'];
     $pass = $_POST['txtPassword'];
     $_check = ((isset($_POST['remember']) != 0) ? 1 : "");
 
-    $sql_login = "SELECT * FROM taikhoan WHERE UserName='$username' AND Password='$pass'";
+    $sql_login = "SELECT * FROM t_account WHERE user_name='$username' AND password='$pass'";
     $result_login = mysqli_query($connect, $sql_login);
 
     if (!mysqli_num_rows($result_login)) {
         echo "<script type='text/javascript'>alert('Đăng nhập không thành công!');</script>";
-        die;
     } else {
         $row = mysqli_fetch_assoc($result_login);
         $_SESSION['txtUsername'] = $username;
-        $_SESSION['txtId'] = $row['IDTaiKhoan'];
+        $_SESSION['txtId'] = $row['id'];
 
         if ($_check == 1) {
             $dataCookie['usr'] = $username;
             $dataCookie['hash'] = $pass;
-            $dataCookie['id'] = $row['IDTaiKhoan'];
+            $dataCookie['id'] = $row['id'];
             setcookie(COOKIE_LOGIN, json_encode($dataCookie), time() + $cookie_time);
         }
         // Kiểm tra tài khoản

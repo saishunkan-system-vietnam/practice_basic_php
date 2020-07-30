@@ -24,14 +24,14 @@ $message = "
         <p>Để thay đổi mật khẩu bạn hãy nhấp vào link sau <a href=$route>Tích vào đây</a></p>
 </body>";
 
-$sql_select_mail = "SELECT * FROM taikhoan WHERE Email = '$to' AND Admin_Flg = 0 AND Del_Flg = 0";
+$sql_select_mail = "SELECT * FROM t_account WHERE email = '$to' AND admin_flg = 0 AND del_flg = 0";
 $result_select_mail = mysqli_query($connect, $sql_select_mail) or die("Lỗi truy vấn");
 
 if (!mysqli_num_rows($result_select_mail)) {
     echo false;
 } else {
 
-    $sqlUPD = "UPDATE taikhoan SET Token = '$token' WHERE Email = '$to' AND Admin_Flg = 0 AND Del_Flg = 0";
+    $sqlUPD = "UPDATE t_account SET token = '$token', update_datetime = CURRENT_TIMESTAMP() WHERE email = '$to' AND admin_flg = 0 AND del_flg = 0";
     if (mysqli_query($connect, $sqlUPD)) {
         $success = mail($to, $encoded_subject, $message, $headers);
 

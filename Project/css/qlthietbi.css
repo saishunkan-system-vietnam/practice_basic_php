@@ -1,14 +1,162 @@
-.btn {
-    background-color: DodgerBlue;
-    outline: 0;
-    border: none;
-    color: white;
-    padding: 12px 4px;
-    font-size: 16px;
-    border-radius: 20px
+table {
+	width: 1000px;
 }
 
-.btn:hover {
-    background-color: RoyalBlue;
-    cursor: pointer;
+#tbl_second,
+.th_second,
+.td_second {
+	border         : 1px solid black;
+	border-collapse: collapse;
+	padding        : 15px;
+	text-align     : left;
+}
+
+#tbl_second {
+	margin-top: 10px;
+}
+
+.th_second {
+	text-align: center;
+}
+
+.td_btn {
+	text-align: center;
+	width     : 280px;
+}
+
+#tbl_second tr:nth-child(even) {
+	background-color: #eee;
+}
+
+#tbl_second tr:nth-child(odd) {
+	background-color: #fff;
+}
+
+#tbl_second th {
+	background-color: #2196F3;
+	color           : white;
+}
+
+#btnAdd {
+	box-shadow      : inset 0px 1px 0px 0px #caefab;
+	background      : linear-gradient(to bottom, #77d42a 5%, #5cb811 100%);
+	background-color: #77d42a;
+	border-radius   : 6px;
+	border          : 1px solid #268a16;
+	display         : inline-block;
+	cursor          : pointer;
+	color           : #306108;
+	font-family     : Arial;
+	font-size       : 15px;
+	font-weight     : bold;
+	padding         : 6px 24px;
+	text-decoration : none;
+	text-shadow     : 0px 1px 0px #aade7c;
+}
+
+#btnAdd:hover {
+	background      : linear-gradient(to bottom, #5cb811 5%, #77d42a 100%);
+	background-color: #5cb811;
+}
+
+#btnAdd:active {
+	position: relative;
+	top     : 1px;
+}
+
+#btnDel {
+	box-shadow      : inset 0px 1px 0px 0px #f5978e;
+	background      : linear-gradient(to bottom, #f24537 5%, #c62d1f 100%);
+	background-color: #f24537;
+	border-radius   : 6px;
+	border          : 1px solid #d02718;
+	display         : inline-block;
+	cursor          : pointer;
+	color           : #ffffff;
+	font-family     : Arial;
+	font-size       : 15px;
+	font-weight     : bold;
+	padding         : 6px 24px;
+	text-decoration : none;
+	text-shadow     : 0px 1px 0px #810e05;
+}
+
+#btnDel:hover {
+	background      : linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);
+	background-color: #c62d1f;
+}
+
+#btnDel:active {
+	position: relative;
+	top     : 1px;
+}
+
+#btnEdit {
+
+	margin-right    : 20px;
+	box-shadow      : inset 0px 1px 0px 0px #97c4fe;
+	background      : linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
+	background-color: #3d94f6;
+	border-radius   : 6px;
+	border          : 1px solid #337fed;
+	display         : inline-block;
+	cursor          : pointer;
+	color           : #ffffff;
+	font-family     : Arial;
+	font-size       : 15px;
+	font-weight     : bold;
+	padding         : 6px 24px;
+	text-decoration : none;
+	text-shadow     : 0px 1px 0px #1570cd;
+}
+
+#btnEdit :hover {
+	background      : linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+	background-color: #1e62d0;
+}
+
+#btnEdit :active {
+	position: relative;
+	top     : 1px;
+}
+
+.pagination {
+	list-style-type: none;
+	margin         : 0;
+	padding        : 0;
+	border         : 1px solid #ccc;
+	overflow       : auto;
+	display        : inline-block;
+	border-radius  : 5px;
+}
+
+.pagination li {
+	float           : left;
+	background-color: #fff;
+}
+
+.pagination li a {
+	height         : 36px;
+	width          : 36px;
+	line-height    : 36px;
+	display        : block;
+	color          : #444;
+	text-align     : center;
+	text-decoration: none;
+	font-size      : 14px;
+	border-left    : 1px solid #ccc;
+}
+
+.pagination li a:hover {
+	background: #ccc;
+}
+
+.pagination li a.active {
+	background: #004990;
+	color     : #fff;
+}
+
+.pagination .disabled {
+	opacity       : 0.5;
+	pointer-events: none;
 }
