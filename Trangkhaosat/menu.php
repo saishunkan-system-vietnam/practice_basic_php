@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Menu</title>
     <?require_once('config/router.php')?>
     <?require_once('config/config.php')?>
-
 
     <link rel="stylesheet" href=<?= FILE_CSS_MENU?>>
     <link rel="stylesheet" href=<?= FILE_CSS_REGIST?>>
@@ -16,9 +10,7 @@
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-</head>
 
-<body>
     <div class="container">
         <nav>
             <ul class="mcd-menu main-menu">
@@ -160,6 +152,3 @@
     <script src=<?= FILE_JS_REGIST?>></script>
     <script src=<?= FILE_JS_LOGIN?>></script>
     <script src=<?= FILE_JS_COMMON?>></script>
-</body>
-
-</html>

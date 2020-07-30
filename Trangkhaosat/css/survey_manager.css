@@ -13,9 +13,13 @@
 }
 
 
-.content_sv_mn {
+.content_sv_mn,.container_ad_svcu {
     margin: 0px 15%;
     width: 70%;
+}
+
+.container_ad_svcu{
+    padding: 10px;
 }
 
 table{
@@ -43,12 +47,12 @@ td{
     font-weight: bold;
     font-size: 13.5px;
 }
-.btn_edit{
+.btn_edit, .btn_edit_asw{
     background-color: #fb8c00;
     border-color: #fb8c00;
 }
 
-.btn_del{
+.btn_del,.btn_del_asw{
     background-color: rgb(255, 82, 82);
     border-color: rgb(255, 82, 82);
 }
@@ -96,13 +100,25 @@ select {
     border-color: rgb(24, 103, 192);
 }
 
-
 .btn_ins{
     position: absolute;
     left: 18%;
     background-color: rgb(76, 175, 80);
     border-color: rgb(76, 175, 80);
 }
+
+.btn_save{
+
+    background-color: #009688;
+    border-color: #009688;
+}
+
+.btn_back{
+
+    background-color: #607d8b;
+    border-color: #607d8b;
+}
+
 .txt_find
 {
     font-weight: 500;
@@ -117,6 +133,34 @@ select {
     font-size: 16px;
 }
 
+.txt_qs
+{
+    font-weight: 500;
+    font-size: .875rem;
+    outline: none;
+    background-color: transparent;
+    border-style: none;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    border-bottom: 1.4px solid rgb(24, 103, 192);
+    width: 100%;
+    padding: 0px;
+    font-size: 16px;
+}
+.txt_aws{
+    font-weight: 500;
+    font-size: .875rem;
+    outline: none;
+    background-color: transparent;
+    border-style: none;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    border-bottom: 1.4px solid rgb(24, 103, 192);
+    width: 85%;
+    padding: 0px;
+    font-size: 16px;
+}
+    
 li
 {
     font-weight: normal;
@@ -193,6 +237,26 @@ td{
     margin: 10px;
     text-align: center;
     width: 100%;
+  }
+  .asw{
+      width: 85%;
+      font-size: 16px;
+  }
+  .btn_ins_asw{
+    background-color: rgb(76, 175, 80);
+    border-color: rgb(76, 175, 80);
+    margin-bottom: 10px;
+  }
+  .kq{
+      margin-top: 10px;
+  }
+
+  h2{
+      width: 100%;
+      text-align: center;
+      font-size: 30px;
+      color: rgb(24, 103, 192);
+      text-transform: uppercase;
   }
 
 

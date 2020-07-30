@@ -24,38 +24,40 @@ require_once(FILE_CONFIG);
     $category = isset($_GET['category'])? $_GET['category'] : "0";
     $fnd_content = isset($_GET['fnd_content']) ? $_GET['fnd_content'] : "";
 ?>
-    <div class="warpper_ad_survey">
-        <div class="find">
-            <button class="btn_ins">Thêm mới</button>
-            <select name="category" id="category">
-                <option value="0">Tất cả</option>
-                <?
-                    $conn = ConnectDB();
-                    
-                    $sql = "SELECT ct.id, ct.content FROM t_category ct";
-                    $result = $conn->query($sql);
+    <div class="warpper_ad_survey" id = "warpper_ad_survey">
+        <div class="list_ad_survey">
+            <div class="find">
+                <button class="btn_ins" id = "btn_ins">Thêm mới</button>
+                <select name="category" id="category">
+                    <option value="0">Tất cả</option>
+                    <?
+                        $conn = ConnectDB();
+                        
+                        $sql = "SELECT ct.id, ct.content FROM t_category ct";
+                        $result = $conn->query($sql);
 
-                    if ($result->num_rows > 0)
-                    {
-                        while( $data = $result->fetch_assoc()) 
+                        if ($result->num_rows > 0)
                         {
-                            ?>
-                            <option value="<?= $data['id']?>" <? if($data['content'] == $category)echo "selected"?> ><?= $data['content']?></option>
-                             <?
+                            while( $data = $result->fetch_assoc()) 
+                            {
+                                ?>
+                                <option value="<?= $data['id']?>" <? if($data['content'] == $category)echo "selected"?> ><?= $data['content']?></option>
+                                <?
+                            }
                         }
-                    }
-                    DisconnectDB($conn);
-                ?>
-            </select>
-            <input type="text" id="txtfind" value = "<?= $fnd_content ?>" class="txt_find">
-            <button class="btn_find" id="btn_find">Tìm kiếm</button>
-        </div>
-        <div class="content_sv_mn" id="nd">
-        </div>
+                        DisconnectDB($conn);
+                    ?>
+                </select>
+                <input type="text" id="txtfind" value = "<?= $fnd_content ?>" class="txt_find">
+                <button class="btn_find" id="btn_find">Tìm kiếm</button>
+            </div>
+            <div class="content_sv_mn" id="nd">
+            </div>
 
-        <div class="pg_nd">
-            <ul class="pagination" id="pg">
-            </ul>
+            <div class="pg_nd">
+                <ul class="pagination" id="pg">
+                </ul>
+            </div>
         </div>
     </div>
 
