@@ -13,13 +13,15 @@ define('SITE_DANHSACHTHIETBI','danhSachThietBi.php');
 define('SITE_QLTHIETBIMUON','qlthietbimuon.php');
 define('SITE_POPUPMUONTB','./popupmuontb.php');
 define('SITE_SENDMAIL','sendMail.php');
+define('SITE_POPUPADMIN','./popupadmin.php');
 
 // ADMIN
 define('SITE_DANHSACHQANLYTHIETBI','qlthietbi.php');
 
 // LINK JQUERY
 define('LINK_JQUERY','https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js');
-define('LINK_JQUERY_VALIDATE','"https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"');
+define('LINK_JQUERY_VALIDATE','https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js');
+define('LINK_JQUERY_AWESOM','https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 // URL FILE CSS
 
 define('FILE_CSS_MENUTOP','./css/menutop.css');
@@ -32,13 +34,18 @@ define('FILE_CSS_QLTHIETBIMUON','./css/qlthietbimuon.css');
 define('FILE_CSS_QLTHIETBI','../css/qlthietbi.css');
 define('FILE_CSS_SENDMAIL','./css/sendmail.css');
 define('FILE_CSS_POPUP','./css/popup.css');
+define('FILE_CSS_MENULEFT','../css/menuleft.css');
+define('FILE_CSS_POPUPADMIN','../css/popupadmin.css');
 
 //URL FILE JS
 define('FILE_JS_BANNER','./js/banner.js');
 define('FILE_JS_VALIDATE','./js/validate.js');
 define('FILE_JS_AJAX','./js/ajaxMuonthietbi.js');
+define('FILE_JS_AJAXADMIN','../js/ajaxadmin.js');
 define('FILE_JS_COMMOM','./js/commom.js');
+define('FILE_JS_COMMOMADMIN','../js/commom.js');
 define('FILE_JS_SENDMAIL','./js/sendmail.js');
+
 
 // URL FILE IMG
 define('IMG_BANNER1','./img/Banner_1.jpg');

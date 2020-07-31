@@ -1,13 +1,14 @@
 <?php
 session_start();
-require(SITE_CONFIG); ?>
+require(SITE_CONFIG); 
+?>
 
 <script src="./js/ckeditor/ckeditor.js"></script>
 <link rel="stylesheet" href=<?= FILE_CSS_MENUTOP ?>>
 <link rel="stylesheet" href=<?= FILE_CSS_QLTHIETBIMUON ?>>
 <script src=<?= LINK_JQUERY ?>></script>
 <script src=<?= LINK_JQUERY_VALIDATE ?>></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href=<?= LINK_JQUERY_AWESOM ?>>
 
 <div class="navbar">
     <div style="float: left; margin-left: 3px;">
@@ -25,6 +26,7 @@ require(SITE_CONFIG); ?>
         unset($_SESSION['txtId']);
         // Xóa cookie
         setcookie(COOKIE_LOGIN, '', time() - $cookie_time);
+        header("location:".SITE_INDEX."");
         echo "<div style='float: right;'>";
         echo "<a href='" . SITE_DANGNHAP . "'>Đăng Nhập</a>";
         echo "</div>";
@@ -42,20 +44,20 @@ require(SITE_CONFIG); ?>
         $dataSaveUser = json_decode($_COOKIE[COOKIE_LOGIN], true);
         $_SESSION['txtUsername'] =  $dataSaveUser['usr'];
         echo "<div>";
-        echo "<a href='./qlthietbimuon.php'>Thiết bị đang mượn</a>";
+        echo "<a href='./".SITE_QLTHIETBIMUON."'>Thiết bị đang mượn</a>";
         echo "</div>";
         echo "<div style='float: right;'>";
-        echo "<a href='./Index.php?type=logout'>Đăng Xuất</a>";
+        echo "<a href='./".SITE_INDEX."?type=logout'>Đăng Xuất</a>";
         echo "</div>";
         echo "<div style='float: right;'>";
         echo "<a href=''>$_SESSION[txtUsername]</a>";
         echo "</div>";
     } else {
         echo "<div>";
-        echo "<a href='./qlthietbimuon.php'>Thiết bị đang mượn</a>";
+        echo "<a href='./".SITE_QLTHIETBIMUON."'>Thiết bị đang mượn</a>";
         echo "</div>";
         echo "<div style='float: right;'>";
-        echo "<a href='./Index.php?type=logout'>Đăng Xuất</a>";
+        echo "<a href='./".SITE_INDEX."?type=logout'>Đăng Xuất</a>";
         echo "</div>";
         echo "<div style='float: right;'>";
         echo "<a href=''>$_SESSION[txtUsername]</a>";

@@ -12,3 +12,49 @@
     background-color: RoyalBlue;
     cursor: pointer;
 }
+
+.pagination {
+	list-style-type: none;
+	margin         : 0;
+	padding        : 0;
+	border         : 1px solid #ccc;
+	overflow       : auto;
+	display        : inline-block;
+	border-radius  : 5px;
+}
+
+.pagination li {
+	float           : left;
+	background-color: #fff;
+}
+
+.pagination li a {
+	height         : 36px;
+	width          : 36px;
+	line-height    : 36px;
+	display        : block;
+	color          : #444;
+	text-align     : center;
+	text-decoration: none;
+	font-size      : 14px;
+	border-left    : 1px solid #ccc;
+}
+
+.pagination li a:hover {
+	background: #ccc;
+}
+
+.pagination li a.active {
+	background: #004990;
+	color     : #fff;
+}
+
+.pagination .disabled {
+	opacity       : 0.5;
+	pointer-events: none;
+}
+
+.pg_nd {
+	text-align: center;
+	width     : 100%;
+}

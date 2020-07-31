@@ -2,7 +2,7 @@
 
 <footer class="site-footer">
     <div class="footer">
-        <table class="tablef" align="center" ;>
+        <table class="tablef" align="center">
             <tr>
                 <th id="thf1">
                     28 Nguyễn Tri Phương - Phú Hội, Thành phố Huế, Thừa Thiên Huế

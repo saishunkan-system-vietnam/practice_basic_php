@@ -9,7 +9,7 @@
 <body>
     <?php
     $result = mysqli_query($connect, 'SELECT count(*) as total FROM t_device');
-    $row = mysqli_fetch_assoc($result);
+    $row = mysqli_fetch_assoc($result) or die("Lỗi truy vấn");;
     $total_records = $row['total'];
 
     $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -33,7 +33,7 @@
             <?php while ($row = mysqli_fetch_assoc($result)) : ?>
                 <tr>
                     <td align="center" style="width: 150px; height: 150px; padding: 5px;">
-                        <?php isset($row['img']) ? $row['img'] : $row['img'] = "img_null.jpg";
+                        <?php !empty($row['img']) ? $row['img'] : $row['img'] = "img_null.jpg";
                         echo "<img style='width: 150px; height: 130px;' src='./img/" . $row['img'] . "'>" ?>
                     </td>
                     <td style="padding-left: 10px;">

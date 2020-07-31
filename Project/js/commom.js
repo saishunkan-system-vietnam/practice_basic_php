@@ -1,6 +1,11 @@
-function Openform() {
+function Openform(id) {
+if(id = 'btnAdd')
+{
     $("#modal-wrapper").css("display", "block");
     $("body").css("overflow", "hidden");
+    return true;
+}
+
 }
 
 function Closeform() {

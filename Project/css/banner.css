@@ -4,11 +4,11 @@
 
 body {
   font-family: "Open Sans", Verdana, sans-serif;
-  margin     : 0
 }
 
 .mySlides {
-  display: none
+  margin-left : 10%;
+  margin-right: 10%;
 }
 
 img {
@@ -17,10 +17,11 @@ img {
 
 /* Slideshow container */
 .slideshow-container {
-
-  max-width: 100px;
-  position : relative;
-  margin   : 20px 280px;
+  width: 100%;
+  position    : relative;
+  margin-top  : 20px;
+  margin-bottom  : 20px;
+  
 }
 
 /* Fading animation */

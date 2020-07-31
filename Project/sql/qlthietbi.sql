@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 30, 2020 at 12:35 PM
+-- Generation Time: Jul 31, 2020 at 12:42 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -110,7 +110,12 @@ INSERT INTO `t_device` (`id`, `device_name`, `id_category`, `id_supplier`, `del_
 (11, 'Balo Leo núi', 3, 2, b'0', NULL, '2020-07-29 10:54:31', '2020-07-29 10:54:58'),
 (12, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL, '2020-07-29 10:54:34', '2020-07-29 10:55:01'),
 (13, 'Máy Tính Desknote DELL OptiPlex 9010', 1, 4, b'0', NULL, '2020-07-29 10:54:36', '2020-07-29 10:55:04'),
-(14, 'Máy tính để bàn Dell Vostro 3470 Core i5', 1, 4, b'0', NULL, '2020-07-30 10:52:41', '2020-07-30 10:52:41');
+(14, 'Máy tính để bàn Dell Vostro 3470 Core i5', 1, 4, b'0', NULL, '2020-07-30 10:52:41', '2020-07-30 10:52:41'),
+(15, 'Laptop DELL E5450', 1, 1, b'0', '', '2020-07-31 15:03:15', NULL),
+(16, 'Laptop DELL E5450', 1, 1, b'0', '', '2020-07-31 15:03:53', NULL),
+(17, 'Laptop DELL E5450', 1, 1, b'0', '', '2020-07-31 15:14:13', NULL),
+(18, 'Laptop DELL E5450', 1, 1, b'0', '', '2020-07-31 15:29:46', NULL),
+(19, 'Laptop DELL E5450', 2, 1, b'0', '', '2020-07-31 15:29:56', NULL);
 
 -- --------------------------------------------------------
 
@@ -145,7 +150,8 @@ INSERT INTO `t_loan` (`id`, `id_account`, `loan_date`, `create_datetime`, `updat
 (30, 1, '2020-07-30', '2020-07-30 14:22:42', NULL),
 (31, 1, '2020-07-30', '2020-07-30 14:24:23', NULL),
 (32, 1, '2020-07-30', '2020-07-30 14:32:10', NULL),
-(33, 1, '2020-07-30', '2020-07-30 15:37:14', NULL);
+(33, 1, '2020-07-30', '2020-07-30 15:37:14', NULL),
+(34, 1, '2020-07-31', '2020-07-31 14:39:01', NULL);
 
 -- --------------------------------------------------------
 
@@ -184,7 +190,8 @@ INSERT INTO `t_loan_detail` (`id`, `id_loan`, `id_device`, `amount`, `pay_flg`, 
 (11, 30, 14, 4, b'0', NULL, b'0', '<p>Lại l&agrave; chơi game</p>', '2020-07-30 14:22:42', NULL),
 (12, 31, 3, 1, b'0', NULL, b'0', '', '2020-07-30 14:24:23', NULL),
 (13, 32, 8, 1, b'0', NULL, b'0', '', '2020-07-30 14:32:10', NULL),
-(14, 33, 1, 1, b'0', NULL, b'0', '', '2020-07-30 15:37:14', NULL);
+(14, 33, 1, 1, b'0', NULL, b'0', '', '2020-07-30 15:37:14', NULL),
+(15, 34, 1, 1, b'0', NULL, b'0', '', '2020-07-31 14:39:01', NULL);
 
 -- --------------------------------------------------------
 
@@ -206,10 +213,10 @@ CREATE TABLE `t_supplier` (
 --
 
 INSERT INTO `t_supplier` (`id`, `supplier_name`, `email`, `phone_number`, `create_datetime`, `update_datetime`) VALUES
-(1, 'SamSung', NULL, NULL, '2020-07-22 11:01:21', NULL),
+(1, 'Công ty TNHH Tin học Mai Hoàng', NULL, NULL, '2020-07-22 11:01:21', NULL),
 (2, 'Balo Túi Nữ Thời Trang Thái Hà', NULL, NULL, '2020-07-22 11:01:21', NULL),
-(3, 'CÔNG TY TNHH MTV THIÊN KỲ TÂM', NULL, NULL, '2020-07-22 11:01:21', NULL),
-(4, 'Vi Tính Nhất Thiên - Công Ty TNHH Kỹ Thuật Tin Học Nhất Thiên', NULL, NULL, '2020-07-22 11:01:21', NULL);
+(3, 'Công ty TNHH MTV Thiên Kỳ Tâm', NULL, NULL, '2020-07-22 11:01:21', NULL),
+(4, 'Công ty TNHH Kỹ Thuật Tin Học Nhất Thiên', NULL, NULL, '2020-07-22 11:01:21', NULL);
 
 --
 -- Indexes for dumped tables
@@ -276,19 +283,19 @@ ALTER TABLE `t_category`
 -- AUTO_INCREMENT for table `t_device`
 --
 ALTER TABLE `t_device`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id', AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id', AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `t_loan`
 --
 ALTER TABLE `t_loan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id', AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id', AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `t_loan_detail`
 --
 ALTER TABLE `t_loan_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id', AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id', AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `t_supplier`

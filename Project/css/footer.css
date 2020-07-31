@@ -4,7 +4,7 @@
   background-color:#26272b;
   bottom: 0px; 
   font-size:14px;
-  color: #ffffff;  
+  
   width: 100%;
   position: relative;
   padding: 5px;
@@ -13,6 +13,7 @@
 .tablef
 {
   width: 800px;
+  color: #ffffff;  
 }
 #thf1{
   text-align: center;

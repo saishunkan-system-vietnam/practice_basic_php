@@ -1,5 +1,9 @@
-table {
-	width: 1000px;
+.div_tbl {
+	margin-left : 18%;
+	margin-right: 18%;
+	padding     : 15px;
+	background  : #545454;
+	box-shadow  : 0 4px 9px 0 rgb(201, 159, 159) !important;
 }
 
 #tbl_second,
@@ -19,9 +23,32 @@ table {
 	text-align: center;
 }
 
+#th_devicename {
+	width: 25%;
+}
+
+#th_category {
+	width: 18%;
+}
+
+#th_supplier {
+	width: 30%;
+}
+
+#th_img {
+	width : 10%;
+}
+
+#th_func {
+	width: 30%;
+	text-align: center;
+}
+
 .td_btn {
+	border    : 1px solid black;
 	text-align: center;
 	width     : 280px;
+
 }
 
 #tbl_second tr:nth-child(even) {
@@ -79,6 +106,7 @@ table {
 	padding         : 6px 24px;
 	text-decoration : none;
 	text-shadow     : 0px 1px 0px #810e05;
+	margin-top: 10px;
 }
 
 #btnDel:hover {
@@ -92,8 +120,6 @@ table {
 }
 
 #btnEdit {
-
-	margin-right    : 20px;
 	box-shadow      : inset 0px 1px 0px 0px #97c4fe;
 	background      : linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
 	background-color: #3d94f6;
@@ -143,7 +169,7 @@ table {
 	color          : #444;
 	text-align     : center;
 	text-decoration: none;
-	font-size      : 14px;
+	font-size      : 16px;
 	border-left    : 1px solid #ccc;
 }
 
@@ -159,4 +185,9 @@ table {
 .pagination .disabled {
 	opacity       : 0.5;
 	pointer-events: none;
+}
+
+.pg_nd {
+	text-align: center;
+	width     : 100%;
 }
