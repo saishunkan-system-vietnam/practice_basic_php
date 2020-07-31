@@ -11,13 +11,13 @@ session_start();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <?php require_once "./config/router.php"; ?>
-    <link href=<?= FILE_CSS_SIGNIN ?> rel="stylesheet" />
+    <link href=<?= FILE_CSS_SIGNUP ?> rel="stylesheet" />
 </head>
 
 <body>
     <?php include FILE_PHP_HEADER ?>
-    <div class="wrapper_signin">
-        <div class="signin_page">
+    <div class="wrapper_signup">
+        <div class="signup_page">
             <div class="title" style="margin-top : 30px;font-size:20px">
                 Đăng ký
             </div>
@@ -54,8 +54,8 @@ session_start();
                     Ngày sinh:
                 </div>
                 <div>
-                    <input type="date" id="dob" name="dob" style="text-align:left;width:172px;margin-bottom:5px" value="<?php echo date("Y-m-d"); ?>" onkeypress="ClearError(id)" onchange="ClearError(id)" />
-                    <div class="error_message"><label style="color:red" id="error_dob"></label></div>
+                    <input type="date" id="birthdate" name="birthdate" style="text-align:left;width:172px;margin-bottom:5px" value="<?php echo date("Y-m-d"); ?>" onkeypress="ClearError(id)" onchange="ClearError(id)" />
+                    <div class="error_message"><label style="color:red" id="error_birthdate"></label></div>
                 </div>
                 <div class="label">
                     Giới tính:
@@ -95,12 +95,12 @@ session_start();
                     <div style="float:left" class="error_message"><label style="color:red" id="error_confirm"></label></div>
                 </div>
                 <div style="clear: both;">
-                    <input type="button" class="btnsignin" id="btnsignin" name="btnsignin" value="Đăng ký"></input>
+                    <input type="button" class="btnsignup" id="btnsignup" name="btnsignup" value="Đăng ký"></input>
                 </div>
             </form>
         </div>
     </div>
     <?php include FILE_PHP_FOOTER ?>
-    <script src="<?= FILE_JS_SIGNIN ?>"></script>
+    <script src="<?= FILE_JS_SIGNUP ?>"></script>
 </body>
 </html>

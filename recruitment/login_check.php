@@ -6,7 +6,7 @@ if (isset($_POST["email"])&&isset($_POST["password"])&&isset($_POST["remember"])
     $email = $_POST["email"];
     $password = $_POST["password"];    
     $remember = $_POST["remember"];   
-    $sqlSelectUser = "SELECT * FROM usertbl where email='$email' and password='$password' and del_flag=0";
+    $sqlSelectUser = "SELECT * FROM t_account where id='$email' and password='$password' and del_flg=0";
     $result = $connect->query($sqlSelectUser);
 
     if ($result->num_rows > 0) {

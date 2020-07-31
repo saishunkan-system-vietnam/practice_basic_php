@@ -23,7 +23,7 @@ ob_start();
                 <a href="#">x</a>
             </div> -->
             <div style="height:60px;width:60px; margin:auto;background:none;padding-top:20px;" class="banner">
-                <img src="image/user.png" />
+                <img src="img/user.png" />
             </div>
             <div class="title">
                 Đăng Nhập

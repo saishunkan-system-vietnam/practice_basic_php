@@ -1,4 +1,4 @@
-.wrapper_signin {
+.wrapper_signup {
     height         : 100%;
     display        : flex;
     justify-content: center;
@@ -6,7 +6,7 @@
     margin         : auto;
 }
 
-.signin_page {
+.signup_page {
     /* z-index: 1; */
     background-color: lemonchiffon;
     margin          : auto;
@@ -25,11 +25,11 @@
     width           : 40%;
 }
 
-.signin_page div {
+.signup_page div {
     display: block;
 }
 
-.signin_page .title {
+.signup_page .title {
     /* margin-top     : 10px; */
     /* padding     : 50px; */
     width          : 100%;
@@ -44,12 +44,12 @@
     font-weight    : bold;
 }
 
-.signin_page .close {
+.signup_page .close {
     float       : right;
     margin-right: 2px;
 }
 
-.signin_page .label {
+.signup_page .label {
     /* margin-top: 20px; */
     margin-left : 0px;
     padding-left: 0px;
@@ -57,7 +57,7 @@
     clear       : both;
 }
 
-.signin_page input[type=text],
+.signup_page input[type=text],
 input[type=password],
 input[type=date] {
     border      : 1px solid #ddd;
@@ -67,7 +67,7 @@ input[type=date] {
     padding-left: 7 px;
 }
 
-.signin_page .btnsignin {
+.signup_page .btnsignup {
     margin-top     : 15px;
     margin-bottom  : 5px;
     /* float       : right; */

@@ -35,12 +35,12 @@ body {
     margin          : auto;
 }
 
-.main .container ul {
+.main .container .recruitment_header ul {
     margin : 0px;
     padding: 0px;
 }
 
-.main .container ul li {
+.main .container .recruitment_header ul li {
     /* list-style: none;    
     background: #dcf0fa;
     clear: left;
@@ -63,7 +63,7 @@ body {
     box-shadow   : 0 4px 9px 0 #ccc !important;
 }
 
-.main .container ul li img {
+.main .container .recruitment_header ul li img {
     float        : left;
     margin-right : 15px;
     width        : 116px;
@@ -73,7 +73,17 @@ body {
     margin-left  : 10px;
 }
 
-.main .container ul li h2 {
+.main .container .recruitment_detail img {
+    float        : left;
+    /* margin-right : 15px; */
+    width        : 116px;
+    height       : 120px;
+    margin-bottom: 10px;
+    border       : 1px solid #ccc;
+    margin-left  : 10px;
+}
+
+.main .container .recruitment_header ul li h2 {
     font-size: 14px;
 }
 

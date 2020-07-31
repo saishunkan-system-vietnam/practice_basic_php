@@ -4,19 +4,19 @@ function ClearError(id) {
     document.getElementById(err).innerHTML = "";
 }
     $(document).ready(function() {
-        $("#btnsignin").on('click', function(event) {
+        $("#btnsignup").on('click', function(event) {
             event.preventDefault();
             if (IsValid()) {
                 $.ajax({
                     async: false,
-                    url: "signin_insert.php",
+                    url: "signup_insert.php",
                     method: "post",
                     data: {
                         username: $.trim($("#username").val()),
                         email: $.trim($("#email").val()),
                         password: $.trim($("#password").val()),
                         confirm_password: $.trim($("#confirm_password").val()),
-                        dob: $.trim($("#dob").val()),
+                        birthdate: $.trim($("#birthdate").val()),
                         gender: $('input[name=gender]:checked').val(),
                         address: $.trim($("#address").val()),
                         confirm: $.trim($("#confirm").is(':checked')),
@@ -43,7 +43,7 @@ function ClearError(id) {
             var email = $.trim($("#email").val());
             var password = $.trim($("#password").val());
             var confirm_password = $.trim($("#confirm_password").val());
-            var dob = $.trim($("#dob").val());
+            var birthdate = $.trim($("#birthdate").val());
             var gender = $('input[name=gender]:checked').val();
             var address = $.trim($("#address").val());
             var confirm = $.trim($("#confirm").is(':checked'));
@@ -92,9 +92,9 @@ function ClearError(id) {
                 is_valid = false;
             }
 
-            if (!isDate(dob)) {
-                $("#error_dob").text("Định dạng ngày không hợp lệ!");
-                $("#dob").css("borderColor", "red");
+            if (!isDate(birthdate)) {
+                $("#error_birthdate").text("Định dạng ngày không hợp lệ!");
+                $("#birthdate").css("borderColor", "red");
                 is_valid = false;
             }
 

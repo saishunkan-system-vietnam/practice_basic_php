@@ -61,7 +61,7 @@ function SendEmail($email_to,  $token)
         $mail->Body    = "
            Xin chào,<br><br>
            Tôi mà Admin website MinhNN.com!<br>
-           Bạn vừa gửi yêu cầu thay đổi mật khẩu của tài khoản đăng nhập. Để thay đổi mật khẩu hãy click vào link phía dưới: <br>
+           Bạn đã gửi yêu cầu thay đổi mật khẩu tài khoản đăng nhập. Để thay đổi mật khẩu hãy click vào link phía dưới: <br>
            <a href = 'http://minhnn.com/set_new_password.php?email=$email_to&token=$token'>
            http:/MinhNN.com/set_new_password.php?email=$email_to'&token=$token
            </a><br><br>

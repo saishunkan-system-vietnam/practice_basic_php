@@ -7,8 +7,8 @@ if (isset($_GET['email']) && isset($_GET['token'])) {
     $email = $connect->real_escape_string($_GET['email']);
     $token = $connect->real_escape_string($_GET['token']);
 
-    $sql = "SELECT * FROM usertbl where email='$email'and token='$token'
-    and token != '' and token_expire > NOW() and del_flag = 0";
+    $sql = "SELECT * FROM t_account where id='$email'and token='$token'
+    and token != '' and token_expire > NOW() and del_flg = 0";
     $result = $connect->query($sql);
 
     if ($result->num_rows > 0) {

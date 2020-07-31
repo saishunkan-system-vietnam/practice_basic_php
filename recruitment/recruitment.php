@@ -16,16 +16,16 @@ session_start();
 <div class="wrapper">
         <div class="main">
             <div class="banner">
-                <img src="image/banner15.png" />
+                <img src="img/banner15.png" />
             </div>
             <!-- <div class="left">left</div> -->
             <div class="container">
-                <div>
+                <div class="recruitment_header">
                     <ul>
                         <?php
                         require "./config/config.php";
 
-                        $sqlCount = "SELECT count(*) as total FROM data where del_flag = 0";
+                        $sqlCount = "SELECT count(*) as total FROM t_recruitment where del_flg = 0";
                         $result = $connect->query($sqlCount);
 
                         if ($result->num_rows > 0) {
@@ -50,12 +50,19 @@ session_start();
                         // Trang bắt đầu
                         $start = ($current_page - 1) * $limit;
 
-                        $sqlSelectData = "SELECT * FROM data where del_flag = 0 order by deadline DESC LIMIT  $start, $limit ";
+                        $sqlSelectData = "SELECT * FROM t_recruitment where del_flg = 0 order by deadline DESC LIMIT  $start, $limit ";
                         $resultData = $connect->query($sqlSelectData);
                         if ($resultData->num_rows > 0) {
                             while ($rowData = $resultData->fetch_assoc()) {
                                 echo "<li>";
-                                echo '<img src="data:image;base64,' . base64_encode($rowData["logo"]) . '" alt="Image">';
+                                if (isset($rowData["logo"]))
+                                {
+                                    echo '<img src="data:image;base64,' . base64_encode($rowData["logo"]) . '" alt="Image">';
+                                }
+                                else
+                                {
+                                    echo '<img src="img/noimage.jpg" alt="Image">';
+                                }
                                 echo "<h2>" . $rowData["position"] . "</h2>";
                                 echo "<p>" . $rowData["company"] . "</p>";
                                 echo "<p>" . "Lương: " . $rowData["salary"] . "</p>";
@@ -64,27 +71,34 @@ session_start();
                             }
                         }
                         ?>
-
                     </ul>
                 </div>
 
                 <div class="pagination">
                     <?php
                     if ($current_page > 1 && $total_page > 1) {
-                        echo '<a href="' . FILE_PHP_INDEX . '?page=' . ($current_page - 1) . '"><b>&#8678;</b></a> | ';
+                        echo '<a href="' . FILE_PHP_RECRUITMENT . '?page=' . ($current_page - 1) . '"><b>&#8678;</b></a> | ';
                     }
+
+                    // if ($current_page == $total_page ) {
+                    //     echo '<a href="' . FILE_PHP_INDEX . '?page=' . ($total_page) . '"><b>&#8678;</b></a> | ';
+                    // }
 
                     for ($i = 1; $i <= $total_page; $i++) {
                         if ($i == $current_page) {
                             echo '<span style="color: #1a75ff;"><b>' . $i . '</b></span> | ';
                         } else {
-                            echo '<a href="' . FILE_PHP_INDEX . '?page=' . $i . '">' . $i . '</a> | ';
+                            echo '<a href="' . FILE_PHP_RECRUITMENT . '?page=' . $i . '">' . $i . '</a> | ';
                         }
                     }
 
                     if ($current_page < $total_page) {
-                        echo '<a href="' . FILE_PHP_INDEX . '?page=' . ($current_page + 1) . '"><b>&#8680;</b></a>';
+                        echo '<a href="' . FILE_PHP_RECRUITMENT . '?page=' . ($current_page + 1) . '"><b>&#8680;</b></a>';
                     }
+
+                    // if ($current_page >=$total_page) {
+                    //     echo '<a href="' . FILE_PHP_INDEX . '?page=' . ($total_page) . '"><b>&#8680;</b></a>';
+                    // }
                     ?>
                 </div>
             </div>

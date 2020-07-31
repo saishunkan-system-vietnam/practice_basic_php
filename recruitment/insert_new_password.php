@@ -8,8 +8,8 @@ if (isset($_POST['password']) && isset($_POST['email']) && isset($_POST['token']
     $email = $connect->real_escape_string($_POST['email']);
     $token = $connect->real_escape_string($_POST['token']);
 
-    $sql = "SELECT * FROM usertbl where email='$email'and token='$token'
-           and token != '' and token_expire > NOW() and del_flag = 0";
+    $sql = "SELECT * FROM t_account where id='$email'and token='$token'
+           and token != '' and token_expire > NOW() and del_flg = 0";
 
     $result = $connect->query($sql);
 
@@ -19,7 +19,7 @@ if (isset($_POST['password']) && isset($_POST['email']) && isset($_POST['token']
         return;
     }
 
-    $sqlUpdate = "UPDATE usertbl set password = '$password', token = concat(token, '_expired') where email='$email'";
+    $sqlUpdate = "UPDATE t_account set password = '$password', token = concat(token, '_expired'), update_datetime = NOW() where id='$email'";
 
     if ($connect->query($sqlUpdate) === true) {
         echo 1;
