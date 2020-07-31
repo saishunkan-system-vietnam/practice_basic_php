@@ -19,6 +19,10 @@
                     value="<?= $_REQUEST['email']?>">
             </div>
             <div class="input-container">
+                <input class="input-field" type="hidden" placeholder="token" name="token" id="token_changePass"
+                    value="<?= $_REQUEST['token']?>">
+            </div>
+            <div class="input-container">
                 <i class="fa fa-key icon"></i>
                 <input class="input-field" type="password" placeholder="Mật khẩu mới" name="new_password"
                     id="new_password" pattern=<?= PATTERN_PASSWORD ?>

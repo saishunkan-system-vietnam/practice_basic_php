@@ -1,5 +1,6 @@
 <?php 
     session_start();
+    
     require FILE_PHP_CONFIG;
 
     //Kiểm tra SESSION
@@ -8,19 +9,10 @@
             $_SESSION[SESSION_USERNAME] = $_COOKIE[COOKIE_USERNAME];
         }    
     }
-
-    if(isset($_REQUEST['type']) && $_REQUEST['type'] == 'logout'){
-        // xoa session
-        unset($_SESSION[SESSION_USERNAME]);
-
-        // Xóa cookie
-        setcookie(COOKIE_USERNAME, '', time() - 14400);
-    }
 ?>
 
 <link rel="stylesheet" href=<?= LINK_ICON ?>>
 <link rel="stylesheet" href=<?= FILE_CSS_STYLE_HEADER ?>>
-<link rel="stylesheet" href=<?= FILE_CSS_STYLE_FOOTER ?>>
 <link rel="stylesheet" href=<?= FILE_CSS_STYLE_REGISTER?>>
 <link rel="stylesheet" href=<?= FILE_CSS_STYLE_LOGIN?>>
 <script src=<?= LINK_JQUERY ?>></script>
@@ -45,7 +37,7 @@
             
             ?>
 
-            <?php if (!isset($_SESSION[SESSION_USERNAME])): ?>
+            <?php if (!isset($_SESSION['username'])): ?>
             <a class="login-window button" onclick="document.getElementById('login').style.display='block'"><i
                     class="fa fa-fw fa-user"></i>&nbsp;Đăng Nhập</a>
             <a class="registration button" onclick="document.getElementById('regist').style.display='block'"><i
@@ -53,10 +45,11 @@
             <?php else: ?>
             <a href=<?= FILE_PHP_CART?>><i class="fa fa-shopping-cart"> <?= $cart_count; ?></i></a>
             <a href=<?= SITE_LOGOUT?>>Đăng xuất &emsp;</a>
-            <a href=""><?= $_SESSION[SESSION_USERNAME]?></a>
+            <a href=""><?= $_SESSION['username']?></a>
             <?php endif ?>
         </li>
     </ul>
+
 </nav>
 
 <!-- Đăng ký tài khoản -->
@@ -96,10 +89,6 @@
             <label for="re_password"><b>Mật khẩu xác nhận</b></label>
             <input type="password" placeholder="Xác nhận mật khẩu" name="re_password" oninvalid="InvalidMsg(this);"
                 oninput="InvalidMsg(this);" required>
-
-            <label>
-                <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-            </label>
 
             <div class="regist_clearfix">
                 <button type="button" onclick="document.getElementById('regist').style.display='none'"

@@ -8,7 +8,6 @@ body {
 
 h2 {
     text-align: center;
-    margin-top: 10%;
     color: red;
 }
 #table_cart {
@@ -33,3 +32,39 @@ h2 {
     background-color: #4CAF50;
     color: white;
 }
+
+.btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: rgb(228, 56, 26);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }
+  
+  .btn:hover {background-color: #c7e70f}
+  
+  .btn:active {
+    background-color: #c7e70f;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
+  .cart_content{
+    margin: 2% 15% 0 15%;
+    box-shadow: 0 4px 9px 0 #eee!important;
+    padding: 10px 30px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  .cart_content hr {
+    border: 1px solid black;
+  }

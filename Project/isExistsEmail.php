@@ -4,7 +4,7 @@
 
     if (isset($_GET["email"])) {
         $email = $_GET["email"];
-        $result = $mysqli->query("SELECT * FROM account WHERE id = '$email'");
+        $result = $mysqli->query("SELECT * FROM t_account WHERE id = '$email' AND del_flg = 0");
 
         if ($result->num_rows){
             echo  true;

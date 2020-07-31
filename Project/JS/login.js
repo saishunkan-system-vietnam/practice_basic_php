@@ -2,7 +2,7 @@ $(document).ready(function () {
     $('#form_login').on('submit', function (event) {
         event.preventDefault();
         $.ajax({
-            url: "./login.php",
+            url: "./login_logout.php",
             method: "post",
             data: {
                 uid: $.trim($("#uid").val()),

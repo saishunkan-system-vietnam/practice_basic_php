@@ -1,7 +1,7 @@
 <?php
     // SITE
     define('SITE_URL','index.php');
-    define('SITE_LOGOUT','index.php?type=logout');
+    define('SITE_LOGOUT','login_logout.php?type=logout');
     define('SITE_PRODUCT','product.php');
     define('SITE_FORGOTPASS','forgotpass.php');
     

@@ -6,6 +6,7 @@ $(document).ready(function () {
         }
         else{
             $.ajax({
+                async: false,
                 url: "./sentMail.php",
                 method: "POST",
                 data: {

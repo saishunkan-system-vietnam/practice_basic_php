@@ -14,7 +14,7 @@
     <?php
      if (isset($_GET["id"])) {
         $productId = $_GET["id"];
-        $result = $mysqli->query("SELECT * FROM product WHERE id = $productId");
+        $result = $mysqli->query("SELECT * FROM t_product WHERE id = $productId AND del_flg = 0");
     }
     // Đóng kết nối
     $mysqli -> close();

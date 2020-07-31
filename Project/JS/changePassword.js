@@ -1,6 +1,7 @@
 $(document).ready(function () {
     $('#form_changePass').on('submit', function (event) {
         var email = $.trim($('#email_changePass').val());
+        var token = $.trim($('#token_changePass').val());
         var password = $.trim($('#new_password').val());
         
         $.ajax({
@@ -8,6 +9,7 @@ $(document).ready(function () {
             method: "POST",
             data: {
                 email,
+                token,
                 password
             },
             success: function (data) {

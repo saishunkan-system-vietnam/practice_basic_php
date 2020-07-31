@@ -42,7 +42,7 @@
     <hr>
     <?php
 // Select dữ liệu
-$result = $mysqli->query("SELECT * FROM `product` ORDER BY `product`.`create_datetime` DESC LIMIT 12");   
+$result = $mysqli->query("SELECT * FROM t_product WHERE del_flg = 0 ORDER BY create_datetime DESC LIMIT 12");   
 
 // Đóng kết nối
 $mysqli -> close();

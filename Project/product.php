@@ -42,7 +42,7 @@
     <hr>
     <?php
 // TÌM TỔNG SỐ RECORDS
-$sql = "SELECT count(id) as total FROM product";
+$sql = "SELECT count(id) as total FROM t_product WHERE del_flg = 0" ;
 $result = $mysqli->query($sql) or die ($mysqli->error);
 $row = $result->fetch_assoc();
 $total_records = $row['total'];
@@ -67,7 +67,7 @@ else if ($current_page < 1){
 $start = ($current_page - 1) * $limit;
 
 // Select dữ liệu
-$result = $mysqli->query("SELECT * FROM product LIMIT $start, $limit") or die ($mysqli->error);   
+$result = $mysqli->query("SELECT * FROM t_product WHERE del_flg = 0 LIMIT $start, $limit") or die ($mysqli->error);   
 
 // Đóng kết nối
 $mysqli -> close();

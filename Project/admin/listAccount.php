@@ -1,10 +1,9 @@
 <?php 
     require '../config/router.php';
-    require '../config/config.php';
     $output = '';
 
     // Select dữ liệu
-    $result = $mysqli->query("SELECT * FROM account");   
+    $result = $mysqli->query("SELECT * FROM t_account");   
     if ($result->num_rows) {
         while($row = $result->fetch_assoc()){
             $sexStr = $row["sex"] =="1"?"Nam":"Nữ";
