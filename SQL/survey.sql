@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 28, 2020 at 07:32 PM
+-- Generation Time: Jul 31, 2020 at 07:37 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.2.31
 
@@ -47,10 +47,10 @@ CREATE TABLE `t_account` (
 --
 
 INSERT INTO `t_account` (`uid`, `fname`, `lname`, `pass`, `tel`, `gender`, `birthdate`, `del_flg`, `create_datetime`, `upadte_datetime`, `upd_count`, `admin_flg`) VALUES
-('abc@bcf.com', 'eqwe', 'eqwe', '1', '0365654521', NULL, NULL, 0, '2020-07-21 21:48:30', '2020-07-21 21:48:30', 0, 0),
-('abc@gmail.com', 'asd', 'dasdas', '123456', '32132', NULL, NULL, 0, '2020-07-19 21:14:43', '2020-07-19 21:14:43', 0, 0),
-('admin1@gmail.com', 'eqwe', 'eqwe', '1', '1', NULL, NULL, 0, '2020-07-20 22:33:45', '2020-07-20 22:33:45', 0, 0),
-('admin@gmail.com', 'nguyen', 'duc lieu', '123456', '123', NULL, NULL, 0, '2020-07-19 20:37:32', '2020-07-19 20:37:32', 0, 0);
+('abc@bcf.com', 'eqwe2', 'eqwe', '1', '0365654521', NULL, NULL, 0, '2020-07-21 21:48:30', '2020-07-31 10:36:34', 0, 0),
+('abc@gmail.com', 'asd222', 'dasdas', '123456', '32132', NULL, NULL, 0, '2020-07-19 21:14:43', '2020-07-31 10:37:26', 0, 0),
+('admin1@gmail.com', 'eqwe', 'eqwe', '123456', '1', NULL, NULL, 0, '2020-07-20 22:33:45', '2020-07-31 16:33:21', 0, 0),
+('admin@gmail.com', 'nguyen', 'duc lieu', '123456', '123', NULL, NULL, 0, '2020-07-19 20:37:32', '2020-07-31 16:25:37', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -82,7 +82,11 @@ INSERT INTO `t_answer` (`id`, `id_hdr`, `id_dtl`, `usr_id`, `create_datetime`, `
 ('1595828957', 'HD_012', 'DT_051', 'abc@gmail.com', '2020-07-27 12:49:17', 0),
 ('1595836339', 'HD_015', 'DT_067', 'admin@gmail.com', '2020-07-27 14:52:19', 0),
 ('1595910959', 'HD_008', 'DT_039', 'abc@gmail.com', '2020-07-28 11:35:59', 0),
-('1595923094', 'HD_009', 'DT_043', 'abc@gmail.com', '2020-07-28 14:58:14', 0);
+('1595923094', 'HD_009', 'DT_043', 'abc@gmail.com', '2020-07-28 14:58:14', 0),
+('1595992903', 'HD_006', 'DT_028', 'abc@gmail.com', '2020-07-29 10:21:43', 0),
+('1595992945', 'HD_006', 'DT_030', 'admin@gmail.com', '2020-07-29 10:22:25', 0),
+('1596017843', 'HD_010', 'DT_047', 'admin@gmail.com', '2020-07-29 17:17:23', 0),
+('1596017854', 'HD_016', 'DT_071', 'admin@gmail.com', '2020-07-29 17:17:34', 0);
 
 -- --------------------------------------------------------
 
@@ -91,12 +95,12 @@ INSERT INTO `t_answer` (`id`, `id_hdr`, `id_dtl`, `usr_id`, `create_datetime`, `
 --
 
 CREATE TABLE `t_category` (
-  `id` varchar(30) NOT NULL,
-  `content` varchar(300) NOT NULL,
-  `create_datetime` datetime NOT NULL DEFAULT current_timestamp(),
-  `update_datetime` datetime NOT NULL DEFAULT current_timestamp(),
-  `update_count` tinyint(1) NOT NULL DEFAULT 0,
-  `del_flg` tinyint(1) NOT NULL DEFAULT 0
+  `id` varchar(30) NOT NULL COMMENT 'id loại khảo sát',
+  `content` varchar(300) NOT NULL COMMENT 'Loại khỏa sát',
+  `create_datetime` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'thời gian tạo',
+  `update_datetime` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'thời gian update',
+  `update_count` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'số lần update',
+  `del_flg` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'cờ xóa (1: xóa, 0: không xóa)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -120,7 +124,7 @@ CREATE TABLE `t_surveydtl` (
   `id_hdr` varchar(30) NOT NULL COMMENT 'Id header',
   `answer` varchar(500) NOT NULL COMMENT 'câu trả lời',
   `create_datetime` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'ngày tạo',
-  `update_datetime` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'ngày update',
+  `update_datetime` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'ngày update',
   `update_count` smallint(1) NOT NULL DEFAULT 0 COMMENT 'số lần update',
   `del_flg` smallint(1) NOT NULL DEFAULT 0 COMMENT 'cờ xóa'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -130,6 +134,7 @@ CREATE TABLE `t_surveydtl` (
 --
 
 INSERT INTO `t_surveydtl` (`id`, `id_hdr`, `answer`, `create_datetime`, `update_datetime`, `update_count`, `del_flg`) VALUES
+('252/1596187217049', 'HD_005', '333', '2020-07-31 16:20:17', '2020-07-31 16:20:17', 0, 0),
 ('DT_001', 'HD_001', 'Do hoàn cảnh gia đình, bố mẹ không có cách giáo dục đúng đắn', '2020-07-21 20:45:29', '2020-07-21 20:45:29', 0, 0),
 ('DT_002', 'HD_001', 'Do thiếu kiến thức chủ quan cho rằng bản thân sẽ không nghiện', '2020-07-21 20:46:05', '2020-07-21 20:46:05', 0, 0),
 ('DT_003', 'HD_001', 'Do bạn bè rủ rê lôi kéo', '2020-07-21 20:46:25', '2020-07-21 20:46:25', 0, 0),
@@ -154,7 +159,7 @@ INSERT INTO `t_surveydtl` (`id`, `id_hdr`, `answer`, `create_datetime`, `update_
 ('DT_022', 'HD_005', 'Huda', '2020-07-21 20:59:37', '2020-07-21 20:59:37', 0, 0),
 ('DT_023', 'HD_005', 'heliken', '2020-07-21 20:59:37', '2020-07-21 20:59:37', 0, 0),
 ('DT_024', 'HD_005', 'Bia Hà Nội', '2020-07-21 20:59:37', '2020-07-21 20:59:37', 0, 0),
-('DT_025', 'HD_005', '333', '2020-07-21 20:59:37', '2020-07-21 20:59:37', 0, 0),
+('DT_025', 'HD_005', '33', '2020-07-21 20:59:37', '2020-07-31 16:10:51', 9, 1),
 ('DT_026', 'HD_005', 'Sư tử trắng', '2020-07-21 20:59:37', '2020-07-21 20:59:37', 0, 0),
 ('DT_027', 'HD_005', 'Khác', '2020-07-21 20:59:37', '2020-07-21 20:59:37', 0, 0),
 ('DT_028', 'HD_006', 'Đi du lịch', '2020-07-21 21:02:32', '2020-07-21 21:02:32', 0, 0),
@@ -219,7 +224,7 @@ CREATE TABLE `t_surveyhdr` (
   `id_category` varchar(30) NOT NULL COMMENT 'mã loại khảo sát',
   `content` varchar(500) NOT NULL COMMENT 'nội dung khảo sát',
   `create_datetime` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'ngày tạo',
-  `update_datetime` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'ngày update',
+  `update_datetime` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'ngày update',
   `update_count` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'số lần update',
   `del_flg` smallint(1) NOT NULL DEFAULT 0 COMMENT 'cờ xóa'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -233,7 +238,7 @@ INSERT INTO `t_surveyhdr` (`id`, `id_category`, `content`, `create_datetime`, `u
 ('HD_002', 'CT_001', 'Ước mơ bạn chưa thực hiện được là gì?', '2020-07-21 20:49:06', '2020-07-21 20:49:06', 0, 0),
 ('HD_003', 'CT_001', 'Bạn nghĩ thế nào về sự thay đổi cửa các hình thức online - trực tuyến vào cuốc sống toàn cầu sau dịch Covid 19 toàn cầu vừa qua ?', '2020-07-21 20:51:36', '2020-07-21 20:51:36', 0, 0),
 ('HD_004', 'CT_004', 'Bạn có thường xuyên cập nhật trạng thái và đăng ảnh trên facebook không?', '2020-07-21 20:53:59', '2020-07-21 20:53:59', 0, 0),
-('HD_005', 'CT_001', 'Bạn thích uống loại bia nào nhất?', '2020-07-21 20:57:03', '2020-07-21 20:57:03', 0, 0),
+('HD_005', 'CT_001', 'Bạn thích uống loại bia nào nhất?', '2020-07-21 20:57:03', '2020-07-31 16:18:07', 0, 0),
 ('HD_006', 'CT_002', 'Nếu trúng số giải đặc biệt bạn sẽ làm gì trước nhất?', '2020-07-21 21:00:32', '2020-07-21 21:00:32', 0, 0),
 ('HD_007', 'CT_002', 'Theo bạn tại sao giới trẻ hiện nay không thể xác định ước mơ của mình là gì', '2020-07-21 21:03:05', '2020-07-21 21:03:05', 0, 0),
 ('HD_008', 'CT_002', 'Phương pháp dạy con theo kiểu Nhật giúp Mẹ Việt những gì ?', '2020-07-21 21:05:56', '2020-07-21 21:05:56', 0, 0),

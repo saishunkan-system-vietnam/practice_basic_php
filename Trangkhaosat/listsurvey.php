@@ -48,11 +48,8 @@
         <div class="container-survey" id = "container-survey">
         </div> 
     </div>
-
-    <footer>
-    <?include(FILE_FOOTER)?>
-    </footer>
-
+    <div class="footer"><?include_once(FILE_FOOTER)?></div>
+    
     <script>
     var infoLogin = '<?= empty($_SESSION['dataLogin']) ? "login" : "survey" ?>';
     var page = <?= $page?>;

@@ -10,6 +10,7 @@ define('FILE_FOOTER',BASE_PATH.'/footer.php');
 define('URL_LOGOUT',SITE_URL.'/logout.php');
 define('URL_INTRODUCE',SITE_URL.'/introduce.php');
 define('URL_LISTSURVEY',SITE_URL.'/listsurvey.php');
+define('SURVEY_MANAGER',SITE_URL.'/admin/survey_manager.php');
 
 //CSS
 define('FILE_CSS_LOGIN',SITE_URL.'/css/login.css');

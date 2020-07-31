@@ -15,6 +15,13 @@ require_once(FILE_CONFIG);
 
 <body>
     <?
+
+    if(empty($_SESSION['admin_flg']) || $_SESSION['admin_flg'] == "0" ){
+
+        $homepage = "Location: ". SITE_URL;
+        header($homepage);
+    }
+
     $infoLogin = false;
     if(!empty($_SESSION['dataLogin'])){
     $infoLogin = true;
@@ -61,7 +68,7 @@ require_once(FILE_CONFIG);
         </div>
     </div>
 
-    <?include(FILE_FOOTER)?>
+
 
     <script>
     var page = <?= $page ?> ;

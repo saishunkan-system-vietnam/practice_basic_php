@@ -28,7 +28,7 @@
                 }
                 
             $_SESSION['dataLogin'] = $myJSON[0]["uid"];
-            $_SESSION['flg_admin'] = $myJSON[0]["admin_flg"];
+            $_SESSION['admin_flg'] = $myJSON[0]["admin_flg"];
             
 
             if($save == "true")

@@ -57,12 +57,9 @@
                                 <small>Chỉnh sửa thông tin</small>
                             </a>
                         </li>
-                        <li>
-                            <a href="./admin/survey_manager.php">
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                                <small>Quản lý danh sách khảo sát</small>
-                            </a>
-                        </li>
+                        <?if(!empty($_SESSION['admin_flg']) || $_SESSION['admin_flg'] == "1" ){ echo
+                        ('<li><a href="'. SURVEY_MANAGER.'"><i class="fa fa-pencil" aria-hidden="true"></i>'.
+                          '<small>Quản lý danh sách khảo sát</small></a></li>'); }?>
                         <li>
                             <a href=<?= URL_LOGOUT?>>
                                 <i class="fa fa-sign-out" aria-hidden="true"></i>

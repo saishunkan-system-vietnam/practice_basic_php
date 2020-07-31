@@ -60,7 +60,7 @@ require("../config/config.php");
             . "where hdr.del_flg = 0 and hdr.content like '%{$fnd_content}%'),\n"
             ."C AS (SELECT * FROM B WHERE num_row >= {$start} LIMIT {$limit}) \n"
             . "SELECT hdr.num_row, hdr.id, hdr.category, hdr.create_datetime, hdr.index_asw, hdr.content, dtl.answer FROM C hdr \n"
-            ."LEFT JOIN t_surveydtl dtl on hdr.id = dtl.id_hdr\n"
+            ."LEFT JOIN t_surveydtl dtl on hdr.id = dtl.id_hdr and dtl.del_flg = 0\n"
             ."ORDER by hdr.create_datetime DESC";
         }
         else
@@ -74,7 +74,7 @@ require("../config/config.php");
             . "where hdr.del_flg = 0 and hdr.content like '%{$fnd_content}%'),\n"
             ."C AS (SELECT * FROM B WHERE num_row >= {$start} LIMIT {$limit}) \n"
             . "SELECT hdr.num_row, hdr.id, hdr.category, hdr.create_datetime, hdr.index_asw, hdr.content, dtl.answer FROM C hdr \n"
-            ."LEFT JOIN t_surveydtl dtl on hdr.id = dtl.id_hdr\n"
+            ."LEFT JOIN t_surveydtl dtl on hdr.id = dtl.id_hdr and dtl.del_flg = 0\n"
             ."ORDER by hdr.create_datetime DESC";
         }
         $result = $conn->query($sql);
