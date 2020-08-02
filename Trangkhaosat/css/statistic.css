@@ -1,0 +1,81 @@
+.containner_statistic_visit,
+.containner_statistic_survey {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    display: flex;
+    left: 80px;
+    margin-bottom: 30px;
+}
+
+.box {
+    position: relative;
+    padding: 15px;
+    overflow: hidden;
+    border-radius: 3px;
+    margin-bottom: 25px;
+    color: #fff;
+    text-align: center;
+    width: 200px;
+    margin: 20px;
+    box-shadow: -25px 25px 10px rgba(0, 0, 0, 0.1);
+}
+
+.visit {
+    background-color: #337ab7;
+}
+
+.total {
+    background-color: #d9534f;
+}
+
+.survey {
+    background-color: #f0ad4e;
+}
+
+.box i {
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    font-size: 22px;
+    padding: 15px;
+    top: -25px;
+    left: -30px;
+    background-color: rgba(255, 255, 255, 0.15);
+    line-height: 60px;
+    text-align: right;
+    border-radius: 50%;
+}
+
+.box h3 {
+    margin-top: 20px;
+    margin-bottom: 10px,
+}
+
+.box h3:after {
+    content: "";
+    height: 2px;
+    width: 70%;
+    margin: auto;
+    background-color: rgba(255, 255, 255, 0.12);
+    display: block;
+    margin-top: 10px;
+}
+
+.lead {
+    font-size: 21px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-weight: 300;
+}
+
+.btn_fresh {
+    background-color: #5cb85c;
+    left: 10px;
+    position: absolute;
+}
+
+h3 {
+    font-size: 25px;
+}

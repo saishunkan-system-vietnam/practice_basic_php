@@ -10,7 +10,7 @@ define('FILE_FOOTER',BASE_PATH.'/footer.php');
 define('URL_LOGOUT',SITE_URL.'/logout.php');
 define('URL_INTRODUCE',SITE_URL.'/introduce.php');
 define('URL_LISTSURVEY',SITE_URL.'/listsurvey.php');
-define('SURVEY_MANAGER',SITE_URL.'/admin/survey_manager.php');
+define('SURVEY_MANAGER',SITE_URL.'/admin/manager.php');
 
 //CSS
 define('FILE_CSS_LOGIN',SITE_URL.'/css/login.css');
@@ -22,6 +22,7 @@ define('FILE_CSS_LISTSURVEY',SITE_URL.'/css/listsurvey.css');
 define('FILE_CSS_INTRODUCE',SITE_URL.'/css/introduce.css');
 define('FILE_CSS_SURVEY',SITE_URL.'/css/survey.css');
 define('FILE_CSS_SURVEY_MANAGER',SITE_URL.'/css/survey_manager.css');
+define('FILE_CSS_STATISTIC',SITE_URL.'/css/statistic.css');
 
 //JS
 define('FILE_JS_LOGIN',SITE_URL.'/js/login.js');

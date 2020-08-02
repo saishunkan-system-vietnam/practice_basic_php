@@ -1,33 +1,66 @@
-$(document).ready(function () {
+$(document).ready(function() {
     var totalPages;
-    var newhref = window.location.href;
     var lst_asw = [];
     var obj;
     var id_hdr;
     var stt;
+    var page = 1;
+    var category = "0";
+    var fnd_content = "";
 
     GetData(page);
+    GetStatistic();
+
     function GetData(page) {
+        var limit = 12;
         $.ajax({
             async: false,
             type: "post",
             url: "../lib/vs_manager_ajax.php",
             data: {
                 curentpage: page,
-                limit: 12,
+                limit: limit,
                 id_catogery: category,
                 fnd_content: fnd_content,
             },
-            success: function (data) {
-                ShowData(data);
+            success: function(data) {
+                ShowData(data, page, limit);
             }
         });
     }
 
-    function ShowData(data) {
+    function GetStatistic() {
+        $.ajax({
+            async: false,
+            type: "post",
+            url: "../lib/statistic.php",
+            data: { get_info: "1" },
+            success: function(data) {
+
+                $("#tt_view").html(data.cnt_access);
+                $("#tt_user").html(data.user);
+                $("#tt_onl").html(data.online);
+                $("#mem_onl").html(data.mem);
+                $("#guest_onl").html(data.guest);
+                $("#tt_question").html(data.question);
+                $("#tt_answer").html(data.answer);
+            }
+        });
+    }
+
+    $("#btn_fresh").click(function(e) {
+        e.preventDefault();
+        GetStatistic();
+    });
+
+    function ShowData(data, page, limit) {
+
+        $(".nd-table").remove();
+        $("#pg_dtl").remove();
+
         var element = "";
         var index = "N/A";
-        var stt_hdr = 1;
+        var stt_hdr = parseInt(page - 1) * limit + 1;
         var stt_dtl = 1;
         var id = "";
         var index_asw;
@@ -41,7 +74,7 @@ $(document).ready(function () {
             '<th class="ff">Lượt trả lời</th>\n' +
             '<th colspan="2"></th></tr>\n';
         if (data != "err") {
-            data.data.forEach(function (item) {
+            data.data.forEach(function(item) {
 
                 if (index != item.num_row) {
 
@@ -58,9 +91,9 @@ $(document).ready(function () {
 
                     element += '<tr>\n' +
                         '<td class="ff col1">' + stt_hdr + '</td>\n' +
-                        '<td class="ff col2">' + item.category + '</td>\n' +
+                        '<td class="ff col2">' + item.category + '<span id = "' + item.id + '" name = "' + item.id_category + '"></span></td>\n' +
                         '<td class="ff col3">' + item.content + ' <span class="crt_dt">(' + item
-                            .create_datetime + ')</span>\n' +
+                        .create_datetime + ')</span>\n' +
                         '<ul>\n';
 
                     index = item.num_row;
@@ -82,8 +115,7 @@ $(document).ready(function () {
                 '">delete</button></td>\n' +
                 '</tr>\n' +
                 '</table></div>';
-        }
-        else {
+        } else {
             element += '</table></div>';
         }
 
@@ -95,78 +127,79 @@ $(document).ready(function () {
         curentpage = parseInt(data.current_page);
         if (curentpage == 1 || isNaN(curentpage)) {
             paginationHtml +=
-                "<div id = 'pg_dtl'><li><a class='disabled' href='#'><<</a></li><li><a class='disabled' href='#'><</a></li>";
+                "<div id = 'pg_dtl'><li><a class='disabled' href=''><<</a></li><li><a class='disabled' href=''><</a></li>";
         } else {
             var prev = curentpage - 1;
             paginationHtml +=
-                "<div id = 'pg_dtl'><li><a href='./survey_manager.php?page=1'><<</a></li><li><a href='./survey_manager.php?page=" +
-                prev + "'><</a></li>";
+                "<div id = 'pg_dtl'><li><a href='''><</a></li>";
         }
 
         for (var i = 1; i <= totalPages; i++) {
             if (i == curentpage) {
-                paginationHtml += "<li><a class='active' href='./survey_manager.php?page=" + i + "'>" + i +
+                paginationHtml += "<li><a class='active' href=''>" + i +
                     "</a></li>";
             } else {
-                paginationHtml += "<li><a href='./survey_manager.php?page=" + i + "'>" + i + "</a></li>";
+                paginationHtml += "<li><a href=''>" + i + "</a></li>";
             }
         }
         if (curentpage == totalPages || isNaN(totalPages)) {
             paginationHtml +=
-                "<li><a class='disabled' href='#'>></a></li><li><a class='disabled' href='#'>>></a></li></div>";
+                "<li><a class='disabled' href=''>></a></li><li><a class='disabled' href=''>>></a></li></div>";
         } else {
             var next = curentpage + 1;
-            paginationHtml += "<li><a href='./survey_manager.php?page=" + next +
-                "'>></a></li><li><a href='./survey_manager.php?page=" + totalPages + "'>>></a></li></div>";
+            paginationHtml += "<li><a href=''>></a></li><li><a href=''>>></a></li></div>";
         }
 
         $("#pg").append(paginationHtml);
+        window.scrollTo(0, 0);
     }
 
-    $(".pagination").on("click", "a", function (e) {
+    $(".pagination").on("click", "a", function(e) {
         e.preventDefault();
-        var ctgr = "";
-        var fndct = "";
 
-        if ($("#category").val() != "0") {
-            ctgr = "&category=" + $("#category option:selected").text();
+        var page = $(this).text(),
+            currentPage = parseInt($(".pagination li a.active").text());
+
+        if (page == "<<") {
+            var newPage = 1;
+        } else if (page == ">>") {
+            var newPage = totalPages;
+        } else if (page == "<") {
+            var newPage = currentPage - 1;
+        } else if (page == ">") {
+            var newPage = currentPage + 1;
+        } else {
+            var newPage = parseInt(page);
         }
 
-        if ($.trim($("#txtfind").val()) != "") {
-            fndct = "&fnd_content=" + $.trim($("#txtfind").val());
-        }
-        newhref = $(this).attr("href") + ctgr + fndct;
-        window.location.href = newhref;
+        category = $("#category option:selected").val();
+        fnd_content = $("#txtfind").val();
+
+        GetData(newPage);
+        return false;
     });
 
-    $("#btn_find").click(function (e) {
+    $("#btn_find").click(function(e) {
         e.preventDefault();
-        var ctgr = "";
-        var fndct = "";
 
-        if ($("#category").val() != "0") {
-            ctgr = "&category=" + $("#category option:selected").text();
-        }
+        category = $("#category option:selected").val();
+        fnd_content = $("#txtfind").val();
 
-        if ($("#txtfind").val() != "") {
-            fndct = "&fnd_content=" + $("#txtfind").val();
-        }
-        newhref = "./survey_manager.php?page=1" + ctgr + fndct;
-        window.location.href = newhref;
+        page = 1;
+        GetData(page);
     });
 
-    $("#btn_ins").click(function (e) {
+    $("#btn_ins").click(function(e) {
         e.preventDefault();
-        newhref = window.location.href;
         $(".list_ad_survey").css("display", "none");
         stt = "Add";
         let d = new Date();
         id_hdr = Math.floor((Math.random() * 1000) + 1) + "/" + d.getTime();
-        InsertSv("Thêm mới khảo sát",id_hdr);
+        InsertSv("Thêm mới khảo sát", id_hdr);
 
     });
 
-    $(document).on("click", "#btn_back", function () {
+    $(document).on("click", "#btn_back", function() {
         $(".container_ad_svcu").remove();
         $(".list_ad_survey").css("display", "block");
     });
@@ -179,22 +212,22 @@ $(document).ready(function () {
             type: "post",
             url: "../lib/cusv_manager.php",
             data: {
-                GetCbo: "1", 
+                GetCbo: "1",
                 id_ct: $("#category option:selected").val(),
             },
-            success: function (result) {
+            success: function(result) {
                 option = result;
             }
         });
         lst_asw = [];
         var element = '<div class="container_ad_svcu">' +
             '<div class="title">' +
-            '<h2>' + title + '</h2></div>' +
+            // '<h2>' + title + '</h2></div>' +
             '<div class="content_ad_svcu">' +
             '<label for="txt_qs"><b>Câu hỏi:</b></label>' +
             '<input type="text" name="txt_qs" id="' + id_hdr + '" class = "txt_qs">' +
             '<select name="category" id="category_svcu">' +
-            option + '</select><br>'+
+            option + '</select><br>' +
             '<label for="txt_aws"><b>Câu trả lời:</b></label>' +
             '<input type="text" name=txt_aws"" id="txt_aws" class = "txt_aws">' +
             '<button class="btn_ins_asw add" id = "btn_ins_asw">Insert</button>' +
@@ -207,7 +240,7 @@ $(document).ready(function () {
         $("#warpper_ad_survey").append(element);
     }
 
-    $(document).on("click", "#btn_ins_asw", function () {
+    $(document).on("click", "#btn_ins_asw", function() {
         if ($.trim($("#txt_aws").val()) != "") {
             let d = new Date();
             let id = Math.floor((Math.random() * 1000) + 1) + "/" + d.getTime();
@@ -216,44 +249,43 @@ $(document).ready(function () {
         }
     });
 
-    function Add_Row(id, content, db)
-    {
+    function Add_Row(id, content, db) {
         let lst_dtl = { "cnt_asw": content, "id": id, "db": db, "upd_flg": "0", "del_flg": "0" }
-            var lst_count = lst_asw.length;
-            var td_asw = "td_" + lst_count
-            var tr_asw = "tr_" + lst_count
-            lst_asw.push([lst_dtl]);
-            var element = '<tr id="' + tr_asw + '"><td class="ff asw" id="' + td_asw + '">' + content + '</td>' +
-                '<td class="col4"><button class="btn_edit_asw" name=' + lst_count + '">edit</button></td>' +
-                '<td class="col4"><button class="btn_del_asw" name= "' + lst_count + '">delete</button></td></tr>';
-            $("#tbl_asw").append(element);
+        var lst_count = lst_asw.length;
+        var td_asw = "td_" + lst_count
+        var tr_asw = "tr_" + lst_count
+        lst_asw.push([lst_dtl]);
+        var element = '<tr id="' + tr_asw + '"><td class="ff asw" id="' + td_asw + '">' + content + '</td>' +
+            '<td class="col4"><button class="btn_edit_asw" name=' + lst_count + '">edit</button></td>' +
+            '<td class="col4"><button class="btn_del_asw" name= "' + lst_count + '">delete</button></td></tr>';
+        $("#tbl_asw").append(element);
     }
 
-    $(document).on("click", ".btn_edit_asw", function () {
+    $(document).on("click", ".btn_edit_asw", function() {
         obj = parseInt($(this).attr("name"));
-        var objtr= "#tr_" + obj;
+        var objtr = "#tr_" + obj;
         $("#txt_aws").val(lst_asw[obj][0].cnt_asw);
         $(".upd").css("display", "inline-block");
         $(".add").css("display", "none");
 
         $(".btn_edit_asw").css({ "opacity": "0.5", "pointer-events": "none" });
         $(".btn_del_asw").css({ "opacity": "0.5", "pointer-events": "none" });
-        $(objtr).css({'background-color': 'rgb(24, 103, 192)','color': '#fff'})
+        $(objtr).css({ 'background-color': 'rgb(24, 103, 192)', 'color': '#fff' })
 
     });
 
-    $(document).on("click", "#btn_cancel_asw", function () {
-        var objtr= "#tr_" + obj;
+    $(document).on("click", "#btn_cancel_asw", function() {
+        var objtr = "#tr_" + obj;
         $("#txt_aws").val("");
         $(".upd").css("display", "none");
         $(".add").css("display", "inline-block");
         $(".btn_edit_asw").css({ "opacity": "1", "pointer-events": "all" });
         $(".btn_del_asw").css({ "opacity": "1", "pointer-events": "all" });
-        $(objtr).css({'background-color': '#fff','color': 'black'})
+        $(objtr).css({ 'background-color': '#fff', 'color': 'black' })
     });
 
-    $(document).on("click", ".btn_upd_asw", function () {
-        var objtr= "#tr_" + obj;
+    $(document).on("click", ".btn_upd_asw", function() {
+        var objtr = "#tr_" + obj;
         lst_asw[obj][0].cnt_asw = $("#txt_aws").val();
         lst_asw[obj][0].upd_flg = "1";
         var objtd = "#td_" + obj;
@@ -263,34 +295,30 @@ $(document).ready(function () {
         $(".add").css("display", "inline-block");
         $(".btn_edit_asw").css({ "opacity": "1", "pointer-events": "all" });
         $(".btn_del_asw").css({ "opacity": "1", "pointer-events": "all" });
-        $(objtr).css({'background-color': '#fff','color': 'black'})
+        $(objtr).css({ 'background-color': '#fff', 'color': 'black' })
     });
 
-    $(document).on("click", ".btn_del_asw", function () {
+    $(document).on("click", ".btn_del_asw", function() {
         if (confirm('Bạn có đồng ý muốn xóa câu trả lời này không?')) {
-        obj = parseInt($(this).attr("name"));
-        var objtr = "#tr_" + obj;
-        lst_asw[obj][0].del_flg = "1";
-        $(objtr).remove();
+            obj = parseInt($(this).attr("name"));
+            var objtr = "#tr_" + obj;
+            lst_asw[obj][0].del_flg = "1";
+            $(objtr).remove();
         }
     });
 
-    $(document).on("click", ".btn_save", function () {
+    $(document).on("click", ".btn_save", function() {
         cnt = 0;
         for (var i = 0; i < lst_asw.length; i++) {
-            if(lst_asw[i][0].del_flg == "0")
-            {
+            if (lst_asw[i][0].del_flg == "0") {
                 cnt++;
-            }  
+            }
         };
         if ($.trim($(".txt_qs").val()) == "") {
             alert("Vui lòng nhập thông tin câu hỏi khảo sát");
-        }
-        else if(cnt == 0)
-        {
+        } else if (cnt == 0) {
             alert("Vui lòng nhập thông tin câu trả lời");
-        }
-        else {
+        } else {
             $.ajax({
                 async: false,
                 type: "post",
@@ -299,20 +327,22 @@ $(document).ready(function () {
                     content_hdr: $.trim($(".txt_qs").val()),
                     id_hdr: id_hdr,
                     lst: lst_asw,
-                    id_ct: $( "#category_svcu" ).val(),
+                    id_ct: $("#category_svcu").val(),
                     stt: stt,
                 },
-                success: function (result) {
-                    if(stt = "Add")
-                    {
-                    window.location.href = newhref;
-                    }
+                success: function(result) {
+
+
+                    GetData(page);
+
+                    $(".container_ad_svcu").remove();
+                    $(".list_ad_survey").css("display", "block");
                 }
             });
         }
     });
 
-    $(document).on("click", ".btn_del", function () {
+    $(document).on("click", ".btn_del", function() {
         if (confirm('Bạn có đồng ý muốn xóa câu khảo sát này không?')) {
             $.ajax({
                 async: false,
@@ -322,22 +352,21 @@ $(document).ready(function () {
                     stt: "Del",
                     id_hdr: $(this).attr("name"),
                 },
-                success: function (result) {
-                     window.location.href = newhref;
-                    
+                success: function(result) {
+                    GetData(page);
+
                 }
             });
         }
     });
 
-    $(document).on("click",".btn_edit", function(){
+    $(document).on("click", ".btn_edit", function() {
 
-        newhref = window.location.href;
         $(".list_ad_survey").css("display", "none");
         stt = "Upd";
         id_hdr = $(this).attr("name");
         InsertSv("Chỉnh sửa khảo sát");
-
+        $('#category_svcu  option[value="' + $("#" + $(this).attr("name")).attr("name") + '"]').prop("selected", true);
 
         $.ajax({
             async: false,
@@ -347,15 +376,15 @@ $(document).ready(function () {
                 GetRow: "1",
                 id_hdr: $(this).attr("name"),
             },
-            success: function (data) {
-                $(".txt_qs").val(data.hdr_content); 
+            success: function(data) {
+                $(".txt_qs").val(data.hdr_content);
 
                 data.data.forEach(function(item) {
-                    Add_Row(item.id, item.content, "1");
+                    Add_Row(item.id, item.content, "1", );
                 });
             }
         });
     });
 
-    
+
 });

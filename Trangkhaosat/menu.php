@@ -58,8 +58,8 @@
                             </a>
                         </li>
                         <?if(!empty($_SESSION['admin_flg']) || $_SESSION['admin_flg'] == "1" ){ echo
-                        ('<li><a href="'. SURVEY_MANAGER.'"><i class="fa fa-pencil" aria-hidden="true"></i>'.
-                          '<small>Quản lý danh sách khảo sát</small></a></li>'); }?>
+                        ('<li><a href="'. SURVEY_MANAGER.'"><i class="fa fa-tachometer" aria-hidden="true"></i>'.
+                          '<small>Admin</small></a></li>'); }?>
                         <li>
                             <a href=<?= URL_LOGOUT?>>
                                 <i class="fa fa-sign-out" aria-hidden="true"></i>
@@ -149,3 +149,13 @@
     <script src=<?= FILE_JS_REGIST?>></script>
     <script src=<?= FILE_JS_LOGIN?>></script>
     <script src=<?= FILE_JS_COMMON?>></script>
+    <script>
+    $(document).ready(function () {
+     $.ajax({
+         type: "post",
+         url: "./lib/statistic.php",
+         success: function (response) {
+         }
+     });
+    });
+    </script>

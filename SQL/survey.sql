@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 31, 2020 at 07:37 PM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.2.31
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th8 02, 2020 lúc 12:31 PM
+-- Phiên bản máy phục vụ: 10.4.13-MariaDB
+-- Phiên bản PHP: 7.4.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,31 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `survey`
+-- Cơ sở dữ liệu: `survey`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `t_account`
+-- Cấu trúc bảng cho bảng `counter`
+--
+
+CREATE TABLE `counter` (
+  `id` int(30) NOT NULL,
+  `cnt` int(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `counter`
+--
+
+INSERT INTO `counter` (`id`, `cnt`) VALUES
+(9999, 13);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `t_account`
 --
 
 CREATE TABLE `t_account` (
@@ -43,7 +61,7 @@ CREATE TABLE `t_account` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `t_account`
+-- Đang đổ dữ liệu cho bảng `t_account`
 --
 
 INSERT INTO `t_account` (`uid`, `fname`, `lname`, `pass`, `tel`, `gender`, `birthdate`, `del_flg`, `create_datetime`, `upadte_datetime`, `upd_count`, `admin_flg`) VALUES
@@ -55,7 +73,7 @@ INSERT INTO `t_account` (`uid`, `fname`, `lname`, `pass`, `tel`, `gender`, `birt
 -- --------------------------------------------------------
 
 --
--- Table structure for table `t_answer`
+-- Cấu trúc bảng cho bảng `t_answer`
 --
 
 CREATE TABLE `t_answer` (
@@ -68,7 +86,7 @@ CREATE TABLE `t_answer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `t_answer`
+-- Đang đổ dữ liệu cho bảng `t_answer`
 --
 
 INSERT INTO `t_answer` (`id`, `id_hdr`, `id_dtl`, `usr_id`, `create_datetime`, `del_flg`) VALUES
@@ -91,7 +109,7 @@ INSERT INTO `t_answer` (`id`, `id_hdr`, `id_dtl`, `usr_id`, `create_datetime`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `t_category`
+-- Cấu trúc bảng cho bảng `t_category`
 --
 
 CREATE TABLE `t_category` (
@@ -104,7 +122,7 @@ CREATE TABLE `t_category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `t_category`
+-- Đang đổ dữ liệu cho bảng `t_category`
 --
 
 INSERT INTO `t_category` (`id`, `content`, `create_datetime`, `update_datetime`, `update_count`, `del_flg`) VALUES
@@ -116,7 +134,7 @@ INSERT INTO `t_category` (`id`, `content`, `create_datetime`, `update_datetime`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `t_surveydtl`
+-- Cấu trúc bảng cho bảng `t_surveydtl`
 --
 
 CREATE TABLE `t_surveydtl` (
@@ -130,11 +148,19 @@ CREATE TABLE `t_surveydtl` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `t_surveydtl`
+-- Đang đổ dữ liệu cho bảng `t_surveydtl`
 --
 
 INSERT INTO `t_surveydtl` (`id`, `id_hdr`, `answer`, `create_datetime`, `update_datetime`, `update_count`, `del_flg`) VALUES
+('205/1596252242589', '415/1596252211710', '1991', '2020-08-01 10:24:18', '2020-08-01 10:24:18', 0, 0),
 ('252/1596187217049', 'HD_005', '333', '2020-07-31 16:20:17', '2020-07-31 16:20:17', 0, 0),
+('274/1596252250429', '415/1596252211710', '1993', '2020-08-01 10:24:18', '2020-08-01 10:24:18', 0, 0),
+('486/1596362497281', '78/1596362488146', 'ai', '2020-08-02 17:01:39', '2020-08-02 17:01:59', 0, 1),
+('628/1596252229822', '415/1596252211710', '1990', '2020-08-01 10:24:18', '2020-08-01 10:24:18', 0, 0),
+('895/1596362578393', '627/1596362573112', 'ai', '2020-08-02 17:02:59', '2020-08-02 17:02:59', 0, 0),
+('93/1596252254765', '415/1596252211710', 'Khác', '2020-08-01 10:24:18', '2020-08-01 10:24:18', 0, 0),
+('954/1596252247093', '415/1596252211710', '1992', '2020-08-01 10:24:18', '2020-08-01 10:24:18', 0, 0),
+('981/1596252218238', '415/1596252211710', '1989', '2020-08-01 10:24:18', '2020-08-01 10:24:18', 0, 0),
 ('DT_001', 'HD_001', 'Do hoàn cảnh gia đình, bố mẹ không có cách giáo dục đúng đắn', '2020-07-21 20:45:29', '2020-07-21 20:45:29', 0, 0),
 ('DT_002', 'HD_001', 'Do thiếu kiến thức chủ quan cho rằng bản thân sẽ không nghiện', '2020-07-21 20:46:05', '2020-07-21 20:46:05', 0, 0),
 ('DT_003', 'HD_001', 'Do bạn bè rủ rê lôi kéo', '2020-07-21 20:46:25', '2020-07-21 20:46:25', 0, 0),
@@ -216,7 +242,7 @@ INSERT INTO `t_surveydtl` (`id`, `id_hdr`, `answer`, `create_datetime`, `update_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `t_surveyhdr`
+-- Cấu trúc bảng cho bảng `t_surveyhdr`
 --
 
 CREATE TABLE `t_surveyhdr` (
@@ -230,10 +256,13 @@ CREATE TABLE `t_surveyhdr` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `t_surveyhdr`
+-- Đang đổ dữ liệu cho bảng `t_surveyhdr`
 --
 
 INSERT INTO `t_surveyhdr` (`id`, `id_category`, `content`, `create_datetime`, `update_datetime`, `update_count`, `del_flg`) VALUES
+('415/1596252211710', 'CT_001', 'bạn sinh năm bao nhiêu', '2020-08-01 10:24:18', '2020-08-01 10:24:18', 0, 0),
+('627/1596362573112', 'CT_001', 'bạn là ai', '2020-08-02 17:02:59', '2020-08-02 17:02:59', 0, 0),
+('78/1596362488146', 'CT_001', 'bạn là ai', '2020-08-02 17:01:39', '2020-08-02 17:01:59', 0, 1),
 ('HD_001', 'CT_001', 'Theo bạn đâu là nguyên nhân dẫn đến sự trẻ hóa trong việc sử dụng chất kích thích', '2020-07-21 20:43:54', '2020-07-21 20:43:54', 0, 0),
 ('HD_002', 'CT_001', 'Ước mơ bạn chưa thực hiện được là gì?', '2020-07-21 20:49:06', '2020-07-21 20:49:06', 0, 0),
 ('HD_003', 'CT_001', 'Bạn nghĩ thế nào về sự thay đổi cửa các hình thức online - trực tuyến vào cuốc sống toàn cầu sau dịch Covid 19 toàn cầu vừa qua ?', '2020-07-21 20:51:36', '2020-07-21 20:51:36', 0, 0),
@@ -252,38 +281,69 @@ INSERT INTO `t_surveyhdr` (`id`, `id_category`, `content`, `create_datetime`, `u
 ('HD_016', 'CT_004', 'Dịch covid -19 đã ảnh hưởng như thế nào đến bạn ?', '2020-07-21 21:17:02', '2020-07-21 21:17:02', 0, 0),
 ('HD_017', 'CT_004', 'Bạn lấy cảm hứng làm giàu từ người nào?', '2020-07-21 21:19:08', '2020-07-21 21:19:08', 0, 0);
 
+-- --------------------------------------------------------
+
 --
--- Indexes for dumped tables
+-- Cấu trúc bảng cho bảng `user_online`
+--
+
+CREATE TABLE `user_online` (
+  `id` varchar(50) NOT NULL,
+  `lastvisit` int(14) NOT NULL,
+  `user` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `user_online`
+--
+
+INSERT INTO `user_online` (`id`, `lastvisit`, `user`) VALUES
+('127.0.0.11596359181', 1596364222, 'admin@gmail.com');
+
+--
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `t_account`
+-- Chỉ mục cho bảng `counter`
+--
+ALTER TABLE `counter`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `t_account`
 --
 ALTER TABLE `t_account`
   ADD PRIMARY KEY (`uid`);
 
 --
--- Indexes for table `t_answer`
+-- Chỉ mục cho bảng `t_answer`
 --
 ALTER TABLE `t_answer`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `t_category`
+-- Chỉ mục cho bảng `t_category`
 --
 ALTER TABLE `t_category`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `t_surveydtl`
+-- Chỉ mục cho bảng `t_surveydtl`
 --
 ALTER TABLE `t_surveydtl`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `t_surveyhdr`
+-- Chỉ mục cho bảng `t_surveyhdr`
 --
 ALTER TABLE `t_surveyhdr`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `user_online`
+--
+ALTER TABLE `user_online`
   ADD PRIMARY KEY (`id`);
 COMMIT;
 
