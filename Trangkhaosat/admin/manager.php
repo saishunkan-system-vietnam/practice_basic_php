@@ -31,6 +31,7 @@ require_once(FILE_CONFIG);
             <ul>
                 <li><a href="" name="tab1"><i class="fa fa-tachometer"></i>Dashboard</a></li>
                 <li><a href="" name="tab2"><i class="fa fa-eyedropper"></i>Survey</a></li>
+                <li><a href="" name="tab3"><i class="fa fa-users" aria-hidden="true"></i>User</a></li>
                 <li><a href="" name="tab_index"><i class="fa fa-home" aria-hidden="true"></i></i>Home</a></li>
             </ul>
         </div>
@@ -40,17 +41,17 @@ require_once(FILE_CONFIG);
                 <div class="containner_statistic_visit">
                     <div class="box total">
                         <i class="fa fa-eye"></i>
-                        <h3 id= "tt_view">0</h3>
+                        <h3 id="tt_view">0</h3>
                         <p class="lead">Page Total Views</p>
                     </div>
                     <div class="box total">
                         <i class="fa fa-users" aria-hidden="true"></i>
-                        <h3 id = "tt_user">0</h3>
+                        <h3 id="tt_user">0</h3>
                         <p class="lead">Total User</p>
                     </div>
                     <div class="box visit">
                         <i class="fa fa-plug" aria-hidden="true"></i>
-                        <h3 id = "tt_onl">0</h3>
+                        <h3 id="tt_onl">0</h3>
                         <p class="lead">Online</p>
                     </div>
                     <div class="box visit">
@@ -60,25 +61,25 @@ require_once(FILE_CONFIG);
                     </div>
                     <div class="box visit">
                         <i class="fa fa-user-secret" aria-hidden="true"></i>
-                        <h3 id = "guest_onl">0</h3>
+                        <h3 id="guest_onl">0</h3>
                         <p class="lead">Guest-Online</p>
                     </div>
                 </div>
                 <div class="containner_statistic_survey">
                     <div class="box survey">
-                    <i class="fa fa-question-circle-o" aria-hidden="true"></i>
-                        <h3 id = "tt_question">0</h3>
+                        <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+                        <h3 id="tt_question">0</h3>
                         <p class="lead">Survey Questions</p>
                     </div>
                     <div class="box survey">
-                    <i class="fa fa-check-circle-o" aria-hidden="true"></i>
-                        <h3 id = "tt_answer">0</h3>
+                        <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                        <h3 id="tt_answer">0</h3>
                         <p class="lead">Perform Survey</p>
                     </div>
                 </div>
 
-                <button class = "btn_fresh" id = "btn_fresh">Refresh</button>
-            
+                <button class="btn_fresh" id="btn_fresh">Refresh</button>
+
             </div>
             <div id="tab2" class="tab">
                 <h2 class="header">Survey</h2>
@@ -119,10 +120,28 @@ require_once(FILE_CONFIG);
                     </div>
                 </div>
             </div>
+            <div id="tab3" class="tab">
+                <h2 class="header">User</h2>
+                <div class="warpper-user">
+                    <div class="list_user">
+                        <div class="find">
+                            <button class="btn_ins" id="btn_ins_user">Thêm mới</button>
+                            <input type="text" id="txt_find_user" class="txt_find">
+                            <button class="btn_find" id="btn_find_user">Tìm kiếm</button>
+                        </div>
+                        <div class="content_us" id="nd_us">
+                        </div>
+
+                        <div class="pg_nd">
+                            <ul class="pagination" id="pg_us">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <script src="<?= FILE_JS_SVMANAGER?>"></script>
-    <script src="<?= '../js/manager.js'?>"></script>
+        <script src="<?= FILE_JS_SVMANAGER?>"></script>
+        <script src="<?= '../js/manager.js'?>"></script>
 </body>
 
 </html>

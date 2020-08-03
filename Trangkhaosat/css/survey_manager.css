@@ -9,6 +9,7 @@
 }
 
 .content_sv_mn,
+.content_us,
 .container_ad_svcu {
     margin-left: 100px;
     width: 80%;
@@ -46,12 +47,14 @@ td {
 
 .btn_edit,
 .btn_edit_asw,
+.btn_edit_user,
 .btn_upd_asw {
     background-color: #fb8c00;
     border-color: #fb8c00;
 }
 
 .btn_del,
+.btn_del_user,
 .btn_del_asw {
     background-color: rgb(255, 82, 82);
     border-color: rgb(255, 82, 82);
@@ -195,6 +198,9 @@ td {
 .col {
     text-align: center;
 }
+.col_user{
+    width: 24%
+}
 
 .crt_dt {
     color: #b48484;
@@ -244,7 +250,8 @@ td {
 .pg_nd {
     margin: 10px;
     text-align: center;
-    width: 100%;
+    width: 80%;
+    margin-left: 100px;
 }
 
 .asw {

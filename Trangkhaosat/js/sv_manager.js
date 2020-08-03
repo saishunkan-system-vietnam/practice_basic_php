@@ -1,34 +1,21 @@
 $(document).ready(function() {
-    var totalPages;
     var lst_asw = [];
     var obj;
     var id_hdr;
-    var stt;
-    var page = 1;
+    var status_sv;
+    var ststus_us;
+    var page_sv = 1;
+    var page_us = 1;
     var category = "0";
-    var fnd_content = "";
+    var fnd_content_sv = "";
+    var fnd_content_us = "";
+    var limit = 12;
 
-    GetData(page);
+    GetDataSv(page_sv);
+    GetDataUser(page_us);
     GetStatistic();
 
-    function GetData(page) {
-        var limit = 12;
-        $.ajax({
-            async: false,
-            type: "post",
-            url: "../lib/vs_manager_ajax.php",
-            data: {
-                curentpage: page,
-                limit: limit,
-                id_catogery: category,
-                fnd_content: fnd_content,
-            },
-            success: function(data) {
-                ShowData(data, page, limit);
-            }
-        });
-    }
-
+    
     function GetStatistic() {
         $.ajax({
             async: false,
@@ -48,12 +35,29 @@ $(document).ready(function() {
         });
     }
 
+    function GetDataSv(page) {
+        $.ajax({
+            async: false,
+            type: "post",
+            url: "../lib/vs_manager_ajax.php",
+            data: {
+                curentpage: page,
+                limit: limit,
+                id_catogery: category,
+                fnd_content: fnd_content_sv,
+            },
+            success: function(data) {
+                ShowData_Sv(data, page, limit);
+            }
+        });
+    }
+
     $("#btn_fresh").click(function(e) {
         e.preventDefault();
         GetStatistic();
     });
 
-    function ShowData(data, page, limit) {
+    function ShowData_Sv(data, page, limit) {
 
         $(".nd-table").remove();
         $("#pg_dtl").remove();
@@ -123,7 +127,7 @@ $(document).ready(function() {
 
         var paginationHtml = "";
 
-        totalPages = parseInt(data.total_page);
+        var totalPages = parseInt(data.total_page);
         curentpage = parseInt(data.current_page);
         if (curentpage == 1 || isNaN(curentpage)) {
             paginationHtml +=
@@ -173,9 +177,10 @@ $(document).ready(function() {
         }
 
         category = $("#category option:selected").val();
-        fnd_content = $("#txtfind").val();
+        fnd_content_sv = $("#txtfind").val();
 
-        GetData(newPage);
+        page_sv = newPage;
+        GetDataSv(newPage);
         return false;
     });
 
@@ -183,19 +188,19 @@ $(document).ready(function() {
         e.preventDefault();
 
         category = $("#category option:selected").val();
-        fnd_content = $("#txtfind").val();
+        fnd_content_sv = $("#txtfind").val();
 
-        page = 1;
-        GetData(page);
+        page_sv = 1;
+        GetDataSv(page_sv);
     });
 
     $("#btn_ins").click(function(e) {
         e.preventDefault();
         $(".list_ad_survey").css("display", "none");
-        stt = "Add";
+        status_sv = "Add";
         let d = new Date();
         id_hdr = Math.floor((Math.random() * 1000) + 1) + "/" + d.getTime();
-        InsertSv("Thêm mới khảo sát", id_hdr);
+        InsertSv();
 
     });
 
@@ -204,7 +209,7 @@ $(document).ready(function() {
         $(".list_ad_survey").css("display", "block");
     });
 
-    function InsertSv(title) {
+    function InsertSv() {
 
         var option;
         $.ajax({
@@ -222,7 +227,6 @@ $(document).ready(function() {
         lst_asw = [];
         var element = '<div class="container_ad_svcu">' +
             '<div class="title">' +
-            // '<h2>' + title + '</h2></div>' +
             '<div class="content_ad_svcu">' +
             '<label for="txt_qs"><b>Câu hỏi:</b></label>' +
             '<input type="text" name="txt_qs" id="' + id_hdr + '" class = "txt_qs">' +
@@ -307,6 +311,7 @@ $(document).ready(function() {
         }
     });
 
+    
     $(document).on("click", ".btn_save", function() {
         cnt = 0;
         for (var i = 0; i < lst_asw.length; i++) {
@@ -328,12 +333,12 @@ $(document).ready(function() {
                     id_hdr: id_hdr,
                     lst: lst_asw,
                     id_ct: $("#category_svcu").val(),
-                    stt: stt,
+                    stt: status_sv,
                 },
                 success: function(result) {
 
 
-                    GetData(page);
+                    GetDataSv(page_sv);
 
                     $(".container_ad_svcu").remove();
                     $(".list_ad_survey").css("display", "block");
@@ -353,7 +358,7 @@ $(document).ready(function() {
                     id_hdr: $(this).attr("name"),
                 },
                 success: function(result) {
-                    GetData(page);
+                    GetDataSv(page_sv);
 
                 }
             });
@@ -363,9 +368,9 @@ $(document).ready(function() {
     $(document).on("click", ".btn_edit", function() {
 
         $(".list_ad_survey").css("display", "none");
-        stt = "Upd";
+        status_sv = "Upd";
         id_hdr = $(this).attr("name");
-        InsertSv("Chỉnh sửa khảo sát");
+        InsertSv();
         $('#category_svcu  option[value="' + $("#" + $(this).attr("name")).attr("name") + '"]').prop("selected", true);
 
         $.ajax({
@@ -386,5 +391,92 @@ $(document).ready(function() {
         });
     });
 
+    function GetDataUser(page)
+    {
+        $.ajax({
+            async: false,
+            type: "post",
+            url: "../lib/user_manager_ajax.php",
+            data: {
+                getdata: "1",
+                curentpage: page,
+                limit: limit,
+                fnd_content: fnd_content_us,
+            },
+            success: function(data) {
+                ShowData_Us(data, page, limit);
+            }
+        });
+    }
 
+    function ShowData_Us(data, page, limit) {
+
+        console.log(data);
+        $(".nd_table_us").remove();
+        $("#pg_dtl_us").remove();
+
+        var element = "";
+        var index_count = (page - 1) * limit + 1 ;
+        var id = "";
+
+        element = '<div class="nd_table_us">' +
+                '<table cellpadding="10px" id="tbl_user"><tr>' +
+                '<th class="ff">STT</th><th class="ff">Email</th><th class="ff">Họ</th>' +
+                '<th class="ff">Tên</th><th class="ff">Giới tính</th><th colspan="2"></th></tr>';
+
+        if (data != "err") {
+            data.data.forEach(function(item) {
+                element += '<tr id = "'+ item.uid +'"><td class="ff col1">'+index_count+'</td>' +
+                '<td class="ff col_user">'+ item.uid+'</td>' + 
+                '<td class="ff col_user">'+item.fname+'</td>' +
+                '<td class="ff col_user">'+item.lname+'</td>' + 
+               ' <td class="ff col4">'+item.gender+'</td>' +
+                '<td class="col4"><button class="btn_edit_user">edit</button></td>' +
+                '<td class="col4"><button class="btn_del_user">delete</button></td></tr>'  
+                index_count++;
+            });
+        }
+        element += '</table></div>';
+
+
+        $("#nd_us").append(element);
+
+        var paginationHtml = "";
+
+        var totalPages = parseInt(data.total_page);
+        curentpage = parseInt(data.current_page);
+        if (curentpage == 1 || isNaN(curentpage)) {
+            paginationHtml +=
+                "<div id = 'pg_dtl_us'><li><a class='disabled' href=''><<</a></li><li><a class='disabled' href=''><</a></li>";
+        } else {
+            paginationHtml +=
+                "<div id = 'pg_dtl_us'><li><a href='''><</a></li>";
+        }
+
+        for (var i = 1; i <= totalPages; i++) {
+            if (i == curentpage) {
+                paginationHtml += "<li><a class='active' href=''>" + i +
+                    "</a></li>";
+            } else {
+                paginationHtml += "<li><a href=''>" + i + "</a></li>";
+            }
+        }
+        if (curentpage == totalPages || isNaN(totalPages)) {
+            paginationHtml +=
+                "<li><a class='disabled' href=''>></a></li><li><a class='disabled' href=''>>></a></li></div>";
+        } else {
+            paginationHtml += "<li><a href=''>></a></li><li><a href=''>>></a></li></div>";
+        }
+
+        $("#pg_us").append(paginationHtml);
+        window.scrollTo(0, 0);
+    }
+    $("#btn_find_user").click(function(e) {
+        e.preventDefault();
+        fnd_content_us = $("#txt_find_user").val();
+
+        page_us = 1;
+        GetDataUser(page_us);
+    });
+    
 });
