@@ -15,6 +15,13 @@ session_start();
     <?php require_once "./config/router.php"; ?>
     <?php require_once FILE_PHP_SESSION_COOKIE ?>
     <link href=<?php echo FILE_CSS_INDEX ?> rel="stylesheet" />
+    <link href=<?php echo FILE_CSS_APPLY ?> rel="stylesheet" />
+    <style>
+        h2:hover {
+            color: blue;
+            font-size: 16px;
+        }
+    </style>
 </head>
 
 <body>
@@ -33,7 +40,7 @@ session_start();
             </div>
             <!-- <div class="left">left</div> -->
             <div class="container" style="min-height : auto;">
-                <div class="recruitment_header" style="display:none" id = "recruitment_header">
+                <div class="recruitment_header" style="display:block" id="recruitment_header">
                     <ul>
                         <?php
                         require_once "./config/config.php";
@@ -66,91 +73,48 @@ session_start();
                         $sqlSelectData = "SELECT * FROM t_recruitment where del_flg = 0 order by deadline DESC LIMIT  0, 12 ";
                         $resultData = $connect->query($sqlSelectData);
                         if ($resultData->num_rows > 0) {
+                            $i = 1;
                             while ($rowData = $resultData->fetch_assoc()) {
                                 echo "<li>";
-                                //  echo '<img src="data:image;base64,' . base64_encode($rowData["logo"]) . '" alt="Image">';
+                                echo "<a id = 'logo" . $i . "' data-id = " . $rowData["id"] . " href='http://minhnn.com/detail.php?job=" . $rowData["id"] . "'>";
+
                                 if (isset($rowData["logo"])) {
                                     echo '<img src="data:image;base64,' . base64_encode($rowData["logo"]) . '" alt="Image">';
                                 } else {
                                     echo '<img src="img/noimage.jpg" alt="Image">';
                                 }
-                                echo "<h2>" . $rowData["position"] . "</h2>";
+
+                                echo "</a>";
+                                echo "<a title='" . $rowData["position"] . "'   href='http://minhnn.com/detail.php?job=" . $rowData["id"] . "' style='text-decoration: none;'>";
+                                echo "<h2 id = 'position" . $rowData["id"] . "' data-pos = '" . $rowData["position"] . "'  style='font-size: 16px' >" . $rowData["position"] . "</h2></a>";
                                 echo "<p>" . $rowData["company"] . "</p>";
                                 echo "<p>" . "Lương: " . $rowData["salary"] . "</p>";
-                                echo "<p>" . $rowData["address"] . "</p>";
+                                echo "<p>" . "Địa điểm: " . $rowData["address"] . "</p>";
                                 echo "<div style = 'text-align: left;padding-left:11px; width:100%'>";
-                                echo "<input type='button' style = 'width:115px' class='btnapply' id='btnapply' name='btnapply' value='Ứng tuyển'></input>";
+                                echo "<input  type='button' data-id = " . $rowData["id"] . " style = 'width:115px' class='btnapply' id='btnapply" . $i . "' name =" . $rowData["id"] . " value='Ứng tuyển'></input>";
                                 echo "</div>";
                                 echo "</li>";
+                                $i++;
                             }
                         }
                         ?>
                     </ul>
                 </div>
 
-                <div style="background-color: white;" class="recruitment_header" id="recruitment_detail">
-                    <!-- <div><img src="img/noimage.jpg" alt="Image"></div> -->
-                    <!-- <div> -->
-                    <!-- <ul> -->
-                    <?php
-                    echo "<div>";
-                    echo "<ul>";
-                    require_once "./config/config.php";
-                    $sqlSelectData = "SELECT * FROM t_recruitment where del_flg = 0 order by deadline limit 1";
-                    $resultData = $connect->query($sqlSelectData);
-                    $detail = null;
-
-                    if ($resultData->num_rows > 0) {
-                        while ($rowData = $resultData->fetch_assoc()) {
-                            $detail = $rowData["detail"];
-                            echo "<div>";
-                            echo "<li style= 'text-align:center;font-size: 15px;border-radius: 5px;margin-bottom: 20px !important;border-bottom:1px solid lightblue'>";
-
-                            if (isset($rowData["logo"])) {
-                                echo '<img style="Height:128px" src="data:image;base64,' . base64_encode($rowData["logo"]) . '" alt="Image">';
-                            } else {
-                                echo '<img src="img/noimage.jpg" alt="Image">';
-                            }
-
-                            echo "<div style= 'font-weight:bold;color:blue'>" . $rowData["position"] . "</div>";
-                            echo "<p>" . $rowData["company"] . "</p>";
-                            echo "<p>" . "Lương: " . $rowData["salary"] . "</p>";
-                            echo "<p style='padding-left: 113px;'>" . "Địa điểm: " . $rowData["address"] . "</p>";
-                            echo "<div style = 'text-align: left;padding-left:11px; width:100%'>";
-                            echo "<input type='button' id =" . $rowData["id"] . " style = 'width:20%;margin-left: 31.5%;border: 1px solid green; background:white;padding:3px' class='btnapply_dtl' id='btnapply_dtl' name='btnapply_dtl' value='Ứng tuyển'></input>";
-                            echo "</div></li></div></ul></div>";
-                            // echo "</li>";
-                            // echo "</div>";
-                        }
-                    }
-
-                    // echo "</ul>";
-                    // echo "</div>";
-                    // echo "</ul></div>";
-                    echo "<div style='margin-bottom: 24px;padding:10px 10px;clear:both;padding-top:10px;background-color: #dfe9ec;border-radius:5px;box-shadow   : 0 4px 9px 0 #ccc !important;'>";
-                    echo "<label id = 'detail'>";
-                    echo $detail;
-                    echo "<br></label>";
-                    echo "</div>";
-
-                    echo "<div style='padding-bottom: 0;text-align:center;margin-bottom:10px'>";
-                    echo "<input style='width:88px' type='button' class='btnback' id='btnback' name='btnback' value='&#8678;   Back'></input>";
-                    echo "</div>";
-                    echo "</div>";
-
-                    $url = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-                    if (strpos($url, 'index.php') == true) {
-                        echo 'Car exists.' . $url;
-                    } else {
-                        echo 'No cars.';
-                    }
-                    ?>
-                    <!-- </div> -->
-                    <!-- <div class="right">right</div> -->
-                </div>
+                <!-- <div style="background-color: white;" class="recruitment_header" id="recruitment_detail">
+                </div> -->
             </div>
-            <?php include FILE_PHP_FOOTER ?>
-            <script src="./js/index.js"></script>
+        </div>
+    </div>
+
+    <div id="apply_form" name="apply_form">
+    </div>
+    
+    <?php include FILE_PHP_FOOTER ?>
+    <script src="<?= FILE_JS_INDEX ?>"></script>
 </body>
+<style>
+
+</style>
 
 </html>

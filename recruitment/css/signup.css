@@ -59,7 +59,8 @@
 
 .signup_page input[type=text],
 input[type=password],
-input[type=date] {
+input[type=date],
+input[type=number] {
     border      : 1px solid #ddd;
     margin-top  : 10px;
     width       : 100%;

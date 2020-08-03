@@ -66,10 +66,9 @@ $(document).ready(function () {
                         $("#error_message").text("Đổi mật khẩu thành công.");
                         $("#error_message").css("color", "blue");
 
-                        if (window.confirm("Đổi mật khẩu thành công.Bạn có muốn chuyển đến trang login không ?"))
-                        {
+                        if (window.confirm("Đổi mật khẩu thành công.Bạn có muốn chuyển đến trang login không ?")) {
                             window.location = 'login.php';
-                        }                        
+                        }
                     }
                     else {
                         $("#error_message").text("Đã xảy ra lỗi. Không thể đổi mật khẩu!");
@@ -126,17 +125,18 @@ $(document).ready(function () {
                 result = false;
             }
 
-            if (password.length < 5) {
+            if (password != "" && password.length < 5) {
                 $("#password").css("borderColor", "red");
                 $("#error_password").text("Password không được ít hơn 5 kí tự!").css("color", "red");
                 result = false;
             }
 
-            if (confirm_password.length < 5) {
+            if (confirm_password != "" && confirm_password.length < 5) {
                 $("#confirm_password").css("borderColor", "red");
                 $("#error_confirm_password").text("Password không khớp. Vui lòng kiểm tra lại!").css("color", "red");
                 result = false;
             }
+
             return result;
         }
     }

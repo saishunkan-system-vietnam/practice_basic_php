@@ -19,7 +19,8 @@ function ClearError(id) {
                         birthdate: $.trim($("#birthdate").val()),
                         gender: $('input[name=gender]:checked').val(),
                         address: $.trim($("#address").val()),
-                        confirm: $.trim($("#confirm").is(':checked')),
+                        // confirm: $.trim($("#confirm").is(':checked')),
+                        tel: $.trim($("#tel").val()),
                     },
                     success: function(response) {
                         if (response == 1) {
@@ -47,6 +48,7 @@ function ClearError(id) {
             var gender = $('input[name=gender]:checked').val();
             var address = $.trim($("#address").val());
             var confirm = $.trim($("#confirm").is(':checked'));
+            var tel = $.trim($("#tel").val());
             var is_valid = true;
 
             if (username == "") {
@@ -67,8 +69,8 @@ function ClearError(id) {
                 is_valid = false;
             }
 
-            var pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-            if (!(pattern.test(email)) && email != "") {
+            var pattern_email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (!(pattern_email.test(email)) && email != "") {
                 $("#error_email").text("Định dạng Email không hợp lệ!");
                 $("#email").css("borderColor", "red");
                 is_valid = false;
@@ -86,15 +88,46 @@ function ClearError(id) {
                 is_valid = false;
             }
 
-            if (password != confirm_password && confirm_password != "") {
-                $("#error_confirm_password").text("Mật khẩu không khớp!");
+            // if (password != confirm_password && confirm_password != "") {
+            //     $("#error_confirm_password").text("Mật khẩu không khớp!");
+            //     $("#confirm_password").css("borderColor", "red");
+            //     is_valid = false;
+            // }
+
+            if (password != "" && confirm_password != "" && confirm_password != password) {
                 $("#confirm_password").css("borderColor", "red");
+                $("#error_confirm_password").text("Password không khớp. Vui lòng kiểm tra lại!").css("color", "red");
+                is_valid = false;
+            }
+
+            if (password != "" && password.length < 5) {
+                $("#password").css("borderColor", "red");
+                $("#error_password").text("Password không được ít hơn 5 kí tự!").css("color", "red");
+                is_valid = false;
+            }
+
+            if (confirm_password!="" && confirm_password.length < 5) {
+                $("#confirm_password").css("borderColor", "red");
+                $("#error_confirm_password").text("Password không khớp. Vui lòng kiểm tra lại!").css("color", "red");
                 is_valid = false;
             }
 
             if (!isDate(birthdate)) {
                 $("#error_birthdate").text("Định dạng ngày không hợp lệ!");
                 $("#birthdate").css("borderColor", "red");
+                is_valid = false;
+            }
+
+            if (tel == "") {
+                $("#error_tel").text("Vui lòng nhập số điện thoại!");
+                $("#tel").css("borderColor", "red");
+                is_valid = false;
+            }
+
+            var pattern_tel = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+            if (!(pattern_tel.test(tel)) && tel != "") {
+                $("#error_tel").text("Định dạng của số điện thoại không hợp lệ!");
+                $("#tel").css("borderColor", "red");
                 is_valid = false;
             }
 

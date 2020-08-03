@@ -10,7 +10,7 @@ if (isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["passwor
     $birthdate = $_POST["birthdate"];
     $gender = $_POST["gender"];
     $address = $_POST["address"];
-    // $confirm = $_POST["confirm"]; 
+    $tel = $_POST["tel"]; 
 
     $sqlSelectUser = "SELECT * FROM t_account where id='$email'";
 
@@ -20,8 +20,8 @@ if (isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["passwor
         return;
     }
 
-    $sqlInsert = "INSERT INTO t_account (id, username, password, birthdate, gender, address) 
-    VALUES ('$email', '$username', '$password', '$birthdate', '$gender','$address')";
+    $sqlInsert = "INSERT INTO t_account (id, username, password, birthdate, gender, address, tel) 
+    VALUES ('$email', '$username', '$password', '$birthdate', '$gender','$address', '$tel')";
 
     if ($connect->query($sqlInsert) === true) {
         echo 1;

@@ -78,6 +78,13 @@ session_start();
                     </div>
 
                 </div>
+                <div class="label">
+                    Số điện thoại:
+                </div>
+                <div>
+                    <input type="number" placeholder="Nhập số điện thoại" id="tel" name="tel" style="text-align:left;width:169px;" onkeypress="ClearError(id)" onchange="ClearError(id)">
+                    <div class="error_message"><label style="color:red" id="error_tel"></label></div>
+                </div>
                 <div class="label" style="clear: both; padding-top: 12px;">
                     Địa chỉ:
                 </div>
@@ -103,4 +110,5 @@ session_start();
     <?php include FILE_PHP_FOOTER ?>
     <script src="<?= FILE_JS_SIGNUP ?>"></script>
 </body>
+
 </html>

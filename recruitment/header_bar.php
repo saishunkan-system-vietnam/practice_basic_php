@@ -8,7 +8,7 @@
                     <img src="img/logo10.png" style="width: 80px;Height:40px;"></a>
             </li>
             <li class="item-home">
-                <a href="<?= FILE_PHP_INDEX ?>" class="active">Trang chủ</a>
+                <a href="<?= SITE_URL ?>" class="active">Trang chủ</a>
             </li>
             <li class="item-jobs">
                 <a href="<?= FILE_PHP_RECRUITMENT ?>">Tuyển dụng</a>
@@ -27,7 +27,7 @@
                         <a href=' . FILE_PHP_LOGOUT . '>Đăng xuất</a>
                         </li>
                         <li style="float:right;" id="user">
-                        <a id=user_name>' . $user_email . '</a>
+                        <a id="user_email">' . $user_email . '</a>
                         </li>
                     ');
             }

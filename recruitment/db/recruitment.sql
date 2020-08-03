@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 31, 2020 at 12:31 PM
+-- Generation Time: Aug 03, 2020 at 12:55 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.2.31
 
@@ -33,9 +33,9 @@ CREATE TABLE `t_account` (
   `password` varchar(8) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Mật khẩu',
   `birthdate` varchar(10) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Ngày sinh',
   `gender` varchar(15) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Giới tính',
+  `tel` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Số điện thoại',
   `address` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Địa chỉ',
-  `confirm` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'xác nhận thông tin đăng ký tài khoản',
-  `admin_flag` tinyint(1) DEFAULT 0 COMMENT 'Cờ quản trị',
+  `admin_flg` tinyint(1) DEFAULT 0 COMMENT 'Cờ quản trị',
   `token` longtext COLLATE utf8_unicode_ci NOT NULL COMMENT 'Mã token xác nhận khi quên mật khẩu',
   `token_expire` datetime DEFAULT NULL COMMENT 'Thời hạn tồn tại của mã token',
   `create_datetime` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'Thời gian tạo',
@@ -47,19 +47,22 @@ CREATE TABLE `t_account` (
 -- Dumping data for table `t_account`
 --
 
-INSERT INTO `t_account` (`id`, `username`, `password`, `birthdate`, `gender`, `address`, `confirm`, `admin_flag`, `token`, `token_expire`, `create_datetime`, `update_datetime`, `del_flg`) VALUES
-('minh@gmail.com', 'minhnn', '1', '', '', '', 1, 0, 'kv8h1zc047', '2020-07-30 07:56:01', '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0),
-('minh123@gmail.com', 'minh nguyen', '1', '2020-07-28', 'Female', 'aaddvdfbfdaaaaaaaa', 1, 0, '', NULL, '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0),
-('minhmatloi@gmail.com', 'minhminh', '88888', '2020-07-28', 'Male', 'bbbb', 1, 0, 'kup7r5mivc', '2020-07-30 08:06:41', '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0),
-('minhminh@gmail.com', 'minhminh', '1', '2020-07-25', 'Male', 'abc\nabcsssss', 1, 0, '', NULL, '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0),
-('minhnn@gmail.com', 'Nguyen Minh', '123', '123', 'Male', 'Hue city', 1, 0, 'jfv14n8ubl', '2020-07-29 10:57:50', '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0),
-('nam@gmail.com', 'nam nam', '1', '1998-03-03', 'Other', 'abc\nabc', 1, 0, '', NULL, '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0),
-('nam1@gmail.com', 'nam nam', '11111', '2020-07-30', 'Other', 'abc\nabc', 1, 0, '', NULL, '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0),
-('nam12@gmail.com', 'nam nam', '1', '2020-07-31', 'Male', 'abc\nabc', 1, 0, '', NULL, '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0),
-('nguyenminh15cdt1@gmail.com', 'nguyenminh1', 'zzzzz', '2020-07-29', 'Male', 'aaaaaa', 1, 0, 'ywv26pf1bu_expired', '2020-07-30 17:26:02', '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0),
-('nhan@gmail.com', 'nhan nahn', '1', '2020-07-28', 'Male', 'abc\nabc', 1, 0, 'ipo4zxfjgb', '2020-07-28 21:35:51', '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0),
-('nhavp@gmail.com', 'nhan vp', '1', '2020-07-07', 'Male', 'Hue', 1, 0, '', NULL, '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0),
-('sinhnt@gmail.com', 'sinhnt', '1', '2020-07-30', 'Male', 'ccc    dcwđsccc', 1, 0, '', NULL, '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0);
+INSERT INTO `t_account` (`id`, `username`, `password`, `birthdate`, `gender`, `tel`, `address`, `admin_flg`, `token`, `token_expire`, `create_datetime`, `update_datetime`, `del_flg`) VALUES
+('a@gmail.com', 'Nguyễn văn ', '11111', '2020-07-29', 'Female', '1114367891', 'Huế', 0, '', NULL, '2020-08-02 10:22:21', '2020-08-02 10:22:21', 0),
+('ab@gmail.com', 'aaaaaaaa', '11111', '2020-08-02', 'Male', '1234567891', 'abc\nabc', 0, '', NULL, '2020-08-02 10:25:15', '2020-08-02 10:25:15', 0),
+('e@gmail.com', 'eeeeeeeeeee', '11111', '2020-08-02', 'Male', '1234567892', 'abc\nabc', 0, '', NULL, '2020-08-02 10:26:01', '2020-08-02 10:26:01', 0),
+('minh@gmail.com', 'minhnn', '1', '', '', '1237654567', '', 0, 'kv8h1zc047', '2020-07-30 07:56:01', '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0),
+('minh123@gmail.com', 'minh nguyen', '1', '2020-07-28', 'Female', '', 'aaddvdfbfdaaaaaaaa', 0, '', NULL, '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0),
+('minhmatloi@gmail.com', 'minhminh', '88888', '2020-07-28', 'Male', '0123456789', 'bbbb', 0, 'kup7r5mivc', '2020-07-30 08:06:41', '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0),
+('minhminh@gmail.com', 'minhminh', '1', '2020-07-25', 'Male', '', 'abc\nabcsssss', 0, '', NULL, '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0),
+('minhnn@gmail.com', 'Nguyen Minh', '123', '123', 'Male', '1234567891', 'Hue city', 0, 'jfv14n8ubl', '2020-07-29 10:57:50', '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0),
+('nam@gmail.com', 'nam nam', '1', '1998-03-03', 'Other', '', 'abc\nabc', 0, '', NULL, '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0),
+('nam1@gmail.com', 'nam nam', '11111', '2020-07-30', 'Other', '', 'abc\nabc', 0, '', NULL, '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0),
+('nam12@gmail.com', 'nam nam', '1', '2020-07-31', 'Male', '', 'abc\nabc', 0, '', NULL, '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0),
+('nguyenminh15cdt1@gmail.com', 'nguyenminh1', 'zzzzz', '2020-07-29', 'Male', '', 'aaaaaa', 0, 'ywv26pf1bu_expired', '2020-07-30 17:26:02', '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0),
+('nhan@gmail.com', 'nhan nahn', '1', '2020-07-28', 'Male', '', 'abc\nabc', 0, 'ipo4zxfjgb', '2020-07-28 21:35:51', '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0),
+('nhavp@gmail.com', 'nhan vp', '1', '2020-07-07', 'Male', '', 'Hue', 0, '', NULL, '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0),
+('sinhnt@gmail.com', 'sinhnt', '1', '2020-07-30', 'Male', '', 'ccc    dcwđsccc', 0, '', NULL, '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0);
 
 -- --------------------------------------------------------
 
