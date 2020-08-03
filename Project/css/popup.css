@@ -1,6 +1,6 @@
 /* Set a style for all buttons */
 
-button {
+.btnmuon {
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
@@ -11,7 +11,7 @@ button {
     font-size: 20px;
 }
 
-button:hover {
+.btnmuon:hover {
     opacity: 0.8;
 }
 

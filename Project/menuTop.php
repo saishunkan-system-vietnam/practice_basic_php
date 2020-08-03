@@ -1,6 +1,6 @@
 <?php
 session_start();
-require(SITE_CONFIG); 
+require(SITE_CONFIG);
 ?>
 
 <script src="./js/ckeditor/ckeditor.js"></script>
@@ -26,7 +26,7 @@ require(SITE_CONFIG);
         unset($_SESSION['txtId']);
         // Xóa cookie
         setcookie(COOKIE_LOGIN, '', time() - $cookie_time);
-        header("location:".SITE_INDEX."");
+        header("location:" . SITE_INDEX . "");
         echo "<div style='float: right;'>";
         echo "<a href='" . SITE_DANGNHAP . "'>Đăng Nhập</a>";
         echo "</div>";
@@ -44,24 +44,35 @@ require(SITE_CONFIG);
         $dataSaveUser = json_decode($_COOKIE[COOKIE_LOGIN], true);
         $_SESSION['txtUsername'] =  $dataSaveUser['usr'];
         echo "<div>";
-        echo "<a href='./".SITE_QLTHIETBIMUON."'>Thiết bị đang mượn</a>";
+        echo "<a href='./" . SITE_QLTHIETBIMUON . "'>Thiết bị đang mượn</a>";
         echo "</div>";
+        if (isset($_SESSION['admin_flg'])) {
+            echo "<div class='admin_flg'>";
+            echo "<button id='admin_flg' onclick="."location.href='./" . SITE_DANHSACHQANLYTHIETBI . "' value='ADMIN'>ADMIN</button>";
+            echo "</div>";
+        }
         echo "<div style='float: right;'>";
-        echo "<a href='./".SITE_INDEX."?type=logout'>Đăng Xuất</a>";
+        echo "<a href='./" . SITE_INDEX . "?type=logout'>Đăng Xuất</a>";
         echo "</div>";
         echo "<div style='float: right;'>";
         echo "<a href=''>$_SESSION[txtUsername]</a>";
         echo "</div>";
     } else {
         echo "<div>";
-        echo "<a href='./".SITE_QLTHIETBIMUON."'>Thiết bị đang mượn</a>";
+        echo "<a href='./" . SITE_QLTHIETBIMUON . "'>Thiết bị đang mượn</a>";
         echo "</div>";
+        if (isset($_SESSION['admin_flg'])) {
+            echo "<div class='admin_flg'>";
+            echo "<button id='admin_flg' onclick="."location.href='./" .SITE_DANHSACHQANLYTHIETBI. "' value='ADMIN'>ADMIN</button>";
+            echo "</div>";
+        }
         echo "<div style='float: right;'>";
-        echo "<a href='./".SITE_INDEX."?type=logout'>Đăng Xuất</a>";
+        echo "<a href='./" . SITE_INDEX . "?type=logout'>Đăng Xuất</a>";
         echo "</div>";
         echo "<div style='float: right;'>";
         echo "<a href=''>$_SESSION[txtUsername]</a>";
         echo "</div>";
+        
     }
     ?>
 </div>

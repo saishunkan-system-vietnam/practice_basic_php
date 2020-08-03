@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 31, 2020 at 12:42 PM
+-- Generation Time: Aug 03, 2020 at 12:29 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -46,8 +46,8 @@ CREATE TABLE `t_account` (
 --
 
 INSERT INTO `t_account` (`id`, `user_name`, `password`, `email`, `address`, `avatar`, `del_flg`, `admin_flg`, `token`, `create_datetime`, `update_datetime`) VALUES
-(1, 'NhanVP', 'admin123@', 'shadowin1811@gmail.com', 'Phú thượng', NULL, b'0', b'1', '', '2020-07-22 10:55:14', NULL),
-(2, 'NhanVIP', 'Nhan1475#', 'phungnhan0935488044@gmail.com', NULL, NULL, b'0', b'0', '24cceab7ffc1118f', '2020-07-22 10:55:21', '2020-07-30 13:50:43'),
+(1, 'NhanVP', '1', 'shadowin1811@gmail.com', 'Phú thượng', NULL, b'0', b'1', '', '2020-07-22 10:55:14', NULL),
+(2, 'NhanVIP', '2', 'phungnhan0935488044@gmail.com', NULL, NULL, b'0', b'0', '24cceab7ffc1118f', '2020-07-22 10:55:21', '2020-07-30 13:50:43'),
 (3, 'phungNhanV', 'Nhan7895#', 'vophungnhan95@gmail.com', NULL, NULL, b'0', b'0', NULL, '2020-07-30 13:59:26', NULL),
 (4, 'NhanVPP', 'Nhan1478@', 'shadowin18111@gmail.com', NULL, NULL, b'0', b'0', NULL, '2020-07-30 14:00:25', NULL),
 (5, 'NhanVP1', 'Nhan12369@', 'shadowin18211@gmail.com', NULL, NULL, b'0', b'0', NULL, '2020-07-30 14:06:49', NULL);
@@ -97,25 +97,29 @@ CREATE TABLE `t_device` (
 --
 
 INSERT INTO `t_device` (`id`, `device_name`, `id_category`, `id_supplier`, `del_flg`, `img`, `create_datetime`, `update_datetime`) VALUES
-(1, 'Máy Tính Desknote Dell OptiPlex 9010', 1, 4, b'0', NULL, '2020-07-29 10:53:12', '2020-07-29 10:53:21'),
-(2, 'Balo Leo núi', 3, 2, b'0', NULL, '2020-07-29 10:53:53', '2020-07-29 10:53:53'),
-(3, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL, '2020-07-29 10:54:12', '2020-07-29 10:54:42'),
+(1, 'Máy Tính Desknote Dell OptiPlex 9010', 1, 4, b'1', NULL, '2020-07-29 10:53:12', '2020-08-03 16:52:00'),
+(2, 'Balo Leo núi', 3, 2, b'1', NULL, '2020-07-29 10:53:53', '2020-08-03 16:51:19'),
+(3, 'Bộ đồ bảo hộ lao động', 2, 3, b'1', NULL, '2020-07-29 10:54:12', '2020-08-03 16:50:09'),
 (4, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL, '2020-07-29 10:54:15', '2020-07-29 10:54:45'),
 (5, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL, '2020-07-29 10:54:18', '2020-07-29 10:54:47'),
-(6, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL, '2020-07-29 10:54:20', '2020-07-29 10:54:50'),
+(6, 'Bộ đồ bảo hộ lao động', 2, 3, b'1', NULL, '2020-07-29 10:54:20', '2020-08-03 16:50:20'),
 (7, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL, '2020-07-29 10:54:22', '2020-07-29 10:54:52'),
 (8, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL, '2020-07-29 10:54:25', '2020-07-29 10:54:53'),
-(9, 'Máy Tính Desknote Dell OptiPlex 9010', 1, 4, b'0', NULL, '2020-07-29 10:54:27', '2020-07-29 10:54:55'),
-(10, 'Máy Tính Desknote Dell OptiPlex 9010', 1, 4, b'0', NULL, '2020-07-29 10:54:29', '2020-07-29 10:54:57'),
+(9, 'Máy Tính Desknote Dell OptiPlex 9010', 1, 4, b'1', NULL, '2020-07-29 10:54:27', '2020-08-03 16:46:45'),
+(10, 'Máy Tính Desknote Dell OptiPlex 9010', 1, 4, b'1', NULL, '2020-07-29 10:54:29', '2020-08-03 16:47:24'),
 (11, 'Balo Leo núi', 3, 2, b'0', NULL, '2020-07-29 10:54:31', '2020-07-29 10:54:58'),
 (12, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL, '2020-07-29 10:54:34', '2020-07-29 10:55:01'),
 (13, 'Máy Tính Desknote DELL OptiPlex 9010', 1, 4, b'0', NULL, '2020-07-29 10:54:36', '2020-07-29 10:55:04'),
 (14, 'Máy tính để bàn Dell Vostro 3470 Core i5', 1, 4, b'0', NULL, '2020-07-30 10:52:41', '2020-07-30 10:52:41'),
-(15, 'Laptop DELL E5450', 1, 1, b'0', '', '2020-07-31 15:03:15', NULL),
-(16, 'Laptop DELL E5450', 1, 1, b'0', '', '2020-07-31 15:03:53', NULL),
-(17, 'Laptop DELL E5450', 1, 1, b'0', '', '2020-07-31 15:14:13', NULL),
-(18, 'Laptop DELL E5450', 1, 1, b'0', '', '2020-07-31 15:29:46', NULL),
-(19, 'Laptop DELL E5450', 2, 1, b'0', '', '2020-07-31 15:29:56', NULL);
+(15, 'Laptop DELL E5450', 1, 1, b'1', '', '2020-07-31 15:03:15', '2020-08-03 16:50:35'),
+(16, 'Laptop DELL E5450', 1, 1, b'1', '', '2020-07-31 15:03:53', '2020-08-03 16:43:31'),
+(17, 'Laptop DELL E5450', 1, 1, b'1', '', '2020-07-31 15:14:13', '2020-08-03 16:50:30'),
+(18, 'Laptop DELL E5450', 1, 1, b'1', '', '2020-07-31 15:29:46', '2020-08-03 16:51:12'),
+(19, 'Laptop DELL E5450', 2, 1, b'0', '', '2020-07-31 15:29:56', NULL),
+(20, '	 Laptop DELL E5450', 2, 3, b'1', '', '2020-08-03 15:38:37', '2020-08-03 16:39:38'),
+(21, '	 Laptop DELL E5450', 3, 4, b'1', '', '2020-08-03 15:55:47', '2020-08-03 16:40:23'),
+(22, 'Bộ đồ bảo hộ lao động VIP', 1, 1, b'1', '', '2020-08-03 15:56:07', '2020-08-03 16:41:50'),
+(23, 'Bộ đồ bảo hộ lao động VIP', 2, 2, b'0', '', '2020-08-03 15:58:01', NULL);
 
 -- --------------------------------------------------------
 
@@ -283,7 +287,7 @@ ALTER TABLE `t_category`
 -- AUTO_INCREMENT for table `t_device`
 --
 ALTER TABLE `t_device`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id', AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id', AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `t_loan`

@@ -15,7 +15,7 @@ include(SITE_POPUPADMIN);
 
 <body>
     <?php
-    $result = mysqli_query($connect, 'SELECT count(*) as total FROM t_device');
+    $result = mysqli_query($connect, 'SELECT count(*) as total FROM t_device WHERE del_flg = 0');
     $row = mysqli_fetch_assoc($result);
     $total_records = $row['total'];
 
@@ -32,50 +32,46 @@ include(SITE_POPUPADMIN);
 
     $start = ($current_page - 1) * $limit;
 
-    $result = mysqli_query($connect, "SELECT td.id, td.device_name, tc.category_name, ts.supplier_name, td.img FROM t_category tc INNER JOIN t_device td ON tc.id = td.id_category INNER JOIN t_supplier ts on ts.id = td.id_supplier ORDER BY td.create_datetime DESC LIMIT $start, $limit  ");
+    $result = mysqli_query($connect, "SELECT td.id, td.device_name, tc.category_name, ts.supplier_name, td.img FROM t_category tc INNER JOIN t_device td ON tc.id = td.id_category INNER JOIN t_supplier ts on ts.id = td.id_supplier WHERE td.del_flg = 0 ORDER BY td.create_datetime DESC LIMIT $start, $limit  ");
     mysqli_close($connect);
     ?>
 
     <div class="div_tbl">
-        <table border="0">
+        <div class="find">
+        <button class= "btnAdd btn fl" name="btnAdd"><i class="fa fa-plus-circle"></i> ADD</button>
+        <button class= "btnAdd  btn fr" name="btnAdd"><i class="fa fa-search"></i> SEARCH</button>
+        <input type="text" name="" id="" class="txt_find fr" style="width: 50%;">
+        </div>
+
+        <table class="tbl_second" align="center">
             <tr>
-                <td>
-                    <button id="btnAdd" onclick="Openform('btnAdd')"><i class="fa fa-plus-circle"></i> ADD</button></td>
-                <td>
-                </td>
-            </tr>
-        </table>
-        <table id="tbl_second" align="center">
-            <tr>
-                <th id='th_devicename' class="th_second">Tên Thiết bị</th>
-                <th id='th_category' class="th_second">Thể loại</th>
-                <th id='th_supplier' class="th_second">Nhà cung cấp</th>
-                <th id='th_img' class="th_second">Hình ảnh</th>
-                <th id='th_func' class="th_second">Tác vụ</th>
+                <th class="th_second th_devicename">Tên Thiết bị</th>
+                <th class="th_second th_category">Thể loại</th>
+                <th class="th_second th_supplier">Nhà cung cấp</th>
+                <th class="th_second th_img">Hình ảnh</th>
+                <th class="th_second th_func">Tác vụ</th>
             </tr>
             <?php while ($row = mysqli_fetch_assoc($result)) : ?>
                 <tr>
-                    <td hidden>
-                        <?php echo $row['id']; ?>
-                    </td>
-                    <td class="td_second">
+                    <td class="td_second td_devicename">
                         <?php echo $row['device_name']; ?>
                     </td>
-                    <td class="td_second">
+                    <td class="td_second td_category">
                         <?php echo $row['category_name']; ?>
                     </td>
-                    <td class="td_second">
+                    <td class="td_second td_supplier">
                         <?php echo $row['supplier_name']; ?>
                     </td>
-                    <td class="td_second" align="center">
+                    <td class="td_second td_img" align="center">
                         <?php !empty($row['img']) ? $row['img'] : $row['img'] = "img_null.jpg";
                         echo "<img style='width: 150px; height: 130px;' src='../img/" . $row['img'] . "'>" ?>
                     </td>
                     <td class="td_btn">
-                        <button id="btnEdit" value="EDIT">
+                        <button class= "btnEdit btn" name="btnEdit" id="btnEdit<?= $row['id']; ?>" data-id ="<?= $row['id']; ?>" value="EDIT">
                             EDIT
                         </button>
-                        <button id="btnDel" value="DELETE">
+                       
+                        <button class= "btnDel btn" name="btnDel" id="btnDel<?= $row['id']; ?>" data-id ="<?= $row['id']; ?>" value="DELETE">
                             DELETE
                         </button>
                     </td>

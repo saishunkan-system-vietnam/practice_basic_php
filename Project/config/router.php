@@ -16,7 +16,7 @@ define('SITE_SENDMAIL','sendMail.php');
 define('SITE_POPUPADMIN','./popupadmin.php');
 
 // ADMIN
-define('SITE_DANHSACHQANLYTHIETBI','qlthietbi.php');
+define('SITE_DANHSACHQANLYTHIETBI','../admin/qlthietbi.php');
 
 // LINK JQUERY
 define('LINK_JQUERY','https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js');

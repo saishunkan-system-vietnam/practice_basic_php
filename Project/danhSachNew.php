@@ -8,7 +8,8 @@
 
 <body>
     <?php
-    $result = mysqli_query($connect, 'SELECT count(*) as total FROM t_device');
+    $sql = 'SELECT count(*) as total FROM t_device WHERE del_flg = 0';
+    $result = mysqli_query($connect, $sql);
     $row = mysqli_fetch_assoc($result) or die("Lỗi truy vấn");;
     $total_records = $row['total'];
 

@@ -6,7 +6,7 @@ p{
     font-weight: bold;
 }
 
-input[type=text]{
+.inpdevice{
     width: 90%;
     padding: 8px 20px;
     margin: 8px 26px;

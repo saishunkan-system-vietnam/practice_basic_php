@@ -42,7 +42,7 @@ $result = mysqli_query($connect, $query);
                     CKEDITOR.replace('inpReason');
                 </script>
             </div>
-            <button>Mượn thiết bị</button>
+            <button class="btnmuon">Mượn thiết bị</button>
         </div>
     </form>
 </div>
