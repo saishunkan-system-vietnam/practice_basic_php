@@ -1,40 +1,46 @@
 <?php
+    define('BASE_PATH',dirname(__FILE__,2));
+
+    // URL SITE
+    define('SITE_URL','http://sinh.com');
+
     // SITE
-    define('SITE_URL','index.php');
-    define('SITE_LOGOUT','login_logout.php?type=logout');
-    define('SITE_PRODUCT','product.php');
-    define('SITE_FORGOTPASS','forgotpass.php');
+    define('SITE_LOGOUT',SITE_URL.'/login_logout.php?type=logout');
+    define('SITE_PRODUCT',SITE_URL.'/product.php');
+    define('SITE_FORGOTPASS',SITE_URL.'/forgotpass.php');
     
     // PHP
-    define('FILE_PHP_CONNECT','./config/connect.php');
-    define('FILE_PHP_CONFIG','./config/config.php');
+    define('FILE_PHP_CONFIG',BASE_PATH.'/config/config.php');
     define('FILE_PHP_REGISTER','./register.php');
     define('FILE_PHP_MENUTOP','./menuTop.php');
     define('FILE_PHP_FOOTER','./footer.php');
     define('FILE_PHP_CART','./cart.php');
     define('FILE_PHP_ADDTOCART','./addToCart.php');
     define('FILE_PHP_REGISTER_SUBMIT','regitster_submit.php');
+    define('FILE_PHP_PAGINATION',BASE_PATH.'/pagination.php');
+    // ADMIN
+    define('FILE_PHP_HEADERAD',BASE_PATH.'/admin/ad_header.php');
 
 
     // CSS
-    define('FILE_CSS_STYLE_HEADER','./css/style_header.css');
-    define('FILE_CSS_STYLE_LOGIN','./CSS/style_login.css');
-    define('FILE_CSS_STYLE','./CSS/style.css');
-    define('FILE_CSS_STYLE_CART','./CSS/style_cart.css');
-    define('FILE_CSS_STYLE_FOOTER','./CSS/style_footer.css');
-    define('FILE_CSS_STYLE_REGISTER','./CSS/style_register.css');
-    define('FILE_CSS_STYLE_PRODUCTDETAIL','./CSS/style_productDetail.css');
-    define('FILE_CSS_STYLE_CHANGEPASS','./CSS/style_changePass.css');
+    define('FILE_CSS_STYLE_HEADER',SITE_URL.'/css/style_header.css');
+    define('FILE_CSS_STYLE_LOGIN',SITE_URL.'/CSS/style_login.css');
+    define('FILE_CSS_STYLE',SITE_URL.'/CSS/style.css');
+    define('FILE_CSS_STYLE_CART',SITE_URL.'/CSS/style_cart.css');
+    define('FILE_CSS_STYLE_FOOTER',SITE_URL.'/CSS/style_footer.css');
+    define('FILE_CSS_STYLE_REGISTER',SITE_URL.'/CSS/style_register.css');
+    define('FILE_CSS_STYLE_PRODUCTDETAIL',SITE_URL.'/CSS/style_productDetail.css');
+    define('FILE_CSS_STYLE_CHANGEPASS',SITE_URL.'/CSS/style_changePass.css');
 
     // JS
-    define('FILE_JS_LOGIN','./JS/login.js');
-    define('FILE_JS_REGISTER','./JS/register.js');
-    define('FILE_JS_COMMON','./JS/common.js');
-    define('FILE_JS_FORGOTPASS','./JS/forgotpass.js');
-    define('FILE_JS_VALIDATE','./JS/validate.js');
-    define('FILE_JS_SLIDESHOW','./JS/slideshow_auto.js');
-    define('FILE_JS_CHANGEPASS','./JS/changePassword.js');
-    define('FILE_JS_ADDTOCART','./JS/addToCart.js');
+    define('FILE_JS_LOGIN',SITE_URL.'/JS/login.js');
+    define('FILE_JS_REGISTER',SITE_URL.'/JS/register.js');
+    define('FILE_JS_COMMON',SITE_URL.'/JS/common.js');
+    define('FILE_JS_FORGOTPASS',SITE_URL.'/JS/forgotpass.js');
+    define('FILE_JS_VALIDATE',SITE_URL.'/JS/validate.js');
+    define('FILE_JS_SLIDESHOW',SITE_URL.'/JS/slideshow_auto.js');
+    define('FILE_JS_CHANGEPASS',SITE_URL.'/JS/changePassword.js');
+    define('FILE_JS_ADDTOCART',SITE_URL.'/JS/addToCart.js');
 
 
 

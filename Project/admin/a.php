@@ -1,28 +1,23 @@
 <?php 
-    session_start();    
     require '../config/config.php';
     $output = '';
-
-
-    $item_per_page =2;
+    
+    
+    $item_per_page = 2;
     $current_page = !empty($_GET['page'])?$_GET['page']:1; //Trang hiện tại
-    $content = !empty($_GET['content'])? $_GET['content']:""; //Trang hiện tại
-   
+    $totalRecords =  $mysqli->query("SELECT * FROM t_account WHERE fullname LIKE '%'".$str."'%'");  
+    $totalRecords = $totalRecords->num_rows;
+    $totalPages = ceil($totalRecords / $item_per_page);
+
     $offset = ($current_page - 1) * $item_per_page;
-    $sql = "SELECT * FROM t_account WHERE fullname  LIKE '%{$content}%' LIMIT " . $item_per_page . " OFFSET " . $offset;
 
-    // if (isset($POST['str'])) {
-    //     $str = $POST['str'];
-        $result = $mysqli->query($sql) ;       
-    // }
-    // else{
-    //     $result = $mysqli->query("SELECT * FROM t_account LIMIT " . $item_per_page . " OFFSET " . $offset) ;
-    // }
-    
-    // Đóng kết nối
-    
+    if (isset($_POST['str'])) {
+        $str = $_POST['str'];
+        $result = $mysqli->query("SELECT * FROM t_account WHERE fullname  LIKE '%'".$str."'%' LIMIT " . $item_per_page . " OFFSET " . $offset) ;   
+        // Đóng kết nối
+    $mysqli -> close();
 
-    if ($result->num_rows > 0) {
+    if ($result) {
         while($row = $result->fetch_assoc()){
             $sexStr = $row["sex"] =="1"?"Nam":"Nữ";
             $output .= '
@@ -44,10 +39,10 @@
     } 
     else{
         $output .= '<tr><td colspan="11" align="center">Not found!</td></tr>';
+    }    
+
+    
     }
-
     echo $output;  
-
-    $mysqli -> close();
     
 ?>

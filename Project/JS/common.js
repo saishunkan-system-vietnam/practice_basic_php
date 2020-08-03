@@ -12,6 +12,7 @@ function isExistsEmail(email){
     });
     return isExists
 }
+
 function checkLogin(){
     if (isLogin == 0) {
         document.getElementById('login').style.display = 'block';

@@ -1,176 +1,59 @@
-<?php require '../config/config.php' ?>
+<?php 
+    session_start();
+    require '../config/router.php';
+    require FILE_PHP_CONFIG ;
+     if (isset($_SESSION["role"])) {
+         if ($_SESSION["role"] != 1) {
+            echo '<script type="text/javascript">alert("tài khoản của bạn không có quyền vào chức năng Admin")</script>';
+            header("location: ../index.php");
+         }
+     }else{
+        header("location: ../index.php");
+     }    
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Admin Account</title>
+    <link rel="stylesheet" href=<?= LINK_ICON?>>
+    <link rel="stylesheet" href=<?= FILE_CSS_STYLE_REGISTER?>>
+    <script src=<?= LINK_JQUERY?>></script>
 </head>
-<style>
-* {
-    box-sizing: border-box
-}
-
-/* The Modal (background) */
-.popup_upd {
-    display: none;
-    /* Hidden by default */
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%;
-    /* Full width */
-    height: 100%;
-    /* Full height */
-    overflow: auto;
-    /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0);
-    /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/ opacity */
-    padding-top: 60px;
-    padding-left: 25%;
-    padding-right: 25%;
-}
-
-/* Modal Content/Box */
-.form_upd_Account {
-    background-color: #fefefe;
-    margin: 5% auto 15% auto;
-    /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid #888;
-    width: 80%;
-    /* Could be more or less, depending on screen size */
-}
-
-
-/* Full-width input fields */
-input[type=text],
-input[type=date],
-input[type=number] {
-    width: 100%;
-    padding: 8px;
-    margin: 5px 0px 10px 0;
-    display: inline-block;
-    border: none;
-    background: #f1f1f1;
-}
-
-input[type=text]:focus,
-input[type=date]:focus {
-    background-color: #ddd;
-    outline: none;
-}
-
-input[type=radio] {
-    margin: 5px 0px 15px 0;
-}
-
-h1 {
-    color: red;
-    text-align: center;
-}
-
-hr {
-    border: 1px solid #f1f1f1;
-    margin-bottom: 25px;
-}
-
-.upd_Account_tbtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    border: none;
-}
-
-/* Extra styles for the cancel button */
-.cancel {
-    padding: 14px 20px;
-    background-color: #f44336;
-}
-
-/* Float cancel and signup buttons and add an equal width */
-.cancel,
-.upd_Account_tbtn {
-    float: left;
-    width: 50%;
-    border: none;
-}
-
-/* Add padding to container elements */
-.upd_container {
-    padding: 16px;
-}
-
-/* Clear floats */
-.upd_Account_clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-.upd_Account_close {
-    float: right;
-    right: 25px;
-    color: #000;
-    font-size: 45px;
-    font-weight: bold;
-}
-
-.upd_Account_close:hover,
-.upd_Accountt_close:focus {
-    color: red;
-    cursor: pointer;
-}
-
-/* Add Zoom Animation */
-.animate {
-    -webkit-animation: animatezoom 0.6s;
-    animation: animatezoom 0.6s
-}
-
-@-webkit-keyframes animatezoom {
-    from {
-        -webkit-transform: scale(0)
-    }
-
-    to {
-        -webkit-transform: scale(1)
-    }
-}
-
-@keyframes animatezoom {
-    from {
-        transform: scale(0)
-    }
-
-    to {
-        transform: scale(1)
-    }
-}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-    span.psw {
-        display: block;
-        float: none;
-    }
-
-    .cancel {
-        width: 100%;
-    }
-}
-</style>
 
 <body>
-    <div class="container" style="margin-top: 30px;">
-        <h3 align="center" style="margin-bottom: 20px;">Danh sách tài khoản</h3>
-        <table class="table" border="1 soid">
+    <?php require FILE_PHP_HEADERAD ?>
+    <?php
+    
+        $item_per_page = 2;
+        $current_page = empty($_GET['page'])?$_GET['page']:1; //Trang hiện tại
+        $test = isset($_GET['test'])?  $_GET['test'] : "";
+        $offset = ($current_page - 1) * $item_per_page;
+        $totalRecords =  $mysqli->query("SELECT * FROM t_account WHERE fullname  LIKE '%{$test}%'");  
+        $totalRecords = $totalRecords->num_rows;
+        $totalPages = ceil($totalRecords / $item_per_page);
+    ?>
+    <script>
+    var page = <?= $current_page ?>;
+    var content = '<?= $test ?>';
+    </script>
+
+    <div class="main-content">
+        <h2>Danh sách tài khoản</h2>
+        <div class="search account">
+            <div class="search_account label"><label for="">Tìm kiếm theo tên: </label></div>
+            <div class="search_account input"><input type="text" class="inp search" id="inpSearch"
+                    placeholder="Nhập tên nhân viên"></div>
+            <div class="search_account button"><button class="btn" id="btnSearch">Tìm kiếm</button></div>
+        </div>
+        <div class="clear-both"></div>
+
+        <button class="btn" onclick="document.getElementById('regist').style.display='block'"><i
+                class="fa fa-plus-circle"></i> Thêm mới</button>
+
+        <table class="table_listAccount">
             <thead>
                 <tr>
                     <th>Họ và Tên</th>
@@ -191,6 +74,10 @@ hr {
             </tbody>
         </table>
     </div>
+    <br>
+    <div class="clear-both"></div>
+    <?php require FILE_PHP_PAGINATION ?>
+    <div class="clear-both"></div>
 
     <div id="upd_Account" class="popup_upd">
         <form class="form_upd_Account animate" id="form_upd_Account" action="" method="POST"
@@ -231,92 +118,54 @@ hr {
         </form>
     </div>
 
-    <script>
-    $(document).ready(function() {
+    <div id="regist" class="popup_regist">
+        <form class="form_regist animate" id="form_register" action="" method="POST" style="border:1px solid #ccc">
+            <div class="regist_container">
+                <span onclick="document.getElementById('regist').style.display='none'" class="regist_close"
+                    title="Close">&times;</span>
+                <h1>Đăng ký tài khoản</h1>
+                <p>Xin vui lòng điện đầy đủ thông tin bên dưới.</p>
+                <hr>
+                <label for="fullname"><b>Họ và Tên</b></label>
+                <input type="text" placeholder="Nhập Họ và Tên" name="fullname" id="fullname" required>
 
-        outputData();
-        getAccountById();
-        updAccont();
+                <label for="sex"><b>Giới tính</b></label>
+                <input type="radio" name="sex" value="1" checked />Nam
+                <input type="radio" name="sex" value="0" />Nữ <br>
 
+                <label for="bday"><b>Ngày sinh</b></label>
+                <input type="date" name="bday" id="bday" required>
 
-        function outputData() {
-            $.ajax({
-                url: "./listAccount.php",
-                method: "GET",
-                success: function(data) {
-                    $('tbody').html(data);
-                }
-            });
-        }
+                <label for="phone"><b>Số điện thoại</b></label>
+                <input type="text" name="phone" placeholder="Nhập số đện thoại" id="phone" pattern=<?= PATTERN_PHONE ?>
+                    required>
 
-        function getAccountById() {
-            $(document).on('click', '#btnEdit', function() {
-                var id = $(this).attr('data-id');
-                $.ajax({
-                    url: "./getAccountById.php",
-                    method: "POST",
-                    data: {
-                        id
-                    },
-                    dataType: 'JSON',
-                    success: function(data) {
-                        data.forEach(e => {
-                            $("#account_id").val(e.id);
-                            $("#upd_fullname").val(e.fullname);
-                            (e.sex == 1) ? $("#male").prop("checked", true): $(
-                                "#female").prop("checked", true);
-                            $("#upd_bday").val(e.birthday);
-                            $("#upd_phone").val(e.phone);
-                            $("#upd_address").val(e.address);
-                            $("#upd_role").val(e.role);
-                            document.getElementById('upd_Account').style.display =
-                                'block'
-                        });
-                    }
-                });
-            })
-        }
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Nhập Email" name="email" id="email" pattern=<?= PATTERN_EMAIL ?>
+                    required>
 
-        function updAccont() {
-            $(document).on('click', '#upd_Accountbtn', function() {
-                var id          = $.trim($("#account_id").val());
-                var fullname    = $.trim($('#upd_fullname').val());
-                var sex         = $.trim($("input[name='upd_sex']:checked").val());
-                var phone       = $.trim($('#upd_phone').val());
-                var bday        = $.trim($('#upd_bday').val());
-                var address     = $.trim($('#upd_address').val());
-                var role       = $.trim($("#upd_role").val());
-                $.ajax({
-                    url: "./updAccount.php",
-                    method: "POST",
-                    data: {
-                      id ,     
-                      fullname,
-                      sex,     
-                      phone,  
-                      bday,    
-                      address, 
-                      role      
-                    },
-                    dataType: 'JSON',
-                    success: function(data) {
-                      if(data.status=='success')
-                      {
-                        outputData();
-                        document.getElementById('upd_Account').style.display ='none';
-                        alert("Bạn đã update thành công");                      
-                      }
-                      else{
-                        alert("Xảy ra lỗi vui lòng kiểm tra lại"); 
-                      }
-                    }
-                });
+                <label for="address"><b>Địa chỉ</b></label>
+                <input type="text" placeholder="Nhập địa chỉ" name="address" id="address" required>
 
-            })
-        }
+                <label for="psw"><b>Mật khẩu</b></label>
+                <input type="password" placeholder="Nhập mật khẩu" name="password" id="password"
+                    pattern=<?= PATTERN_PASSWORD ?>
+                    title="Phải chứa ít nhất một số và một chữ hoa và chữ thường và ít nhất 8 ký tự trở lên" required>
 
-    });
-    </script>
+                <label for="re_password"><b>Mật khẩu xác nhận</b></label>
+                <input type="password" placeholder="Xác nhận mật khẩu" name="re_password" oninvalid="InvalidMsg(this);"
+                    oninput="InvalidMsg(this);" required>
+
+                <div class="regist_clearfix">
+                    <button type="button" onclick="document.getElementById('regist').style.display='none'"
+                        class="cancel">Cancel</button>
+                    <button type="submit" class="registbtn" id="registbtn" name="registbtn">Đăng Ký</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="../js/ad_Account.js"></script>
 </body>
 
 </html>

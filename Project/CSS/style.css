@@ -109,9 +109,23 @@
     opacity: 0.7;
   }
 
-  .pagination{
-    text-align: center;
-    color: black;
-    font-size: 15px;
-    
+  .listProduct{
+    margin: 2% 15% 0 15%;
+    box-shadow: 0 4px 9px 0 #eee!important;
+    padding: 30px 30px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
   }
+
+.clear-both{
+    clear: both;
+}
+.page-item{
+  border: 1px solid #ccc;
+  padding: 5px 9px;
+  color: rgb(60, 154, 243);
+}
+.current-page{
+  background: rgb(68, 117, 224);
+  color: #FFF;
+}

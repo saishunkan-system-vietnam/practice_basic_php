@@ -38,85 +38,50 @@
         <span class="dot"></span>
         <span class="dot"></span>
     </div>
-    <h1>Danh sách tất cả sản phẩm</h1>
-    <hr>
+
     <?php
-// TÌM TỔNG SỐ RECORDS
-$sql = "SELECT count(id) as total FROM t_product WHERE del_flg = 0" ;
-$result = $mysqli->query($sql) or die ($mysqli->error);
-$row = $result->fetch_assoc();
-$total_records = $row['total'];
-
-// TÌM LIMIT VÀ CURRENT_PAGE
-$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-$limit = 12;
-
-// TÍNH TOÁN TOTAL_PAGE VÀ START
-// tổng số trang
-$total_page = ceil($total_records / $limit);
-
-// Giới hạn current_page trong khoảng 1 đến total_page
-if ($current_page > $total_page){
-    $current_page = $total_page;
-}
-else if ($current_page < 1){
-    $current_page = 1;
-}
-
-// Tìm Start
-$start = ($current_page - 1) * $limit;
-
-// Select dữ liệu
-$result = $mysqli->query("SELECT * FROM t_product WHERE del_flg = 0 LIMIT $start, $limit") or die ($mysqli->error);   
-
-// Đóng kết nối
-$mysqli -> close();
-?>
-    <?php while($row = $result->fetch_assoc()): ?>
-        <div class="card">
-        <form action=<?= FILE_PHP_ADDTOCART ?> id="from_cart" onsubmit="return checkLogin()" method="POST">
-            <a href="./getProductById.php?id=<?= $row["id"] ?>">
-                <img src=<?= $row["avarta"];?> alt=<?= $row["name"] ?> style="width:200px; height:250px;">
-            </a>
-            <h3><?= $row["name"] ?></h3>
-            <p class="price"><?= $row["price"].'K' ?></p>
-            <input type="hidden" name="productId" value=<?= $row["id"] ?>>
-            <input type="hidden" name="productName" value='<?= $row["name"] ?>'>
-            <input type="hidden" name="productPrice" value=<?= $row["price"] ?>>
-            <input type="hidden" name="productAvarta" value=<?= $row["avarta"] ?>>
-            <p><input type="number" name="quantity" id="quantity" value="1"></p>
-            <button type="submit" class="btncart" name="btnProduct"><i class="fa fa-shopping-cart"></i></button>
-        </form>
-    </div>
-    <?php endwhile ; ?>
-    <br>
-    <div class="pagination">
-        <?php 
-        // PHẦN HIỂN THỊ PHÂN TRANG
-        // nếu current_page > 1 và total_page > 1 mới hiển thị nút prev
-        if ($current_page > 1 && $total_page > 1){
-            echo '<a href="product.php?page='.($current_page-1).'">Prev</a> | ';
-        }
-
-        // Lặp khoảng giữa
-        for ($i = 1; $i <= $total_page; $i++){
-            // Nếu là trang hiện tại thì hiển thị thẻ span
-            // Ngược lại hiển thị thẻ a
-            if ($i == $current_page){
-                echo '<span>'.$i.'</span> | ';
-            }
-            else{
-                echo '<a href="product.php?page='.$i.'">'.$i.'</a> | ';
-            }
-        }
-
-        // Nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev
-        if ($current_page < $total_page && $total_page > 1){
-            echo '<a href="product.php?page='.($current_page+1).'">Next</a> | ';
-        }
+        $item_per_page = 12;
+        $current_page = !empty($_GET['page'])?$_GET['page']:1; //Trang hiện tại
+        $offset = ($current_page - 1) * $item_per_page;
+        $products = $mysqli->query("SELECT * FROM t_product WHERE del_flg = 0 LIMIT " . $item_per_page . " OFFSET " . $offset) ;
+        $totalRecords =  $mysqli->query("SELECT * FROM t_product WHERE del_flg = 0");
+        $totalRecords = $totalRecords->num_rows;
+        $totalPages = ceil($totalRecords / $item_per_page);
+        // Đóng kết nối
+        $mysqli -> close();
     ?>
+
+    <div class="listProduct">
+        <h1>Danh sách tất cả sản phẩm</h1>
+        <hr>
+        <?php while($row = $products->fetch_assoc()): ?>
+        <div class="card">
+            <form action=<?= FILE_PHP_ADDTOCART ?> id="from_cart" onsubmit="return checkLogin()" method="POST">
+                <a href="./getProductById.php?id=<?= $row["id"] ?>">
+                    <img src=<?= $row["avarta"];?> alt=<?= $row["name"] ?> style="width:200px; height:250px;">
+                </a>
+                <h3><?= $row["name"] ?></h3>
+                <p class="price"><?= $row["price"].'K' ?></p>
+                <input type="hidden" name="productId" value=<?= $row["id"] ?>>
+                <input type="hidden" name="productName" value='<?= $row["name"] ?>'>
+                <input type="hidden" name="productPrice" value=<?= $row["price"] ?>>
+                <input type="hidden" name="productAvarta" value=<?= $row["avarta"] ?>>
+                <p><input type="number" name="quantity" id="quantity" value="1"></p>
+                <button type="submit" class="btncart" name="btnProduct"><i class="fa fa-shopping-cart"></i></button>
+            </form>
+        </div>
+        <?php endwhile ; ?>
+        <br>
+        <div class="clear-both"></div>
+        <?php
+                include './pagination.php';
+                ?>
+        <div class="clear-both"></div>
+
     </div>
-    
+
+
+
     <script src=<?= FILE_JS_SLIDESHOW ?>></script>
 
     <!-- include footer -->

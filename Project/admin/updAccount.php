@@ -12,7 +12,7 @@
         $role = $_POST["role"];
 
         // update dữ liệu
-        $sql = "UPDATE account SET fullname ='$fullname', sex =$sex , birthday = '$bday', phone = '$phone', address = '$address',  role =$role WHERE id = '$id'";
+        $sql = "UPDATE t_account SET fullname ='$fullname', sex =$sex , birthday = '$bday', phone = '$phone', address = '$address',  role =$role WHERE id = '$id'";
         $result = $mysqli->query($sql); 
         if ($result) {
             echo json_encode(['status'=>'success']);

@@ -29,28 +29,31 @@
     	}
     }   
 
-    require FILE_PHP_MENUTOP;
 
     // Cập nhật giỏ hàng
     if (isset($_POST['updateCart'])) {
-		$cookie_data = $_COOKIE['shopping_cart'];        
-		$cart_data = json_decode($cookie_data, true);
+        if (isset($_COOKIE['shopping_cart'])) {
+            $cookie_data = $_COOKIE['shopping_cart'];        
+		    $cart_data = json_decode($cookie_data, true);
 
-		foreach ($_POST['quantity'] as $id => $quantity) {
-			
-			foreach($cart_data as $keys => $values) {
-				if($cart_data[$keys]["item_id"] == $id)
-	    		{
-	    			$cart_data[$keys]["item_quantity"] = $quantity;
-	    		}
-			}
+		    foreach ($_POST['quantity'] as $id => $quantity) {
+            
+		    	foreach($cart_data as $keys => $values) {
+		    		if($cart_data[$keys]["item_id"] == $id)
+	        		{
+	        			$cart_data[$keys]["item_quantity"] = $quantity;
+	        		}
+		    	}	
+            }
+            
+            $item_data = json_encode($cart_data);
+		    setcookie('shopping_cart', $item_data, time() + (86400 * 30));
+		    header("location: ./cart.php");
+        }
 		
-		}
-
-		$item_data = json_encode($cart_data);
-		setcookie('shopping_cart', $item_data, time() + (86400 * 30));
-		header("location: ./cart.php");
     }
+
+    require FILE_PHP_MENUTOP;
     
     // Đặt hàng 
     if (isset($_POST['btnOder'])) {
@@ -74,6 +77,9 @@
                     $_SESSION["error"] = "Xảy ra lỗi khi insert chi tiết đơn hàng!";
                     exit;
                 }
+                else{
+                    $_SESSION["error"] = "Bạn đã đặt hàng thành công.";
+                }
             }
         }
         else{
@@ -92,6 +98,13 @@
 </head>
 
 <body>
+    <div>
+        <?php 
+        if (isset($_SESSION["error"])) {
+            echo $_SESSION["error"];
+        }
+        ?>
+    </div>
     <div class="cart_content">
         <h2>Giỏ hàng</h2>
         <div>

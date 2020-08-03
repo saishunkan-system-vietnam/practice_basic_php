@@ -26,7 +26,7 @@
 
 
 /* Full-width input fields */
-input[type=text], input[type=password],input[type=date] {
+.popup_regist input[type=text],.popup_regist input[type=password],.popup_regist input[type=date] {
     width: 100%;
     padding: 8px;
     margin: 5px 0px 10px 0;
@@ -35,12 +35,12 @@ input[type=text], input[type=password],input[type=date] {
     background: #f1f1f1;
   }
   
-  input[type=text]:focus, input[type=password],input[type=date]:focus {
+  .popup_regist input[type=text]:focus,.popup_regist input[type=password],.popup_regist input[type=date]:focus {
     background-color: #ddd;
     outline: none;
   }
 
-  input[type=radio]{
+  .popup_regist input[type=radio]{
     margin: 5px 0px 15px 0;
   }
 
