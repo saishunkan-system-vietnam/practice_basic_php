@@ -2,6 +2,9 @@ $(document).ready(function() {
     var lst_asw = [];
     var obj;
     var id_hdr;
+    var id_hdr_multi;
+    var cnt_qs = 0;
+    var cr_cnt_qs = 0;
     var status_sv;
     var ststus_us;
     var page_sv = 1;
@@ -10,6 +13,8 @@ $(document).ready(function() {
     var fnd_content_sv = "";
     var fnd_content_us = "";
     var limit = 12;
+    var uid = "";
+    var form_regist = ".warpper_regist";
 
     GetDataSv(page_sv);
     GetDataUser(page_us);
@@ -133,9 +138,8 @@ $(document).ready(function() {
             paginationHtml +=
                 "<div id = 'pg_dtl'><li><a class='disabled' href=''><<</a></li><li><a class='disabled' href=''><</a></li>";
         } else {
-            var prev = curentpage - 1;
             paginationHtml +=
-                "<div id = 'pg_dtl'><li><a href='''><</a></li>";
+            "<div id = 'pg_dtl'><li><a  href=''><<</a></li><li><a href=''><</a></li>";
         }
 
         for (var i = 1; i <= totalPages; i++) {
@@ -158,11 +162,11 @@ $(document).ready(function() {
         window.scrollTo(0, 0);
     }
 
-    $(".pagination").on("click", "a", function(e) {
+    $("#pg").on("click", "a", function(e) {
         e.preventDefault();
 
         var page = $(this).text(),
-            currentPage = parseInt($(".pagination li a.active").text());
+            currentPage = parseInt($("#pg li a.active").text());
 
         if (page == "<<") {
             var newPage = 1;
@@ -200,6 +204,8 @@ $(document).ready(function() {
         status_sv = "Add";
         let d = new Date();
         id_hdr = Math.floor((Math.random() * 1000) + 1) + "/" + d.getTime();
+        id_hdr_multi = id_hdr;
+        cnt_qs = 1;
         InsertSv();
 
     });
@@ -227,29 +233,59 @@ $(document).ready(function() {
         lst_asw = [];
         var element = '<div class="container_ad_svcu">' +
             '<div class="title">' +
-            '<div class="content_ad_svcu">' +
-            '<label for="txt_qs"><b>Câu hỏi:</b></label>' +
-            '<input type="text" name="txt_qs" id="' + id_hdr + '" class = "txt_qs">' +
-            '<select name="category" id="category_svcu">' +
+            '<div class="content_ad_svcu" id = "content_ad_svcu">' +
+            '<select name="category" id="category_svcu" style = "margin-bottom : 15px">' +
             option + '</select><br>' +
+            '<div class = "cnd_qs" name = "'+cnt_qs+'" id = "cnd_qs'+cnt_qs+'">'+
+            '<label for="txt_qs"><b>Câu hỏi:</b></label>' +
+            '<input type="text" name="' + id_hdr + '" id="txt_qs'+cnt_qs+'" class = "txt_qs"><br>' +
             '<label for="txt_aws"><b>Câu trả lời:</b></label>' +
-            '<input type="text" name=txt_aws"" id="txt_aws" class = "txt_aws">' +
-            '<button class="btn_ins_asw add" id = "btn_ins_asw">Insert</button>' +
-            '<button class="btn_upd_asw upd" id = "btn_upd_asw" style = "display:none">Update</button>' +
-            '<button class="btn_back upd" id = "btn_cancel_asw"style = "display:none">Cancel</button>' +
-            '<table cellpadding = "10px" id ="tbl_asw">' +
+            '<input type="text" name=txt_aws"" id="txt_aws'+cnt_qs+'" class = "txt_aws">' +
+            '<button class="btn_ins_asw add" name ="'+cnt_qs+'" id = "btn_ins_asw">Insert</button>' +
+            '<button class="btn_upd_asw upd" name = "'+cnt_qs+'" id = "btn_upd_asw" style = "display:none">Update</button>' +
+            '<button class="btn_back upd" name = "'+cnt_qs+'" id = "btn_cancel_asw"style = "display:none">Cancel</button>' +
+            '<table cellpadding = "10px" id ="tbl_asw'+cnt_qs+'">' +
             '<tr><th class="ff asw"> Câu trả lời</th><th colspan="2"></th></tr>' +
-            '</table></div><div class="kq"><button class="btn_back" id="btn_back">Back</button>' +
-            '<button class = "btn_save">Save</button></div></div>';
+            '</table></div></div><div class="kq"><button class="btn_back" id="btn_back">Back</button>' +
+            '<button class = "btn_ins_asw" id="btn_add_multi">Thêm câu hỏi</button>' +
+            '<button class = "btn_save" id="btn_save">Save</button></div></div>';
         $("#warpper_ad_survey").append(element);
     }
+    // $(document).on("click", ".cnd_qs", function(e) { e.preventDefault();
+    //      cr_cnt_qs = $(this).attr("id")
+    //      alert(cr_cnt_qs);
+    //     });
 
-    $(document).on("click", "#btn_ins_asw", function() {
-        if ($.trim($("#txt_aws").val()) != "") {
+    $(document).on("click", "#btn_add_multi", function() {
+        cnt_qs ++;
+        let d = new Date();
+        id_hdr = Math.floor((Math.random() * 1000) + 1) + "/" + d.getTime();
+
+        var element = 
+            '<div class = "cnd_qs" name = "'+cnt_qs+'" id = "cnd_qs'+cnt_qs+'">'+
+        '   <br><br><label for="txt_qs"><b>Câu hỏi:</b></label>' +
+            '<input type="text" name="' + id_hdr + '" id="txt_qs'+cnt_qs+'" class = "txt_qs"><br>' +
+            '<label for="txt_aws"><b>Câu trả lời:</b></label>' +
+            '<input type="text" name=txt_aws"" id="txt_aws'+cnt_qs+'" class = "txt_aws">' +
+            '<button class="btn_ins_asw add" name ="'+cnt_qs+'" id = "btn_ins_asw'+cnt_qs+'">Insert</button>' +
+            '<button class="btn_upd_asw upd" name = "'+cnt_qs+'" id = "btn_upd_asw" style = "display:none">Update</button>' +
+            '<button class="btn_back upd" name = "'+cnt_qs+'" id = "btn_cancel_asw"style = "display:none">Cancel</button>' +
+            '<table cellpadding = "10px" id ="tbl_asw'+cnt_qs+'">' +
+            '<tr><th class="ff asw"> Câu trả lời</th><th colspan="2"></th></tr>' +
+            '</table><button style ="background-color: rgb(255, 82, 82)"><i class="fa fa-minus-circle" aria-hidden="true" style = "font-size: 23px"></i></button></div>';
+        $(".content_ad_svcu").append(element);
+        
+    });
+
+    $(document).on("click", ".btn_ins_asw", function() {
+
+        cr_cnt_qs = $(this).attr("name");
+
+        if ($.trim($("#txt_aws" + cr_cnt_qs).val()) != "") {
             let d = new Date();
             let id = Math.floor((Math.random() * 1000) + 1) + "/" + d.getTime();
-            Add_Row(id, $.trim($("#txt_aws").val()), "0");
-            $("#txt_aws").val("");
+            Add_Row(id, $.trim($("#txt_aws" + cr_cnt_qs).val()), "0");
+            $("#txt_aws" + cr_cnt_qs).val("");
         }
     });
 
@@ -262,7 +298,7 @@ $(document).ready(function() {
         var element = '<tr id="' + tr_asw + '"><td class="ff asw" id="' + td_asw + '">' + content + '</td>' +
             '<td class="col4"><button class="btn_edit_asw" name=' + lst_count + '">edit</button></td>' +
             '<td class="col4"><button class="btn_del_asw" name= "' + lst_count + '">delete</button></td></tr>';
-        $("#tbl_asw").append(element);
+        $("#tbl_asw"+cr_cnt_qs).append(element);
     }
 
     $(document).on("click", ".btn_edit_asw", function() {
@@ -312,7 +348,7 @@ $(document).ready(function() {
     });
 
     
-    $(document).on("click", ".btn_save", function() {
+    $(document).on("click", "#btn_save", function() {
         cnt = 0;
         for (var i = 0; i < lst_asw.length; i++) {
             if (lst_asw[i][0].del_flg == "0") {
@@ -411,28 +447,40 @@ $(document).ready(function() {
 
     function ShowData_Us(data, page, limit) {
 
-        console.log(data);
         $(".nd_table_us").remove();
         $("#pg_dtl_us").remove();
 
         var element = "";
         var index_count = (page - 1) * limit + 1 ;
-        var id = "";
+        // var id = "";
 
         element = '<div class="nd_table_us">' +
                 '<table cellpadding="10px" id="tbl_user"><tr>' +
                 '<th class="ff">STT</th><th class="ff">Email</th><th class="ff">Họ</th>' +
-                '<th class="ff">Tên</th><th class="ff">Giới tính</th><th colspan="2"></th></tr>';
+                '<th class="ff">Tên</th><th class="ff">Giới tính</th><th class="ff">Admin</th><th colspan="2"></th></tr>';
 
         if (data != "err") {
             data.data.forEach(function(item) {
-                element += '<tr id = "'+ item.uid +'"><td class="ff col1">'+index_count+'</td>' +
+                element += '<tr"><td class="ff col1">'+index_count+'</td>' +
                 '<td class="ff col_user">'+ item.uid+'</td>' + 
                 '<td class="ff col_user">'+item.fname+'</td>' +
                 '<td class="ff col_user">'+item.lname+'</td>' + 
-               ' <td class="ff col4">'+item.gender+'</td>' +
-                '<td class="col4"><button class="btn_edit_user">edit</button></td>' +
-                '<td class="col4"><button class="btn_del_user">delete</button></td></tr>'  
+               ' <td class="ff col4">';
+               let gender = "";
+               switch(item.gender)
+               {
+                   case "1": gender = "Nam";
+                   break;
+                   case "2": gender = "Nữ";
+                   break;
+                   default : gender = "Khác";
+                   break;
+
+               }
+               element += gender + '</td>' +
+               '<td class="ff col4">'+item.admin+'</td>' + 
+                '<td class="col4"><button class="btn_edit_user" name = "'+ item.uid+'">edit</button></td>' +
+                '<td class="col4"><button class="btn_del_user" name = "'+ item.uid+'">delete</button></td></tr>'  
                 index_count++;
             });
         }
@@ -450,7 +498,7 @@ $(document).ready(function() {
                 "<div id = 'pg_dtl_us'><li><a class='disabled' href=''><<</a></li><li><a class='disabled' href=''><</a></li>";
         } else {
             paginationHtml +=
-                "<div id = 'pg_dtl_us'><li><a href='''><</a></li>";
+            "<div id = 'pg_dtl_us'><li><a  href=''><<</a></li><li><a href=''><</a></li>";
         }
 
         for (var i = 1; i <= totalPages; i++) {
@@ -478,5 +526,205 @@ $(document).ready(function() {
         page_us = 1;
         GetDataUser(page_us);
     });
+
+    $("#pg_us").on("click", "a", function(e) {
+        e.preventDefault();
+
+        var page = $(this).text(),
+            currentPage = parseInt($("#pg_us li a.active").text());
+
+        if (page == "<<") {
+            var newPage = 1;
+        } else if (page == ">>") {
+            var newPage = totalPages;
+        } else if (page == "<") {
+            var newPage = currentPage - 1;
+        } else if (page == ">") {
+            var newPage = currentPage + 1;
+        } else {
+            var newPage = parseInt(page);
+        }
+       
+        fnd_content_us = $("#txt_find_user").val();
+        page_us = newPage;
+        GetDataUser(page_us);
+        return false;
+    });
+
+    $(document).on("click",".btn_edit_user",function(e){
+        uid = $(this).attr("name");
+        ststus_us = "Get";
+        $.ajax({
+            async: false,
+            type: "post",
+            url: "../lib/regist_ajax.php",
+            data: {
+                uid: uid,
+                proc: ststus_us,
+            },
+            success: function (data) {
+                data.forEach(function(item){
+                    let gender = item.gender;
+                    var element = '<div class="warpper_regist">' +
+                        '<div class="main_regist">'+
+                        '<p><input type="email" name="uid" placeholder="✉ Email*" class="intpt" id="uid" readonly value = "'+item.uid+'"></p>'+
+                        '<p><input type="text" name="fname" placeholder="☞ Họ*" class="intpt" id="fname" value = "'+item.fname+'"></p>'+
+                        '<p><input type="text" name="lname" placeholder="☞ Tên*" class="intpt" id="lname" value = "'+item.lname+'"></p>'+
+                        '<p><input type="password" name="pass" placeholder="⌨ Mật khẩu*" class="intpt" id="pass" value = "'+item.pass+'"></p>' +
+                        '<div class="gender"><p>' +
+                                '<input type="radio" name="gender" value="1" '; 
+                                if(gender == 1) { element += 'checked';}
+                                element += '> Nam' +
+                                '<input type="radio" name="gender" value="2"'; 
+                                if(gender == 2) { element += 'checked';}
+                                element += '> Nữ' +
+                                '<input type="radio" name="gender" value="3"'; 
+                                if(gender == 3) { element += 'checked';}
+                                element += '> Khác </p></div>' + 
+                        '<p><input type="tel" name="tel" placeholder="☎ Số điện thoại*" class="intpt" id="tel" value = "'+item.tel+'"></p>'+
+                        '<div class="admin_flg"><p><input type="checkbox" id = "admin_flg"';
+                        if(item.admin_flg == "1"){ element +=  "checked";}
+                        element += '>Admin</p></div>' +
+                        '<div class="bott"><button id="btn_save_us" class="btn_save btn_account">Lưu</button>'+
+                        '<button id="btn_cancel_us" class="btn_cancel_us btn_account">Hủy</button></div>'+
+                    '</div></div>';
+
+                    $('#account').append(element);
+                    $(form_regist).css("visibility","visible");
+                });
+            }
+        });
+        ststus_us = "Upd" ;
+    });
+
+    $(document).on("click","#btn_cancel_us",function(){
+        $(".warpper_regist").remove();  
+    })
+
+    $(document).on("click","#btn_save_us",function(){
+
+        if(ststus_us == "Upd")
+        {
+            if (Validate_regist(false)) {
+                if (Save_account()) {
+                    alert("Update thành công");
+                    $(".warpper_regist").remove();
+                    GetDataUser(page_us);
+                } else {
+                    alert("Lỗi");
+                }
+            } else {
+                alert("Vui lòng điền vào mẫu chính xác");
+            }
+        }
+        else if(ststus_us == "Regist")
+        {
+            if (Validate_regist(false)) {
+                let isExist = CheckExist();
+                if (isExist == 0) {
+                    if (Save_account()) {
+                        alert("Đăng ký thành công");
+                        $(".warpper_regist").remove();
+                        page_us =1;
+                        GetDataUser(page_us);
+                    } else {
+                        alert("Đăng ký thất bại");
+                    }
+                } else if (isExist > 0) {
+                    alert("Không thể đăng ký vì email này đã tồn tại - Vui lòng kiểm tra lại");
+                } else {
+                    alert("Connection failed: Không thể kết nối đến máy chủ!");
+                }
+            } else {
+                alert("Vui lòng điền vào mẫu chính xác");
+            }
+        }
+
+    });
+
+    function CheckExist() {
+
+        var result;
+        $.ajax({
+            async: false,
+            type: "post",
+            url: "../lib/regist_ajax.php",
+            data: {
+                uid: $.trim($("#uid").val()),
+                proc: "CheckExistAccount",
+            },
+            datatype: "JSON",
+            success: function(data) {
+                result = data[0].result;
+            },
+        });
+
+        return result;
+
+    }
+
+    function Save_account() {
+        var result = false;
+        let admin_flg = $('#admin_flg').is(":checked") ? 1 : 0;
+        $.ajax({
+            async: false,
+            type: "post",
+            url: "../lib/regist_ajax.php",
+            data: {
+                uid: $.trim($("#uid").val()),
+                fname: $.trim($("#fname").val()),
+                lname: $.trim($("#lname").val()),
+                pass: $.trim($("#pass").val()),
+                tel: $.trim($("#tel").val()),
+                gender: $("input[name='gender']:checked").val(),
+                admin_flg:admin_flg,
+                proc: ststus_us,
+            },
+            success: function(data) {
+                result = data;
+            }
+        });
+        return result;
+    }
+
+    $(document).on("click","#btn_ins_user",function(){
+        
+        var element = '<div class="warpper_regist">' +
+                        '<div class="main_regist">'+
+                        '<p><input type="email" name="uid" placeholder="✉ Email*" class="intpt" id="uid"></p>'+
+                        '<p><input type="text" name="fname" placeholder="☞ Họ*" class="intpt" id="fname" ></p>'+
+                        '<p><input type="text" name="lname" placeholder="☞ Tên*" class="intpt" id="lname" ></p>'+
+                        '<p><input type="password" name="pass" placeholder="⌨ Mật khẩu*" class="intpt" id="pass" ></p>' +
+                        '<div class="gender"><p>' +
+                                '<input type="radio" name="gender" value="1" checked> Nam' +
+                                '<input type="radio" name="gender" value="2"> Nữ' +
+                                '<input type="radio" name="gender" value="3"> Khác </p></div>' + 
+                        '<p><input type="tel" name="tel" placeholder="☎ Số điện thoại*" class="intpt" id="tel"></p>'+
+                        '<div class="admin_flg"><p><input type="checkbox" name="" id="admin_flg">Admin</p></div>' +
+                        '<div class="bott"><button id="btn_save_us" class="btn_save btn_account">Lưu</button>'+
+                        '<button id="btn_cancel_us" class="btn_cancel_us btn_account">Hủy</button></div>'+
+                    '</div></div>';
+
+                    $('#account').append(element);
+                    $(form_regist).css("visibility","visible");
+        ststus_us = "Regist";
+    });
     
+    $(document).on("click", ".btn_del_user", function(){
+        if (confirm('Bạn có đồng ý muốn xóa tài khoản này không?')) {
+            let uid = $(this).attr("name");
+            $.ajax({
+                async: false,
+                type: "post",
+                url: "../lib/regist_ajax.php",
+                data: {
+                    proc: "Del",
+                    uid: uid,
+                },
+                success: function (resulf) {
+                }
+        });
+    }
+        GetDataUser(page_us);
+    });
 });

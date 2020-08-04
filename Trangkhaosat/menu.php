@@ -87,8 +87,8 @@
             </ul>
         </nav>
     </div>
-    <div class="warpper">
-        <div class="main">
+    <div class="warpper_regist">
+        <div class="main_regist">
             <h1>✍ Đăng ký tài khoản</h1>
             <form action="" method="post" id="frm_Regist">
                 <p>
@@ -109,6 +109,13 @@
                 <p>
                     <input type="password" name="rpass" placeholder="⌨ Xác nhận mật khẩu*" class="intpt" id="rpass">
                 </p>
+                <div class="gender">
+                            <p>
+                                <input type="radio" name="gender" value ="1" id="" checked> Nam
+                                <input type="radio" name="gender" value ="2" id=""> Nữ
+                                <input type="radio" name="gender" value ="0" id=""> Khác
+                            </p>
+                            </div>
                 <p>
                     <input type="tel" name="tel" placeholder="☎ Số điện thoại*" class="intpt" id="tel">
                 </p>

@@ -55,7 +55,8 @@ td {
 
 .btn_del,
 .btn_del_user,
-.btn_del_asw {
+.btn_del_asw,
+.btn_cancel_us {
     background-color: rgb(255, 82, 82);
     border-color: rgb(255, 82, 82);
 }
@@ -271,4 +272,22 @@ td {
 
 b {
     font-size: 18px;
+}
+
+.admin_flg
+{
+
+    width: 65%;
+    margin: 15px auto;
+    background-color: #e0e5ec;
+    box-shadow: 9px 9px 16px #a3b1c699, -9px -9px 16px #ffffff80;
+    border: 1px solid #e0e5ec;
+    color: #456990;
+    font-size: 16px;
+    font-weight: bold;
+     padding: 0px 30px;
+    border-radius: 5px;
+    outline: none;
+    /* height: 20px; */
+    align-items: center;
 }

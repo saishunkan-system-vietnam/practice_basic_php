@@ -17,6 +17,7 @@ require_once(FILE_CONFIG);
     <link rel="stylesheet" href="../css/admin.css?" <?time()?>>
     <link rel="stylesheet" href="<?= FILE_CSS_SURVEY_MANAGER?>">
     <link rel="stylesheet" href="<?= FILE_CSS_STATISTIC?>">
+    <link rel="stylesheet" href="<?= FILE_CSS_REGIST?>">
 </head>
 
 <body>
@@ -138,9 +139,13 @@ require_once(FILE_CONFIG);
                         </div>
                     </div>
                 </div>
+                <div id="account">
+                    
+                </div>
             </div>
         </div>
         <script src="<?= FILE_JS_SVMANAGER?>"></script>
+        <script src="<?= FILE_JS_COMMON?>"></script>
         <script src="<?= '../js/manager.js'?>"></script>
 </body>
 

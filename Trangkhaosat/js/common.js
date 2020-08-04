@@ -84,6 +84,72 @@ function CreateReply(id_hdr, id_dtl) {
 
 }
 
+function Validate_regist(isRegist) {
+    var fname = $.trim($("#fname").val());
+    var lname = $.trim($("#lname").val());
+    var uid = $.trim($("#uid").val());
+    var ruid = $.trim($("#ruid").val());
+    var pass = $.trim($("#pass").val());
+    var rpass = $.trim($("#rpass").val());
+    var tel = $.trim($("#tel").val());
+
+    var flag = true;
+
+    if (fname.length <= 0) {
+        $("#fname").css("border-bottom", "2px solid #F90A0A");
+        flag = false;
+    } else {
+        $("#fname").css("border-bottom", "0px");
+    }
+
+    if (lname.length <= 0) {
+        $("#lname").css("border-bottom", "2px solid #F90A0A");
+        flag = false;
+    } else {
+        $("#lname").css("border-bottom", "0px");
+    }
+
+    if (!isEmail(uid)) {
+        $("#uid").css("border-bottom", "2px solid #F90A0A");
+        flag = false;
+    } else {
+        $("#uid").css("border-bottom", "0px");
+    }
+
+    if(isRegist)
+    {
+        if (uid != ruid) {
+            $("#ruid").css("border-bottom", "2px solid #F90A0A");
+            flag = false;
+        } else {
+            $("#ruid").css("border-bottom", "0px");
+        }
+
+        if (pass != rpass) {
+            $("#rpass").css("border-bottom", "2px solid #F90A0A");
+            flag = false;
+        } else {
+            $("#rpass").css("border-bottom", "0px");
+        }
+    }
+
+    if (pass.length <= 0) {
+        $("#pass").css("border-bottom", "2px solid #F90A0A");
+        flag = false;
+    } else {
+        $("#pass").css("border-bottom", "0px");
+    }
+
+    if (!isTel(tel)) {
+        $("#tel").css("border-bottom", "2px solid #F90A0A");
+        flag = false;
+    } else {
+        $("#tel").css("border-bottom", "0px");
+    }
+
+    return flag;
+}
+
 function OpenForm_Login() {
     $(".warpper_login").css("visibility", "visible");
 

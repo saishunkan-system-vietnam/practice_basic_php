@@ -10,7 +10,7 @@ body {
     float: right;
 }
 
-.warpper {
+.warpper_regist {
     z-index: 1;
     top: 0;
     width: 100%;
@@ -23,21 +23,21 @@ body {
     align-items: center;
 }
 
-.main {
-    height: 680px;
+.main_regist {
+    /* height: 680px; */
     width: 25%;
     background-color: #fff;
     opacity: 1;
     overflow: hidden;
     border-radius: 10px;
     padding-bottom: 30px;
+    padding-top: 30px;
     box-shadow: 0 0 5px #025583;
 }
 
 h1 {
     color: #4c4b71;
     text-align: center;
-    margin: 30px 0;
     letter-spacing: 1px;
     font-size: 25px;
     text-transform: uppercase;
@@ -93,8 +93,31 @@ h1 {
     text-transform: uppercase;
     letter-spacing: 2px;
     box-shadow: -7px -7px 20px 0 #ffffffb3, 7px 7px 20px 0 #00000033;
+    outline: none;
 }
 
 .btn:hover {
     box-shadow: inset -7px -7px 20px 0 #ffffffb3, inset 7px 7px 20px 0 #00000033;
+}
+.btn_account{
+    /* display: flex; */
+    width: 40%;
+    left: 5%;
+}
+.gender
+{
+
+    width: 65%;
+    margin: 15px auto;
+    background-color: #e0e5ec;
+    box-shadow: 9px 9px 16px #a3b1c699, -9px -9px 16px #ffffff80;
+    border: 1px solid #e0e5ec;
+    color: #456990;
+    font-size: 16px;
+    font-weight: bold;
+     padding: 0px 30px;
+    border-radius: 5px;
+    outline: none;
+    /* height: 20px; */
+    align-items: center;
 }
