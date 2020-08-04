@@ -1,7 +1,9 @@
 $(document).ready(function() {
-    var lst_asw = [];
+    var lst_sv = [];
+    var indextr = 0;
     var obj;
     var id_hdr;
+    var id_cnt;
     var id_hdr_multi;
     var cnt_qs = 0;
     var cr_cnt_qs = 0;
@@ -20,7 +22,7 @@ $(document).ready(function() {
     GetDataUser(page_us);
     GetStatistic();
 
-    
+
     function GetStatistic() {
         $.ajax({
             async: false,
@@ -139,7 +141,7 @@ $(document).ready(function() {
                 "<div id = 'pg_dtl'><li><a class='disabled' href=''><<</a></li><li><a class='disabled' href=''><</a></li>";
         } else {
             paginationHtml +=
-            "<div id = 'pg_dtl'><li><a  href=''><<</a></li><li><a href=''><</a></li>";
+                "<div id = 'pg_dtl'><li><a  href=''><<</a></li><li><a href=''><</a></li>";
         }
 
         for (var i = 1; i <= totalPages; i++) {
@@ -231,20 +233,26 @@ $(document).ready(function() {
             }
         });
         lst_asw = [];
+        lst_sv = [];
+        if (status_sv == "Add") {
+            lst_sv[cnt_qs] = { "cnt_qs": cnt_qs, "db": 0, "del_flg": 0, dtl: [] };
+        } else {
+            lst_sv[cnt_qs] = { "cnt_qs": cnt_qs, "db": 1, "del_flg": 0, dtl: [] };
+        }
         var element = '<div class="container_ad_svcu">' +
             '<div class="title">' +
             '<div class="content_ad_svcu" id = "content_ad_svcu">' +
             '<select name="category" id="category_svcu" style = "margin-bottom : 15px">' +
             option + '</select><br>' +
-            '<div class = "cnd_qs" name = "'+cnt_qs+'" id = "cnd_qs'+cnt_qs+'">'+
+            '<div class = "cnd_qs" name = "' + cnt_qs + '" id = "cnd_qs' + cnt_qs + '">' +
             '<label for="txt_qs"><b>Câu hỏi:</b></label>' +
-            '<input type="text" name="' + id_hdr + '" id="txt_qs'+cnt_qs+'" class = "txt_qs"><br>' +
+            '<input type="text" name="' + id_hdr + '" id="txt_qs' + cnt_qs + '" class = "txt_qs"><br>' +
             '<label for="txt_aws"><b>Câu trả lời:</b></label>' +
-            '<input type="text" name=txt_aws"" id="txt_aws'+cnt_qs+'" class = "txt_aws">' +
-            '<button class="btn_ins_asw add" name ="'+cnt_qs+'" id = "btn_ins_asw">Insert</button>' +
-            '<button class="btn_upd_asw upd" name = "'+cnt_qs+'" id = "btn_upd_asw" style = "display:none">Update</button>' +
-            '<button class="btn_back upd" name = "'+cnt_qs+'" id = "btn_cancel_asw"style = "display:none">Cancel</button>' +
-            '<table cellpadding = "10px" id ="tbl_asw'+cnt_qs+'">' +
+            '<input type="text" name=txt_aws"" id="txt_aws' + cnt_qs + '" class = "txt_aws">' +
+            '<button class="btn_ins_asw add' + cnt_qs + '" name ="' + cnt_qs + '" id = "btn_ins_asw">Insert</button>' +
+            '<button class="btn_upd_asw upd' + cnt_qs + '" name = "' + cnt_qs + '"  style = "display:none">Update</button>' +
+            '<button class="btn_cancel_asw upd' + cnt_qs + '" name = "' + cnt_qs + '" style = "display:none">Cancel</button>' +
+            '<table cellpadding = "10px" id ="tbl_asw' + cnt_qs + '">' +
             '<tr><th class="ff asw"> Câu trả lời</th><th colspan="2"></th></tr>' +
             '</table></div></div><div class="kq"><button class="btn_back" id="btn_back">Back</button>' +
             '<button class = "btn_ins_asw" id="btn_add_multi">Thêm câu hỏi</button>' +
@@ -257,24 +265,25 @@ $(document).ready(function() {
     //     });
 
     $(document).on("click", "#btn_add_multi", function() {
-        cnt_qs ++;
+        cnt_qs++;
         let d = new Date();
         id_hdr = Math.floor((Math.random() * 1000) + 1) + "/" + d.getTime();
 
-        var element = 
-            '<div class = "cnd_qs" name = "'+cnt_qs+'" id = "cnd_qs'+cnt_qs+'">'+
-        '   <br><br><label for="txt_qs"><b>Câu hỏi:</b></label>' +
-            '<input type="text" name="' + id_hdr + '" id="txt_qs'+cnt_qs+'" class = "txt_qs"><br>' +
+        lst_sv[cnt_qs] = { "cnt_qs": cnt_qs, "db": 0, "del_flg": 0, dtl: [] };
+
+        var element =
+            '<div class = "cnd_qs" name = "' + cnt_qs + '" id = "cnd_qs' + cnt_qs + '">' +
+            '   <br><br><label for="txt_qs"><b>Câu hỏi:</b></label>' +
+            '<input type="text" name="' + id_hdr + '" id="txt_qs' + cnt_qs + '" class = "txt_qs"><br>' +
             '<label for="txt_aws"><b>Câu trả lời:</b></label>' +
-            '<input type="text" name=txt_aws"" id="txt_aws'+cnt_qs+'" class = "txt_aws">' +
-            '<button class="btn_ins_asw add" name ="'+cnt_qs+'" id = "btn_ins_asw'+cnt_qs+'">Insert</button>' +
-            '<button class="btn_upd_asw upd" name = "'+cnt_qs+'" id = "btn_upd_asw" style = "display:none">Update</button>' +
-            '<button class="btn_back upd" name = "'+cnt_qs+'" id = "btn_cancel_asw"style = "display:none">Cancel</button>' +
-            '<table cellpadding = "10px" id ="tbl_asw'+cnt_qs+'">' +
+            '<input type="text" name=txt_aws"" id="txt_aws' + cnt_qs + '" class = "txt_aws">' +
+            '<button class="btn_ins_asw add' + cnt_qs + '" name ="' + cnt_qs + '" id = "btn_ins_asw' + cnt_qs + '">Insert</button>' +
+            '<button class="btn_upd_asw upd' + cnt_qs + '" name = "' + cnt_qs + '" style = "display:none">Update</button>' +
+            '<button class="btn_cancel_asw upd' + cnt_qs + '" name = "' + cnt_qs + '" style = "display:none">Cancel</button>' +
+            '<table cellpadding = "10px" id ="tbl_asw' + cnt_qs + '">' +
             '<tr><th class="ff asw"> Câu trả lời</th><th colspan="2"></th></tr>' +
-            '</table><button style ="background-color: rgb(255, 82, 82)"><i class="fa fa-minus-circle" aria-hidden="true" style = "font-size: 23px"></i></button></div>';
+            '</table><button class = "btn_del_qs" name = "' + cnt_qs + '" style ="background-color: rgb(255, 82, 82)"><i class="fa fa-minus-circle" aria-hidden="true" style = "font-size: 23px"></i></button></div>';
         $(".content_ad_svcu").append(element);
-        
     });
 
     $(document).on("click", ".btn_ins_asw", function() {
@@ -289,65 +298,87 @@ $(document).ready(function() {
         }
     });
 
+    $(document).on("click", ".btn_del_qs", function() {
+        cr_cnt_qs = $(this).attr("name");
+
+        if (confirm("Bạn có chắc chắn muốn xóa câu hỏi này không?")) {
+            lst_sv[cr_cnt_qs].del_flg = 1;
+
+            $("#cnd_qs" + cr_cnt_qs).remove();
+        }
+    });
+
     function Add_Row(id, content, db) {
-        let lst_dtl = { "cnt_asw": content, "id": id, "db": db, "upd_flg": "0", "del_flg": "0" }
-        var lst_count = lst_asw.length;
-        var td_asw = "td_" + lst_count
-        var tr_asw = "tr_" + lst_count
-        lst_asw.push([lst_dtl]);
+        indextr++;
+        var td_asw = "td_" + indextr;
+        var tr_asw = "tr_" + indextr;
+
+        lst_sv[cr_cnt_qs].dtl[id] = { "cnt_asw": content, "id": id, "indextr": indextr, "db": db, "upd_flg": "0", "del_flg": "0" };
+
         var element = '<tr id="' + tr_asw + '"><td class="ff asw" id="' + td_asw + '">' + content + '</td>' +
-            '<td class="col4"><button class="btn_edit_asw" name=' + lst_count + '">edit</button></td>' +
-            '<td class="col4"><button class="btn_del_asw" name= "' + lst_count + '">delete</button></td></tr>';
-        $("#tbl_asw"+cr_cnt_qs).append(element);
+            '<td class="col4"><button class="btn_edit_asw" cnt_qs = "' + cr_cnt_qs + '" name="' + id + '">edit</button></td>' +
+            '<td class="col4"><button class="btn_del_asw" cnt_qs = "' + cr_cnt_qs + '" name= "' + id + '">delete</button></td></tr>';
+        $("#tbl_asw" + cr_cnt_qs).append(element);
     }
 
     $(document).on("click", ".btn_edit_asw", function() {
-        obj = parseInt($(this).attr("name"));
-        var objtr = "#tr_" + obj;
-        $("#txt_aws").val(lst_asw[obj][0].cnt_asw);
-        $(".upd").css("display", "inline-block");
-        $(".add").css("display", "none");
+        obj = $(this).attr("cnt_qs");
+        id_cnt = $(this).attr("name");
+        var objtr = "#tr_" + lst_sv[obj].dtl[id_cnt].indextr;
 
-        $(".btn_edit_asw").css({ "opacity": "0.5", "pointer-events": "none" });
+        $("#txt_aws" + obj).val(lst_sv[obj].dtl[id_cnt].cnt_asw);
+
+        $(".upd" + obj).css("display", "inline-block");
+        $(".add" + obj).css("display", "none");
+
+        // console.log($("#btn_edit_asw" + id_cnt));
+        $(" .btn_edit_asw").css({ "opacity": "0.5", "pointer-events": "none" });
         $(".btn_del_asw").css({ "opacity": "0.5", "pointer-events": "none" });
+        $(".btn_ins_asw, .btn_del_qs, .btn_back, .btn_save").css({ "opacity": "0.5", "pointer-events": "none" });
         $(objtr).css({ 'background-color': 'rgb(24, 103, 192)', 'color': '#fff' })
 
     });
 
-    $(document).on("click", "#btn_cancel_asw", function() {
-        var objtr = "#tr_" + obj;
-        $("#txt_aws").val("");
-        $(".upd").css("display", "none");
-        $(".add").css("display", "inline-block");
+    $(document).on("click", ".btn_cancel_asw", function() {
+        var objtr = "#tr_" + lst_sv[obj].dtl[id_cnt].indextr;
+        $("#txt_aws" + obj).val("");
+        $(".upd" + obj).css("display", "none");
+        $(".add" + obj).css("display", "inline-block");
         $(".btn_edit_asw").css({ "opacity": "1", "pointer-events": "all" });
         $(".btn_del_asw").css({ "opacity": "1", "pointer-events": "all" });
+        $(".btn_ins_asw, .btn_del_qs, .btn_back, .btn_save").css({ "opacity": "1", "pointer-events": "all" });
         $(objtr).css({ 'background-color': '#fff', 'color': 'black' })
     });
 
     $(document).on("click", ".btn_upd_asw", function() {
-        var objtr = "#tr_" + obj;
-        lst_asw[obj][0].cnt_asw = $("#txt_aws").val();
-        lst_asw[obj][0].upd_flg = "1";
-        var objtd = "#td_" + obj;
-        $(objtd).html($("#txt_aws").val());
-        $("#txt_aws").val("");
-        $(".upd").css("display", "none");
-        $(".add").css("display", "inline-block");
+        var objtr = "#tr_" + lst_sv[obj].dtl[id_cnt].indextr;
+        lst_sv[obj].dtl[id_cnt].cnt_asw = $("#txt_aws" + obj).val();
+        lst_sv[obj].dtl[id_cnt].upd_flg = "1";
+        var objtd = "#td_" + lst_sv[obj].dtl[id_cnt].indextr;
+        $(objtd).html($("#txt_aws" + obj).val());
+        $("#txt_aws" + obj).val("");
+        $(".upd" + obj).css("display", "none");
+        $(".add" + obj).css("display", "inline-block");
+
         $(".btn_edit_asw").css({ "opacity": "1", "pointer-events": "all" });
         $(".btn_del_asw").css({ "opacity": "1", "pointer-events": "all" });
+        $(".btn_ins_asw, .btn_del_qs, .btn_back, .btn_save").css({ "opacity": "1", "pointer-events": "all" });
         $(objtr).css({ 'background-color': '#fff', 'color': 'black' })
     });
 
     $(document).on("click", ".btn_del_asw", function() {
         if (confirm('Bạn có đồng ý muốn xóa câu trả lời này không?')) {
-            obj = parseInt($(this).attr("name"));
-            var objtr = "#tr_" + obj;
-            lst_asw[obj][0].del_flg = "1";
+            obj = $(this).attr("cnt_qs");
+            id_cnt = $(this).attr("name");
+            var objtr = "#tr_" + lst_sv[obj].dtl[id_cnt].indextr;
+            lst_sv[obj].dtl[id_cnt].del_flg = "1";
+
+            console.log(lst_sv);
             $(objtr).remove();
         }
     });
 
-    
+
     $(document).on("click", "#btn_save", function() {
         cnt = 0;
         for (var i = 0; i < lst_asw.length; i++) {
@@ -427,8 +458,7 @@ $(document).ready(function() {
         });
     });
 
-    function GetDataUser(page)
-    {
+    function GetDataUser(page) {
         $.ajax({
             async: false,
             type: "post",
@@ -451,36 +481,38 @@ $(document).ready(function() {
         $("#pg_dtl_us").remove();
 
         var element = "";
-        var index_count = (page - 1) * limit + 1 ;
+        var index_count = (page - 1) * limit + 1;
         // var id = "";
 
         element = '<div class="nd_table_us">' +
-                '<table cellpadding="10px" id="tbl_user"><tr>' +
-                '<th class="ff">STT</th><th class="ff">Email</th><th class="ff">Họ</th>' +
-                '<th class="ff">Tên</th><th class="ff">Giới tính</th><th class="ff">Admin</th><th colspan="2"></th></tr>';
+            '<table cellpadding="10px" id="tbl_user"><tr>' +
+            '<th class="ff">STT</th><th class="ff">Email</th><th class="ff">Họ</th>' +
+            '<th class="ff">Tên</th><th class="ff">Giới tính</th><th class="ff">Admin</th><th colspan="2"></th></tr>';
 
         if (data != "err") {
             data.data.forEach(function(item) {
-                element += '<tr"><td class="ff col1">'+index_count+'</td>' +
-                '<td class="ff col_user">'+ item.uid+'</td>' + 
-                '<td class="ff col_user">'+item.fname+'</td>' +
-                '<td class="ff col_user">'+item.lname+'</td>' + 
-               ' <td class="ff col4">';
-               let gender = "";
-               switch(item.gender)
-               {
-                   case "1": gender = "Nam";
-                   break;
-                   case "2": gender = "Nữ";
-                   break;
-                   default : gender = "Khác";
-                   break;
+                element += '<tr"><td class="ff col1">' + index_count + '</td>' +
+                    '<td class="ff col_user">' + item.uid + '</td>' +
+                    '<td class="ff col_user">' + item.fname + '</td>' +
+                    '<td class="ff col_user">' + item.lname + '</td>' +
+                    ' <td class="ff col4">';
+                let gender = "";
+                switch (item.gender) {
+                    case "1":
+                        gender = "Nam";
+                        break;
+                    case "2":
+                        gender = "Nữ";
+                        break;
+                    default:
+                        gender = "Khác";
+                        break;
 
-               }
-               element += gender + '</td>' +
-               '<td class="ff col4">'+item.admin+'</td>' + 
-                '<td class="col4"><button class="btn_edit_user" name = "'+ item.uid+'">edit</button></td>' +
-                '<td class="col4"><button class="btn_del_user" name = "'+ item.uid+'">delete</button></td></tr>'  
+                }
+                element += gender + '</td>' +
+                    '<td class="ff col4">' + item.admin + '</td>' +
+                    '<td class="col4"><button class="btn_edit_user" name = "' + item.uid + '">edit</button></td>' +
+                    '<td class="col4"><button class="btn_del_user" name = "' + item.uid + '">delete</button></td></tr>'
                 index_count++;
             });
         }
@@ -498,7 +530,7 @@ $(document).ready(function() {
                 "<div id = 'pg_dtl_us'><li><a class='disabled' href=''><<</a></li><li><a class='disabled' href=''><</a></li>";
         } else {
             paginationHtml +=
-            "<div id = 'pg_dtl_us'><li><a  href=''><<</a></li><li><a href=''><</a></li>";
+                "<div id = 'pg_dtl_us'><li><a  href=''><<</a></li><li><a href=''><</a></li>";
         }
 
         for (var i = 1; i <= totalPages; i++) {
@@ -544,14 +576,14 @@ $(document).ready(function() {
         } else {
             var newPage = parseInt(page);
         }
-       
+
         fnd_content_us = $("#txt_find_user").val();
         page_us = newPage;
         GetDataUser(page_us);
         return false;
     });
 
-    $(document).on("click",".btn_edit_user",function(e){
+    $(document).on("click", ".btn_edit_user", function(e) {
         uid = $(this).attr("name");
         ststus_us = "Get";
         $.ajax({
@@ -562,49 +594,48 @@ $(document).ready(function() {
                 uid: uid,
                 proc: ststus_us,
             },
-            success: function (data) {
-                data.forEach(function(item){
+            success: function(data) {
+                data.forEach(function(item) {
                     let gender = item.gender;
                     var element = '<div class="warpper_regist">' +
-                        '<div class="main_regist">'+
-                        '<p><input type="email" name="uid" placeholder="✉ Email*" class="intpt" id="uid" readonly value = "'+item.uid+'"></p>'+
-                        '<p><input type="text" name="fname" placeholder="☞ Họ*" class="intpt" id="fname" value = "'+item.fname+'"></p>'+
-                        '<p><input type="text" name="lname" placeholder="☞ Tên*" class="intpt" id="lname" value = "'+item.lname+'"></p>'+
-                        '<p><input type="password" name="pass" placeholder="⌨ Mật khẩu*" class="intpt" id="pass" value = "'+item.pass+'"></p>' +
+                        '<div class="main_regist">' +
+                        '<p><input type="email" name="uid" placeholder="✉ Email*" class="intpt" id="uid" readonly value = "' + item.uid + '"></p>' +
+                        '<p><input type="text" name="fname" placeholder="☞ Họ*" class="intpt" id="fname" value = "' + item.fname + '"></p>' +
+                        '<p><input type="text" name="lname" placeholder="☞ Tên*" class="intpt" id="lname" value = "' + item.lname + '"></p>' +
+                        '<p><input type="password" name="pass" placeholder="⌨ Mật khẩu*" class="intpt" id="pass" value = "' + item.pass + '"></p>' +
                         '<div class="gender"><p>' +
-                                '<input type="radio" name="gender" value="1" '; 
-                                if(gender == 1) { element += 'checked';}
-                                element += '> Nam' +
-                                '<input type="radio" name="gender" value="2"'; 
-                                if(gender == 2) { element += 'checked';}
-                                element += '> Nữ' +
-                                '<input type="radio" name="gender" value="3"'; 
-                                if(gender == 3) { element += 'checked';}
-                                element += '> Khác </p></div>' + 
-                        '<p><input type="tel" name="tel" placeholder="☎ Số điện thoại*" class="intpt" id="tel" value = "'+item.tel+'"></p>'+
+                        '<input type="radio" name="gender" value="1" ';
+                    if (gender == 1) { element += 'checked'; }
+                    element += '> Nam' +
+                        '<input type="radio" name="gender" value="2"';
+                    if (gender == 2) { element += 'checked'; }
+                    element += '> Nữ' +
+                        '<input type="radio" name="gender" value="3"';
+                    if (gender == 3) { element += 'checked'; }
+                    element += '> Khác </p></div>' +
+                        '<p><input type="tel" name="tel" placeholder="☎ Số điện thoại*" class="intpt" id="tel" value = "' + item.tel + '"></p>' +
                         '<div class="admin_flg"><p><input type="checkbox" id = "admin_flg"';
-                        if(item.admin_flg == "1"){ element +=  "checked";}
-                        element += '>Admin</p></div>' +
-                        '<div class="bott"><button id="btn_save_us" class="btn_save btn_account">Lưu</button>'+
-                        '<button id="btn_cancel_us" class="btn_cancel_us btn_account">Hủy</button></div>'+
-                    '</div></div>';
+                    if (item.admin_flg == "1") { element += "checked"; }
+                    element += '>Admin</p></div>' +
+                        '<div class="bott"><button id="btn_save_us" class="btn_save btn_account">Lưu</button>' +
+                        '<button id="btn_cancel_us" class="btn_cancel_us btn_account">Hủy</button></div>' +
+                        '</div></div>';
 
                     $('#account').append(element);
-                    $(form_regist).css("visibility","visible");
+                    $(form_regist).css("visibility", "visible");
                 });
             }
         });
-        ststus_us = "Upd" ;
+        ststus_us = "Upd";
     });
 
-    $(document).on("click","#btn_cancel_us",function(){
-        $(".warpper_regist").remove();  
+    $(document).on("click", "#btn_cancel_us", function() {
+        $(".warpper_regist").remove();
     })
 
-    $(document).on("click","#btn_save_us",function(){
+    $(document).on("click", "#btn_save_us", function() {
 
-        if(ststus_us == "Upd")
-        {
+        if (ststus_us == "Upd") {
             if (Validate_regist(false)) {
                 if (Save_account()) {
                     alert("Update thành công");
@@ -616,16 +647,14 @@ $(document).ready(function() {
             } else {
                 alert("Vui lòng điền vào mẫu chính xác");
             }
-        }
-        else if(ststus_us == "Regist")
-        {
+        } else if (ststus_us == "Regist") {
             if (Validate_regist(false)) {
                 let isExist = CheckExist();
                 if (isExist == 0) {
                     if (Save_account()) {
                         alert("Đăng ký thành công");
                         $(".warpper_regist").remove();
-                        page_us =1;
+                        page_us = 1;
                         GetDataUser(page_us);
                     } else {
                         alert("Đăng ký thất bại");
@@ -677,7 +706,7 @@ $(document).ready(function() {
                 pass: $.trim($("#pass").val()),
                 tel: $.trim($("#tel").val()),
                 gender: $("input[name='gender']:checked").val(),
-                admin_flg:admin_flg,
+                admin_flg: admin_flg,
                 proc: ststus_us,
             },
             success: function(data) {
@@ -687,30 +716,30 @@ $(document).ready(function() {
         return result;
     }
 
-    $(document).on("click","#btn_ins_user",function(){
-        
-        var element = '<div class="warpper_regist">' +
-                        '<div class="main_regist">'+
-                        '<p><input type="email" name="uid" placeholder="✉ Email*" class="intpt" id="uid"></p>'+
-                        '<p><input type="text" name="fname" placeholder="☞ Họ*" class="intpt" id="fname" ></p>'+
-                        '<p><input type="text" name="lname" placeholder="☞ Tên*" class="intpt" id="lname" ></p>'+
-                        '<p><input type="password" name="pass" placeholder="⌨ Mật khẩu*" class="intpt" id="pass" ></p>' +
-                        '<div class="gender"><p>' +
-                                '<input type="radio" name="gender" value="1" checked> Nam' +
-                                '<input type="radio" name="gender" value="2"> Nữ' +
-                                '<input type="radio" name="gender" value="3"> Khác </p></div>' + 
-                        '<p><input type="tel" name="tel" placeholder="☎ Số điện thoại*" class="intpt" id="tel"></p>'+
-                        '<div class="admin_flg"><p><input type="checkbox" name="" id="admin_flg">Admin</p></div>' +
-                        '<div class="bott"><button id="btn_save_us" class="btn_save btn_account">Lưu</button>'+
-                        '<button id="btn_cancel_us" class="btn_cancel_us btn_account">Hủy</button></div>'+
-                    '</div></div>';
+    $(document).on("click", "#btn_ins_user", function() {
 
-                    $('#account').append(element);
-                    $(form_regist).css("visibility","visible");
+        var element = '<div class="warpper_regist">' +
+            '<div class="main_regist">' +
+            '<p><input type="email" name="uid" placeholder="✉ Email*" class="intpt" id="uid"></p>' +
+            '<p><input type="text" name="fname" placeholder="☞ Họ*" class="intpt" id="fname" ></p>' +
+            '<p><input type="text" name="lname" placeholder="☞ Tên*" class="intpt" id="lname" ></p>' +
+            '<p><input type="password" name="pass" placeholder="⌨ Mật khẩu*" class="intpt" id="pass" ></p>' +
+            '<div class="gender"><p>' +
+            '<input type="radio" name="gender" value="1" checked> Nam' +
+            '<input type="radio" name="gender" value="2"> Nữ' +
+            '<input type="radio" name="gender" value="3"> Khác </p></div>' +
+            '<p><input type="tel" name="tel" placeholder="☎ Số điện thoại*" class="intpt" id="tel"></p>' +
+            '<div class="admin_flg"><p><input type="checkbox" name="" id="admin_flg">Admin</p></div>' +
+            '<div class="bott"><button id="btn_save_us" class="btn_save btn_account">Lưu</button>' +
+            '<button id="btn_cancel_us" class="btn_cancel_us btn_account">Hủy</button></div>' +
+            '</div></div>';
+
+        $('#account').append(element);
+        $(form_regist).css("visibility", "visible");
         ststus_us = "Regist";
     });
-    
-    $(document).on("click", ".btn_del_user", function(){
+
+    $(document).on("click", ".btn_del_user", function() {
         if (confirm('Bạn có đồng ý muốn xóa tài khoản này không?')) {
             let uid = $(this).attr("name");
             $.ajax({
@@ -721,10 +750,9 @@ $(document).ready(function() {
                     proc: "Del",
                     uid: uid,
                 },
-                success: function (resulf) {
-                }
-        });
-    }
+                success: function(resulf) {}
+            });
+        }
         GetDataUser(page_us);
     });
 });

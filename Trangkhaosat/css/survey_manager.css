@@ -115,7 +115,8 @@ select {
     border-color: #009688;
 }
 
-.btn_back {
+.btn_back,
+.btn_cancel_asw {
     background-color: #607d8b;
     border-color: #607d8b;
 }
@@ -199,7 +200,8 @@ td {
 .col {
     text-align: center;
 }
-.col_user{
+
+.col_user {
     width: 24%
 }
 
@@ -274,9 +276,7 @@ b {
     font-size: 18px;
 }
 
-.admin_flg
-{
-
+.admin_flg {
     width: 65%;
     margin: 15px auto;
     background-color: #e0e5ec;
@@ -285,7 +285,7 @@ b {
     color: #456990;
     font-size: 16px;
     font-weight: bold;
-     padding: 0px 30px;
+    padding: 0px 30px;
     border-radius: 5px;
     outline: none;
     /* height: 20px; */
