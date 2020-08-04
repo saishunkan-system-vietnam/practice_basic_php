@@ -1,10 +1,6 @@
 <?php require_once "./config/router.php"; ?>
 <link href=<?php echo FILE_CSS_APPLY ?> rel="stylesheet" />
-<script src="<?= FILE_JS_COMMON ?>"></script>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script> -->
-<link href=<?php echo FILE_CSS_INDEX ?> rel="stylesheet" />
-<script src="<?= FILE_JS_INDEX ?>"></script>
+<script src="<?= FILE_JS_APPLY ?>"></script>
 
 <?php
 if (isset($_POST["recruitment_id"]) && isset($_POST["position"]) && isset($_POST["user_email"])) {
@@ -21,7 +17,7 @@ if (isset($_POST["recruitment_id"]) && isset($_POST["position"]) && isset($_POST
             <div class="apply-container">
                 <div class="apply-header">
                     <button type="button" id="btnapply_close" class="close">×</button>
-                    <h4 class="apply-title" id="apply_title"> Bạn đang ứng tuyển cho vị trí
+                    <h4 class="apply-title" id="apply_title" data-id='.$_POST["recruitment_id"].'> Bạn đang ứng tuyển cho vị trí
                         <strong style="color:blue">' . $position . '</strong><br>
                     </h4>
                 </div>
@@ -30,7 +26,7 @@ if (isset($_POST["recruitment_id"]) && isset($_POST["position"]) && isset($_POST
                     <div class="content">
                         <div class="main">
                             <div>
-                                <img id="avatar" src="img/user.png" />
+                                <img id="avatar" src="img/user.png"/>
                             </div>
                         </div>
                     </div>
@@ -70,7 +66,9 @@ if (isset($_POST["recruitment_id"]) && isset($_POST["position"]) && isset($_POST
                     </div>
                 </div>
             </div>
-        </div>';
+        </div>
+    </div>
+</div>';
         }
     } else {
         echo "Error";
@@ -78,9 +76,3 @@ if (isset($_POST["recruitment_id"]) && isset($_POST["position"]) && isset($_POST
     close_connect();
 }
 ?>
-
-<script>
-    // function e(){
-    //     alert("sfd");
-    // }
-</script>

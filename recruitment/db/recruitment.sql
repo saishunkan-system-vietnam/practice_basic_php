@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2020 at 12:55 PM
+-- Generation Time: Aug 04, 2020 at 12:44 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.2.31
 
@@ -63,6 +63,31 @@ INSERT INTO `t_account` (`id`, `username`, `password`, `birthdate`, `gender`, `t
 ('nhan@gmail.com', 'nhan nahn', '1', '2020-07-28', 'Male', '', 'abc\nabc', 0, 'ipo4zxfjgb', '2020-07-28 21:35:51', '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0),
 ('nhavp@gmail.com', 'nhan vp', '1', '2020-07-07', 'Male', '', 'Hue', 0, '', NULL, '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0),
 ('sinhnt@gmail.com', 'sinhnt', '1', '2020-07-30', 'Male', '', 'ccc    dcwđsccc', 0, '', NULL, '2020-07-30 19:59:30', '2020-07-30 20:33:14', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_apply`
+--
+
+CREATE TABLE `t_apply` (
+  `id` int(11) NOT NULL COMMENT 'ID',
+  `id_recruitment` int(11) NOT NULL COMMENT 'ID thông tin tuyển dụng',
+  `id_user` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT 'ID của user',
+  `create_datetime` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'Thời gian tạo',
+  `update_datetime` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'Thời gian update',
+  `del_flg` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Cờ xóa'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `t_apply`
+--
+
+INSERT INTO `t_apply` (`id`, `id_recruitment`, `id_user`, `create_datetime`, `update_datetime`, `del_flg`) VALUES
+(1, 8, 'minh@gmail.com', '2020-08-04 09:29:45', '2020-08-04 09:29:45', 0),
+(2, 14, 'minh@gmail.com', '2020-08-04 09:35:17', '2020-08-04 09:35:17', 0),
+(3, 2, 'minh@gmail.com', '2020-08-04 09:38:20', '2020-08-04 09:38:20', 0),
+(4, 11, 'minh@gmail.com', '2020-08-04 09:40:19', '2020-08-04 09:40:19', 0);
 
 -- --------------------------------------------------------
 
@@ -139,6 +164,12 @@ ALTER TABLE `t_account`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `t_apply`
+--
+ALTER TABLE `t_apply`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `t_recruitment`
 --
 ALTER TABLE `t_recruitment`
@@ -147,6 +178,12 @@ ALTER TABLE `t_recruitment`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `t_apply`
+--
+ALTER TABLE `t_apply`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `t_recruitment`

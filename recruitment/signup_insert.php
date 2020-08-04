@@ -28,7 +28,7 @@ if (isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["passwor
         close_connect();
         return;
     } else {
-        echo $sqlInsert;
+        echo 0;
         return;
     }
 };

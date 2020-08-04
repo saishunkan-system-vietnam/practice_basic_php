@@ -1,0 +1,75 @@
+.sidebar {
+    background-color: #343a40;
+    bottom: 0;
+    /* overflow: hidden; */
+    position: fixed;
+    top: 0;
+    /* width: auto; */
+    color: #212529;
+    width: 196px;
+    /* width: 230px; */
+    /* display: flex; */
+    justify-content: center;
+    /* align-items: center; */
+    /* display: block; */
+}
+
+.sidebar .sidebar-content {
+    text-align: center;
+    justify-content: center;
+    /* width: 100%; */
+}
+
+.sidebar .sidebar-content .admin-info {
+    border-bottom: 1px solid white;
+    height: 50px;
+    /* text-align: center;
+    justify-content: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar .sidebar-content .home {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+
+.btnsidebar {
+    width: 100%;
+    border: none;
+    /* border-bottom: 0.5px solid white;     */
+    font-size: 1rem;
+    background: none;
+    padding: 5px;
+    margin-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    /* color:#212529; */
+    color: #fff;
+    text-align: left;
+}
+
+.btnsidebar:hover {
+    /* background-color: whitesmoke; */
+   background-color: rgb(30, 43, 57);
+}
+
+.btnsidebar:focus {
+    background-color: #ffffff;
+    color: black;
+    border: none;
+}
+
+.sidebar .sidebar-content .admin-info div {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    color: white;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}

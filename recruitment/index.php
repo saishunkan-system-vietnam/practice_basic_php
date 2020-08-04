@@ -16,12 +16,6 @@ session_start();
     <?php require_once FILE_PHP_SESSION_COOKIE ?>
     <link href=<?php echo FILE_CSS_INDEX ?> rel="stylesheet" />
     <link href=<?php echo FILE_CSS_APPLY ?> rel="stylesheet" />
-    <style>
-        h2:hover {
-            color: blue;
-            font-size: 16px;
-        }
-    </style>
 </head>
 
 <body>
@@ -112,9 +106,6 @@ session_start();
     
     <?php include FILE_PHP_FOOTER ?>
     <script src="<?= FILE_JS_INDEX ?>"></script>
+    <script src="<?= FILE_JS_COMMON ?>"></script>
 </body>
-<style>
-
-</style>
-
 </html>
