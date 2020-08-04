@@ -1,11 +1,23 @@
 .div_tbl {
-	margin-left : 18%;
-	margin-right: 18%;
-	padding     : 15px;
-	background  : #545454;
-	box-shadow  : 0 4px 9px 0 rgb(201, 159, 159) !important;
+	margin-left   : 18%;
+	margin-right  : 18%;
+	padding-top   : 15px;
+	padding-left  : 15px;
+	padding-right : 15px;
+	padding-bottom: 15px;
+	background    : #545454;
+	box-shadow    : 0 4px 9px 0 rgb(201, 159, 159) !important;
 }
 
+.div_new {
+	background: #ffffff;
+}
+
+.header {
+	margin-bottom: 60px;
+}
+
+.tbl_new,
 .tbl_second,
 .th_second,
 .td_second {
@@ -15,12 +27,11 @@
 	text-align     : left;
 }
 
+.tbl_new,
 .tbl_second {
-	margin-top: 10px;
-}
-
-.th_second {
-	text-align: center;
+	padding-top: 15px;
+	text-align : center;
+	width      : 100%;
 }
 
 .th_devicename {
@@ -65,7 +76,7 @@
 }
 
 .txt_find {
-	padding      : 6px 24px;
+	padding      : 6px 8px;
 	margin-bottom: 8px;
 	margin-right : 26px;
 }
@@ -82,7 +93,7 @@
 	font-family     : Arial;
 	font-size       : 15px;
 	font-weight     : bold;
-	padding         : 6px 24px;
+	padding         : 6px 15px;
 	text-decoration : none;
 	text-shadow     : 0px 1px 0px #aade7c;
 }
@@ -96,6 +107,33 @@
 	position: relative;
 	top     : 1px;
 }
+
+.btnDetail {
+	box-shadow:inset 0px 1px 0px 0px #bee2f9;
+	background:linear-gradient(to bottom, #63b8ee 5%, #468ccf 100%);
+	background-color:#63b8ee;
+	border-radius:6px;
+	border:1px solid #3866a3;
+	display:inline-block;
+	cursor:pointer;
+	color:#14396a;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 15px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #7cacde;
+}
+.btnDetail:hover {
+	background:linear-gradient(to bottom, #468ccf 5%, #63b8ee 100%);
+	background-color:#468ccf;
+}
+.btnDetail:active {
+	position:relative;
+	top:1px;
+}
+
+      
 
 .fl {
 	float: left;
@@ -118,7 +156,7 @@
 	font-family     : Arial;
 	font-size       : 15px;
 	font-weight     : bold;
-	padding         : 6px 24px;
+	padding         : 6px 15px;
 	text-decoration : none;
 	text-shadow     : 0px 1px 0px #810e05;
 	margin-top      : 10px;
@@ -205,4 +243,14 @@
 .pg_nd {
 	text-align: center;
 	width     : 100%;
+}
+
+.not_found {
+	width           : 1000px;
+	text-align      : center;
+	font-size       : 50px;
+	height          : 50px;
+	background-color: #fffefd;
+	color           : #333;
+	letter-spacing  : .1em;
 }

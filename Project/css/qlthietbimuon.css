@@ -1,14 +1,14 @@
-.btn {
+.btn_add {
     background-color: DodgerBlue;
     outline: 0;
     border: none;
     color: white;
-    padding: 12px 4px;
+    padding: 10px 10px;
     font-size: 16px;
     border-radius: 20px
 }
 
-.btn:hover {
+.btn_add:hover {
     background-color: RoyalBlue;
     cursor: pointer;
 }

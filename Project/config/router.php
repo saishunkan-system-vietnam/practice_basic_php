@@ -45,6 +45,8 @@ define('FILE_JS_AJAXADMIN','../js/ajaxadmin.js');
 define('FILE_JS_COMMOM','./js/commom.js');
 define('FILE_JS_COMMOMADMIN','../js/commom.js');
 define('FILE_JS_SENDMAIL','./js/sendmail.js');
+define('FILE_JS_CKEDITOR','./js/ckeditor/ckeditor.js');
+define('FILE_JS_SEARCHPAGINATION','../js/searchpagination.js');
 
 
 // URL FILE IMG

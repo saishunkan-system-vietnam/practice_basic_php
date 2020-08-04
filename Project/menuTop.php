@@ -3,7 +3,7 @@ session_start();
 require(SITE_CONFIG);
 ?>
 
-<script src="./js/ckeditor/ckeditor.js"></script>
+<script src=<?= FILE_JS_CKEDITOR?>></script>
 <link rel="stylesheet" href=<?= FILE_CSS_MENUTOP ?>>
 <link rel="stylesheet" href=<?= FILE_CSS_QLTHIETBIMUON ?>>
 <script src=<?= LINK_JQUERY ?>></script>

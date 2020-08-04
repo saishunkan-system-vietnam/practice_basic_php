@@ -1,13 +1,16 @@
 $(document).ready(function () {
     $(document).on('submit', '#form_Muon', function () {
+        var b = $('#inp_intend').val();
         $.ajax({
             async: false,
             url: "./api/apiMuonthietbi.php",
             method: "POST",
             data: {
-                idThietbi: $('#thietbi option:selected').val(),
+                name: 'insert',
+                idThietbi: $('#device option:selected').val(),
+                intend_date: $('#inp_intend').val(),
                 reason: $('#inpReason').val(),
-                soluong: $('#inpSoluong').val(),
+                soluong: $('#inpamount').val(),
             },
             success: function (data) {
                 if (data == true) {

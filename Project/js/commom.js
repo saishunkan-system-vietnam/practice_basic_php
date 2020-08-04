@@ -67,4 +67,25 @@ $(".btn").click(function () {
             })
         }
     }
+
+    if ($(this).attr("name") == 'btnMuon') {
+        $("#modal-wrapper").css("display", "block");
+        $("body").css("overflow", "hidden");
+        var a = $(this).attr("data-id");
+        $.ajax({
+            url: "../api/apiMuonthietbi.php",
+            method: "POST",
+            data: {
+                name: "select",
+                id_device: $(this).attr("data-id")
+            },
+            success: function (data) {
+                data.forEach(function (item) {
+                    $('#opt_device').val(item.id);
+                    $('#opt_device').text(item.device_name);
+                    // $('#thietbi').prop('disabled', 'disabled');
+                });
+            }
+        })
+    }
 });

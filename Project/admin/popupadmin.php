@@ -13,7 +13,7 @@ $result_supplier = mysqli_query($connect, $query_supplier);
     <form class="modal-content" action="" id="form_device" method="POST">
         <div class="imgcontainer">
             <span name="Close" class="close btn" title="Close PopUp">&times;</span>
-            <h1 class="title_popup" style="text-align:center">Add thiết bị</h1>
+            <h1 class="title_popup" style="text-align:center"></h1>
         </div>
 
         <div class="container">

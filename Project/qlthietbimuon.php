@@ -42,7 +42,7 @@ include(SITE_POPUPMUONTB);
         $_SESSION['txtId'] =  $dataSaveUser['id'];
     };
 
-    $sql = "SELECT td.img, td.device_name, tld.amount, tl.loan_date, tld.reason 
+    $sql = "SELECT td.img, td.device_name, tld.amount, tl.loan_date, tl.intend_date, tld.reason 
             FROM t_loan tl INNER JOIN t_loan_detail tld ON tl.id = tld.id_loan 
                            INNER JOIN t_device td ON td.id = tld.id_device 
             WHERE tld.del_flg = 0 AND tld.pay_flg = 0 AND tl.id_account = $_SESSION[txtId] LIMIT $start, $limit";
@@ -53,13 +53,13 @@ include(SITE_POPUPMUONTB);
         <div>
             <table width="1000" border="0" cellpadding="12" align="center">
                 <tr style="float: right;">
-                    <td> <button class="btn" onclick="Openform()"><i class="fa fa-plus-circle"></i> Mượn thiết bị</button></td>
+                    <td> <button class="btn_add btn" name="btnAdd"><i class="fa fa-plus-circle"></i> Mượn thiết bị</button></td>
                 </tr>
             </table>
         </div>
         <table width="1000px" border="1" cellpadding="12" align="center">
             <tr>
-                <th colspan="5">Danh Sách Thiết bị mượn</th>
+                <th colspan="6">Danh Sách Thiết bị mượn</th>
             </tr>
             <tr>
                 <th width="100px" align="center">
@@ -73,6 +73,9 @@ include(SITE_POPUPMUONTB);
                 </th>
                 <th width="50px" align="center">
                     Ngày mượn
+                </th>
+                <th width="50px" align="center">
+                    Ngày hẹn trả
                 </th>
                 <th width="150px" align="center">
                     Lý do mượn
@@ -93,6 +96,9 @@ include(SITE_POPUPMUONTB);
                     </td>
                     <td align="center">
                         <?php echo $row['loan_date']; ?>
+                    </td>
+                    <td align="center">
+                        <?php echo $row['intend_date']; ?>
                     </td>
                     <td>
                         <?php echo $row['reason'] ?>

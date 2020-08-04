@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2020 at 12:29 PM
+-- Generation Time: Aug 04, 2020 at 12:34 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -83,11 +83,12 @@ INSERT INTO `t_category` (`id`, `category_name`, `create_datetime`, `update_date
 
 CREATE TABLE `t_device` (
   `id` int(11) NOT NULL COMMENT 'Id',
-  `device_name` text NOT NULL COMMENT 'Tên thiết bị',
+  `device_name` varchar(500) NOT NULL COMMENT 'Tên thiết bị',
   `id_category` int(11) NOT NULL COMMENT 'Id thể loại',
   `id_supplier` int(11) DEFAULT NULL COMMENT 'Id nhà cung cấp',
   `del_flg` bit(1) NOT NULL DEFAULT b'0' COMMENT 'Cờ xóa. 1: xóa, 0: không xóa',
   `img` text DEFAULT NULL COMMENT 'Ảnh thiết bị',
+  `info` text DEFAULT NULL,
   `create_datetime` datetime NOT NULL COMMENT 'Thời gian tạo',
   `update_datetime` datetime DEFAULT NULL COMMENT 'Thời gian update'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -96,30 +97,32 @@ CREATE TABLE `t_device` (
 -- Dumping data for table `t_device`
 --
 
-INSERT INTO `t_device` (`id`, `device_name`, `id_category`, `id_supplier`, `del_flg`, `img`, `create_datetime`, `update_datetime`) VALUES
-(1, 'Máy Tính Desknote Dell OptiPlex 9010', 1, 4, b'1', NULL, '2020-07-29 10:53:12', '2020-08-03 16:52:00'),
-(2, 'Balo Leo núi', 3, 2, b'1', NULL, '2020-07-29 10:53:53', '2020-08-03 16:51:19'),
-(3, 'Bộ đồ bảo hộ lao động', 2, 3, b'1', NULL, '2020-07-29 10:54:12', '2020-08-03 16:50:09'),
-(4, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL, '2020-07-29 10:54:15', '2020-07-29 10:54:45'),
-(5, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL, '2020-07-29 10:54:18', '2020-07-29 10:54:47'),
-(6, 'Bộ đồ bảo hộ lao động', 2, 3, b'1', NULL, '2020-07-29 10:54:20', '2020-08-03 16:50:20'),
-(7, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL, '2020-07-29 10:54:22', '2020-07-29 10:54:52'),
-(8, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL, '2020-07-29 10:54:25', '2020-07-29 10:54:53'),
-(9, 'Máy Tính Desknote Dell OptiPlex 9010', 1, 4, b'1', NULL, '2020-07-29 10:54:27', '2020-08-03 16:46:45'),
-(10, 'Máy Tính Desknote Dell OptiPlex 9010', 1, 4, b'1', NULL, '2020-07-29 10:54:29', '2020-08-03 16:47:24'),
-(11, 'Balo Leo núi', 3, 2, b'0', NULL, '2020-07-29 10:54:31', '2020-07-29 10:54:58'),
-(12, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL, '2020-07-29 10:54:34', '2020-07-29 10:55:01'),
-(13, 'Máy Tính Desknote DELL OptiPlex 9010', 1, 4, b'0', NULL, '2020-07-29 10:54:36', '2020-07-29 10:55:04'),
-(14, 'Máy tính để bàn Dell Vostro 3470 Core i5', 1, 4, b'0', NULL, '2020-07-30 10:52:41', '2020-07-30 10:52:41'),
-(15, 'Laptop DELL E5450', 1, 1, b'1', '', '2020-07-31 15:03:15', '2020-08-03 16:50:35'),
-(16, 'Laptop DELL E5450', 1, 1, b'1', '', '2020-07-31 15:03:53', '2020-08-03 16:43:31'),
-(17, 'Laptop DELL E5450', 1, 1, b'1', '', '2020-07-31 15:14:13', '2020-08-03 16:50:30'),
-(18, 'Laptop DELL E5450', 1, 1, b'1', '', '2020-07-31 15:29:46', '2020-08-03 16:51:12'),
-(19, 'Laptop DELL E5450', 2, 1, b'0', '', '2020-07-31 15:29:56', NULL),
-(20, '	 Laptop DELL E5450', 2, 3, b'1', '', '2020-08-03 15:38:37', '2020-08-03 16:39:38'),
-(21, '	 Laptop DELL E5450', 3, 4, b'1', '', '2020-08-03 15:55:47', '2020-08-03 16:40:23'),
-(22, 'Bộ đồ bảo hộ lao động VIP', 1, 1, b'1', '', '2020-08-03 15:56:07', '2020-08-03 16:41:50'),
-(23, 'Bộ đồ bảo hộ lao động VIP', 2, 2, b'0', '', '2020-08-03 15:58:01', NULL);
+INSERT INTO `t_device` (`id`, `device_name`, `id_category`, `id_supplier`, `del_flg`, `img`, `info`, `create_datetime`, `update_datetime`) VALUES
+(1, 'Máy Tính Desknote Dell OptiPlex 9010', 1, 4, b'0', NULL, NULL, '2020-07-29 10:53:12', '2020-08-03 16:52:00'),
+(2, 'Balo Leo núi', 3, 2, b'0', NULL, NULL, '2020-07-29 10:53:53', '2020-08-03 16:51:19'),
+(3, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL, NULL, '2020-07-29 10:54:12', '2020-08-03 16:50:09'),
+(4, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL, NULL, '2020-07-29 10:54:15', '2020-07-29 10:54:45'),
+(5, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL, NULL, '2020-07-29 10:54:18', '2020-07-29 10:54:47'),
+(6, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL, NULL, '2020-07-29 10:54:20', '2020-08-03 16:50:20'),
+(7, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL, NULL, '2020-07-29 10:54:22', '2020-07-29 10:54:52'),
+(8, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL, NULL, '2020-07-29 10:54:25', '2020-07-29 10:54:53'),
+(9, 'Máy Tính Desknote Dell OptiPlex 9010', 1, 4, b'0', NULL, NULL, '2020-07-29 10:54:27', '2020-08-03 16:46:45'),
+(10, 'Máy Tính Desknote Dell OptiPlex 9010', 1, 4, b'0', NULL, NULL, '2020-07-29 10:54:29', '2020-08-03 16:47:24'),
+(11, 'Balo Leo núi', 3, 2, b'0', NULL, NULL, '2020-07-29 10:54:31', '2020-07-29 10:54:58'),
+(12, 'Bộ đồ bảo hộ lao động', 2, 3, b'0', NULL, NULL, '2020-07-29 10:54:34', '2020-07-29 10:55:01'),
+(13, 'Máy Tính Desknote DELL OptiPlex 9010', 1, 4, b'0', NULL, NULL, '2020-07-29 10:54:36', '2020-07-29 10:55:04'),
+(14, 'Máy tính để bàn Dell Vostro 3470 Core i5', 1, 4, b'0', NULL, NULL, '2020-07-30 10:52:41', '2020-07-30 10:52:41'),
+(15, 'Laptop DELL E5450', 1, 1, b'0', '', NULL, '2020-07-31 15:03:15', '2020-08-03 16:50:35'),
+(16, 'Laptop DELL E5450', 1, 1, b'0', '', NULL, '2020-07-31 15:03:53', '2020-08-03 16:43:31'),
+(17, 'Laptop DELL E5450', 1, 1, b'0', '', NULL, '2020-07-31 15:14:13', '2020-08-03 16:50:30'),
+(18, 'Laptop DELL E5450', 1, 1, b'0', '', NULL, '2020-07-31 15:29:46', '2020-08-03 16:51:12'),
+(19, 'Laptop DELL E5450', 2, 1, b'0', '', NULL, '2020-07-31 15:29:56', NULL),
+(20, '	 Laptop DELL E5450', 2, 3, b'0', '', NULL, '2020-08-03 15:38:37', '2020-08-03 16:39:38'),
+(21, '	 Laptop DELL E5450', 3, 4, b'0', '', NULL, '2020-08-03 15:55:47', '2020-08-03 16:40:23'),
+(22, 'Bộ đồ bảo hộ lao động VIP', 1, 1, b'1', '', NULL, '2020-08-03 15:56:07', '2020-08-03 16:41:50'),
+(23, 'Bộ đồ bảo hộ lao động VIP', 2, 2, b'0', '', NULL, '2020-08-03 15:58:01', NULL),
+(24, 'Laptop DELL E5450', 1, 1, b'0', '', NULL, '2020-08-04 13:41:19', NULL),
+(25, 'Laptop DELL E5450', 1, 1, b'0', '', NULL, '2020-08-04 13:41:26', NULL);
 
 -- --------------------------------------------------------
 
@@ -131,6 +134,7 @@ CREATE TABLE `t_loan` (
   `id` int(11) NOT NULL COMMENT 'Id',
   `id_account` int(11) NOT NULL COMMENT 'Id tài khoản',
   `loan_date` date NOT NULL COMMENT 'Ngày mượn',
+  `intend_date` date DEFAULT NULL COMMENT 'Ngày hẹn trả',
   `create_datetime` datetime NOT NULL COMMENT 'Thời gian tạo',
   `update_datetime` datetime DEFAULT NULL COMMENT 'Thời gian update'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -139,23 +143,36 @@ CREATE TABLE `t_loan` (
 -- Dumping data for table `t_loan`
 --
 
-INSERT INTO `t_loan` (`id`, `id_account`, `loan_date`, `create_datetime`, `update_datetime`) VALUES
-(1, 1, '2020-07-27', '2020-07-27 14:23:46', NULL),
-(2, 1, '2020-07-27', '2020-07-29 10:59:19', NULL),
-(21, 1, '2020-07-27', '2020-07-29 10:59:19', NULL),
-(22, 1, '2020-07-27', '2020-07-29 10:59:19', NULL),
-(23, 1, '2020-07-27', '2020-07-29 10:59:19', NULL),
-(24, 1, '2020-07-27', '2020-07-29 10:59:19', NULL),
-(25, 1, '2020-07-27', '2020-07-29 10:59:19', NULL),
-(26, 2, '2020-07-27', '2020-07-29 10:59:19', NULL),
-(27, 1, '2020-07-29', '2020-07-29 10:59:19', NULL),
-(28, 1, '2020-07-29', '2020-07-29 10:59:19', NULL),
-(29, 1, '2020-07-29', '2020-07-29 10:59:19', NULL),
-(30, 1, '2020-07-30', '2020-07-30 14:22:42', NULL),
-(31, 1, '2020-07-30', '2020-07-30 14:24:23', NULL),
-(32, 1, '2020-07-30', '2020-07-30 14:32:10', NULL),
-(33, 1, '2020-07-30', '2020-07-30 15:37:14', NULL),
-(34, 1, '2020-07-31', '2020-07-31 14:39:01', NULL);
+INSERT INTO `t_loan` (`id`, `id_account`, `loan_date`, `intend_date`, `create_datetime`, `update_datetime`) VALUES
+(1, 1, '2020-07-27', '2020-08-19', '2020-07-27 14:23:46', NULL),
+(2, 1, '2020-07-27', '2020-08-26', '2020-07-29 10:59:19', NULL),
+(21, 1, '2020-07-27', '2020-08-26', '2020-07-29 10:59:19', NULL),
+(22, 1, '2020-07-27', '2020-08-26', '2020-07-29 10:59:19', NULL),
+(23, 1, '2020-07-27', '2020-08-26', '2020-07-29 10:59:19', NULL),
+(24, 1, '2020-07-27', '2020-08-26', '2020-07-29 10:59:19', NULL),
+(25, 1, '2020-07-27', '2020-08-26', '2020-07-29 10:59:19', NULL),
+(26, 2, '2020-07-27', '2020-08-26', '2020-07-29 10:59:19', NULL),
+(27, 1, '2020-07-29', '2020-08-26', '2020-07-29 10:59:19', NULL),
+(28, 1, '2020-07-29', '2020-08-26', '2020-07-29 10:59:19', NULL),
+(29, 1, '2020-07-29', '2020-08-26', '2020-07-29 10:59:19', NULL),
+(30, 1, '2020-07-30', '2020-08-26', '2020-07-30 14:22:42', NULL),
+(31, 1, '2020-07-30', '2020-08-26', '2020-07-30 14:24:23', NULL),
+(32, 1, '2020-07-30', '2020-08-26', '2020-07-30 14:32:10', NULL),
+(33, 1, '2020-07-30', '2020-08-26', '2020-07-30 15:37:14', NULL),
+(34, 1, '2020-07-31', '2020-08-26', '2020-07-31 14:39:01', NULL),
+(35, 1, '2020-08-04', '2020-08-26', '2020-08-04 11:22:24', NULL),
+(36, 1, '2020-08-04', '0000-00-00', '2020-08-04 16:33:25', NULL),
+(37, 1, '2020-08-04', '0000-00-00', '2020-08-04 16:33:47', NULL),
+(38, 1, '2020-08-04', '0000-00-00', '2020-08-04 16:35:11', NULL),
+(39, 1, '2020-08-04', '0000-00-00', '2020-08-04 16:55:46', NULL),
+(40, 1, '2020-08-04', '0000-00-00', '2020-08-04 16:56:02', NULL),
+(41, 1, '2020-08-04', '0000-00-00', '2020-08-04 16:56:44', NULL),
+(42, 1, '2020-08-04', '0000-00-00', '2020-08-04 16:59:21', NULL),
+(43, 1, '2020-08-04', '0000-00-00', '2020-08-04 17:02:00', NULL),
+(44, 1, '2020-08-04', '0000-00-00', '2020-08-04 17:03:22', NULL),
+(45, 1, '2020-08-04', '0000-00-00', '2020-08-04 17:05:55', NULL),
+(46, 1, '2020-08-04', '2020-08-04', '2020-08-04 17:08:33', NULL),
+(47, 1, '2020-08-04', '2020-08-19', '2020-08-04 17:09:43', NULL);
 
 -- --------------------------------------------------------
 
@@ -195,7 +212,14 @@ INSERT INTO `t_loan_detail` (`id`, `id_loan`, `id_device`, `amount`, `pay_flg`, 
 (12, 31, 3, 1, b'0', NULL, b'0', '', '2020-07-30 14:24:23', NULL),
 (13, 32, 8, 1, b'0', NULL, b'0', '', '2020-07-30 14:32:10', NULL),
 (14, 33, 1, 1, b'0', NULL, b'0', '', '2020-07-30 15:37:14', NULL),
-(15, 34, 1, 1, b'0', NULL, b'0', '', '2020-07-31 14:39:01', NULL);
+(15, 34, 1, 1, b'0', NULL, b'0', '', '2020-07-31 14:39:01', NULL),
+(16, 35, 4, 1, b'0', NULL, b'0', '', '2020-08-04 11:22:24', NULL),
+(17, 42, 23, 1, b'0', NULL, b'0', '', '2020-08-04 16:59:21', NULL),
+(18, 43, 25, 1, b'0', NULL, b'0', '', '2020-08-04 17:02:00', NULL),
+(19, 44, 24, 1, b'0', NULL, b'0', '', '2020-08-04 17:03:22', NULL),
+(20, 45, 25, 1, b'0', NULL, b'0', '', '2020-08-04 17:05:55', NULL),
+(21, 46, 25, 1, b'0', NULL, b'0', '', '2020-08-04 17:08:33', NULL),
+(22, 47, 13, 5, b'0', NULL, b'0', '<p>Training thi đấu</p>', '2020-08-04 17:09:43', NULL);
 
 -- --------------------------------------------------------
 
@@ -287,19 +311,19 @@ ALTER TABLE `t_category`
 -- AUTO_INCREMENT for table `t_device`
 --
 ALTER TABLE `t_device`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id', AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id', AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `t_loan`
 --
 ALTER TABLE `t_loan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id', AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id', AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `t_loan_detail`
 --
 ALTER TABLE `t_loan_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id', AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id', AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `t_supplier`

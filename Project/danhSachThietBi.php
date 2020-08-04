@@ -30,7 +30,10 @@ include(SITE_BANNER);
 
     $start = ($current_page - 1) * $limit;
 
-    $result = mysqli_query($connect, "SELECT td.device_name, tc.category_name, ts.supplier_name, td.img FROM t_category tc INNER JOIN t_device td ON tc.id = td.id_category INNER JOIN t_supplier ts on ts.id = td.id_supplier LIMIT $start, $limit  ");
+    $result = mysqli_query($connect, "SELECT td.device_name, tc.category_name, ts.supplier_name, td.img 
+                                      FROM t_category tc INNER JOIN t_device td ON tc.id = td.id_category 
+                                                         INNER JOIN t_supplier ts on ts.id = td.id_supplier 
+                                      WHERE td.del_flg = 0 LIMIT $start, $limit  ");
     mysqli_close($connect);
     ?>
     <div style="margin-top: 10px;">
