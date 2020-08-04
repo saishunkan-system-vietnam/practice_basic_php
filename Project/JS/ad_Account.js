@@ -1,7 +1,6 @@
 $(document).ready(function() {
 
-    pagination(page);
-     search();
+    search();
     getAccountById();
     updAccont();
     delAccount();
@@ -90,20 +89,7 @@ $(document).ready(function() {
         })
     }
 
-    function pagination(page){
-        $.ajax({
-            url: "./listAccount.php",
-            method: "GET",
-            data: { page : page, content : content
-             },
-            success: function(data) {
-                $('tbody').html(data);
-            }
-        });
-    }
-
     function search(){
-
         $.ajax({
             url: "./listAccount.php",
             method: "GET",
@@ -114,41 +100,30 @@ $(document).ready(function() {
                 $('tbody').html(data);
             }
         });
-
-        // $(document).on('click', '#btnSearch', function() {
-        //     // var str = $.trim($("#inpSearch").val());
-        //     // $.ajax({
-        //     //     url: "./a.php",
-        //     //     method: "POST",
-        //     //     data: {str: str},
-        //     //     success: function(data) {
-        //     //         console.log(data);
-        //     //         $('tbody').html(data);
-        //     //     }
-        //     // });
-        //    var cnt = "";
-        //     if($.trim($("#inpSearch").val()) != "")
-        //     {
-        //         cnt = "&test=" + $.trim($("#inpSearch").val());
-        //     }
-
-        //     var newhref = "./index.php?page=" + 1 + cnt;
-
-        //     window.location.href = newhref;
-        // })
     }
-
     
-    $(document).on('click', '#btnSearch', function() {
-                
-               var cnt = "";
+    $(document).on('click', '#btnSearch', function() {    
+        var cnt = ""       
                 if($.trim($("#inpSearch").val()) != "")
                 {
-                    cnt = "&test=" + $.trim($("#inpSearch").val());
+                    cnt = "&content=" + $.trim($("#inpSearch").val());
                 }
-    
-                var newhref = "./index.php?page=" + 1 + cnt;
-    
+                let newhref = "./account.php?page=" + 1 + cnt;
                 window.location.href = newhref;
-            })
+            });
+    
+            $('#pagination').on('click', 'a', function(e) { 
+                e.preventDefault();
+               
+                let cnt = "";
+                if(content != "")
+                {
+                    cnt = "&content=" + content;
+                }
+
+                let href ='./account.php' + $(this).attr("href");
+            
+                let newhref = href + cnt;
+                window.location.href = newhref;
+            });
 });

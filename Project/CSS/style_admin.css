@@ -1,11 +1,12 @@
+* {box-sizing: border-box}
 /* ********************************************************************Style header********************************************** */
-#admin-heading-panel{
+.headingPanel {
     background: #717171;
     height: 50px;
     line-height: 50px;
     color: #fff;
 }
-#admin-heading-panel a{
+.headingPanel a{
     color: #fff;
 }
 .left-panel{
@@ -20,39 +21,16 @@
 }
 .right-panel img{
     vertical-align: middle;
-    background: #525151;
+    background: #717171
 }
 .right-panel a{
     margin-right: 10px;
 }
+
+/* *********************************************************************STYLE MENU LEFT**************************************************** */
 .left-menu{
     float: left;
     width: 15%;
-}
-.main-content{
-    float: left;
-    width: 900px;
-    margin-left: 30px;
-}
-.main-content h1{
-    margin: 0;
-    text-align: left;
-    background: #525151;
-    color: #fff;
-    font-size: 18px;
-    font-weight: normal;
-    line-height: 40px;
-    border-radius: 10px 10px 0 0;
-    padding: 0 10px;
-}
-#admin-footer{
-    background: #717171;
-    padding: 5px 0;
-    line-height: 60px;
-    color: #FFF;
-}
-#content-wrapper .container{
-    padding: 15px 0;
 }
 
 .menu-heading{
@@ -84,6 +62,30 @@
     border: 1px solid #ccc;
     border-radius: 0 0 10px 10px;
 }
+
+/* ********************************************************************STYLE MAIN*********************************************************************** */
+.main-content{
+    float: left;
+    width: 1000px;
+    margin-left: 30px;
+}
+.main-content h1{
+    margin: 0;
+    text-align: left;
+    background: #525151;
+    color: #fff;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 40px;
+    border-radius: 10px 10px 0 0;
+    padding: 0 10px;
+}
+
+.content-wrapper .container{
+    padding: 15px 0;
+}
+
+/* ******************************************************************STYLE PAGINATION *****************************************************************/
 #pagination{
     text-align: right;
     margin-top: 15px;
@@ -98,159 +100,127 @@
     color: #FFF;
   }
 
-/* ***************************************************Style Account********************************************************************** */
-/* The Modal (background) */
-.popup_upd {
-    display: none;
-    /* Hidden by default */
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Sit on top */
+/* ************************************************************************STYLE POPUP************************************************************* */
+.popup{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%;
-    /* Full width */
-    height: 100%;
-    /* Full height */
-    overflow: auto;
-    /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0);
-    /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/ opacity */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     padding-top: 60px;
-    padding-left: 25%;
-    padding-right: 25%;
-}
-
-/* Modal Content/Box */
-.form_upd_Account {
-    background-color: #fefefe;
-    margin: 5% auto 15% auto;
-    /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid #888;
-    width: 80%;
-    /* Could be more or less, depending on screen size */
-}
-
-
-/* Full-width input fields */
-input[type=text],
-input[type=date],
-input[type=number] {
+    padding-left: 35%;
+    padding-right: 35%;
+  }
+  .formPopup{
+      background-color: aliceblue;
+      margin: 4% auto 15% auto;
+      border: 1px solid #888;
+      border-radius: 12px;
+      width: 80%;
+  }
+  
+  
+  /* Full-width input fields */
+  .containerPopup input[type=text],.containerPopup input[type=password],.containerPopup input[type=date] {
     width: 100%;
     padding: 8px;
     margin: 5px 0px 10px 0;
     display: inline-block;
     border: none;
     background: #f1f1f1;
-}
-
-input[type=text]:focus,
-input[type=date]:focus {
+  }
+  
+  .containerPopup input[type=text]:focus,.containerPopup input[type=password],.containerPopup input[type=date]:focus {
     background-color: #ddd;
     outline: none;
-}
-
-input[type=radio] {
+  }
+  
+  .containerPopup input[type=radio]{
     margin: 5px 0px 15px 0;
-}
-
-h1 {
+  }
+  
+  h1 {
     color: red;
     text-align: center;
-}
-
-hr {
-    border: 1px solid #f1f1f1;
-    margin-bottom: 25px;
-}
-
-.upd_Account_tbtn {
+  }
+  
+  .formPopup hr {
+    border-top: 4px double #0e0d0d;
+    text-align: center;
+   }
+  
+   .btn {
+    width: 30%;
+    padding: 8px 15px;
+    font-size: 15px;
+    margin: 5px 35%;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
     background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
     border: none;
-}
-
-/* Extra styles for the cancel button */
-.cancel {
-    padding: 14px 20px;
-    background-color: #f44336;
-}
-
-/* Float cancel and signup buttons and add an equal width */
-.cancel,
-.upd_Account_tbtn {
-    float: left;
-    width: 50%;
-    border: none;
-}
-
-/* Add padding to container elements */
-.upd_container {
-    padding: 16px;
-}
-
-/* Clear floats */
-.upd_Account_clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-.upd_Account_close {
+    border-radius: 6px;
+    box-shadow: 0 9px #999;
+  }
+  
+  .btn:hover {background-color: #3e8e41}
+  
+  .btn:active {
+   background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+  
+  .close {
     float: right;
-    right: 25px;
     color: #000;
-    font-size: 45px;
+    font-size: 35px;
     font-weight: bold;
-}
-
-.upd_Account_close:hover,
-.upd_Accountt_close:focus {
+    margin: 0px -42px 0px 0px;
+  }
+  
+  .close:hover,
+  .close:focus {
     color: red;
     cursor: pointer;
-}
-
-/* Add Zoom Animation */
-.animate {
+  }
+  
+  .formPopup{
     -webkit-animation: animatezoom 0.6s;
-    animation: animatezoom 0.6s
-}
-
-@-webkit-keyframes animatezoom {
-    from {
-        -webkit-transform: scale(0)
-    }
-
-    to {
-        -webkit-transform: scale(1)
-    }
-}
-
-@keyframes animatezoom {
-    from {
-        transform: scale(0)
-    }
-
-    to {
-        transform: scale(1)
-    }
-}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-    span.psw {
-        display: block;
-        float: none;
-    }
-
-    .cancel {
-        width: 100%;
-    }
-}
+    animation: animatezoom 0.6s;
+    padding: 0px 50px 30px 50px;
+  }
+  
+  @-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+  }
+    
+  @keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+  }
+  
+  /* ************************************************************************STYLE LOGIN************************************************************* */
+  img.avatar {
+    width: 20%;
+    border-radius: 50%;
+    margin: 5px 40%;
+  }
+  .forgotpass{
+    float: right;
+  }
+  
+  .loginforgot{
+    margin: 10px;
+  }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -267,10 +237,14 @@ h2 {
     width: 100%;
 }
 
-.table_listAccount td,
-.table_listAccount th {
+.table_listAccount td{
+    max-width: 200px;
+    max-height: 200px;
     border: 1px solid #ddd;
     padding: 8px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .table_listAccount tr:nth-child(even) {
@@ -282,6 +256,8 @@ h2 {
 }
 
 .table_listAccount th {
+    border: 1px solid #ddd;
+    padding: 8px;
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
@@ -289,25 +265,6 @@ h2 {
     color: white;
 }
 
-.btn {
-    display: inline-block;
-    padding: 10px 15px;
-    font-size: 15px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #fff;
-    background-color: red;
-    border: none;
-    border-radius: 15px;
-}
-
-.btn:hover {
-    background-color: crimson;
-    color: white;
-    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-}
 .clear-both{
     clear: both;
 }

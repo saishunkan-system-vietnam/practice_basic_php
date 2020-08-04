@@ -2,11 +2,16 @@ function isExistsEmail(email){
     var isExists;
     $.ajax({
         async: false,
-        url: "./isExistsEmail.php",
+        url: "../isExistsEmail.php",
         method: "GET",
         data: {email},
+        dataType: 'JSON',
         success: function (data) {
-            isExists = data;
+            if (data.status == 'exists') {
+                isExists = true;
+            } else {
+                isExists = false;
+            }
         }
 
     });
@@ -20,3 +25,11 @@ function checkLogin(){
     }
     return true;
 }
+
+function openForm(id) {
+    document.getElementById(id).style.display = "block";
+  }
+  
+  function closeForm(id) {
+    document.getElementById(id).style.display = "none";
+  }

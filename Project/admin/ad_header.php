@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="../css/style_admin.css" >
 
-<div id="admin-heading-panel">
+<div class="headingPanel">
     <div class="container">
         <div class="left-panel">
             Xin chào <span>Admin</span>
@@ -13,21 +13,21 @@
         </div>
     </div>
 </div>
-<div id="content-wrapper">
+<div class="content-wrapper">
     <div class="container">
         <div class="left-menu">
             <div class="menu-heading">Admin Menu</div>
             <div class="menu-items">
                 <ul>
-                    <li><a href="#">Cấu hình</a></li>
+                    <li><a href="./index.php">Cấu hình</a></li>
 
                     <li><a href="#">Tin tức</a></li>
 
-                    <li><a href="">Sản phẩm</a></li>
+                    <li><a href="./ad_Product.php">Sản phẩm</a></li>
 
                     <li><a href="">Đơn hàng</a></li>
 
-                    <li><a href="">Quản lý thành viên</a></li>
+                    <li><a href="./account.php">Quản lý thành viên</a></li>
 
                 </ul>
             </div>

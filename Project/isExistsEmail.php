@@ -6,11 +6,12 @@
         $email = $_GET["email"];
         $result = $mysqli->query("SELECT * FROM t_account WHERE id = '$email' AND del_flg = 0");
 
-        if ($result->num_rows){
-            echo  true;
+        if ($result) {
+            echo json_encode(['status'=>'exists']);
         }
-
-        echo false;
+        else{
+            echo json_encode(['status'=>'notExists']);
+        }
     }
     // Đóng kết nối
     $mysqli -> close();

@@ -18,7 +18,6 @@
     define('FILE_PHP_ADDTOCART','./addToCart.php');
     define('FILE_PHP_REGISTER_SUBMIT','regitster_submit.php');
     define('FILE_PHP_PAGINATION',BASE_PATH.'/pagination.php');
-    // ADMIN
     define('FILE_PHP_HEADERAD',BASE_PATH.'/admin/ad_header.php');
 
 
@@ -31,6 +30,7 @@
     define('FILE_CSS_STYLE_REGISTER',SITE_URL.'/CSS/style_register.css');
     define('FILE_CSS_STYLE_PRODUCTDETAIL',SITE_URL.'/CSS/style_productDetail.css');
     define('FILE_CSS_STYLE_CHANGEPASS',SITE_URL.'/CSS/style_changePass.css');
+    define('FILE_CSS_STYLE_ADMIN',SITE_URL.'/CSS/style_admin.css');
 
     // JS
     define('FILE_JS_LOGIN',SITE_URL.'/JS/login.js');
@@ -41,11 +41,13 @@
     define('FILE_JS_SLIDESHOW',SITE_URL.'/JS/slideshow_auto.js');
     define('FILE_JS_CHANGEPASS',SITE_URL.'/JS/changePassword.js');
     define('FILE_JS_ADDTOCART',SITE_URL.'/JS/addToCart.js');
+    define('FILE_JS_ACCOUNTAD',SITE_URL.'/JS/ad_Account.js');
+    define('FILE_JS_PRODUCTAD',SITE_URL.'/JS/ad_Product.js');
 
 
 
     // IMG
-    define('FILE_IMG_AVARTA','./img/avatar.png');
+    define('FILE_IMG_AVARTA','../img/avatar.png');
     define('FILE_IMG_LOGO','./img/logo.png');
     define('FILE_IMG_BANNER1','./IMG/img1.png');
     define('FILE_IMG_BANNER2','./IMG/img2.png');

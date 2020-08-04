@@ -73,9 +73,7 @@
         <?php endwhile ; ?>
         <br>
         <div class="clear-both"></div>
-        <?php
-                include './pagination.php';
-                ?>
+        <?php include './pagination.php';?>
         <div class="clear-both"></div>
 
     </div>
