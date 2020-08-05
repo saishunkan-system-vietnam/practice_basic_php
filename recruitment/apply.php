@@ -8,7 +8,7 @@ if (isset($_POST["recruitment_id"]) && isset($_POST["position"]) && isset($_POST
     $position = $_POST["position"];
     $user_email = $_POST["user_email"];
     require_once "./config/config.php";
-    $sql = "SELECT id, username, tel FROM t_account where del_flg = 0 and id = '$user_email' and admin_flg = 0";
+    $sql = "SELECT id, username, tel FROM t_account where del_flg = 0 and id = '$user_email' "; //and admin_flg = 0
     $resultData = $connect->query($sql);
 
     if ($resultData->num_rows > 0) {
@@ -17,7 +17,7 @@ if (isset($_POST["recruitment_id"]) && isset($_POST["position"]) && isset($_POST
             <div class="apply-container">
                 <div class="apply-header">
                     <button type="button" id="btnapply_close" class="close">×</button>
-                    <h4 class="apply-title" id="apply_title" data-id='.$_POST["recruitment_id"].'> Bạn đang ứng tuyển cho vị trí
+                    <h4 class="apply-title" id="apply_title" data-id=' . $_POST["recruitment_id"] . '> Bạn đang ứng tuyển cho vị trí
                         <strong style="color:blue">' . $position . '</strong><br>
                     </h4>
                 </div>

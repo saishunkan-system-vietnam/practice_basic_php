@@ -18,7 +18,7 @@ session_start();
     <?php include FILE_PHP_HEADER ?>
     <div class="wrapper_signup">
         <div class="signup_page">
-            <div class="title" style="margin-top : 30px;font-size:20px">
+            <div class="title">
                 Đăng ký
             </div>
             <form class="form" id="myform" name="myform" method="post">
@@ -54,13 +54,13 @@ session_start();
                     Ngày sinh:
                 </div>
                 <div>
-                    <input type="date" id="birthdate" name="birthdate" style="text-align:left;width:172px;margin-bottom:5px" value="<?php echo date("Y-m-d"); ?>" onkeypress="ClearError(id)" onchange="ClearError(id)" />
+                    <input type="date" id="birthdate" name="birthdate" value="<?php echo date("Y-m-d"); ?>" onkeypress="ClearError(id)" onchange="ClearError(id)" />
                     <div class="error_message"><label style="color:red" id="error_birthdate"></label></div>
                 </div>
                 <div class="label">
                     Giới tính:
                 </div>
-                <div style="margin-top:5px;padding-bottom:10px;">
+                <div class="gender-content">
                     <div style="float:left; padding-left:0px;"><input type="radio" id="Male" name="gender" value="Male" checked />
                         <label for="Male">Male</label><br>
                     </div>
@@ -82,18 +82,18 @@ session_start();
                     Số điện thoại:
                 </div>
                 <div>
-                    <input type="number" placeholder="Nhập số điện thoại" id="tel" name="tel" style="text-align:left;width:169px;" onkeypress="ClearError(id)" onchange="ClearError(id)">
+                    <input type="number" placeholder="Nhập số điện thoại" id="tel" name="tel" onkeypress="ClearError(id)" onchange="ClearError(id)">
                     <div class="error_message"><label style="color:red" id="error_tel"></label></div>
                 </div>
                 <div class="label" style="clear: both; padding-top: 12px;">
                     Địa chỉ:
                 </div>
                 <div style="margin-top:5px;">
-                    <textarea id="address" name="address" style="width:100%; text-align: left;" rows="3" onkeypress="ClearError(id)" onchange="ClearError(id)">
+                    <textarea id="address" name="address" rows="3" onkeypress="ClearError(id)" onchange="ClearError(id)">
                     </textarea>
                     <div class="error_message"><label style="color:red; margin-bottom:5px;" id="error_address"></label></div>
                 </div>
-                <div style="margin-top:25px;clear:both; display:block;">
+                <div class="confirm-content">
                     <input type="checkbox" id="confirm" name="confirm" value="confirm">
                     <label for="confirm" style="font-size: 12px;">
                         Tôi <span style="color:blue;font-weight:bold">xác nhận</span> các

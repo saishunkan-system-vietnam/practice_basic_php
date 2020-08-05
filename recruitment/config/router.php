@@ -9,6 +9,9 @@ define('FILE_PHP_HEADER','header_bar.php');
 define('FILE_PHP_FOOTER','footer_bar.php');
 define('FILE_PHP_SESSION_COOKIE','session_cookie.php');
 define('FILE_PHP_SIDEBAR','sidebar.php');
+define('FILE_PHP_ADMIN','admin.php');
+define('FILE_PHP_MANAGE_ACCOUNT','admin.php');
+define('FILE_PHP_EDIT_ACCOUNT','edit_account.php');
 
 define('FILE_CSS_SIDEBAR','./css/sidebar.css');
 define('FILE_CSS_INDEX','./css/index.css');
@@ -17,6 +20,7 @@ define('FILE_CSS_SIGNUP','./css/signup.css');
 define('FILE_CSS_APPLY','./css/apply.css');
 define('FILE_CSS_CHANGE_PASSWORD','./css/change_password.css');
 
+define('FILE_JS_MANAGE_ACCOUNT','./js/manage_account.js');
 define('FILE_JS_APPLY','./js/apply.js');
 define('FILE_JS_COMMON','./js/common.js');
 define('FILE_JS_INDEX','./js/index.js');

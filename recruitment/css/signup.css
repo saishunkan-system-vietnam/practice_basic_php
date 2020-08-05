@@ -25,6 +25,39 @@
     width           : 40%;
 }
 
+.wrapper_signup .signup_page .title
+{
+    margin-top : 30px;
+    font-size:20px
+}
+
+.wrapper_signup #birthdate{
+    text-align:left;
+    width:172px;
+    margin-bottom:5px
+}
+
+.wrapper_signup .gender-content{
+    margin-top:5px;
+    padding-bottom:10px;
+}
+
+.wrapper_signup #tel{
+    text-align:left;
+    width:169px;
+}
+
+.wrapper_signup #address{
+    width:100%; 
+    text-align: left;
+}
+
+.wrapper_signup #confirm-content{
+    margin-top:25px;
+    clear:both; 
+    display:block;
+}
+
 .signup_page div {
     display: block;
 }
@@ -88,3 +121,4 @@ input[type=number] {
     font-size     : 12px;
     float         : right
 }
+

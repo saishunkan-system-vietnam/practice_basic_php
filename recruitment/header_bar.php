@@ -22,10 +22,28 @@
 
             <?php if (isset($_SESSION['flg_login'])  == true) {
                 $user_email = isset($_SESSION['email-login']) ? $_SESSION['email-login'] : "";
+                // echo ('
+                //         <li style="float:right;" class="logout" id="logout">
+                //         <a href=' . FILE_PHP_LOGOUT . '>Đăng xuất</a>
+                //         </li>
+                //         <li style="float:right;" id="user">
+                //         <a id="user_email">' . $user_email . '</a>
+                //         </li>
+                //     ');
+
                 echo ('
                         <li style="float:right;" class="logout" id="logout">
                         <a href=' . FILE_PHP_LOGOUT . '>Đăng xuất</a>
-                        </li>
+                        </li>                        
+                    ');
+
+                if (isset($_SESSION['flg_admin']) == true) {
+                    echo '<li style="float:right;" id="adminpage">
+                        <a href=' . FILE_PHP_ADMIN . ' id="admin_page">Admin</a>
+                        </li>';
+                }
+
+                echo ('
                         <li style="float:right;" id="user">
                         <a id="user_email">' . $user_email . '</a>
                         </li>

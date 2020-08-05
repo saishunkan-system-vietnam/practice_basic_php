@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
     <?php require_once "./config/router.php"; ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <link href=<?php echo FILE_CSS_SIDEBAR ?> rel="stylesheet" />
     <style>
         .wrapper-account {
@@ -15,9 +20,9 @@
             background-color: green;
             width: 100%;
             position: fixed;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            /* display: flex; */
+            /* justify-content: center;
+            align-items: center; */
             /* text-align: center; */
         }
 
@@ -27,17 +32,19 @@
             justify-content: center;
             /* align-items: center; */
             /* text-align: center; */
-            padding-top: 45px;
+            padding-top: 25px;
             width: 100%;
+            height: 100%
         }
 
         .wrapper-account .container-account .content-account {
             background-color: #fff;
             width: 850px;
-            height: auto;
+            height: fit-content;
             margin-left: -196px;
             box-shadow: 0 4px 9px 5px #ccc !important;
             border-radius: 10px;
+            padding: 15px;
             /* align-items: center;
             text-align: center;
             /* display: flex; */
@@ -46,13 +53,12 @@
 
         table {
             width: 100%;
-
         }
 
         table,
         th,
         td {
-            border: 1px solid black;
+            border: 1px solid #bbb;
             border-collapse: collapse;
             padding-left: 10px;
             line-height: 26px;
@@ -68,23 +74,103 @@
             padding-bottom: 10px;
             color: #6772E5
         }
+
+        #txtsearch {
+            margin-right: 15px;
+            background-color: #E5F8D1;
+            border-radius: 3px;
+            border: 0.5px solid #ccc;
+            padding: 4px;
+            width: 206px;
+        }
+
+        #btnsearch {
+            float: right;
+            width: 90px;
+            border: 0;
+            background-color: #f0f0f9;
+            border-radius: 10px;
+            border: 0.5px solid #ccc;
+            /* padding: 0px; */
+            font-size: 20px;
+            font-family: Times New Roman;
+            color: purple;
+        }
+
+        #btnadd {
+            width: 90px;
+            border: 0;
+            background-color: #FFF3E0;
+            border-radius: 10px;
+            border: 0.5px solid #ccc;
+            /* padding:0px; */
+            font-size: 20px;
+            font-family: Times New Roman;
+            color: brown
+        }
+
+        #btnedit {
+            float: left;
+            border: 0;
+            width: 60px;
+            background-color: #E8F5E9;
+            border-radius: 4px;
+            margin-right: 5px
+        }
+
+        #btndel {
+            float: right;
+            border: 0;
+            width: 60px;
+            background-color: #FFEBEE;
+            border-radius: 4px;
+            margin-right: 10px
+        }
+
+        .container-search {
+            float: right;
+            font-size: 20px;
+        }
+
+        .container-add {
+            left: 0;
+            margin-bottom: 15px;
+            float: left;
+        }
+
+        .conatiner-table {
+            clear: both;
+        }
+
+        #pgn_admin {
+            /* width: 100%; */
+            height: 20px;
+            margin-top: 10px;
+            float:right;
+        }
+
+        .msg-result{
+            padding-top: 10px;
+            float:left;
+        }
     </style>
 </head>
 
 <body>
     <?php require_once FILE_PHP_SIDEBAR ?>
-    <div class="wrapper-account">
+    <div class="wrapper-account" id="wrapper_account">
         <div class="container-account">
-            <div class="content-account" style="padding: 15px;">
-                <div style="left:0;margin-bottom:15px;float:left">
-                    <input type="button" style="width:70px;border:0;background-color:#FFF3E0;border-radius: 12px;padding:5px;font-size:20px;" class="btnadd" id="btnadd" name="btnadd" value="+ Add"></input>
+            <div class="content-account">
+                <div class="container-add">
+                    <input type="button" class="btnadd" id="btnadd" name="btnadd" value="+ Add"></input>
                 </div>
-                <div style="float:right;font-size:20px;">
-                    <label>Search:
-                        <input type="search" style="background-color:#F5FFFF;border-radius: 10px;border:0.5px solid;padding:5px;width:206px;" class="" placeholder="">
+                <div class="container-search">
+                    <label>
+                        <input type="text" id="txtsearch" class="" placeholder="">
                     </label>
+                    <input type="button" class="btnsearch" id="btnsearch" value="Search"></input>
                 </div>
-                <div style="clear:both;">
+                <div class="conatiner-table">
                     <table>
                         <thead>
                             <tr>
@@ -92,17 +178,21 @@
                                 <th class="tbl-header">Username</th>
                                 <th class="tbl-header">Role</th>
                                 <th class="tbl-header">Status</th>
-                                <th class="tbl-header" style="width:140px">actions</th>
+                                <th class="tbl-header" style="width:140px">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php
+                            $key = isset($_GET['key']) ?  $_GET['key'] : "";
+                            $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 
+                            ?>
                             <?php
                             require_once "./config/config.php";
-
-                            $sqlCount = "SELECT count(*) as total FROM t_account where del_flg = 0";
+                            $sqlCount = "SELECT count(*) as total FROM t_account where username  LIKE '%$key%' and del_flg = 0";
+                            // $sqlCount = "SELECT count(*) as total FROM t_account where  del_flg = 0";
                             $result = $connect->query($sqlCount);
-
+                          
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
                                     $total_records = $row['total'];
@@ -121,57 +211,7 @@
                             } else if ($current_page < 1) {
                                 $current_page = 1;
                             }
-
-                            // Trang bắt đầu
-                            $start = ($current_page - 1) * $limit;
-
-                            $sqlSelectData = "SELECT * FROM t_account where del_flg = 0 order by id DESC LIMIT  $start, $limit ";
-                            $resultData = $connect->query($sqlSelectData);
-                            if ($resultData->num_rows > 0) {
-                                while ($rowData = $resultData->fetch_assoc()) {
-                                    $a = null;
-                                    if ($rowData["admin_flg"] == 0)
-                                        $a = "user";
-                                    else  $a = "admin";
-                                    echo ' <tr>
-                                    <td>
-                                        ' . $rowData["id"] . '
-                                    </td>
-                                    <td>
-                                    ' . $rowData["username"] . '
-                                    </td>
-                                    <td>
-                                    ' . $a . '
-                                    </td>
-                                    <td >
-                                    ' . $rowData["del_flg"] . '
-                                    </td>
-                                    <td class="action">
-                                        <input style="float:left;border:0;width:60px;background-color:#E8F5E9;border-radius: 12px;margin-right:5px" type="button" class="btnlogin" id="btnlogin" name="btnlogin" value="Edit"></input>
-                                        <input style="float:right;border:0;width:60px;background-color:#FFEBEE;border-radius: 12px;margin-right:10px" type="button" class="btnlogin" id="btnlogin" name="btnlogin" value="Delete"></input>
-                                    </td>
-                                </tr>';
-                                }
-                            }
-                            ?>
-
-                            <tr>
-                                <td>
-                                    nguyenminh15cdt1@gmail.com
-                                </td>
-                                <td class="cart_description">
-                                    uuiiii
-                                </td>
-                                <td class="cart_avail"><span class="label label-success">In stock</span>
-                                </td>
-                                <td class="qty">
-                                    yes
-                                </td>
-                                <td class="action">
-                                    <input style="float:left;border:0;width:60px;background-color:#E8F5E9;border-radius: 12px;margin-right:5px" type="button" class="btnlogin" id="btnlogin" name="btnlogin" value="Edit"></input>
-                                    <input style="float:right;border:0;width:60px;background-color:#FFEBEE;border-radius: 12px;margin-right:10px" type="button" class="btnlogin" id="btnlogin" name="btnlogin" value="Delete"></input>
-                                </td>
-                            </tr>
+                            ?>                           
                         </tbody>
                         <!-- <tfoot>
                             <tr>
@@ -188,29 +228,40 @@
                         </tfoot> -->
                     </table>
                 </div>
-
-                <div style="background:red;width:100%;height:40px;margin-top:10px" class="pgn_admin" id="pgn_admin">
-
-                    <!-- // if ($current_page > 1 && $total_page > 1) {
-                    //     echo '<a href="' . FILE_PHP_RECRUITMENT . '?page=' . ($current_page - 1) . '"><b>&#8678;</b></a> | ';
-                    // }
-
-                    // for ($i = 1; $i <= $total_page; $i++) {
-                    //     if ($i == $current_page) {
-                    //         echo '<span style="color: #1a75ff;"><b>' . $i . '</b></span> | ';
-                    //     } else {
-                    //         echo '<a href="' . FILE_PHP_RECRUITMENT . '?page=' . $i . '">' . $i . '</a> | ';
-                    //     }
-                    // }
-
-                    // if ($current_page < $total_page) {
-                    //     echo '<a href="' . FILE_PHP_RECRUITMENT . '?page=' . ($current_page + 1) . '"><b>&#8680;</b></a>';
-                    // } -->
-
+                <div class="msg-result">
+                   Tổng số records là <?php echo $total_records?>
                 </div>
+                <div class="pgn_admin" id="pgn_admin">
+                    <?php
+                    if ($current_page > 1 && $total_page > 1) {
+                        echo '<a href="admin.php?page=' . ($current_page - 1) . '&key=' . $key . '"><b>&#8678;</b></a> | ';
+                    }
+
+                    for ($i = 1; $i <= $total_page; $i++) {
+                        if ($i == $current_page) {
+                            echo '<span style="color: #6772E5;"><b>' . $i . '</b></span> | ';
+                        } else {
+                            echo '<a href="admin.php?page=' . $i . '&key=' . $key . '">' . $i . '</a> | ';
+                        }
+                    }
+
+                    if ($current_page < $total_page) {
+                        echo '<a href="admin.php?page=' . ($current_page + 1) . '&key=' . $key . '"><b>&#8680;</b></a>';
+                    }
+                    ?>
+                </div>               
             </div>
         </div>
     </div>
+    <div id="wrapper_edit">
+
+    </div>
+    <script>
+        var page = <?= $current_page ?>;
+        var key = '<?= $key ?>';
+    </script>
+    <script src="<?= FILE_JS_MANAGE_ACCOUNT ?>"></script>
+    <script src="<?= FILE_JS_COMMON ?>"></script>
 </body>
 
 </html>
