@@ -1,4 +1,9 @@
 * {box-sizing: border-box}
+h1 {
+  color: red;
+  text-align: center;
+}
+
 /* ***************************************************************************STYLE MENU************************************************************************* */
 .nav{
     width: 100%;
@@ -63,7 +68,8 @@
 
 
 /* Full-width input fields */
-.containerPopup input[type=text],.containerPopup input[type=password],.containerPopup input[type=date] {
+.containerPopup input[type=text],.containerPopup input[type=password],
+.containerPopup input[type=date] {
   width: 100%;
   padding: 8px;
   margin: 5px 0px 10px 0;
@@ -81,21 +87,16 @@
   margin: 5px 0px 15px 0;
 }
 
-h1 {
-  color: red;
-  text-align: center;
-}
-
 .formPopup hr {
   border-top: 4px double #0e0d0d;
   text-align: center;
  }
 
  .btn {
-  width: 30%;
-  padding: 8px 15px;
+  width: 100px;
+  padding: 8px 5px;
   font-size: 15px;
-  margin: 5px 35%;
+  margin: 5px 32%;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
@@ -161,3 +162,85 @@ img.avatar {
 
 
 /* ************************************************************************STYLE REGISTER************************************************************* */
+
+/* ************************************************************************STYLE TABLE************************************************************* */
+
+.table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table td{
+  max-width: 200px;
+  max-height: 200px;
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.table tr:hover{
+background-color:#ddd;
+cursor:pointer;
+}
+
+.table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* ************************************************************************STYLE BORDER************************************************************* */
+.border{
+  margin: 2% 15% 0 15%;
+  box-shadow: 0 4px 9px 0 #eee!important;
+  padding: 10px 30px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* ************************************************************************STYLE CART************************************************************* */
+.divClear{
+  margin: 20px 0px ;
+}
+
+.btnClear{
+  margin: 0px ;
+  background-color: red;
+}
+
+.btnClear:hover {background-color: #9e0821}
+  
+.btnClear:active {
+   background-color: #9e0821;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
+.btnUpdCart{
+margin: 10px 0px;
+background-color: rgb(216, 113, 29);
+}
+
+.btnUpdCart:hover {background-color: #644305}
+    
+.btnUpdCart:active {
+  background-color: #644305;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.btnOder{
+  margin: 10px 0;
+}
+
+.label{
+  display: block;
+  margin: 10px 0px;
+}

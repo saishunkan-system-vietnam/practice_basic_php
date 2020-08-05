@@ -7,7 +7,7 @@
 
         // Select dữ liệu
         $result = $mysqli->query("SELECT * FROM t_account WHERE id = '$id'"); 
-        if ($result->num_rows) {
+        if ($result->num_rows>0) {
             while($row = $result->fetch_assoc()){
                 $data[] = $row;
             }   

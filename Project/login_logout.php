@@ -14,15 +14,14 @@
         header("location: ./index.php");
     }
 
-
-
     // Login
     if (isset($_POST["uid"]) && isset($_POST["pass"]) && isset($_POST["save"]) ) {
         $email = $_POST["uid"];
         $password = md5($_POST["pass"]);
 
         $result = $mysqli->query("SELECT * FROM t_account WHERE id = '$email' AND password = '$password' AND del_flg =0");
-        if ($result->num_rows) {
+
+        if ($result->num_rows>0) {
             while($row = $result->fetch_assoc()){
                 $_SESSION[SESSION_USERNAME] = $email;
                 $_SESSION["role"] = $row["role"] ;
@@ -33,9 +32,9 @@
                 setcookie(COOKIE_USERNAME, $email, time() + 14400);
                 setcookie(COOKIE_PASSWORD, $password, time() + 14400);
             }
-            echo true;            
-        }   else{
-            echo false;
+            echo json_encode(['status'=>'success']);   
+        } else{
+            echo json_encode(['status'=>'error']);
         }
     }
 

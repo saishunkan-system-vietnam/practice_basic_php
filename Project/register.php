@@ -1,6 +1,7 @@
 <?php
     require './config/router.php';
     require FILE_PHP_CONFIG;
+    echo "ágdjadjsd";
     $isExists = false;
 
     if (isset($_GET["email"])) {
@@ -26,9 +27,9 @@
         $sqlinsert="INSERT INTO t_account(`fullname`, `password`, `birthday`, `sex`, `phone`, `id`, `address`) VALUES ('$name','$password','$bday',$sex,'$phone','$email','$address')";
 
         if($mysqli->query($sqlinsert)){
-            echo true;
+            echo json_encode(['status'=>'success']);
         }else{
-            echo false;
+            echo json_encode(['status'=>'error']);
         }
     }
 

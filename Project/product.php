@@ -58,14 +58,14 @@
         <div class="card">
             <form action=<?= FILE_PHP_ADDTOCART ?> id="from_cart" onsubmit="return checkLogin()" method="POST">
                 <a href="./getProductById.php?id=<?= $row["id"] ?>">
-                    <img src=<?= $row["avarta"];?> alt=<?= $row["name"] ?> style="width:200px; height:250px;">
+                    <img src=<?= $row["image"];?> alt=<?= $row["name"] ?> style="width:200px; height:250px;">
                 </a>
                 <h3><?= $row["name"] ?></h3>
                 <p class="price"><?= $row["price"].'K' ?></p>
                 <input type="hidden" name="productId" value=<?= $row["id"] ?>>
                 <input type="hidden" name="productName" value='<?= $row["name"] ?>'>
                 <input type="hidden" name="productPrice" value=<?= $row["price"] ?>>
-                <input type="hidden" name="productAvarta" value=<?= $row["avarta"] ?>>
+                <input type="hidden" name="productImage" value=<?= $row["image"] ?>>
                 <p><input type="number" name="quantity" id="quantity" value="1"></p>
                 <button type="submit" class="btncart" name="btnProduct"><i class="fa fa-shopping-cart"></i></button>
             </form>

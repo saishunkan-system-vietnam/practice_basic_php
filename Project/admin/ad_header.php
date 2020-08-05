@@ -1,3 +1,13 @@
+<?php 
+    session_start();
+     if (isset($_SESSION["role"])) {
+         if ($_SESSION["role"] != 1) {
+            header("location: ../index.php");
+         }
+     }else{
+        header("location: ../index.php");
+     }    
+?>
 <link rel="stylesheet" type="text/css" href="../css/style_admin.css" >
 
 <div class="headingPanel">
@@ -21,9 +31,7 @@
                 <ul>
                     <li><a href="./index.php">Cấu hình</a></li>
 
-                    <li><a href="#">Tin tức</a></li>
-
-                    <li><a href="./ad_Product.php">Sản phẩm</a></li>
+                    <li><a href="./product_listing.php">Sản phẩm</a></li>
 
                     <li><a href="">Đơn hàng</a></li>
 

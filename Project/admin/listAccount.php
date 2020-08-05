@@ -1,5 +1,4 @@
-<?php 
-    session_start();    
+<?php   
     require '../config/config.php';
     $output = '';
 
@@ -27,8 +26,8 @@
                 <td>'.$row["password"].'</td>
                 <td>'.$row["del_flg"].'</td>
                 <td>'.$row["role"].'</td>
-                <td><button class="btn" id = "btnEdit" data-id="'.$row["id"].'"><span>Edit</span></button> </td>
-                <td><button class="btn" id = "btnDelete" data-id="'.$row["id"].'"><span>Delete</span></button> </td>
+                <td><button class="btnEdit btn" id = "btnEditAccount" data-id="'.$row["id"].'"><span>Edit</span></button> </td>
+                <td><button class="btnDelete btn" id = "btnDelAccount" data-id="'.$row["id"].'"><span>Delete</span></button> </td>
             </tr>
         ';
         }   

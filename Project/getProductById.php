@@ -29,7 +29,7 @@
                     <th style="width: 50%;"></th>
                 </tr>
                 <tr>
-                    <td><img src=<?= $row["avarta"]?> alt=""></td>
+                    <td><img src=<?= $row["image"]?> alt=""></td>
                     <td>
                         <h2><?= $row["name"]?></h2>
                         <h4>Xuất xứ: <?= $row["origin"]?></h4>
@@ -55,13 +55,13 @@
             <input type="hidden" name="productId" value=<?= $row["id"] ?>>
             <input type="hidden" name="productName" value='<?= $row["name"] ?>'>
             <input type="hidden" name="productPrice" value=<?= $row["price"] ?>>
-            <input type="hidden" name="productAvarta" value=<?= $row["avarta"] ?>>
+            <input type="hidden" name="productImage" value=<?= $row["image"] ?>>
 
         </form>
     </div>
     
-    <div  class="viewNote">
-    <p><?= $row["note"] ?></p>
+    <div  class="viewContent">
+    <p><?= $row["content"] ?></p>
     </div>
     <?php endwhile ; ?>
 

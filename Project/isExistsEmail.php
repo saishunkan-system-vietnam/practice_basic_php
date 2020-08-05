@@ -6,7 +6,7 @@
         $email = $_GET["email"];
         $result = $mysqli->query("SELECT * FROM t_account WHERE id = '$email' AND del_flg = 0");
 
-        if ($result) {
+        if ($result->num_rows>0) {
             echo json_encode(['status'=>'exists']);
         }
         else{

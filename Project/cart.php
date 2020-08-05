@@ -61,10 +61,10 @@
         $phone      = $_POST['phone'];
         $address    = $_POST['address'];
         $payments   = $_POST['payments'];
-        $note       = $_POST['note'];
+        $content       = $_POST['content'];
         $idAccount  = $_SESSION[SESSION_USERNAME];
 
-        $insertOder="INSERT INTO t_order(`id_account`, `recipient`, `phone`, `address`, `payments`, `note`, `create_datetime`) VALUES ('$idAccount','$name','$phone','$address',$payments,'$note',CURRENT_TIMESTAMP())";
+        $insertOder="INSERT INTO t_order(`id_account`, `recipient`, `phone`, `address`, `payments`, `content`, `create_datetime`) VALUES ('$idAccount','$name','$phone','$address',$payments,'$content',CURRENT_TIMESTAMP())";
         $resultOder =$mysqli->query($insertOder);
         if ($resultOder) {
             $cookie_data = $_COOKIE['shopping_cart'];
@@ -105,18 +105,18 @@
         }
         ?>
     </div>
-    <div class="cart_content">
-        <h2>Giỏ hàng</h2>
+    <div class="border">
+        <h1>Giỏ hàng</h1>
         <div>
             <h3><?php if (isset($_SESSION["error"])) {
                 echo $_SESSION["error"];
             } ?></h3>
         </div>
-        <div>
-            <a class="btn" href="./cart.php?action=clear">Clear Cart</a>
+        <div class="divClear">
+            <a class="btnClear btn" href="./cart.php?action=clear">Clear Cart</a>
         </div>
         <form action="" method="POST">
-            <table id="table_cart">
+            <table class="table tableCart">
                 <tr>
                     <th width="40%">Tên sản phẩm</th>
                     <th width="6%">Số lượng</th>
@@ -163,36 +163,36 @@
 			}
 			?>
             </table>
-            <input type="submit" class="btn" name="updateCart" value="Cập nhật" />
+            <input type="submit" class="btnUpdCart btn" name="updateCart" value="Cập nhật" />
         </form>
         <hr>
         <form action="" method="POST">
-            <h2>Thông tin người nhận hàng</h2>
+            <h1>Thông tin người nhận hàng</h1>
 
             <div>
                 <input type="hidden" value="<?= $total ?>" name="payments" required />
             </div>
             <div>
-                <label>Người nhận: </label>
+                <span class="labelName label">Người nhận: </span>
                 <input type="text" value="" name="name" required />
             </div>
 
             <div>
-                <label>Điện thoại: </label>
+                <span class="labelPhone label">Điện thoại: </span>
                 <input type="text" value="" name="phone" pattern=<?= PATTERN_PHONE ?>required />
             </div>
 
             <div>
-                <label>Địa chỉ: </label>
+                <span class="labelAddress label">Địa chỉ: </span>
                 <input type="text" value="" name="address" required />
             </div>
 
             <div>
-                <label>Ghi chú: </label>
-                <textarea name="note" cols="70" rows="7"></textarea>
+                <span class="labelcontent label">Ghi chú: </span>
+                <textarea name="content" cols="70" rows="7"></textarea>
             </div>
             <div>
-                <input type="submit" class="btn" name="btnOder" value="Đặt hàng" />
+                <input type="submit" class="btnOder btn" name="btnOder" value="Đặt hàng" />
             </div>
         </form>
 

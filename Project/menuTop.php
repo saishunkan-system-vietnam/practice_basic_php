@@ -90,7 +90,7 @@ if (empty($_SESSION[SESSION_USERNAME])) {
 <div id="login" class="popup popupLogin">
     <form class="form_login formPopup" id="form_login" action="" method="post">
         <div class="containerPopup containerLogin">
-            <span onclick="closeForm('login')" class="close CloseLogin" title="Close">&times;</span>
+            <span onclick="closeForm('login')" class="Close CloseLogin" title="Close">&times;</span>
             <img src=<?= FILE_IMG_AVARTA ?> alt="Avatar" class="avatar">
             <h1>Đăng nhập Email</h1>
             <hr>

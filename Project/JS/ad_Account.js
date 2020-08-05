@@ -6,7 +6,7 @@ $(document).ready(function() {
     delAccount();
 
     function getAccountById() {
-        $(document).on('click', '#btnEdit', function() {
+        $(document).on('click', '.btnEdit', function() {
             var id = $(this).attr('data-id');
             $.ajax({
                 url: "./getAccountById.php",
@@ -57,7 +57,7 @@ $(document).ready(function() {
                 dataType: 'JSON',
                 success: function(data) {
                     if (data.status == 'success') {
-                        outputData();
+                        search();
                         document.getElementById('upd_Account').style.display = 'none';
                         alert("Bạn đã update thành công");
                     } else {
@@ -70,22 +70,25 @@ $(document).ready(function() {
     }
 
     function delAccount() {
-        $(document).on('click', '#btnDelete', function() {
-            var id = $(this).attr('data-id');
-            $.ajax({
-                url: "./delAccount.php",
-                method: "POST",
-                data: {id},
-                dataType: 'JSON',
-                success: function(data) {
-                    if (data.status == 'success') {
-                        outputData();
-                        alert("Bạn đã xóa thành công");
-                    } else {
-                        alert("Xảy ra lỗi vui lòng kiểm tra lại");
+        $(document).on('click', '.btnDelete', function() {
+            var result = confirm("Bạn có chắc muốn xóa tài khoản này?");
+            if(result){
+                var id = $(this).attr('data-id');
+                $.ajax({
+                    url: "./delAccount.php",
+                    method: "POST",
+                    data: {id},
+                    dataType: 'JSON',
+                    success: function(data) {
+                        if (data.status == 'success') {
+                            search();
+                            alert("Bạn đã xóa thành công");
+                        } else {
+                            alert("Xảy ra lỗi vui lòng kiểm tra lại");
+                        }
                     }
-                }
-            });
+                });
+            }          
         })
     }
 

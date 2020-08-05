@@ -1,15 +1,6 @@
 <?php
-session_start();
 require '../config/router.php';
 require FILE_PHP_CONFIG;
-if (isset($_SESSION["role"])) {
-    if ($_SESSION["role"] != 1) {
-        echo '<script type="text/javascript">alert("tài khoản của bạn không có quyền vào chức năng Admin")</script>';
-        header("location: ../index.php");
-    }
-} else {
-    header("location: ../index.php");
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,21 +28,22 @@ if (isset($_SESSION["role"])) {
     <script>
         var page = <?= $current_page ?>;
         var content = '<?= $content ?>';
-   
     </script>
 
     <div class="main-content">
-        <h2>Danh sách tài khoản</h2>
+        <h1>Danh sách tài khoản</h1>
         <div class="search account">
-            <div class="search_account label"><label for="">Tìm kiếm theo tên: </label></div>
-            <div class="search_account input"><input type="text" class="inp search" id="inpSearch" placeholder="Nhập tên nhân viên"></div>
-            <div class="search_account button"><button class="" id="btnSearch">Tìm kiếm</button></div>
+            <div class="search"><label for="">Tìm kiếm theo tên: </label></div>
+            <div class="search"><input type="text" class="inpSearch inp" id="inpSearch" placeholder="Nhập tên nhân viên"></div>
+            <div class="search"><button class="btnSearch btn" id="btnSearch">Tìm kiếm</button></div>
         </div>
         <div class="clear-both"></div>
 
-        <button class="btn" onclick="document.getElementById('regist').style.display='block'"><i class="fa fa-plus-circle"></i> Thêm mới</button>
+        <div class="divAdd">
+            <a class="btnAdd btn"  onclick="openForm('regist')"><i class="fa fa-plus-circle"></i> Thêm mới </a>
+        </div>
 
-        <table class="table_listAccount">
+        <table class="table tableListAccount">
             <thead>
                 <tr>
                     <th>Họ và Tên</th>
@@ -78,11 +70,10 @@ if (isset($_SESSION["role"])) {
     </div>
 
 
-
-    <div id="upd_Account" class="popup_upd">
-        <form class="form_upd_Account animate" id="form_upd_Account" action="" method="POST" style="border:1px solid #ccc">
-            <div class="upd_container">
-                <span onclick="document.getElementById('upd_Account').style.display='none'" class="upd_Account_close" title="Close">&times;</span>
+    <div id="upd_Account" class="popup popupUpd">
+        <form class="form_Upd formPopup" id="form_upd_Account" action="" method="POST">
+            <div class="containerPopup containerUpd">
+                <span onclick="closeForm('upd_Account')" class="Close CloseUpd" title="Close">&times;</span>
                 <h1>Update tài khoản</h1>
                 <hr>
                 <input type="hidden" name="account_id" id="account_id" required>
@@ -105,51 +96,48 @@ if (isset($_SESSION["role"])) {
                 <label><b>Role</b></label>
                 <input type="number" placeholder="Nhập Role" name="upd_role" id="upd_role" required>
 
-                <div class="upd_Account_clearfix">
-                    <button type="button" onclick="document.getElementById('upd_Account').style.display='none'" class="cancel">Cancel</button>
-                    <button type="submit" class="upd_Account_tbtn" id="upd_Accountbtn" name="upd_Accountbtn">Update</button>
-                </div>
+                <button type="submit" class="btnUpd btn" id="upd_Accountbtn" name="upd_Accountbtn">Update</button>
             </div>
         </form>
     </div>
 
     <!-- Đăng ký tài khoản -->
-<div id="regist" class="popup popupRegist">
-    <form class="form_regist formPopup" id="form_register" action="" method="POST">
-        <div class="containerPopup containerRegist">
-            <span onclick="closeForm('regist')" class="Close CloseRegist" title="Close">&times;</span>
-            <h1>Đăng ký tài khoản</h1>
-            <p>Xin vui lòng điện đầy đủ thông tin bên dưới.</p>
-            <hr>
-            <label for="fullname"><b>Họ và Tên</b></label>
-            <input type="text" placeholder="Nhập Họ và Tên" name="fullname" id="fullname" required>
+    <div id="regist" class="popup popupRegist">
+        <form class="form_regist formPopup" id="form_register" action="" method="POST">
+            <div class="containerPopup containerRegist">
+                <span onclick="closeForm('regist')" class="Close CloseRegist" title="Close">&times;</span>
+                <h1>Đăng ký tài khoản</h1>
+                <p>Xin vui lòng điện đầy đủ thông tin bên dưới.</p>
+                <hr>
+                <label for="fullname"><b>Họ và Tên</b></label>
+                <input type="text" placeholder="Nhập Họ và Tên" name="fullname" id="fullname" required>
 
-            <label for="sex"><b>Giới tính</b></label>
-            <input type="radio" name="sex" value="1" checked />Nam
-            <input type="radio" name="sex" value="0" />Nữ <br>
+                <label for="sex"><b>Giới tính</b></label>
+                <input type="radio" name="sex" value="1" checked />Nam
+                <input type="radio" name="sex" value="0" />Nữ <br>
 
-            <label for="bday"><b>Ngày sinh</b></label>
-            <input type="date" name="bday" id="bday" required>
+                <label for="bday"><b>Ngày sinh</b></label>
+                <input type="date" name="bday" id="bday" required>
 
-            <label for="phone"><b>Số điện thoại</b></label>
-            <input type="text" name="phone" placeholder="Nhập số đện thoại" id="phone" pattern=<?= PATTERN_PHONE ?>required>
+                <label for="phone"><b>Số điện thoại</b></label>
+                <input type="text" name="phone" placeholder="Nhập số đện thoại" id="phone" pattern=<?= PATTERN_PHONE ?>required>
 
-            <label for="email"><b>Email</b></label>
-            <input type="text" placeholder="Nhập Email" name="email" id="email" pattern=<?= PATTERN_EMAIL ?> required>
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Nhập Email" name="email" id="email" pattern=<?= PATTERN_EMAIL ?> required>
 
-            <label for="address"><b>Địa chỉ</b></label>
-            <input type="text" placeholder="Nhập địa chỉ" name="address" id="address" required>
+                <label for="address"><b>Địa chỉ</b></label>
+                <input type="text" placeholder="Nhập địa chỉ" name="address" id="address" required>
 
-            <label for="psw"><b>Mật khẩu</b></label>
-            <input type="password" placeholder="Nhập mật khẩu" name="password" id="password" pattern=<?= PATTERN_PASSWORD ?> title="Phải chứa ít nhất một số và một chữ hoa và chữ thường và ít nhất 8 ký tự trở lên" required>
+                <label for="psw"><b>Mật khẩu</b></label>
+                <input type="password" placeholder="Nhập mật khẩu" name="password" id="password" pattern=<?= PATTERN_PASSWORD ?> title="Phải chứa ít nhất một số và một chữ hoa và chữ thường và ít nhất 8 ký tự trở lên" required>
 
-            <label for="re_password"><b>Mật khẩu xác nhận</b></label>
-            <input type="password" placeholder="Xác nhận mật khẩu" name="re_password" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required>
+                <label for="re_password"><b>Mật khẩu xác nhận</b></label>
+                <input type="password" placeholder="Xác nhận mật khẩu" name="re_password" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required>
 
-            <button type="submit" class="registbtn btn" id="registbtn" name="registbtn">Đăng Ký</button>
-        </div>
-    </form>
-</div>
+                <button type="submit" class="registbtn btn" id="registbtn" name="registbtn">Đăng Ký</button>
+            </div>
+        </form>
+    </div>
     <script src=<?= FILE_JS_COMMON ?>></script>
     <script src=<?= FILE_JS_ACCOUNTAD ?>></script>
     <script src=<?= FILE_JS_REGISTER ?>></script>

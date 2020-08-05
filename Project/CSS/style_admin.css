@@ -31,6 +31,7 @@
 .left-menu{
     float: left;
     width: 15%;
+    position: fixed;
 }
 
 .menu-heading{
@@ -66,8 +67,10 @@
 /* ********************************************************************STYLE MAIN*********************************************************************** */
 .main-content{
     float: left;
-    width: 1000px;
-    margin-left: 30px;
+    width: 83%;
+    margin-left: 1%;
+    left: 16%;
+    position: relative;
 }
 .main-content h1{
     margin: 0;
@@ -126,7 +129,8 @@
   
   
   /* Full-width input fields */
-  .containerPopup input[type=text],.containerPopup input[type=password],.containerPopup input[type=date] {
+  .containerPopup input[type=text],.containerPopup input[type=password],
+  .containerPopup input[type=date],.containerPopup input[type=number] {
     width: 100%;
     padding: 8px;
     margin: 5px 0px 10px 0;
@@ -135,7 +139,8 @@
     background: #f1f1f1;
   }
   
-  .containerPopup input[type=text]:focus,.containerPopup input[type=password],.containerPopup input[type=date]:focus {
+  .containerPopup input[type=text]:focus,.containerPopup input[type=password],
+  .containerPopup input[type=date],.containerPopup input[type=number]:focus {
     background-color: #ddd;
     outline: none;
   }
@@ -155,10 +160,10 @@
    }
   
    .btn {
-    width: 30%;
-    padding: 8px 15px;
+    width: 100px;
+    padding: 8px 5px;
     font-size: 15px;
-    margin: 5px 35%;
+    margin: 5px 32%;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
@@ -178,7 +183,7 @@
     transform: translateY(4px);
   }
   
-  .close {
+  .Close {
     float: right;
     color: #000;
     font-size: 35px;
@@ -186,8 +191,8 @@
     margin: 0px -42px 0px 0px;
   }
   
-  .close:hover,
-  .close:focus {
+  .Close:hover,
+  .Close:focus {
     color: red;
     cursor: pointer;
   }
@@ -222,40 +227,84 @@
     margin: 10px;
   }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
+/* ************************************************************************STYLE SEARCH************************************************************* */
+.btnAdd{
+margin: 10px 0;
+}
+.divAdd{
+  margin: 0px 0px 20px 0px;
 }
 
-h2 {
-    text-align: center;
-    color: red;
+.btnEdit{
+  width: 60px;
+  margin: 5px;
+  background-color: rgb(216, 113, 29);
 }
 
-.table_listAccount {
+.btnEdit:hover {background-color: #644305}
+    
+.btnEdit:active {
+  background-color: #644305;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.btnDelete{
+  width: 60px;
+  margin: 5px;
+  background-color: red;
+}
+
+.btnDelete:hover {background-color: #9e0821}
+  
+.btnDelete:active {
+   background-color: #9e0821;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
+.inpSearch{
+  height: 35px;
+}
+
+.search {
+  float: left;
+  margin: 10px 0;
+  }
+  
+.search input {
+    width: 400px;
+    margin: -10px 20px 10px;
+}
+
+.btnSearch{
+  margin: -10px;
+}  
+
+/* ************************************************************************STYLE TABLE************************************************************* */
+.table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
 
-.table_listAccount td{
+.table td{
     max-width: 200px;
-    max-height: 200px;
+    /* max-height: 200px; */
     border: 1px solid #ddd;
     padding: 8px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    /* text-overflow: ellipsis;
+    white-space: nowrap; */
+    word-wrap: break-word;
     overflow: hidden;
 }
 
-.table_listAccount tr:nth-child(even) {
-    background-color: #f2f2f2;
+.table tr:hover{
+  background-color:#ddd;
+  cursor:pointer;
 }
 
-.table_listAccount tr:hover {
-    background-color: #ddd;
-}
-
-.table_listAccount th {
+.table th {
     border: 1px solid #ddd;
     padding: 8px;
     padding-top: 12px;
@@ -269,20 +318,19 @@ h2 {
     clear: both;
 }
 
-.search_account {
-float: left;
+/* ************************************************************************STYLE PRODCTEDING************************************************************* */
+.wrap-field label{
+  width: 150px;
+  display: inline-block;
+  float: left;
+  color: blue;
+  font-size: 20px;
 }
 
-.search_account input {
-    width: 400px;
-    margin: -10px 20px 10px;
+.wrap-field input{
+  margin-bottom: 10px;
+  line-height: 25px;
+  float: left;
+  width: 350px;
 }
 
-.search_account button {
-    margin: -10px;
-    background-color: rgb(17, 163, 29);
-}
-
-.btn_add {
- background-color:  rgb(17, 163, 29);
-}

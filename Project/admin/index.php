@@ -1,14 +1,6 @@
 <?php 
-    session_start();
     require '../config/router.php';
-    require FILE_PHP_CONFIG ;
-     if (isset($_SESSION["role"])) {
-         if ($_SESSION["role"] != 1) {
-            echo '<script type="text/javascript">alert("tài khoản của bạn không có quyền vào chức năng Admin")myVar = setTimeout(openForm("login"), 3000);</script>';
-         }
-     }else{
-        echo '<script type="text/javascript">alert("tài khoản của bạn không có quyền vào chức năng Admin");setTimeout(() => { openForm("login"); }, 1000);</script>';
-     }    
+    require FILE_PHP_HEADERAD; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +15,7 @@
 </head>
 
 <body>
-    <?php require FILE_PHP_HEADERAD ?>
+    
    <!-- Đăng nhập -->
 <div id="login" class="popup popupLogin">
     <form class="form_login formPopup" id="form_login" action="" method="post">

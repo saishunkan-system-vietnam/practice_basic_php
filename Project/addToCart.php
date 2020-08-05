@@ -2,7 +2,7 @@
 	require './config/router.php';
 
     if (isset($_POST["productId"]) && isset($_POST["productName"]) && isset($_POST["productPrice"]) 
-        && isset($_POST["productAvarta"]) && isset($_POST["quantity"])) {
+        && isset($_POST["productImage"]) && isset($_POST["quantity"])) {
 
         if (isset($_COOKIE["shopping_cart"])) {
             $cookie_data = $_COOKIE['shopping_cart'];
@@ -31,7 +31,7 @@
 	    		'item_id'			=>	$_POST["productId"],
 	    		'item_name'			=>	$_POST["productName"],
                 'item_price'		=>	$_POST["productPrice"],
-                'item_avarta'		=>	$_POST["productAvarta"],
+                'item_image'		=>	$_POST["productImage"],
 	    		'item_quantity'		=>	$_POST["quantity"]
 	    	);
 	    	$cart_data[] = $item_array;

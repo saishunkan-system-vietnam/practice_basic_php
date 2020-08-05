@@ -14,7 +14,8 @@ $(document).ready(function () {
         }
         else{
             $.ajax({
-                url: "./register.php",
+                async: false,
+                url: "../register.php",
                 method: "POST",
                 data: {
                     fullname,
@@ -25,14 +26,14 @@ $(document).ready(function () {
                     address,
                     password
                 },
+                dataType: 'JSON',
                 success: function (data) {
                     console.log(data);
-                    if (data) {
+                    if (data.status == 'success') {
                         document.getElementById('regist').style.display = 'none';
                         alert("Bạn đã đăng kí thành công")
-                    }
-                    else {
-                        alert("Bạn chưa đăng kí thành công!!!!!")
+                    } else {
+                        lert("Bạn chưa đăng kí thành công!!!!!")
                     }
                 }
             });
