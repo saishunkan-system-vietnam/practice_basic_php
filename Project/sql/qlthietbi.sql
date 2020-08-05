@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 04, 2020 at 12:34 PM
+-- Generation Time: Aug 05, 2020 at 12:31 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -120,9 +120,10 @@ INSERT INTO `t_device` (`id`, `device_name`, `id_category`, `id_supplier`, `del_
 (20, '	 Laptop DELL E5450', 2, 3, b'0', '', NULL, '2020-08-03 15:38:37', '2020-08-03 16:39:38'),
 (21, '	 Laptop DELL E5450', 3, 4, b'0', '', NULL, '2020-08-03 15:55:47', '2020-08-03 16:40:23'),
 (22, 'Bộ đồ bảo hộ lao động VIP', 1, 1, b'1', '', NULL, '2020-08-03 15:56:07', '2020-08-03 16:41:50'),
-(23, 'Bộ đồ bảo hộ lao động VIP', 2, 2, b'0', '', NULL, '2020-08-03 15:58:01', NULL),
-(24, 'Laptop DELL E5450', 1, 1, b'0', '', NULL, '2020-08-04 13:41:19', NULL),
-(25, 'Laptop DELL E5450', 1, 1, b'0', '', NULL, '2020-08-04 13:41:26', NULL);
+(23, 'Bộ đồ bảo hộ lao động VIP', 2, 2, b'0', '', '<p><strong>1232</strong></p>', '2020-08-03 15:58:01', '2020-08-05 11:19:13'),
+(24, 'Laptop DELL E5450', 1, 1, b'0', '', '', '2020-08-04 13:41:19', '2020-08-05 11:16:23'),
+(25, 'Laptop DELL E5450', 1, 1, b'0', '', NULL, '2020-08-04 13:41:26', NULL),
+(26, 'Bộ đồ leo núi VIP (bản giới hạn)', 3, 2, b'0', '', '<p>Được sản xuất tại Paris chỉ c&oacute; 2 bản tr&ecirc;n thế giới</p>', '2020-08-05 10:49:10', NULL);
 
 -- --------------------------------------------------------
 
@@ -172,7 +173,10 @@ INSERT INTO `t_loan` (`id`, `id_account`, `loan_date`, `intend_date`, `create_da
 (44, 1, '2020-08-04', '0000-00-00', '2020-08-04 17:03:22', NULL),
 (45, 1, '2020-08-04', '0000-00-00', '2020-08-04 17:05:55', NULL),
 (46, 1, '2020-08-04', '2020-08-04', '2020-08-04 17:08:33', NULL),
-(47, 1, '2020-08-04', '2020-08-19', '2020-08-04 17:09:43', NULL);
+(47, 1, '2020-08-04', '2020-08-19', '2020-08-04 17:09:43', NULL),
+(48, 1, '2020-08-05', '2020-08-05', '2020-08-05 15:55:20', NULL),
+(49, 1, '2020-08-05', '2020-08-05', '2020-08-05 15:56:34', NULL),
+(50, 1, '2020-08-05', '2020-08-05', '2020-08-05 16:12:02', NULL);
 
 -- --------------------------------------------------------
 
@@ -219,7 +223,10 @@ INSERT INTO `t_loan_detail` (`id`, `id_loan`, `id_device`, `amount`, `pay_flg`, 
 (19, 44, 24, 1, b'0', NULL, b'0', '', '2020-08-04 17:03:22', NULL),
 (20, 45, 25, 1, b'0', NULL, b'0', '', '2020-08-04 17:05:55', NULL),
 (21, 46, 25, 1, b'0', NULL, b'0', '', '2020-08-04 17:08:33', NULL),
-(22, 47, 13, 5, b'0', NULL, b'0', '<p>Training thi đấu</p>', '2020-08-04 17:09:43', NULL);
+(22, 47, 13, 5, b'0', NULL, b'0', '<p>Training thi đấu</p>', '2020-08-04 17:09:43', NULL),
+(23, 48, 18, 1, b'0', NULL, b'0', '<p>Chơi game theo team</p>', '2020-08-05 15:55:20', NULL),
+(24, 49, 19, 1, b'0', NULL, b'0', '', '2020-08-05 15:56:34', NULL),
+(25, 50, 26, 1, b'0', NULL, b'0', '', '2020-08-05 16:12:02', NULL);
 
 -- --------------------------------------------------------
 
@@ -311,19 +318,19 @@ ALTER TABLE `t_category`
 -- AUTO_INCREMENT for table `t_device`
 --
 ALTER TABLE `t_device`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id', AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id', AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `t_loan`
 --
 ALTER TABLE `t_loan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id', AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id', AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `t_loan_detail`
 --
 ALTER TABLE `t_loan_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id', AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id', AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `t_supplier`

@@ -8,7 +8,7 @@ $data = array();
 
 if ($name == 'select') {
     $id_device = isset($_POST['id_device']) ? trim($_POST['id_device']) : '';
-    $sql_select = "SELECT td.id, td.device_name, td.id_category, tc.category_name, td.id_supplier, ts.supplier_name, td.img FROM t_category tc INNER JOIN t_device td ON tc.id = td.id_category INNER JOIN t_supplier ts on ts.id = td.id_supplier WHERE td.id=$id_device";
+    $sql_select = "SELECT td.id, td.device_name, td.id_category, tc.category_name, td.id_supplier, ts.supplier_name, td.img, td.info FROM t_category tc INNER JOIN t_device td ON tc.id = td.id_category INNER JOIN t_supplier ts on ts.id = td.id_supplier WHERE td.id=$id_device";
     $result_select = mysqli_query($connect, $sql_select) or die("lỗi truy vấn select");
 
     while ($row = $result_select->fetch_assoc()) {
@@ -24,7 +24,9 @@ if ($name == 'insert') {
     $idcategory = isset($_POST['idcategory']) ? trim($_POST['idcategory']) : '';
     $idsupplier = isset($_POST['idsupplier']) ?  trim($_POST['idsupplier']) : '';
     $inpimg = isset($_POST['inpimg']) ? trim($_POST['inpimg']) : '';
-    $sql_Insert_device = "INSERT INTO t_device (device_name, id_category, id_supplier, img,create_datetime) VALUES ('$devicename', $idcategory, $idsupplier,'$inpimg', CURRENT_TIMESTAMP())";
+    $info = isset($_POST['info']) ? trim($_POST['info']) : '';
+
+    $sql_Insert_device = "INSERT INTO t_device (device_name, id_category, id_supplier, img, info, create_datetime) VALUES ('$devicename', $idcategory, $idsupplier,'$inpimg','$info', CURRENT_TIMESTAMP())";
     $result_Insert = mysqli_query($connect, $sql_Insert_device) or die("lỗi truy vấn insert");
 
     if (!$result_Insert) {
@@ -41,8 +43,9 @@ if ($name == 'update') {
     $idcategory = isset($_POST['idcategory']) ? trim($_POST['idcategory']) : '';
     $idsupplier = isset($_POST['idsupplier']) ?  trim($_POST['idsupplier']) : '';
     $inpimg = isset($_POST['inpimg']) ? trim($_POST['inpimg']) : '';
+    $info = isset($_POST['info']) ? trim($_POST['info']) : '';
 
-    $sql_Update_device = "UPDATE t_device SET device_name='$devicename', id_category=$idcategory, id_supplier=$idsupplier, img='$inpimg', update_datetime=CURRENT_TIMESTAMP() WHERE id=$deviceId";
+    $sql_Update_device = "UPDATE t_device SET device_name='$devicename', id_category=$idcategory, id_supplier=$idsupplier, img='$inpimg', info='$info', update_datetime=CURRENT_TIMESTAMP() WHERE id=$deviceId";
     $result_Update = mysqli_query($connect, $sql_Update_device) or die("lỗi truy vấn update");
 
     if (!$result_Update) {
@@ -64,6 +67,6 @@ if ($name == 'delete') {
     } else {
         echo true;
     }
-    
+
     mysqli_close($connect);
 }

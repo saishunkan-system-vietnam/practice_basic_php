@@ -32,9 +32,9 @@ if ($name == 'insert') {
 
 if ($name == 'select') {
     $id_device = isset($_POST['id_device']) ? trim($_POST['id_device']) : '';
-    $sql_select = "SELECT id, device_name FROM t_device WHERE del_flg = 0 AND id=$id_device";
+    $sql_select = "SELECT * FROM t_device WHERE del_flg = 0 AND id=$id_device";
     $result_select = mysqli_query($connect, $sql_select) or die("lỗi truy vấn select");
-
+    
     while ($row = $result_select->fetch_assoc()) {
         $data[count($data)] = $row;
     }

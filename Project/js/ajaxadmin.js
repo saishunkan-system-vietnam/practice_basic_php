@@ -11,6 +11,7 @@ $(document).ready(function () {
                     idcategory: $('#category option:selected').val(),
                     idsupplier: $('#supplier option:selected').val(),
                     inpimg: $('#inpimg').val(),
+                    info: $('#inpinfo').val(),
                 },
                 success: function (data) {
                     if (data == true) {
@@ -35,6 +36,7 @@ $(document).ready(function () {
                     idcategory: $('#category option:selected').val(),
                     idsupplier: $('#supplier option:selected').val(),
                     inpimg: $('#inpimg').val(),
+                    info: $('#inpinfo').val(),
                 },
                 success: function (data) {
                     if (data == true) {

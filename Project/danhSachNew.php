@@ -6,9 +6,7 @@ include(SITE_POPUPMUONTB);
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href=<?= FILE_CSS_QLTHIETBI ?>>
+    <link rel="stylesheet" href=<?= FILE_CSS_IQLTHIETBI ?>>
 </head>
 
 <body>
@@ -53,16 +51,18 @@ include(SITE_POPUPMUONTB);
                         echo "<b>" . "Thể loại: " . "</b>";
                         echo $row['category_name'];
                         echo '</br></br>';
-                        echo "<b>" . "Hãng sản xuất: " . "</b>";
+                        echo "<b>" . "Nhà cung cấp: " . "</b>";
                         echo $row['supplier_name']; ?>
                     </td>
                     <td class="td_btn">
-                            <button class="btnDetail btn" name="btnEdit" id="btnEdit<?= $row['id']; ?>" data-id="<?= $row['id']; ?>" value="EDIT">
+                        <button class="btnDetail btn" name="btnDetail" id="btnDetail<?= $row['id']; ?>" data-id="<?= $row['id']; ?>" value="DETAIL">
                             <i class="fa fa-info-circle" aria-hidden="true"></i> Detail
-                            </button>
+                        </button>
 
-                            <button class="btnAdd btn" name="btnMuon" id="btnMuon<?= $row['id']; ?>" data-id="<?= $row['id']; ?>"><i class="fa fa-plus-circle"></i> Mượn </button></td>
-                        </td>
+                        <button class="btnAdd btn" name="btnMuon" id="btnMuon<?= $row['id']; ?>" data-id="<?= $row['id']; ?>" data-sess="<?= (isset($_SESSION['txtUsername'])) ? $_SESSION['txtUsername'] : ''; ?>">
+                            <i class="fa fa-plus-circle"></i> Mượn
+                        </button>
+                    </td>
                 </tr>
             <?php endwhile; ?>
         </table>

@@ -41,13 +41,14 @@ $(".btn").click(function () {
                     $('#opt_supplier').val(item.id_supplier);
                     $('#opt_supplier').text(item.supplier_name);
                     $('#inpimg').val(item.img);
+                    CKEDITOR.instances['inpinfo'].setData(item.info);
                 });
             }
         })
     }
 
     if ($(this).attr("name") == 'btnDel') {
-        if (confirm('Are you sure you want to delete this item?')){
+        if (confirm('Are you sure you want to delete this item?')) {
             $.ajax({
                 url: "../api/apiqlthietbi.php",
                 method: "POST",
@@ -69,23 +70,40 @@ $(".btn").click(function () {
     }
 
     if ($(this).attr("name") == 'btnMuon') {
-        $("#modal-wrapper").css("display", "block");
-        $("body").css("overflow", "hidden");
-        var a = $(this).attr("data-id");
-        $.ajax({
-            url: "../api/apiMuonthietbi.php",
-            method: "POST",
-            data: {
-                name: "select",
-                id_device: $(this).attr("data-id")
-            },
-            success: function (data) {
-                data.forEach(function (item) {
-                    $('#opt_device').val(item.id);
-                    $('#opt_device').text(item.device_name);
-                    // $('#thietbi').prop('disabled', 'disabled');
-                });
+        var sessName = $(this).attr("data-sess");
+        if (sessName != '') {
+            $("#modal-wrapper").css("display", "block");
+            $("body").css("overflow", "hidden");
+
+            $.ajax({
+                url: "../api/apiMuonthietbi.php",
+                method: "POST",
+                data: {
+                    name: "select",
+                    id_device: $(this).attr("data-id")
+                },
+                success: function (data) {
+                    data.forEach(function (item) {
+                        $('#opt_device').val(item.id);
+                        $('#opt_device').text(item.device_name);
+                        $('#device').css('pointer-events', 'none');
+
+                    });
+                }
+            })
+        }
+        else {
+            var flg = confirm("Bạn sẽ được chuyển tới trang đăng nhập để được sử dụng chức năng này!!");
+            if (flg == true) {
+                window.location.href = "./dangnhap.php";
+            } else {
+                location.reload(true);
             }
-        })
+        }
+    }
+
+    if ($(this).attr("name") == 'btnDetail') {
+        var device_id = $(this).attr("data-id");
+        window.location.href = "./detail.php?id="+device_id;
     }
 });

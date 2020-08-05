@@ -5,7 +5,7 @@ $result_category = mysqli_query($connect, $query_category);
 $query_supplier = "SELECT id, supplier_name FROM t_supplier ORDER by create_datetime";
 $result_supplier = mysqli_query($connect, $query_supplier);
 ?>
-
+<script src=<?= FILE_JS_ADMIN_CKEDITOR ?>></script>
 <script src=<?= LINK_JQUERY ?>></script>
 <link rel="stylesheet" href=<?= FILE_CSS_POPUPADMIN ?>>
 
@@ -49,6 +49,14 @@ $result_supplier = mysqli_query($connect, $query_supplier);
             <div>
                 <p>Hình ảnh</p>
                 <input type="file" id="inpimg" name="avatar" accept="image/png, image/jpeg">
+            </div>
+            <div class="info">
+                <label>Thông tin chi tiết</label>
+                <textarea id="inpinfo" cols="45" rows="5">
+                </textarea>
+                <script>
+                    CKEDITOR.replace('inpinfo');
+                </script>
             </div>
             <button class="btnsave">SAVE</button>
         </div>

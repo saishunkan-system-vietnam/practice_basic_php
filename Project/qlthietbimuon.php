@@ -85,7 +85,7 @@ include(SITE_POPUPMUONTB);
             <?php while ($row = mysqli_fetch_assoc($result)) : ?>
                 <tr>
                     <td align="center" style="width: 150px; height: 150px; padding: 5px;">
-                        <?php isset($row['img']) ? $row['img'] : $row['img'] = "img_null.jpg";
+                        <?php !empty($row['img']) ? $row['img'] : $row['img'] = "img_null.jpg";
                         echo "<img style='width: 150px; height: 130px;' src='./img/" . $row['img'] . "'>" ?>
                     </td>
                     <td>

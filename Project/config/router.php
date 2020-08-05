@@ -1,18 +1,18 @@
 <?php
 // URL SITE
-define('SITE_MENUTOP','menuTop.php');
-define('SITE_BANNER','banner.php');
-define('SITE_DANHSACHNEW','danhSachNew.php');
-define('SITE_FOOTER','footer.php');
-define('SITE_INDEX','index.php');
+define('SITE_MENUTOP','./menuTop.php');
+define('SITE_BANNER','./banner.php');
+define('SITE_DANHSACHNEW','./danhSachNew.php');
+define('SITE_FOOTER','./footer.php');
+define('SITE_INDEX','./index.php');
 define('SITE_CONFIG','./config/config.php');
 define('SITE_API_CONFIG','../config/config.php');
-define('SITE_DANGNHAP','dangnhap.php');
-define('SITE_DANGKY','dangky.php');
-define('SITE_DANHSACHTHIETBI','danhSachThietBi.php');
-define('SITE_QLTHIETBIMUON','qlthietbimuon.php');
+define('SITE_DANGNHAP','./dangnhap.php');
+define('SITE_DANGKY','./dangky.php');
+define('SITE_DANHSACHTHIETBI','./danhSachThietBi.php');
+define('SITE_QLTHIETBIMUON','./qlthietbimuon.php');
 define('SITE_POPUPMUONTB','./popupmuontb.php');
-define('SITE_SENDMAIL','sendMail.php');
+define('SITE_SENDMAIL','./sendMail.php');
 define('SITE_POPUPADMIN','./popupadmin.php');
 
 // ADMIN
@@ -31,7 +31,9 @@ define('FILE_CSS_LOGIN','./css/login.css');
 define('FILE_CSS_REGISTER','./css/register.css');
 define('FILE_CSS_CHANGEPASS','./css/changepass.css');
 define('FILE_CSS_QLTHIETBIMUON','./css/qlthietbimuon.css');
+define('FILE_CSS_DETAIL','./css/detail.css');
 define('FILE_CSS_QLTHIETBI','../css/qlthietbi.css');
+define('FILE_CSS_IQLTHIETBI','./css/qlthietbi.css');
 define('FILE_CSS_SENDMAIL','./css/sendmail.css');
 define('FILE_CSS_POPUP','./css/popup.css');
 define('FILE_CSS_MENULEFT','../css/menuleft.css');
@@ -46,6 +48,7 @@ define('FILE_JS_COMMOM','./js/commom.js');
 define('FILE_JS_COMMOMADMIN','../js/commom.js');
 define('FILE_JS_SENDMAIL','./js/sendmail.js');
 define('FILE_JS_CKEDITOR','./js/ckeditor/ckeditor.js');
+define('FILE_JS_ADMIN_CKEDITOR','../js/ckeditor/ckeditor.js');
 define('FILE_JS_SEARCHPAGINATION','../js/searchpagination.js');
 
 

@@ -11,20 +11,19 @@ include(SITE_POPUPADMIN);
 <head>
     <link rel="stylesheet" href=<?= LINK_JQUERY_AWESOM ?>>
     <link rel="stylesheet" href=<?= FILE_CSS_QLTHIETBI ?>>
-
 </head>
 
 <body>
     <?php
 
     $content = isset($_GET['content']) ? $_GET['content'] : '';
-    
+
     $result = mysqli_query($connect, "SELECT count(*) as total FROM t_device WHERE del_flg = 0 AND device_name LIKE '%{$content}%' ");
     $row = mysqli_fetch_assoc($result);
     $total_records = $row['total'];
 
     $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-    $limit = 2;
+    $limit = 12;
 
     $total_page = ceil($total_records / $limit);
 
@@ -43,7 +42,7 @@ include(SITE_POPUPADMIN);
     $result = mysqli_query($connect, $sql_select_ds);
     mysqli_close($connect);
     ?>
-     <script>
+    <script>
         var content = "<?= $content ?>";
     </script>
 
@@ -51,7 +50,7 @@ include(SITE_POPUPADMIN);
         <div class="header">
             <button class="btnAdd btn fl" name="btnAdd"><i class="fa fa-plus-circle"></i> ADD</button>
             <button id="btnSearch" name='btnSearch' class="btnAdd btn fr"><i class="fa fa-search"></i> SEARCH</button>
-            <input type="text"id="inpSearch" class="txt_find fr" style="width: 50%;">
+            <input type="text" id="inpSearch" class="txt_find fr" style="width: 50%;">
         </div>
 
         <table class="tbl_second" align="center">
@@ -132,10 +131,10 @@ include(SITE_POPUPADMIN);
             ?>
         </div>
     </div>
-   
+
     <script src=<?= FILE_JS_COMMOMADMIN ?>></script>
     <script src=<?= FILE_JS_SEARCHPAGINATION ?>></script>
-   
+
 </body>
 
 </html>

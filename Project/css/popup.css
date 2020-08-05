@@ -1,4 +1,7 @@
 /* Set a style for all buttons */
+label{
+    font-weight: bold;
+}
 
 .btnmuon {
     background-color: #4CAF50;
@@ -65,13 +68,16 @@
 
 .device {
     height: 30px;
-    margin: 8px 26px;
+    margin-right: 26px;
 }
 
+.device_lbl{
+    margin-left: 26px;
+}
 .reason {
     float : left;
     width : 90%;
-    margin: 8px 26px 20px 26px;
+    margin: 5px 26px 20px 26px;
 }
 
 .intend_date,
