@@ -2,9 +2,10 @@
 require("../config/config.php");
 
     $conn = ConnectDB();
-    if(isset($_POST["stt"]) && isset($_POST["id_hdr"]) )
+    if(isset($_POST["stt"]) && isset($_POST["id_hdr"])  && isset($_POST["id_hdr_multi"]) )
     {
         $id_hdr = $_POST["id_hdr"];
+        $id_hdr_multi = $_POST["id_hdr_multi"];
         $stt = $_POST["stt"];
 
         if($stt =="Del")
@@ -24,30 +25,30 @@ require("../config/config.php");
                 $id_ct = $_POST["id_ct"];
                 if($stt == "Add")
                 {
-                    $sql = "INSERT INTO t_surveyhdr(id, id_category, content) VALUES ('{$id_hdr}', '{$id_ct}', '{$content_hdr}')";
+                    $sql = "INSERT INTO t_surveyhdr(id, id_multi, id_category, content) VALUES ('{$id_hdr}', '{$id_hdr_multi}', '{$id_ct}', '{$content_hdr}')";
                     $conn->query($sql);
                     
                     foreach ($lst as $item) {
-                        if($item[0]['del_flg']=="1")
-                        {
-                            continue;
-                        }
-                        else
-                        {
-                            $id_dtl = $item[0]['id'];
-                            $content = $item[0]['cnt_asw'];
-                            if($item[0]['del_flg'] == "0")
-                            {
+                        // if($item[0]['del_flg']== 1)
+                        // {
+                        //     continue;
+                        // }
+                        // else
+                        // {
+                            $id_dtl = $item['id'];
+                            $content = $item['cnt_asw'];
+                            // if($item[0]['del_flg'] == "0")
+                            // {
                                 $sql = "INSERT INTO t_surveydtl(id, id_hdr, answer) VALUES('{$id_dtl}', '{$id_hdr}', '{$content}')";
-                            }
+                            // }
                         $conn->query($sql);
-                        }
+                        // }
                     }
                 }
                 else if($stt == "Upd")
                 {
                     $sql = "UPDATE t_surveyhdr SET id_category = '{$id_ct}', content = '{$content_hdr}' \n"
-                    . "WHERE id = '{$id_hdr}' and (id_category != '{$id_ct}' || content != '{$content_hdr}') and del_flg = 0";
+                    . "WHERE id = '{$id_hdr}' AND (id_category != '{$id_ct}' OR content != '{$content_hdr}') AND del_flg = 0";
 
                     $conn->query($sql);
 
