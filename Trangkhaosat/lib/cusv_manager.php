@@ -55,23 +55,18 @@ require("../config/config.php");
 
                     //cnt_asw; "id": id, "db": "0",upd_flg "del_flg": "0"
                     foreach ($lst as $item) {
-                        if($item[0]['db']=="0" && $item[0]['del_flg']=="1")
-                        {
-                            continue;
-                        }
-                        else
-                        {
-                            $id_dtl = $item[0]['id'];
-                            $content = $item[0]['cnt_asw'];
-                            if($item[0]['db'] == "1")
+               
+                            $id_dtl = $item['id'];
+                            $content = $item['cnt_asw'];
+                            if($item['db'] == "1")
                             {
-                                if($item[0]['del_flg'] =="1")
+                                if($item['del_flg'] =="1")
                                 {
                                     $sql = "UPDATE t_surveydtl SET del_flg = 1 WHERE id = '{$id_dtl}'";
                                 }
                                 else
                                 {
-                                    if($item[0]['upd_flg'] =="1")
+                                    if($item['upd_flg'] =="1")
                                     {
                                         $sql = "UPDATE t_surveydtl SET answer = '{$content}'WHERE id = '{$id_dtl}'";
                                         // die $sql;
@@ -80,13 +75,9 @@ require("../config/config.php");
                             }
                             else
                             {
-                                if($item[0]['del_flg'] == "0")
-                                {
-                                    $sql = "INSERT INTO t_surveydtl(id, id_hdr, answer) VALUES('{$id_dtl}','{$id_hdr}', '{$content}')";
-                                }
+                               $sql = "INSERT INTO t_surveydtl(id, id_hdr, answer) VALUES('{$id_dtl}','{$id_hdr}', '{$content}')";
                             }
                         $conn->query($sql);
-                        }
                     }
                 }
             }
@@ -150,6 +141,29 @@ require("../config/config.php");
             header('Content-Type: application/json');
             echo (json_encode($content));
         }                             
+    }
+
+    if(isset($_POST["del_all"]) && isset($_POST["id_multi"]))
+    {
+        $id_multi = $_POST["id_multi"];
+
+        $sql = "SELECT hdr.id as 'id_hdr' FROM t_surveyhdr hdr WHERE hdr.id_multi = '{$id_multi}'";
+        
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0)
+        {
+            while( $data = $result->fetch_assoc()) 
+            {
+                $id_hdr = $data["id_hdr"];
+
+                $sql = "UPDATE t_surveyhdr SET del_flg = 1 WHERE id = '{$id_hdr}'";
+                $conn->query($sql);
+
+                $sql = "UPDATE t_surveydtl SET del_flg = 1 WHERE id_hdr = '{$id_hdr}'";
+                $conn->query($sql);
+            }
+        }  
     }
 
     DisconnectDB($conn);

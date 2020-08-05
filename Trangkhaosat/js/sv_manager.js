@@ -55,7 +55,7 @@ $(document).ready(function() {
             },
             success: function(data) {
 
-                 ShowData_Sv(data, page, limit);
+                ShowData_Sv(data, page, limit);
             }
         });
     }
@@ -94,17 +94,17 @@ $(document).ready(function() {
                     if (index != "N/A") {
                         element += '</ul></td>\n' +
                             '<td class="ff col">' + index_asw + '</td>\n' +
-                            '<td class="col4"><button class="btn_edit" name = "' + id_multi +
+                            '<td class="col4"><button class="btn_edit" multi = "' + id_multi +
                             '">edit\n' +
                             '</button></td>\n' +
-                            '<td class="col4"><button class="btn_del" name = "' + id_multi +
+                            '<td class="col4"><button class="btn_del" multi = "' + id_multi +
                             '">delete</button></td>\n' +
                             '</tr>\n';
                     }
 
                     element += '<tr>\n' +
                         '<td class="ff col1">' + stt_hdr + '</td>\n' +
-                        '<td class="ff col2">' + item.category + '<span id = "' + item.id_multi + '" name = "' + item.id_category + '"></span></td>\n' +
+                        '<td class="ff col2">' + item.category + '<span name = "' + item.id_category + '"></span></td>\n' +
                         '<td class="ff col3">' + item.content + ' <span class="crt_dt">(' + item
                         .create_datetime + ')</span>\n' +
                         '<ul>\n';
@@ -114,8 +114,7 @@ $(document).ready(function() {
                     stt_dtl = 1;
                 }
 
-                if(id != item.id && stt_dtl != 1)
-                {
+                if (id != item.id && stt_dtl != 1) {
                     stt_dtl = 1;
                     element += '</ul>' + item.content + ' <span class="crt_dt">(' + item.create_datetime + ')</span><ul>';
                 }
@@ -129,9 +128,9 @@ $(document).ready(function() {
 
             element += '</ul></td>\n' +
                 '<td class="ff col">' + index_asw + '</td>\n' +
-                '<td class="col4"><button class="btn_edit" name = "' + id_multi + '">edit\n' +
+                '<td class="col4"><button class="btn_edit" multi = "' + id_multi + '">edit\n' +
                 '</button></td>\n' +
-                '<td class="col4"><button class="btn_del" name = "' + id_multi +
+                '<td class="col4"><button class="btn_del" multi = "' + id_multi +
                 '">delete</button></td>\n' +
                 '</tr>\n' +
                 '</table></div>';
@@ -245,75 +244,76 @@ $(document).ready(function() {
         lst_sv = [];
 
         if (status_sv == "Add") {
-            lst_sv[cnt_qs] = { "cnt_qs": cnt_qs, "id_hdr" : id_hdr,"db": 0,"status": "Add", "del_flg": 0, "dtl": []};
+            lst_sv[cnt_qs] = { "cnt_qs": cnt_qs, "id_hdr": id_hdr, "db": 0, "status": "Add", "del_flg": 0, "dtl": [] };
             var element = '<div class="container_ad_svcu">' +
-            '<div class="title">' +
-            '<div class="content_ad_svcu" id = "content_ad_svcu">' +
-            '<select name="category" id="category_svcu" style = "margin-bottom : 15px">' +
-            option + '</select><br>' +
-            '<div class = "cnd_qs" name = "' + cnt_qs + '" id = "cnd_qs' + cnt_qs + '">' +
-            '<label for="txt_qs"><b>Câu hỏi:</b></label>' +
-            '<input type="text" name="' + id_hdr + '" id="txt_qs' + cnt_qs + '" class = "txt_qs"><br>' +
-            '<label for="txt_aws"><b>Câu trả lời:</b></label>' +
-            '<input type="text" name=txt_aws"" id="txt_aws' + cnt_qs + '" class = "txt_aws">' +
-            '<button class="btn_ins_asw add' + cnt_qs + '" name ="' + cnt_qs + '" id = "btn_ins_asw">Insert</button>' +
-            '<button class="btn_upd_asw upd' + cnt_qs + '" name = "' + cnt_qs + '"  style = "display:none">Update</button>' +
-            '<button class="btn_cancel_asw upd' + cnt_qs + '" name = "' + cnt_qs + '" style = "display:none">Cancel</button>' +
-            '<table cellpadding = "10px" id ="tbl_asw' + cnt_qs + '">' +
-            '<tr><th class="ff asw"> Câu trả lời</th><th colspan="2"></th></tr>' +
-            '</table></div></div><div class="kq"><button class="btn_back" id="btn_back">Back</button>' +
-            '<button class = "btn_ins_asw" id="btn_add_multi">Thêm câu hỏi</button>' +
-            '<button class = "btn_save" id="btn_save">Save</button></div></div>';
-        $("#warpper_ad_survey").append(element);
+                '<div class="title">' +
+                '<div class="content_ad_svcu" id = "content_ad_svcu">' +
+                '<select name="category" id="category_svcu" style = "margin-bottom : 15px">' +
+                option + '</select><br>' +
+                '<div class = "cnd_qs" name = "' + cnt_qs + '" id = "cnd_qs' + cnt_qs + '">' +
+                '<label for="txt_qs"><b>Câu hỏi:</b></label>' +
+                '<input type="text" id="txt_qs' + cnt_qs + '" class = "txt_qs"><br>' +
+                '<label for="txt_aws"><b>Câu trả lời:</b></label>' +
+                '<input type="text" name=txt_aws"" id="txt_aws' + cnt_qs + '" class = "txt_aws">' +
+                '<button class="btn_ins_asw add' + cnt_qs + '" name ="' + cnt_qs + '" id = "btn_ins_asw">Insert</button>' +
+                '<button class="btn_upd_asw upd' + cnt_qs + '" name = "' + cnt_qs + '"  style = "display:none">Update</button>' +
+                '<button class="btn_cancel_asw upd' + cnt_qs + '" name = "' + cnt_qs + '" style = "display:none">Cancel</button>' +
+                '<table cellpadding = "10px" id ="tbl_asw' + cnt_qs + '">' +
+                '<tr><th class="ff asw"> Câu trả lời</th><th colspan="2"></th></tr>' +
+                '</table></div></div><div class="kq"><button class="btn_back" id="btn_back">Back</button>' +
+                '<button class = "btn_ins_asw" id="btn_add_multi">Thêm câu hỏi</button>' +
+                '<button class = "btn_save" id="btn_save">Save</button></div></div>';
+            $("#warpper_ad_survey").append(element);
         } else {
             id_hdr = "";
+            cnt_qs = 0;
             $.ajax({
                 async: false,
                 type: "post",
-                url: "../lib/cusv_manager.php",
+                url: "../lib/vs_manager_ajax.php",
                 data: {
+                    get_sv: 1,
                     id_multi: id_hdr_multi,
                 },
                 success: function(data) {
-                    console.log(data);
-                    data.forEach(function(item){
-                        if(id_hdr == "")
-                        {
+
+                    data.forEach(function(item) {
+
+                        if (id_hdr == "") {
                             id_hdr = item.id_hdr;
-                            lst_sv[cnt_qs] = { "cnt_qs": cnt_qs, "id_hdr" : id_hdr, "db": 1, "status": "Upd", "del_flg": 0, "dtl": []};
+                            cnt_qs++;
+                            lst_sv[cnt_qs] = { "cnt_qs": cnt_qs, "id_hdr": id_hdr, "db": 1, "status": "Upd", "del_flg": 0, "dtl": [] };
 
                             let element = '<div class="container_ad_svcu">' +
-                            '<div class="title">' +
-                            '<div class="content_ad_svcu" id = "content_ad_svcu">' +
-                            '<select name="category" id="category_svcu" style = "margin-bottom : 15px">' +
-                            option + '</select><br>' +
-                            '<div class = "cnd_qs" name = "' + cnt_qs + '" id = "cnd_qs' + cnt_qs + '">' +
-                            '<label for="txt_qs"><b>Câu hỏi:</b></label>' +
-                            '<input type="text" name="' + id_hdr + '" id="txt_qs' + cnt_qs + '" class = "txt_qs"><br>' +
-                            '<label for="txt_aws"><b>Câu trả lời:</b></label>' +
-                            '<input type="text" name=txt_aws"" id="txt_aws' + cnt_qs + '" class = "txt_aws">' +
-                            '<button class="btn_ins_asw add' + cnt_qs + '" name ="' + cnt_qs + '" id = "btn_ins_asw">Insert</button>' +
-                            '<button class="btn_upd_asw upd' + cnt_qs + '" name = "' + cnt_qs + '"  style = "display:none">Update</button>' +
-                            '<button class="btn_cancel_asw upd' + cnt_qs + '" name = "' + cnt_qs + '" style = "display:none">Cancel</button>' +
-                            '<table cellpadding = "10px" id ="tbl_asw' + cnt_qs + '">' +
-                            '<tr><th class="ff asw"> Câu trả lời</th><th colspan="2"></th></tr>' +
-                            '</table></div></div><div class="kq"><button class="btn_back" id="btn_back">Back</button>' +
-                            '<button class = "btn_ins_asw" id="btn_add_multi">Thêm câu hỏi</button>' +
-                            '<button class = "btn_save" id="btn_save">Save</button></div></div>';
+                                '<div class="title">' +
+                                '<div class="content_ad_svcu" id = "content_ad_svcu">' +
+                                '<select name="category" id="category_svcu" style = "margin-bottom : 15px">' +
+                                option + '</select><br>' +
+                                '<div class = "cnd_qs" name = "' + cnt_qs + '" id = "cnd_qs' + cnt_qs + '">' +
+                                '<label for="txt_qs"><b>Câu hỏi:</b></label>' +
+                                '<input type="text"  id="txt_qs' + cnt_qs + '" class = "txt_qs"><br>' +
+                                '<label for="txt_aws"><b>Câu trả lời:</b></label>' +
+                                '<input type="text" name=txt_aws"" id="txt_aws' + cnt_qs + '" class = "txt_aws">' +
+                                '<button class="btn_ins_asw add' + cnt_qs + '" name ="' + cnt_qs + '" id = "btn_ins_asw">Insert</button>' +
+                                '<button class="btn_upd_asw upd' + cnt_qs + '" name = "' + cnt_qs + '"  style = "display:none">Update</button>' +
+                                '<button class="btn_cancel_asw upd' + cnt_qs + '" name = "' + cnt_qs + '" style = "display:none">Cancel</button>' +
+                                '<table cellpadding = "10px" id ="tbl_asw' + cnt_qs + '">' +
+                                '<tr><th class="ff asw"> Câu trả lời</th><th colspan="2"></th></tr>' +
+                                '</table></div></div><div class="kq"><button class="btn_back" id="btn_back">Back</button>' +
+                                '<button class = "btn_ins_asw" id="btn_add_multi">Thêm câu hỏi</button>' +
+                                '<button class = "btn_save" id="btn_save">Save</button></div></div>';
                             $("#warpper_ad_survey").append(element);
-                            
-                        }
-                        else
-                        {
+
+                        } else {
                             id_hdr = item.id_hdr;
                             cnt_qs++;
 
-                            lst_sv[cnt_qs] = { "cnt_qs": cnt_qs, "id_hdr" : id_hdr, "db": 1, "status": "Upd", "del_flg": 0, "dtl": []};
+                            lst_sv[cnt_qs] = { "cnt_qs": cnt_qs, "id_hdr": id_hdr, "db": 1, "status": "Upd", "del_flg": 0, "dtl": [] };
 
                             var element =
                                 '<div class = "cnd_qs" name = "' + cnt_qs + '" id = "cnd_qs' + cnt_qs + '">' +
                                 '   <br><br><label for="txt_qs"><b>Câu hỏi:</b></label>' +
-                                '<input type="text" name="' + id_hdr + '" id="txt_qs' + cnt_qs + '" class = "txt_qs"><br>' +
+                                '<input type="text" id="txt_qs' + cnt_qs + '" class = "txt_qs"><br>' +
                                 '<label for="txt_aws"><b>Câu trả lời:</b></label>' +
                                 '<input type="text" name=txt_aws"" id="txt_aws' + cnt_qs + '" class = "txt_aws">' +
                                 '<button class="btn_ins_asw add' + cnt_qs + '" name ="' + cnt_qs + '" id = "btn_ins_asw' + cnt_qs + '">Insert</button>' +
@@ -325,7 +325,6 @@ $(document).ready(function() {
                             $(".content_ad_svcu").append(element);
                         }
 
-
                         $.ajax({
                             async: false,
                             type: "post",
@@ -336,21 +335,17 @@ $(document).ready(function() {
                             },
                             success: function(data) {
                                 $("#txt_qs" + cnt_qs).val(data.hdr_content);
-                
+                                cr_cnt_qs = cnt_qs;
                                 data.data.forEach(function(item) {
-                                    cr_cnt_qs = cnt_qs;
-                                    Add_Row(item.id, item.content, "1" );
+
+                                    Add_Row(item.id, item.content, "1");
                                 });
                             }
                         });
-
                     });
-
-                    // lst_sv[cnt_qs] = { "cnt_qs": cnt_qs, "id_hdr" : id_hdr, "db": 1, "status": "Upd", "del_flg": 0, "dtl": []};
-                    // cnt_qs
                 }
             });
-            
+
         }
     }
 
@@ -359,12 +354,12 @@ $(document).ready(function() {
         let d = new Date();
         id_hdr = Math.floor((Math.random() * 1000) + 1) + "/" + d.getTime();
 
-        lst_sv[cnt_qs] = { "cnt_qs": cnt_qs, "id_hdr" : id_hdr, "db": 0,"status": "Add", "del_flg": 0, "dtl": [] };
+        lst_sv[cnt_qs] = { "cnt_qs": cnt_qs, "id_hdr": id_hdr, "db": 0, "status": "Add", "del_flg": 0, "dtl": [] };
 
         var element =
             '<div class = "cnd_qs" name = "' + cnt_qs + '" id = "cnd_qs' + cnt_qs + '">' +
             '   <br><br><label for="txt_qs"><b>Câu hỏi:</b></label>' +
-            '<input type="text" name="' + id_hdr + '" id="txt_qs' + cnt_qs + '" class = "txt_qs"><br>' +
+            '<input type="text" id="txt_qs' + cnt_qs + '" class = "txt_qs"><br>' +
             '<label for="txt_aws"><b>Câu trả lời:</b></label>' +
             '<input type="text" name=txt_aws"" id="txt_aws' + cnt_qs + '" class = "txt_aws">' +
             '<button class="btn_ins_asw add' + cnt_qs + '" name ="' + cnt_qs + '" id = "btn_ins_asw' + cnt_qs + '">Insert</button>' +
@@ -393,6 +388,7 @@ $(document).ready(function() {
 
         if (confirm("Bạn có chắc chắn muốn xóa câu hỏi này không?")) {
             lst_sv[cr_cnt_qs].del_flg = 1;
+            lst_sv[cr_cnt_qs].status = "Del";
 
             $("#cnd_qs" + cr_cnt_qs).remove();
         }
@@ -470,69 +466,63 @@ $(document).ready(function() {
 
     $(document).on("click", "#btn_save", function() {
 
-        var cnt_hdr = lst_sv.filter(function(item){return (item.del_flg != 1 || item.db != 0)});
+        var cnt_hdr = lst_sv.filter(function(item) { return (item.del_flg != 1 || item.db != 0) });
 
         var check = true;
-        cnt_hdr.forEach(function(item){
+        cnt_hdr.forEach(function(item) {
 
-            $("#txt_qs" + item.cnt_qs).css("border-bottom","1.4px solid rgb(24, 103, 192)");
-            $("#tbl_asw" + item.cnt_qs).css("border","none");
+            $("#txt_qs" + item.cnt_qs).css("border-bottom", "1.4px solid rgb(24, 103, 192)");
+            $("#tbl_asw" + item.cnt_qs).css("border", "none");
 
-            if( $.trim($("#txt_qs" + item.cnt_qs).val()) == "")
-            {
+            if ($.trim($("#txt_qs" + item.cnt_qs).val()) == "" && item.del_flg == 0) {
                 check = false;
-                $("#txt_qs" + item.cnt_qs).css("border-bottom","2px solid red") 
+                $("#txt_qs" + item.cnt_qs).css("border-bottom", "2px solid red")
             }
-            if(item.dtl.filter(function(item){return (item.del_flg != 1 || item.db != 0)}).length == 0)
-            {
-                 check = false;
-                 $("#tbl_asw" + item.cnt_qs).css("border","2px solid red");
+            if (item.dtl.filter(function(item) { return (item.del_flg != 1 || item.db != 0) }).length == 0 && item.del_flg == 0) {
+                check = false;
+                $("#tbl_asw" + item.cnt_qs).css("border", "2px solid red");
             }
         });
 
-        if(!check)
-        {
+        if (!check) {
             alert("Thông tin không đầy đủ - Vui lòng kiểm tra lại");
-        }
-        else
-        {
-            cnt_hdr.forEach(function(item){
+        } else {
+            cnt_hdr.forEach(function(item) {
 
-                var cnt_dtl = item.dtl.filter(function(item){return (item.del_flg != 1 || item.db != 0)});
+                var cnt_dtl = item.dtl.filter(function(item) { return (item.del_flg != 1 || item.db != 0) });
                 $.ajax({
                     async: false,
                     type: "post",
                     url: "../lib/cusv_manager.php",
                     data: {
-                        content_hdr: $.trim( $("#txt_qs" + item.cnt_qs).val()),
+                        content_hdr: $.trim($("#txt_qs" + item.cnt_qs).val()),
                         id_hdr_multi: id_hdr_multi,
                         id_hdr: item.id_hdr,
                         lst: cnt_dtl,
                         id_ct: $("#category_svcu").val(),
                         stt: item.status,
                     },
-                    success: function(result) {
-                    }
+                    success: function(result) {}
                 });
 
-                
+
             });
 
             GetDataSv(page_sv);
-    
-                $(".container_ad_svcu").remove();
-                $(".list_ad_survey").css("display", "block");
-                    
+
+            $(".container_ad_svcu").remove();
+            $(".list_ad_survey").css("display", "block");
+
         }
-            
-
-        
 
 
 
-       
+
+
+
+
         // console.log(cnt_dtl);
-        
+
         // lst_sv.forEach(function(item){
         //     if( $.trim($("#txt_qs" + item.cnt_qs).val()) == "")
         //     {
@@ -551,7 +541,7 @@ $(document).ready(function() {
         //        console.log(lst_sv);
         // });
 
-       
+
         // for (var i = 0; i < lst_asw.length; i++) {
         //     if (lst_asw[i][0].del_flg == "0") {
         //         cnt++;
@@ -592,8 +582,8 @@ $(document).ready(function() {
                 type: "post",
                 url: "../lib/cusv_manager.php",
                 data: {
-                    stt: "Del",
-                    id_hdr: $(this).attr("name"),
+                    del_all: 1,
+                    id_multi: $(this).attr("multi"),
                 },
                 success: function(result) {
                     GetDataSv(page_sv);
@@ -607,7 +597,7 @@ $(document).ready(function() {
 
         $(".list_ad_survey").css("display", "none");
         status_sv = "Upd";
-        id_hdr_multi = $(this).attr("name");
+        id_hdr_multi = $(this).attr("multi");
         InsertSv();
         $('#category_svcu  option[value="' + $("#" + $(this).attr("name")).attr("name") + '"]').prop("selected", true);
     });

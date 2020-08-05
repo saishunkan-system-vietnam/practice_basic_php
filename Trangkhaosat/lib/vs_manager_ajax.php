@@ -60,12 +60,12 @@ require("../config/config.php");
             select  b_hdr.num_row ,b_hdr.id_multi, hdr.create_datetime , hdr.id_category, hdr.id, ct.content as category, IFNULL(asw.index_asw,0) as index_asw, hdr.content from t_surveyhdr hdr
             JOIN B_HDR b_hdr on hdr.id_multi = b_hdr.id_multi
             join t_category ct on hdr.id_category = ct.id
-            left join A asw on hdr.id = asw.id_hdr
+            left join A asw on hdr.id_multi = asw.id_hdr
             where hdr.del_flg = 0),
             C AS (SELECT * FROM B  WHERE num_row >= {$start} AND num_row <= {$limit}) 
             SELECT hdr.num_row, hdr.id,hdr.id_multi, hdr.id_category, hdr.category, hdr.create_datetime, hdr.index_asw, hdr.content, dtl.answer FROM C hdr 
             LEFT JOIN t_surveydtl dtl on hdr.id = dtl.id_hdr and dtl.del_flg = 0
-            ORDER by hdr.create_datetime DESC";
+            ORDER by hdr.num_row, hdr.id, hdr.create_datetime";
            
 
             // $sql = "WITH A_HDR AS(SELECT id_multi, max(`create_datetime`) as create_datetime  FROM t_surveyhdr WHERE del_flg = 0 GROUP BY id_multi),
@@ -118,14 +118,14 @@ require("../config/config.php");
         }
     }
 
-    if(isset($_POST["id_multi"]))
+    if(isset($_POST["id_multi"]) && isset($_POST["get_sv"]))
     {
-        die($_POST["id_multi"]);
+        // die($_POST["id_multi"]);
         $myJSON = array();
        
         $id_multi = $_POST["id_multi"];
 
-        $sql = "SELECT hdr.id as 'id_hdr', hdr.content FROM t_surveyhdr hdr WHERE hdr.id_multi = '{$id_multi}'";
+        $sql = "SELECT hdr.id as 'id_hdr', hdr.content FROM t_surveyhdr hdr WHERE hdr.id_multi = '{$id_multi}' and del_flg = 0";
         
         $result = $conn->query($sql);
 
@@ -143,7 +143,7 @@ require("../config/config.php");
             echo ("err");
         }
     }
-
+    
     DisconnectDB($conn);
 
 ?>
