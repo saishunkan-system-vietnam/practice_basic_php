@@ -3,6 +3,7 @@ $(document).keydown(function (event) {
         $("#modal-wrapper").css("display", "none");
         $("body").css("overflow", "auto");
         $("#modal-wrapper").find('form').trigger('reset');
+        CKEDITOR.instances['inpinfo'].setData('');
     }
 });
 
@@ -12,12 +13,14 @@ $(".btn").click(function () {
         $("#modal-wrapper").css("display", "none");
         $("body").css("overflow", "auto");
         $("#modal-wrapper").find('form').trigger('reset')
+        CKEDITOR.instances['inpinfo'].setData('');
     }
 
     if ($(this).attr("name") == 'btnAdd') {
         $("#modal-wrapper").css("display", "block");
         $("body").css("overflow", "hidden");
         $(".title_popup").text("Add thiết bị");
+        $(".display_img img").attr("src", "../img/img_null.jpg");
     }
 
     if ($(this).attr("name") == 'btnEdit') {
@@ -32,6 +35,7 @@ $(".btn").click(function () {
                 name: "select",
                 id_device: $(this).attr("data-id")
             },
+
             success: function (data) {
                 data.forEach(function (item) {
                     $('#deviceId').text(item.id);
@@ -40,7 +44,11 @@ $(".btn").click(function () {
                     $('#opt_category').text(item.category_name);
                     $('#opt_supplier').val(item.id_supplier);
                     $('#opt_supplier').text(item.supplier_name);
-                    $('#inpimg').val(item.img);
+                    if (item.img != '') {
+                        $(".display_img img").attr("src", "../img/" + item.img);
+                    } else {
+                        $(".display_img img").attr("src", "../img/img_null.jpg");
+                    }
                     CKEDITOR.instances['inpinfo'].setData(item.info);
                 });
             }
@@ -104,6 +112,11 @@ $(".btn").click(function () {
 
     if ($(this).attr("name") == 'btnDetail') {
         var device_id = $(this).attr("data-id");
-        window.location.href = "./detail.php?id="+device_id;
+        window.location.href = "./detail.php?id=" + device_id;
     }
 });
+
+function preview() {
+    var pathimg = $('#inpimg')[0].files[0]['name'];
+    $(".display_img img").attr("src", "../img/" + pathimg);
+}

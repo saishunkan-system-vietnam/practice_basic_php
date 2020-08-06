@@ -10,7 +10,7 @@ $(document).ready(function () {
                     devicename: $('#inp_devicename').val(),
                     idcategory: $('#category option:selected').val(),
                     idsupplier: $('#supplier option:selected').val(),
-                    inpimg: $('#inpimg').val(),
+                    inpimg: $('#inpimg')[0].files[0]['name'],
                     info: $('#inpinfo').val(),
                 },
                 success: function (data) {
@@ -35,7 +35,7 @@ $(document).ready(function () {
                     devicename: $('#inp_devicename').val(),
                     idcategory: $('#category option:selected').val(),
                     idsupplier: $('#supplier option:selected').val(),
-                    inpimg: $('#inpimg').val(),
+                    inpimg: $('#inpimg')[0].files[0]['name'],
                     info: $('#inpinfo').val(),
                 },
                 success: function (data) {

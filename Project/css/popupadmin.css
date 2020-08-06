@@ -1,4 +1,9 @@
 /* Full-width input fields */
+input[type="file"] {
+    display: none;
+    color  : transparent;
+}
+
 p {
     margin     : 8px 26px;
     font-size  : 18px;
@@ -43,6 +48,15 @@ label {
     position  : relative;
 }
 
+.custom-file-upload {
+    margin : 8px 26px;
+    border : 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor : pointer;
+    color  : black;
+}
+
 .modal {
     display         : none;
     position        : fixed;
@@ -78,8 +92,7 @@ label {
 }
 
 #category,
-#supplier,
-#inpimg {
+#supplier {
     height: 30px;
     margin: 8px 26px;
 }

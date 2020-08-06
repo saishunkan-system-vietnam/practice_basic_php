@@ -10,7 +10,6 @@ if ($name == 'select') {
     $id_device = isset($_POST['id_device']) ? trim($_POST['id_device']) : '';
     $sql_select = "SELECT td.id, td.device_name, td.id_category, tc.category_name, td.id_supplier, ts.supplier_name, td.img, td.info FROM t_category tc INNER JOIN t_device td ON tc.id = td.id_category INNER JOIN t_supplier ts on ts.id = td.id_supplier WHERE td.id=$id_device";
     $result_select = mysqli_query($connect, $sql_select) or die("lỗi truy vấn select");
-
     while ($row = $result_select->fetch_assoc()) {
         $data[count($data)] = $row;
     }

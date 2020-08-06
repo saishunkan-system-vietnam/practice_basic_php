@@ -22,6 +22,15 @@ $result_supplier = mysqli_query($connect, $query_supplier);
                 <input class="inpdevice" id="inp_devicename" type="text" name='inpdevice' placeholder="Enter device name" required oninvalid="this.setCustomValidity('Vui lòng nhập tên thiết bị')" oninput="this.setCustomValidity('')" />
                 <span hidden id="deviceId"></span>
             </div>
+            <div style="float: right; text-align: center;">
+                <label class="custom-file-upload">
+                    <input type="file" id="inpimg" name="avatar" accept=".png, .jpeg" onchange="preview()">
+                    Chọn hình ảnh
+                </label>
+                <div class='display_img'>
+                    <img id="inpimg" style='width: 150px; height: 130px;' src=''>
+                </div>
+            </div>
             <p>Thể loại</p>
             <select id="category" name="category">
                 <?php while ($row = mysqli_fetch_assoc($result_category)) {
@@ -33,6 +42,7 @@ $result_supplier = mysqli_query($connect, $query_supplier);
                 }
                 ?>
             </select>
+            
             <div>
             </div>
             <p>Nhà cung cấp</p>
@@ -46,10 +56,9 @@ $result_supplier = mysqli_query($connect, $query_supplier);
                 }
                 ?>
             </select>
-            <div>
-                <p>Hình ảnh</p>
-                <input type="file" id="inpimg" name="avatar" accept="image/png, image/jpeg">
-            </div>
+            
+
+
             <div class="info">
                 <label>Thông tin chi tiết</label>
                 <textarea id="inpinfo" cols="45" rows="5">

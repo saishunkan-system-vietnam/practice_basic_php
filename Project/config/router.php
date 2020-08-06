@@ -13,10 +13,13 @@ define('SITE_DANHSACHTHIETBI','./danhSachThietBi.php');
 define('SITE_QLTHIETBIMUON','./qlthietbimuon.php');
 define('SITE_POPUPMUONTB','./popupmuontb.php');
 define('SITE_SENDMAIL','./sendMail.php');
-define('SITE_POPUPADMIN','./popupadmin.php');
 
 // ADMIN
-define('SITE_DANHSACHQANLYTHIETBI','../admin/qlthietbi.php');
+define('SITE_MENULEFT','./menuleft.php');
+define('SITE_TOPNAV','./topnav.php');
+define('SITE_POPUPADMIN','./popupadmin.php');
+define('SITE_INDEX_UADMIN','../index.php');
+define('SITE_DANHSACHQANLYTHIETBI','./admin/qlthietbi.php');
 
 // LINK JQUERY
 define('LINK_JQUERY','https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js');
@@ -36,7 +39,7 @@ define('FILE_CSS_QLTHIETBI','../css/qlthietbi.css');
 define('FILE_CSS_IQLTHIETBI','./css/qlthietbi.css');
 define('FILE_CSS_SENDMAIL','./css/sendmail.css');
 define('FILE_CSS_POPUP','./css/popup.css');
-define('FILE_CSS_MENULEFT','../css/menuleft.css');
+define('FILE_CSS_MENUADMIN','../css/menuadmin.css');
 define('FILE_CSS_POPUPADMIN','../css/popupadmin.css');
 
 //URL FILE JS
@@ -58,6 +61,7 @@ define('IMG_BANNER2','./img/Banner_2.png');
 define('IMG_BANNER3','./img/Banner_3.png');
 define('IMG_AVATAR','./img/avatar.png');
 define('IMG_LOGO','./img/logo.png');
+define('IMG_ADMINLOGO','../img/logo.png');
 
 ?>
 

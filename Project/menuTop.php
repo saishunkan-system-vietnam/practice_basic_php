@@ -3,7 +3,7 @@ session_start();
 require(SITE_CONFIG);
 ?>
 
-<script src=<?= FILE_JS_CKEDITOR?>></script>
+<script src=<?= FILE_JS_CKEDITOR ?>></script>
 <link rel="stylesheet" href=<?= FILE_CSS_MENUTOP ?>>
 <link rel="stylesheet" href=<?= FILE_CSS_QLTHIETBIMUON ?>>
 <script src=<?= LINK_JQUERY ?>></script>
@@ -24,6 +24,8 @@ require(SITE_CONFIG);
         // xóa session
         unset($_SESSION['txtUsername']);
         unset($_SESSION['txtId']);
+        unset($_SESSION['avatar']);
+        unset($_SESSION['admin_flg']);
         // Xóa cookie
         setcookie(COOKIE_LOGIN, '', time() - $cookie_time);
         header("location:" . SITE_INDEX . "");
@@ -43,12 +45,13 @@ require(SITE_CONFIG);
     } else if (!isset($_SESSION['txtUsername'])) {
         $dataSaveUser = json_decode($_COOKIE[COOKIE_LOGIN], true);
         $_SESSION['txtUsername'] =  $dataSaveUser['usr'];
+        $_SESSION['admin_flg'] = $dataSaveUser['admin_flg'];
         echo "<div>";
         echo "<a href='./" . SITE_QLTHIETBIMUON . "'>Thiết bị đang mượn</a>";
         echo "</div>";
         if (isset($_SESSION['admin_flg'])) {
             echo "<div class='admin_flg'>";
-            echo "<button id='admin_flg' onclick="."location.href='./" . SITE_DANHSACHQANLYTHIETBI . "' value='ADMIN'>ADMIN</button>";
+            echo "<button id='admin_flg' onclick=" . "location.href='./" . SITE_DANHSACHQANLYTHIETBI . "' value='ADMIN'>ADMIN</button>";
             echo "</div>";
         }
         echo "<div style='float: right;'>";
@@ -63,7 +66,7 @@ require(SITE_CONFIG);
         echo "</div>";
         if (isset($_SESSION['admin_flg'])) {
             echo "<div class='admin_flg'>";
-            echo "<button id='admin_flg' onclick="."location.href='./" .SITE_DANHSACHQANLYTHIETBI. "' value='ADMIN'>ADMIN</button>";
+            echo "<button id='admin_flg' onclick=" . "location.href='./" . SITE_DANHSACHQANLYTHIETBI . "' value='ADMIN'>ADMIN</button>";
             echo "</div>";
         }
         echo "<div style='float: right;'>";
@@ -72,7 +75,6 @@ require(SITE_CONFIG);
         echo "<div style='float: right;'>";
         echo "<a href=''>$_SESSION[txtUsername]</a>";
         echo "</div>";
-        
     }
     ?>
 </div>

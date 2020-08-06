@@ -21,11 +21,14 @@ if (isset($_POST['submit'])) {
         $row = mysqli_fetch_assoc($result_login);
         $_SESSION['txtUsername'] = $username;
         $_SESSION['txtId'] = $row['id'];
+        $_SESSION['avatar'] = $row['avatar'];
         $_SESSION['admin_flg']= $row['admin_flg'];
         if ($_check == 1) {
             $dataCookie['usr'] = $username;
             $dataCookie['hash'] = $pass;
             $dataCookie['id'] = $row['id'];
+            $dataCookie['avatar'] = $row['avatar'];
+            $dataCookie['admin_flg']= $row['admin_flg'];
             setcookie(COOKIE_LOGIN, json_encode($dataCookie), time() + $cookie_time);
         }
         

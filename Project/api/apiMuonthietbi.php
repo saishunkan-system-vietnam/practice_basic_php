@@ -7,7 +7,6 @@ $data = array();
 
 if ($name == 'insert') {
     $idthietbi = trim($_POST['idThietbi']);
-    // $date = isset($_POST['intend_date']) ? trim($_POST['intend_date']) : '';
     $date = trim($_POST['intend_date']);
     $reason = trim($_POST['reason']);
     $soLuong = trim($_POST['soluong']);
