@@ -191,11 +191,10 @@ td {
 
 .col4 {
     width: 7%;
+    padding: 5px;
+    margin: 0;
 }
 
-.col5 {
-    width: 8%;
-}
 
 .col {
     text-align: center;
@@ -290,4 +289,43 @@ b {
     outline: none;
     /* height: 20px; */
     align-items: center;
+}
+
+.warpper_report {
+    z-index: 1;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    visibility: hidden;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main_report{
+    /* height: 680px; */
+    width: 30%;
+    background-color: #fff;
+    opacity: 1;
+    overflow: hidden;
+    border-radius: 10px;
+    padding-bottom: 10px;
+    padding-top: 5px;
+    box-shadow: 0 0 5px #025583;
+}
+
+.btn_close{
+    background-color: transparent;
+    border: none !important;
+    box-shadow: none !important;
+    font-size: 20px;
+    color: red;
+    float: right;
+    top: 5px;
+}
+
+.btn_close:hover{
+    background-color: transparent;
 }

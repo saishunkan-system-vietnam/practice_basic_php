@@ -125,7 +125,7 @@ require("../config/config.php");
         }
 
 
-        $sql = "SELECT id, answer as content FROM t_surveydtl WHERE id_hdr = '{$id_hdr}' AND del_flg = 0";
+        $sql = "SELECT id, answer as content FROM t_surveydtl WHERE id_hdr = '{$id_hdr}' AND del_flg = 0 ORDER BY stt";
         $result = $conn->query($sql);       
 
         if ($result->num_rows > 0)

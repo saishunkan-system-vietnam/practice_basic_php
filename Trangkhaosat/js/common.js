@@ -56,34 +56,6 @@ function isTel(tel) {
     return pattern.test(tel);
 }
 
-function CreateReply(id_hdr, id_dtl) {
-    var form = $(".warpper-survey");
-    var result;
-    $.ajax({
-        async: false,
-        type: "post",
-        url: "./lib/survey_ajax.php",
-        data: {
-            id_hdr: id_hdr,
-            id_dtl: id_dtl,
-            createSurvey: true,
-        },
-        success: function(data) {
-            result = data;
-        }
-    });
-
-    if (result == true) {
-        form.css("visibility", "hidden");
-        alert("Trả lời thành công");
-    } else {
-        alert("Trả lời thất bại");
-    }
-
-    return result;
-
-}
-
 function Validate_regist(isRegist) {
     var fname = $.trim($("#fname").val());
     var lname = $.trim($("#lname").val());
@@ -169,22 +141,35 @@ function OpenForm_Login() {
     {
         var data = GetInfoSurvey(id);
             var element = "";
+            var qs = "";
+            index = 0;
             data.forEach(function(item) {
 
-                if (element == "") {
-                    element += '<div class="question"><p>' + item.content + '</p></div><div class="answer"><ul>';
+                if(qs != item.content)
+                {
+                    qs = item.content ;
+                    index ++;
+                    if (element == "") {
+                        element += '<div id ="btn_close"><button class="btn_close"><i class ="fa fa-close"></i></button></div><div class="question"><p class = "qs'+index+'">' + item.content + '</p></div><div class="answer"><ul>';
+                    }
+                    else
+                    {
+                        element += '</ul></div>' +
+                                    '<div class="question"><p class = "qs'+index+'">' + item.content + '</p></div><div class="answer"><ul>';
+                    }
                 }
-                element += '<li><input type="radio" name="asw" ';
+                
+                element += '<li><input type="radio" name="asw'+index+'" ';
 
                 if (item.sl_asw == "1") {
                     element += ' checked ';
                 }
-                element += ' value="' + item.id_dtl + '"><label for="asw">' + item.answer + '</label></li>';
+                element += ' value="' + item.id_dtl + '" hdr = "'+item.id_hdr+'"><label for="asw">' + item.answer + '</label></li>';
             });
 
             element += '</ul></div>' +
                 ' <div class="kq">' +
-                '<button class="btn-reply-survey" id = "' + data[0].id_hdr + '">Trả lời</button></div>';
+                '<button class="btn-reply-survey" multi = "' + data[0].id_multi + '">Trả lời</button></div>';
 
                 return element;
     }
@@ -200,9 +185,51 @@ function OpenForm_Login() {
                 getInfoSurvey: true,
             },
             success: function(data) {
+            result = data;
+            }
+        });
+
+        return result;
+    }
+
+    function CreateReply(id_hdr, id_dtl) {
+        let d = new Date();
+        var id = Math.floor((Math.random() * 1000) + 1) + "/" + d.getTime();
+        var result;
+        $.ajax({
+            async: false,
+            type: "post",
+            url: "./lib/survey_ajax.php",
+            data: {
+                id_hdr: id_hdr,
+                id_dtl: id_dtl,
+                id : id,
+                createSurvey: true,
+            },
+            success: function(data) {
                 result = data;
             }
         });
-    
+
+        return result;
+    }
+
+    function GetIndexSvMulti(id_multi)
+    {
+        let result = 0;
+        $.ajax({
+            async: false,
+            type: "post",
+            url: "./lib/survey_ajax.php",
+            data: {
+                GetIndexSvMulti: true,
+                id_multi: id_multi,
+            },
+            success: function(data) {
+                console.log(data);
+                result = data;
+            }
+        });
+
         return result;
     }

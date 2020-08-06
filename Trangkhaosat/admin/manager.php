@@ -14,6 +14,9 @@ require_once(FILE_CONFIG);
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
     <link rel="stylesheet" href="../css/admin.css?" <?time()?>>
     <link rel="stylesheet" href="<?= FILE_CSS_SURVEY_MANAGER?>">
     <link rel="stylesheet" href="<?= FILE_CSS_STATISTIC?>">
@@ -120,6 +123,10 @@ require_once(FILE_CONFIG);
                         </div>
                     </div>
                 </div>
+                <div id="report">
+                    <div class="warpper_report">
+                    </div>
+                </div>
             </div>
             <div id="tab3" class="tab">
                 <h2 class="header">User</h2>
@@ -140,13 +147,17 @@ require_once(FILE_CONFIG);
                     </div>
                 </div>
                 <div id="account">
-                    
+
                 </div>
             </div>
         </div>
         <script src="<?= FILE_JS_SVMANAGER?>"></script>
         <script src="<?= FILE_JS_COMMON?>"></script>
         <script src="<?= '../js/manager.js'?>"></script>
+        <script>
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+        </script>
 </body>
 
 </html>

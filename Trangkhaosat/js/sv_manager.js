@@ -77,6 +77,7 @@ $(document).ready(function() {
         var id = "";
         var id_multi = "";
         var index_asw;
+        var categr = "";
 
         element = '<div class="nd-table"> \n' +
             '<table cellpadding="10px" id="tbl">' +
@@ -85,7 +86,7 @@ $(document).ready(function() {
             '<th class="ff">Loại khảo sát</th>\n' +
             '<th class="ff">Câu hỏi khảo sát</th>\n' +
             '<th class="ff">Lượt trả lời</th>\n' +
-            '<th colspan="2"></th></tr>\n';
+            '<th colspan="3"></th></tr>\n';
         if (data != "err") {
             data.data.forEach(function(item) {
 
@@ -94,7 +95,9 @@ $(document).ready(function() {
                     if (index != "N/A") {
                         element += '</ul></td>\n' +
                             '<td class="ff col">' + index_asw + '</td>\n' +
-                            '<td class="col4"><button class="btn_edit" multi = "' + id_multi +
+                            '<td class="col4"><button class="btn_report" multi = "' + id_multi + '" style = "background-color: rgb(24, 103, 192); color: #fb8c00" '+
+                            '><i class="fa fa-pie-chart" aria-hidden="true" style = "font-size: 23px"></i></button></td>\n' +
+                            '<td class="col4"><button class="btn_edit" categr = "'+categr+'" multi = "' + id_multi +
                             '">edit\n' +
                             '</button></td>\n' +
                             '<td class="col4"><button class="btn_del" multi = "' + id_multi +
@@ -124,14 +127,16 @@ $(document).ready(function() {
                 id = item.id;
                 stt_dtl++;
                 id_multi = item.id_multi;
+                categr = item.id_category;
             });
 
             element += '</ul></td>\n' +
                 '<td class="ff col">' + index_asw + '</td>\n' +
-                '<td class="col4"><button class="btn_edit" multi = "' + id_multi + '">edit\n' +
+                '<td class="col4"><button class="btn_report" multi = "' + id_multi + '" style = "background-color: rgb(24, 103, 192); color: #fb8c00" '+
+                            '><i class="fa fa-pie-chart" aria-hidden="true" style = "font-size: 23px"></i></button></td>\n' +
+                '<td class="col4"><button class="btn_edit" categr = "'+categr+'" multi = "' + id_multi + '">edit\n' +
                 '</button></td>\n' +
-                '<td class="col4"><button class="btn_del" multi = "' + id_multi +
-                '">delete</button></td>\n' +
+                '<td class="col4"><button class="btn_del" multi = "' + id_multi +'">delete</button></td>\n' +
                 '</tr>\n' +
                 '</table></div>';
         } else {
@@ -514,65 +519,6 @@ $(document).ready(function() {
             $(".list_ad_survey").css("display", "block");
 
         }
-
-
-
-
-
-
-
-        // console.log(cnt_dtl);
-
-        // lst_sv.forEach(function(item){
-        //     if( $.trim($("#txt_qs" + item.cnt_qs).val()) == "")
-        //     {
-        //         alert("Vui lòng nhập thông tin câu hỏi");
-        //         return;
-        //     }
-        //     // var filtered = [];
-        //     //     item.dtl.forEach(function(row){
-        //     //         console.log(row);
-        //     //         // if(row.del_flg != 1 || row.db != 0)
-        //     //         // {
-        //     //         //     filtered.push(row);
-        //     //         // }
-        //     //     });
-        //         // var abc = filterByProperty(item.dtl);
-        //        console.log(lst_sv);
-        // });
-
-
-        // for (var i = 0; i < lst_asw.length; i++) {
-        //     if (lst_asw[i][0].del_flg == "0") {
-        //         cnt++;
-        //     }
-        // };
-        // if ($.trim($(".txt_qs").val()) == "") {
-        //     alert("Vui lòng nhập thông tin câu hỏi khảo sát");
-        // } else if (cnt == 0) {
-        //     alert("Vui lòng nhập thông tin câu trả lời");
-        // } else {
-        //     $.ajax({
-        //         async: false,
-        //         type: "post",
-        //         url: "../lib/cusv_manager.php",
-        //         data: {
-        //             content_hdr: $.trim($(".txt_qs").val()),
-        //             id_hdr: id_hdr,
-        //             lst: lst_asw,
-        //             id_ct: $("#category_svcu").val(),
-        //             stt: status_sv,
-        //         },
-        //         success: function(result) {
-
-
-        //             GetDataSv(page_sv);
-
-        //             $(".container_ad_svcu").remove();
-        //             $(".list_ad_survey").css("display", "block");
-        //         }
-        //     });
-        // }
     });
 
     $(document).on("click", ".btn_del", function() {
@@ -599,8 +545,78 @@ $(document).ready(function() {
         status_sv = "Upd";
         id_hdr_multi = $(this).attr("multi");
         InsertSv();
-        $('#category_svcu  option[value="' + $("#" + $(this).attr("name")).attr("name") + '"]').prop("selected", true);
+        $('#category_svcu  option[value="' + $(this).attr("categr")).prop("selected", true);
     });
+
+    $(document).on("click", ".btn_report", function() {
+        $('.main_report').remove();
+        id_multi = $(this).attr("multi");
+        var title = '';
+        var obj = $('#showrp')[0];
+        var content = [['Task', 'Aswwere']];
+        var id_hdr = "";
+        var element = "";
+        var index = 0;
+        $.ajax({
+            async: false,
+            type: "post",
+            url: "../lib/vs_manager_ajax.php",
+            data: {
+                id_multi: id_multi,
+                report: 1,
+            },     
+            success: function (data) {
+                data.forEach(function(item){
+                    
+                    if(id_hdr != item.id)
+                    {
+                        index ++;
+                        if(index == 1)
+                        {
+                            element = '<div class="main_report"><button class="btn_close"><i class ="fa fa-close"></i></button><br>'+
+                            '<div id ="btn_close"><br><h1>THỐNG KÊ KHẢO SÁT</h1></div>'+
+                            '<div id = "showrp'+index+'"></div></div>';
+                            $('.warpper_report').append(element);
+                        }
+                        else
+                        {
+
+                            drawChart(title, content, obj);
+                            element = '<div id = "showrp'+index+'">';
+                            $('.main_report').append(element);
+                        }
+
+                        content = [['Task', 'Aswwere']];
+                        title = item.content;
+                        obj = $('#showrp' + index)[0];
+                        id_hdr = item.id;
+                    }
+
+                    content.push([item.answer, parseInt(item.indexasw)]);
+                });
+            }
+        });
+        drawChart(title, content, obj);
+        $(".warpper_report").css("visibility", "visible");         
+    });
+
+    $(document).on("click", ".btn_close", function(e) {
+        e.preventDefault();
+        $(".warpper_report").css("visibility", "hidden");
+    });
+
+    function drawChart(title, content,obj) {
+        var data = google.visualization.arrayToDataTable(content);
+
+        var options = {
+            height: 400,
+            sliceVisibilityThreshold: 0,
+            width: 600
+          };
+
+        var chart = new google.visualization.PieChart(obj);
+        chart.draw(data, options);
+      }
 
     function GetDataUser(page) {
         $.ajax({

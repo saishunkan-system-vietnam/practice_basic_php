@@ -39,6 +39,7 @@ $(document).ready(function() {
             $(".question").remove();
             $(".answer").remove();
             $(".kq").remove();
+            $("#btn_close").remove();
             
             var element = ShowFormSurvey($(this).attr("id"));
 
@@ -53,6 +54,44 @@ $(document).ready(function() {
     });
 
     $(document).on("click", ".btn-reply-survey", function() {
-        CreateReply($(this).attr("id"), $('input[name=asw]:checked').val());
+        var form = $(".warpper-survey");
+        cnt = 0;
+        var index =  (GetIndexSvMulti($(this).attr("multi")));
+        var check = true;
+        while(cnt < index)
+        {
+            cnt++;
+
+            $(".qs"+cnt).css("color", "#01579B");
+
+            if (typeof $('input[name="asw'+cnt+'"]:checked').val() === "undefined") {
+                check = false;
+                $(".qs"+cnt).css("color", "red");
+            }
+        }
+        
+        if(!check)
+        {
+            alert('vui lòng chọn câu trả lời trước khi lưu');
+        }
+        else
+        {
+            cnt = 0;
+
+            while(cnt < index)
+            {
+                 cnt++;
+                 CreateReply($('input[name=asw'+cnt+']:checked').attr("hdr"), $('input[name=asw'+cnt+']:checked').val());
+            }
+
+            form.css("visibility", "hidden");
+            alert("Trả lời thành công");
+        }
+    });
+
+    $(document).on("click", ".btn_close", function(e) {
+        e.preventDefault();
+        $(".warpper-survey").css("visibility", "hidden");
+        $(".container-survey").css("display", "none");
     });
 });

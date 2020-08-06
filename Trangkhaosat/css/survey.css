@@ -89,3 +89,12 @@ li {
         transform: scale(1)
     }
 }
+.btn_close{
+    float: right;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: red;
+}
