@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th8 05, 2020 lúc 12:40 PM
+-- Thời gian đã tạo: Th8 06, 2020 lúc 12:41 PM
 -- Phiên bản máy phục vụ: 10.4.13-MariaDB
 -- Phiên bản PHP: 7.4.7
 
@@ -67,6 +67,7 @@ CREATE TABLE `t_order` (
   `address` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Địa chỉ người nhận hàng',
   `payments` decimal(10,0) NOT NULL COMMENT 'Số tiền thanh toán',
   `note` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Ghi chú',
+  `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Trạng thái hóa đơn:\r\n0: Chờ xử lý.\r\n1: Đã tiếp nhận\r\n2:Đang gửi\r\n3: Đã nhận\r\n4:Cancel',
   `del_flg` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Cờ Xóa',
   `create_datetime` datetime NOT NULL COMMENT 'Thời gian đặt hàng',
   `upadte_datetime` datetime DEFAULT NULL COMMENT 'Thời gian update'
@@ -76,13 +77,9 @@ CREATE TABLE `t_order` (
 -- Đang đổ dữ liệu cho bảng `t_order`
 --
 
-INSERT INTO `t_order` (`id`, `id_account`, `recipient`, `phone`, `address`, `payments`, `note`, `del_flg`, `create_datetime`, `upadte_datetime`) VALUES
-(1, 'admin@gmail.com', 'Ngô Tá Sinh', '0965000000', 'Đà Nẵng', '1900', '', 0, '2020-07-31 17:23:24', NULL),
-(2, 'admin@gmail.com', 'Ngô Tá Sinh', '0965000000', 'Đà Nẵng', '1900', 'haaaaaaaaaaaaaaaaaaaaaaaa', 0, '2020-07-31 17:25:37', NULL),
-(3, 'admin@gmail.com', 'Ngô Tá Sinh', '0965000000', 'Đà Nẵng', '1900', 'haaaaaaaaaaaaaaaaaaaaaaa', 0, '2020-07-31 17:25:44', NULL),
-(4, 'admin@gmail.com', 'Nhân', '0965000001', 'Huế', '700', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 0, '2020-07-31 17:37:45', NULL),
-(5, 'admin@gmail.com', 'Nhân', '0965000001', 'Huế', '700', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 0, '2020-07-31 17:38:43', NULL),
-(6, 'admin@gmail.com', 'Nhân', '0965000000', 'Đà Nẵng', '350', 'bbbbbbbbbbbbbbbbb', 0, '2020-08-03 10:17:13', NULL);
+INSERT INTO `t_order` (`id`, `id_account`, `recipient`, `phone`, `address`, `payments`, `note`, `status`, `del_flg`, `create_datetime`, `upadte_datetime`) VALUES
+(22, 'admin@gmail.com', 'Ngô Tá Sinh', '0965000000', 'Đà Nẵng', '1700', 'Hàng dể vỡ', 0, 0, '2020-08-06 14:24:29', NULL),
+(23, 'admin@gmail.com', 'Ngô Tá Sinh', '0965000000', 'Đà Nẵng', '1700', 'Hàng dể vỡ', 0, 1, '2020-08-06 14:24:58', '2020-08-06 14:49:05');
 
 -- --------------------------------------------------------
 
@@ -92,6 +89,7 @@ INSERT INTO `t_order` (`id`, `id_account`, `recipient`, `phone`, `address`, `pay
 
 CREATE TABLE `t_order_detail` (
   `id` int(11) NOT NULL COMMENT 'Id chi tiết đơn hàng',
+  `id_order` int(11) NOT NULL COMMENT 'id order',
   `id_product` int(11) NOT NULL COMMENT 'Id sản phẩm',
   `quantity` int(11) NOT NULL COMMENT 'Số lượng',
   `price` decimal(10,0) NOT NULL COMMENT 'Giá bán',
@@ -104,29 +102,13 @@ CREATE TABLE `t_order_detail` (
 -- Đang đổ dữ liệu cho bảng `t_order_detail`
 --
 
-INSERT INTO `t_order_detail` (`id`, `id_product`, `quantity`, `price`, `del_flg`, `create_datetime`, `upadte_datetime`) VALUES
-(1, 1, 3, '200', 0, '2020-07-31 17:23:24', NULL),
-(2, 13, 2, '200', 0, '2020-07-31 17:23:24', NULL),
-(3, 2, 3, '150', 0, '2020-07-31 17:23:24', NULL),
-(4, 12, 3, '150', 0, '2020-07-31 17:23:24', NULL),
-(5, 1, 3, '200', 0, '2020-07-31 17:25:37', NULL),
-(6, 13, 2, '200', 0, '2020-07-31 17:25:37', NULL),
-(7, 2, 3, '150', 0, '2020-07-31 17:25:37', NULL),
-(8, 12, 3, '150', 0, '2020-07-31 17:25:37', NULL),
-(9, 1, 3, '200', 0, '2020-07-31 17:25:44', NULL),
-(10, 13, 2, '200', 0, '2020-07-31 17:25:44', NULL),
-(11, 2, 3, '150', 0, '2020-07-31 17:25:44', NULL),
-(12, 12, 3, '150', 0, '2020-07-31 17:25:44', NULL),
-(13, 1, 1, '200', 0, '2020-07-31 17:37:45', NULL),
-(14, 13, 1, '200', 0, '2020-07-31 17:37:45', NULL),
-(15, 2, 1, '150', 0, '2020-07-31 17:37:45', NULL),
-(16, 12, 1, '150', 0, '2020-07-31 17:37:45', NULL),
-(17, 1, 1, '200', 0, '2020-07-31 17:38:43', NULL),
-(18, 13, 1, '200', 0, '2020-07-31 17:38:43', NULL),
-(19, 2, 1, '150', 0, '2020-07-31 17:38:43', NULL),
-(20, 12, 1, '150', 0, '2020-07-31 17:38:43', NULL),
-(21, 1, 1, '200', 0, '2020-08-03 10:17:13', NULL),
-(22, 2, 1, '150', 0, '2020-08-03 10:17:13', NULL);
+INSERT INTO `t_order_detail` (`id`, `id_order`, `id_product`, `quantity`, `price`, `del_flg`, `create_datetime`, `upadte_datetime`) VALUES
+(27, 22, 1, 4, '200', 0, '2020-08-06 14:24:29', NULL),
+(28, 22, 3, 1, '300', 0, '2020-08-06 14:24:29', NULL),
+(29, 22, 4, 1, '600', 0, '2020-08-06 14:24:29', NULL),
+(30, 23, 1, 4, '200', 1, '2020-08-06 14:24:58', '2020-08-06 14:49:05'),
+(31, 23, 3, 1, '300', 1, '2020-08-06 14:24:58', '2020-08-06 14:49:05'),
+(32, 23, 4, 1, '600', 1, '2020-08-06 14:24:58', '2020-08-06 14:49:05');
 
 -- --------------------------------------------------------
 
@@ -153,8 +135,8 @@ CREATE TABLE `t_product` (
 --
 
 INSERT INTO `t_product` (`id`, `name`, `describe_product`, `origin`, `price`, `image`, `capacity`, `content`, `del_flg`, `create_datetime`, `upadte_datetime`) VALUES
-(1, 'Viên uống trắng da Glutathione Ever Collagen', 'Kem đa năng Lucas Papaw Ointment 25g là một loại kem đa năng có xuất xứ từ Úc, sản phẩm là niểm tự hào hơn 100 năm qua của xứ sở Kangaroo.  Giá trên đã bao gồm phí mua hộ, chưa bao gồm thuế và phí vận chuyển (nếu có) ở nước ngoài và cước vận chuyển về Việt Nam. Miễn phí giao hàng nội thành Hà Nội và Hồ Chí Minh.', 'Hàn Quốc', '200', '../img/1.jpg', '100ml', '<p><strong>Công dụng của kem đa năng Lucas Papaw Ointment 25g</strong></p>\r\n<p><em><strong>- Giúp hỗ trợ điều trị viêm da do dị ứng, nứt đầu ti ở bà bầu và hăm xước da ở trẻ em</strong></em></p>\r\n<p>+ Loại kem này có tác dụng làm giảm các triệu chứng viêm da, dị ứng ngoài da, mẩn ngứa hay bị phát ban.</p>\r\n<p>+ Giúp cho trẻ em thường xuyên đeo bỉm hết bị vết xước hay hăm tã</p>\r\n<p>+ Kem Lucas còn có công dụng giảm viêm da, làm lành vết nứt cổ gà ở đầu ti các bà mẹ đang cho con bú</p>\r\n<p><em><strong>- Tác dụng như kem nẻ, vừa có tác dụng như kem dưỡng</strong></em></p>\r\n<p>+ Chuyên hỗ trợ điều trị các triệu chứng khô, nứt nẻ ngoài da như da khô bong tróc, da bị nẻ hay phồng rộp, môi khô nứt do thời tiết hanh khô…</p>\r\n<p>+ Có tác dụng dưỡng môi, dưỡng da, tạo nên sự mịn màng, giúp da trở nên mềm mịn.</p>\r\n<p><em><strong>- Kem Lucas của Úc còn được biết đến như 1 sản phẩm làm đẹp</strong></em></p>\r\n<p>+ Nhờ công dụng dưỡng da mà chị em phụ nữ khi trang điểm có thể sử dụng sản phẩm này thay cho kem lót</p>\r\n<p>+ Hơn nữa loại sản phẩm đa năng này còn được dùng như geo tóc, giúp cho mái tóc vào nếp và không bị xù rối</p>\r\n<p>+ Các loại mụn mới tấy, mụn bọc hay mụn mủ sẽ bị tan xẹp nhờ sản phẩm này</p>\r\n<p>+ Nhờ bôi kem Lucas mà những vết sẹo, vết chàm xấu xí sẽ bị mờ dần đi</p>\r\n<p><em><strong>- Một số tác dụng khác</strong></em></p>\r\n<p>+ Nhờ có kem đa năng Lucas mà những vết do côn trùng cắn, muỗi đốt sẽ khỏi</p>\r\n<p>+ Giảm đau rát ở những vùng da bị bỏng nước, cháy rộp hay cháy nắng</p>\r\n<p>+ Những vết thương hay đứt tay nhẹ do dao kéo,do các mảnh kim loại, sành vụn, gai đâm sẽ được hỗ trợ điều trị lành nhờ loại kem này</p>\r\n<p>+ Một số trường hợp bị mắc chứng Eczema được hỗ trợ điều trị khỏi nhờ kem bôi đa năng này</p>\r\n<p>+ Hỗ trợ bệnh nhân mắc bệnh trĩ tạm thời.</p>\r\n<p><strong>Thành phần:</strong></p>\r\n<p>Những thành phần chủ yếu tự nhiên là men đu đủ Carica tươi, Petroleum chất tự nhiên có công dụng bảo quản Kali Sorbate...</p>\r\n<p><strong>Hướng dẫn sử dụng</strong></p>\r\n<p>– Xoáy mở nắp tuýp kem Lucas ra</p>\r\n<p>– Mở nắp bảo quản bằng cách dùng phần lưng của nắp, xong bước này là thoa kem lên da và chờ kết quả nhé!</p>\r\n<p><strong>Hướng dẫn bảo quản:</strong></p>\r\n<p>- Bảo quản nơi khô thoáng, tránh ánh nắng trực tiếp của mặt trời.</p>\r\n<p>- Để xa tầm tay của trẻ em.</p>', 0, '2020-07-01 00:00:00', '2020-07-31 00:00:00'),
-(2, 'Viên Uống Innerb Aqua Rich Hỗ Trợ Cấp Nước', '', 'Hàn Quốc', '150', '../img/2.jpg', '100ml', '<p><strong>Công dụng của kem đa năng Lucas Papaw Ointment 25g</strong></p>\r\n<p><em><strong>- Giúp hỗ trợ điều trị viêm da do dị ứng, nứt đầu ti ở bà bầu và hăm xước da ở trẻ em</strong></em></p>\r\n<p>+ Loại kem này có tác dụng làm giảm các triệu chứng viêm da, dị ứng ngoài da, mẩn ngứa hay bị phát ban.</p>\r\n<p>+ Giúp cho trẻ em thường xuyên đeo bỉm hết bị vết xước hay hăm tã</p>\r\n<p>+ Kem Lucas còn có công dụng giảm viêm da, làm lành vết nứt cổ gà ở đầu ti các bà mẹ đang cho con bú</p>\r\n<p><em><s', 0, '2020-06-02 00:00:00', '2020-07-14 00:00:00'),
+(1, 'Viên uống trắng da Glutathione Ever Collagen', 'Kem đa năng Lucas Papaw Ointment 25g là một loại kem đa năng có xuất xứ từ Úc, sản phẩm là niểm tự hào hơn 100 năm qua của xứ sở Kangaroo.  Giá trên đã bao gồm phí mua hộ, chưa bao gồm thuế và phí vận chuyển (nếu có) ở nước ngoài và cước vận chuyển về Việt Nam. Miễn phí giao hàng nội thành Hà Nội và Hồ Chí Minh.', 'Hàn Quốc', '200', '../../img/1.jpg', '1', '<p><strong>C&ocirc;ng dụng của kem đa năng Lucas Papaw Ointment 25g</strong></p>\r\n\r\n<p><em><strong>- Gi&uacute;p hỗ trợ điều trị vi&ecirc;m da do dị ứng, nứt đầu ti ở b&agrave; bầu v&agrave; hăm xước da ở trẻ em</strong></em></p>\r\n\r\n<p>+ Loại kem n&agrave;y c&oacute; t&aacute;c dụng l&agrave;m giảm c&aacute;c triệu chứng vi&ecirc;m da, dị ứng ngo&agrave;i da, mẩn ngứa hay bị ph&aacute;t ban.</p>\r\n\r\n<p>+ Gi&uacute;p cho trẻ em thường xuy&ecirc;n đeo bỉm hết bị vết xước hay hăm t&atilde;</p>\r\n\r\n<p>+ Kem Lucas c&ograve;n c&oacute; c&ocirc;ng dụng giảm vi&ecirc;m da, l&agrave;m l&agrave;nh vết nứt cổ g&agrave; ở đầu ti c&aacute;c b&agrave; mẹ đang cho con b&uacute;</p>\r\n\r\n<p><em><strong>- T&aacute;c dụng như kem nẻ, vừa c&oacute; t&aacute;c dụng như kem dưỡng</strong></em></p>\r\n\r\n<p>+ Chuy&ecirc;n hỗ trợ điều trị c&aacute;c triệu chứng kh&ocirc;, nứt nẻ ngo&agrave;i da như da kh&ocirc; bong tr&oacute;c, da bị nẻ hay phồng rộp, m&ocirc;i kh&ocirc; nứt do thời tiết hanh kh&ocirc;&hellip;</p>\r\n\r\n<p>+ C&oacute; t&aacute;c dụng dưỡng m&ocirc;i, dưỡng da, tạo n&ecirc;n sự mịn m&agrave;ng, gi&uacute;p da trở n&ecirc;n mềm mịn.</p>\r\n\r\n<p><em><strong>- Kem Lucas của &Uacute;c c&ograve;n được biết đến như 1 sản phẩm l&agrave;m đẹp</strong></em></p>\r\n\r\n<p>+ Nhờ c&ocirc;ng dụng dưỡng da m&agrave; chị em phụ nữ khi trang điểm c&oacute; thể sử dụng sản phẩm n&agrave;y thay cho kem l&oacute;t</p>\r\n\r\n<p>+ Hơn nữa loại sản phẩm đa năng n&agrave;y c&ograve;n được d&ugrave;ng như geo t&oacute;c, gi&uacute;p cho m&aacute;i t&oacute;c v&agrave;o nếp v&agrave; kh&ocirc;ng bị x&ugrave; rối</p>\r\n\r\n<p>+ C&aacute;c loại mụn mới tấy, mụn bọc hay mụn mủ sẽ bị tan xẹp nhờ sản phẩm n&agrave;y</p>\r\n\r\n<p>+ Nhờ b&ocirc;i kem Lucas m&agrave; những vết sẹo, vết ch&agrave;m xấu x&iacute; sẽ bị mờ dần đi</p>\r\n\r\n<p><em><strong>- Một số t&aacute;c dụng kh&aacute;c</strong></em></p>\r\n\r\n<p>+ Nhờ c&oacute; kem đa năng Lucas m&agrave; những vết do c&ocirc;n tr&ugrave;ng cắn, muỗi đốt sẽ khỏi</p>\r\n\r\n<p>+ Giảm đau r&aacute;t ở những v&ugrave;ng da bị bỏng nước, ch&aacute;y rộp hay ch&aacute;y nắng</p>\r\n\r\n<p>+ Những vết thương hay đứt tay nhẹ do dao k&eacute;o,do c&aacute;c mảnh kim loại, s&agrave;nh vụn, gai đ&acirc;m sẽ được hỗ trợ điều trị l&agrave;nh nhờ loại kem n&agrave;y</p>\r\n\r\n<p>+ Một số trường hợp bị mắc chứng Eczema được hỗ trợ điều trị khỏi nhờ kem b&ocirc;i đa năng n&agrave;y</p>\r\n\r\n<p>+ Hỗ trợ bệnh nh&acirc;n mắc bệnh trĩ tạm thời.</p>\r\n\r\n<p><strong>Th&agrave;nh phần:</strong></p>\r\n\r\n<p>Những th&agrave;nh phần chủ yếu tự nhi&ecirc;n l&agrave; men đu đủ Carica tươi, Petroleum chất tự nhi&ecirc;n c&oacute; c&ocirc;ng dụng bảo quản Kali Sorbate...</p>\r\n\r\n<p><strong>Hướng dẫn sử dụng</strong></p>\r\n\r\n<p>&ndash; Xo&aacute;y mở nắp tu&yacute;p kem Lucas ra</p>\r\n\r\n<p>&ndash; Mở nắp bảo quản bằng c&aacute;ch d&ugrave;ng phần lưng của nắp, xong bước n&agrave;y l&agrave; thoa kem l&ecirc;n da v&agrave; chờ kết quả nh&eacute;!</p>\r\n\r\n<p><strong>Hướng dẫn bảo quản:</strong></p>\r\n\r\n<p>- Bảo quản nơi kh&ocirc; tho&aacute;ng, tr&aacute;nh &aacute;nh nắng trực tiếp của mặt trời.</p>\r\n\r\n<p>- Để xa tầm tay của trẻ em.</p>\r\n', 0, '2020-07-01 00:00:00', '2020-08-06 10:53:02'),
+(2, 'Viên Uống Innerb Aqua Rich Hỗ Trợ Cấp Nước', 'update', 'Hàn Quốc', '150', '../../img/2.jpg', '1', '<p><strong>C&ocirc;ng dụng của kem đa năng Lucas Papaw Ointment 25g</strong></p>\r\n\r\n<p><em><strong>- Gi&uacute;p hỗ trợ điều trị vi&ecirc;m da do dị ứng, nứt đầu ti ở b&agrave; bầu v&agrave; hăm xước da ở trẻ em</strong></em></p>\r\n\r\n<p>+ Loại kem n&agrave;y c&oacute; t&aacute;c dụng l&agrave;m giảm c&aacute;c triệu chứng vi&ecirc;m da, dị ứng ngo&agrave;i da, mẩn ngứa hay bị ph&aacute;t ban.</p>\r\n\r\n<p>+ Gi&uacute;p cho trẻ em thường xuy&ecirc;n đeo bỉm hết bị vết xước hay hăm t&atilde;</p>\r\n\r\n<p>+ Kem Lucas c&ograve;n c&oacute; c&ocirc;ng dụng giảm vi&ecirc;m da, l&agrave;m l&agrave;nh vết nứt cổ g&agrave; ở đầu ti c&aacute;c b&agrave; mẹ đang cho con b&uacute;</p>\r\n\r\n<p>&nbsp;</p>\r\n', 0, '2020-06-02 00:00:00', '2020-08-06 10:02:58'),
 (3, 'Viên uống Vitamin E Zentiva đẹp da chống lão hóa', '', 'Mỹ', '300', '../img/3.jpg', '100ml', NULL, 0, '2020-04-06 00:00:00', '2020-05-12 00:00:00'),
 (4, 'Bộ mỹ phẩm dưỡng trắng da 3w cilic skin ', '', 'Mỹ', '600', '../img/4.jpg', '100ml', NULL, 0, '2020-06-01 00:00:00', '2020-08-13 00:00:00'),
 (5, 'Bộ dưỡng da cao cấp 3w clinic flower effect extra', '', 'Hàn Quốc', '800', '../img/5.png', '100ml', NULL, 0, '2019-09-04 00:00:00', '2020-03-10 00:00:00'),
@@ -163,9 +145,9 @@ INSERT INTO `t_product` (`id`, `name`, `describe_product`, `origin`, `price`, `i
 (8, 'SON DƯỠNG MÔI INNISFREE GLOW TINT LIP', '', 'Mỹ', '760', '../img/8.jpg', '100ml', NULL, 0, '2019-01-03 00:00:00', '2020-01-18 00:00:00'),
 (9, 'SON DƯỠNG CÓ MÀU VÀ KHÔNG MÀU DHC COLOR', '', 'Mỹ', '170', '../img/9.jpg', '100ml', NULL, 0, '2019-01-21 00:00:00', '2020-01-15 00:00:00'),
 (10, 'Bộ mỹ phẩm dưỡng trắng da 3w cilic skin ', '', 'Mỹ', '600', '../img/10.jpg', '100ml', NULL, 0, '2020-06-01 00:00:00', '2020-08-13 00:00:00'),
-(11, 'Serum tế bào gốc sét 4 ống- Hàn Quốc', '', 'Hàn Quốc', '560', '../img/11.jpg', '100ml', NULL, 0, '2019-12-03 00:00:00', '2020-11-18 00:00:00'),
-(12, 'Viên Uống Innerb Aqua Rich Hỗ Trợ Cấp Nước', '', 'Hàn Quốc', '150', '../img/12.jpg', '100ml', NULL, 1, '2020-06-02 00:00:00', '2020-08-05 14:52:05'),
-(13, 'Viên uống trắng da Glutathione Ever Collagen', '', 'Hàn Quốc', '200', '../img/2.jpg', '100ml', NULL, 1, '2020-07-01 00:00:00', '2020-08-05 10:23:12');
+(11, 'Serum tế bào gốc sét 4 ống- Hàn Quốc', '', 'Hàn Quốc', '560', '../img/11.jpg', '100ml', NULL, 0, '2019-12-03 00:00:00', '2020-08-06 15:37:21'),
+(12, 'Viên Uống Innerb Aqua Rich Hỗ Trợ Cấp Nước', '', 'Hàn Quốc', '150', '../img/12.jpg', '100ml', NULL, 0, '2020-06-02 00:00:00', '2020-08-05 14:52:05'),
+(13, 'Viên uống trắng da Glutathione Ever Collagen', '', 'Hàn Quốc', '200', '../img/2.jpg', '100ml', NULL, 0, '2020-07-01 00:00:00', '2020-08-05 10:23:12');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -181,13 +163,16 @@ ALTER TABLE `t_account`
 -- Chỉ mục cho bảng `t_order`
 --
 ALTER TABLE `t_order`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_account` (`id_account`);
 
 --
 -- Chỉ mục cho bảng `t_order_detail`
 --
 ALTER TABLE `t_order_detail`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_product` (`id_product`),
+  ADD KEY `id_order` (`id_order`);
 
 --
 -- Chỉ mục cho bảng `t_product`
@@ -203,19 +188,36 @@ ALTER TABLE `t_product`
 -- AUTO_INCREMENT cho bảng `t_order`
 --
 ALTER TABLE `t_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id đơn hàng', AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id đơn hàng', AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT cho bảng `t_order_detail`
 --
 ALTER TABLE `t_order_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id chi tiết đơn hàng', AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id chi tiết đơn hàng', AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT cho bảng `t_product`
 --
 ALTER TABLE `t_product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id sản phẩm', AUTO_INCREMENT=14;
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `t_order`
+--
+ALTER TABLE `t_order`
+  ADD CONSTRAINT `t_order_ibfk_1` FOREIGN KEY (`id_account`) REFERENCES `t_account` (`id`);
+
+--
+-- Các ràng buộc cho bảng `t_order_detail`
+--
+ALTER TABLE `t_order_detail`
+  ADD CONSTRAINT `t_order_detail_ibfk_1` FOREIGN KEY (`id_product`) REFERENCES `t_product` (`id`),
+  ADD CONSTRAINT `t_order_detail_ibfk_2` FOREIGN KEY (`id_order`) REFERENCES `t_order` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

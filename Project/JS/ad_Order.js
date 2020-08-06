@@ -4,12 +4,11 @@ $(document).ready(function() {
 
     function search(){
         $.ajax({
-            url: "./listProduct.php",
+            url: "./listOrder.php",
             method: "GET",
             data: { page : page, content : content
              },
             success: function(data) {
-                console.log(data);
                 $('tbody').html(data);
             }
         });
@@ -21,7 +20,7 @@ $(document).ready(function() {
                 {
                     cnt = "&content=" + $.trim($(".inpSearch").val());
                 }
-                let newhref = "./ad_product.php?page=" + 1 + cnt;
+                let newhref = "./ad_order.php?page=" + 1 + cnt;
                 window.location.href = newhref;
             });
     
@@ -34,16 +33,11 @@ $(document).ready(function() {
                     cnt = "&content=" + content;
                 }
 
-                let href ='./ad_product.php' + $(this).attr("href");
+                let href ='./ad_order.php' + $(this).attr("href");
             
                 let newhref = href + cnt;
                 window.location.href = newhref;
             });
-
-
-
-
-
 
 
     $(document).on('click', '.btnDelete', function() {
@@ -51,7 +45,7 @@ $(document).ready(function() {
         if(result){
             var id = $(this).attr('data-id');
             $.ajax({
-                url: "./product_delete.php",
+                url: "./delOrder.php",
                 method: "POST",
                 data: {id},
                 dataType: 'JSON',

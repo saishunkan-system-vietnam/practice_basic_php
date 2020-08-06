@@ -24,7 +24,7 @@
         $address = $_POST['address'];
         $password = md5($_POST['password']);
 
-        $sqlinsert="INSERT INTO t_account(`fullname`, `password`, `birthday`, `sex`, `phone`, `id`, `address`) VALUES ('$name','$password','$bday',$sex,'$phone','$email','$address')";
+        $sqlinsert="INSERT INTO t_account(`fullname`, `password`, `birthday`, `sex`, `phone`, `id`, `address`,`create_datetime`) VALUES ('$name','$password','$bday',$sex,'$phone','$email','$address', CURRENT_TIMESTAMP())";
 
         if($mysqli->query($sqlinsert)){
             echo json_encode(['status'=>'success']);

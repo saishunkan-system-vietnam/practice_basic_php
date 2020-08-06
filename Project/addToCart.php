@@ -21,7 +21,7 @@
 	    	{
 	    		if($cart_data[$keys]["item_id"] == $_POST["productId"])
 	    		{
-	    			$cart_data[$keys]["item_quantity"] = $cart_data[$keys]["item_quantity"] + $_POST["quantity"];
+					$cart_data[$keys]["item_quantity"] = $cart_data[$keys]["item_quantity"] + $_POST["quantity"];
 	    		}
 	    	}
         }
@@ -32,7 +32,7 @@
 	    		'item_name'			=>	$_POST["productName"],
                 'item_price'		=>	$_POST["productPrice"],
                 'item_image'		=>	$_POST["productImage"],
-	    		'item_quantity'		=>	$_POST["quantity"]
+				'item_quantity'		=>	$_POST["quantity"],
 	    	);
 	    	$cart_data[] = $item_array;
 	    }

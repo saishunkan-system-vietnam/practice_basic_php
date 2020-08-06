@@ -31,9 +31,9 @@
                 <ul>
                     <li><a href="./index.php">Cấu hình</a></li>
 
-                    <li><a href="./product_listing.php">Sản phẩm</a></li>
+                    <li><a href="./ad_Product.php">Sản phẩm</a></li>
 
-                    <li><a href="">Đơn hàng</a></li>
+                    <li><a href="ad_order.php">Đơn hàng</a></li>
 
                     <li><a href="./account.php">Quản lý thành viên</a></li>
 

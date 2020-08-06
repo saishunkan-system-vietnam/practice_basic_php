@@ -12,6 +12,7 @@
     // PHP
     define('FILE_PHP_CONFIG',BASE_PATH.'/config/config.php');
     define('FILE_PHP_REGISTER','./register.php');
+    define('FILE_PHP_FUNCTION','../function.php');
     define('FILE_PHP_MENUTOP','./menuTop.php');
     define('FILE_PHP_FOOTER','./footer.php');
     define('FILE_PHP_CART','./cart.php');
@@ -42,7 +43,9 @@
     define('FILE_JS_CHANGEPASS',SITE_URL.'/JS/changePassword.js');
     define('FILE_JS_ADDTOCART',SITE_URL.'/JS/addToCart.js');
     define('FILE_JS_ACCOUNTAD',SITE_URL.'/JS/ad_Account.js');
-    define('FILE_JS_PRODUCTAD',SITE_URL.'/JS/product_delete.js');
+    define('FILE_JS_PRODUCTAD',SITE_URL.'/JS/ad_Product.js');
+    define('FILE_JS_ORDERAD',SITE_URL.'/JS/ad_Order.js');
+    define('FILE_JS_ADDORDERAD',SITE_URL.'/JS/ad_AddOrder.js');
     define('FILE_JS_CKEDITOR',SITE_URL.'/JS/ckeditor/ckeditor.js');
 
 

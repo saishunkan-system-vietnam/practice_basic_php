@@ -14,24 +14,40 @@
     $result = $mysqli->query($sql) ;       
 
     if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()){
+        while ($row = $result->fetch_assoc()) {
             $img = !empty($row["image"]) ? $row["image"] : "../img/logoProduct.png";
-            $output .= '
-            <tr>
-                <td>'.$row["name"].'</td>
-                <td>'."<img style='width: 200px; height: 200px;' src='$img'>".'</td>
-                <td>'.$row["describe_product"].'</td>
-                <td>'.$row["origin"].'</td>
-                <td>'.$row["price"].'</td>
-                <td>'.$row["capacity"].'</td>
-                <td>'.$row["content"].'</td>
-                <td>'.$row["del_flg"].'</td>
-                <td><a class="btnEdit btn" href="./product_editing.php?id='.$row['id'].'>Sửa</a> </td>
-                <td><button class="btnDelete btn" id = "btnDelAccount" data-id="'.$row["id"].'"><span>Delete</span></button> </td>
-            </tr>
-        ';
-        }   
-    } 
+            if (isset($_GET['name']) && $_GET['name'] == "add") {              
+                $output .= '
+                    <tr>
+                        <td>' . $row["name"] . '</td>
+                        <td>' . "<img style='width: 150px; height: 150px;' src='$img'>" . '</td>
+                        <td>' . $row["price"] . '</td>
+                        <td><input type="number" name="quantity" value="1" min="1"></td>
+                        <td><button type="submit" class="btnAddProduct btn" name="btnAddProduct">Add</button></td>
+                        <input type="hidden" name="productId" value="'.$row["id"].'">
+                        <input type="hidden" name="productName" value="'.$row["name"].'">
+                        <input type="hidden" name="productPrice" value="'.$row["price"].'">
+                    </tr>
+                ';
+            } else {
+                $output .= '
+                    <tr>
+                        <td>' . $row["name"] . '</td>
+                        <td>' . "<img style='width: 150px; height: 150px;' src='$img'>" . '</td>
+                        <td>' . $row["describe_product"] . '</td>
+                        <td>' . $row["origin"] . '</td>
+                        <td>' . $row["price"] . '</td>
+                        <td>' . $row["capacity"] . '</td>
+                        <td>' . $row["content"] . '</td>
+                        <td>' . $row["del_flg"] . '</td>
+                        <td><a class="btnEdit btn" href="./product_editing.php?id=' . $row['id'] . '">Edit</a> </td>
+                        <td><a class="btnDelete btn" data-id=' . $row['id'] . '>Delete</a></td>
+                    </tr>
+                ';
+            }
+                
+            }   
+        } 
     else{
         $output .= '<tr><td colspan="11" align="center">Không tìm thấy dữ liệu!</td></tr>';
     }

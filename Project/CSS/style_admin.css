@@ -32,6 +32,7 @@
     float: left;
     width: 15%;
     position: fixed;
+    padding: 10px 0px;
 }
 
 .menu-heading{
@@ -71,6 +72,10 @@
     margin-left: 1%;
     left: 16%;
     position: relative;
+    box-shadow: 0 4px 9px 0 #eee!important;
+    padding: 10px 30px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 .main-content h1{
     margin: 0;
@@ -158,6 +163,8 @@
     border-top: 4px double #0e0d0d;
     text-align: center;
    }
+
+   /* ************************************************************************STYLE BTN************************************************************* */
   
    .btn {
     width: 100px;
@@ -172,14 +179,14 @@
     background-color: #4CAF50;
     border: none;
     border-radius: 6px;
-    box-shadow: 0 9px #999;
+    box-shadow: 0 3px #999;
   }
   
   .btn:hover {background-color: #3e8e41}
   
   .btn:active {
    background-color: #3e8e41;
-    box-shadow: 0 5px #666;
+    box-shadow: 0 3px #666;
     transform: translateY(4px);
   }
   
@@ -290,6 +297,7 @@ margin: 10px 0;
 
 .table td{
     max-width: 200px;
+    text-align: center;
     /* max-height: 200px; */
     border: 1px solid #ddd;
     padding: 8px;
@@ -333,4 +341,14 @@ margin: 10px 0;
   float: left;
   width: 350px;
 }
+.AddOrEdit {
+  padding: 20px 15%;
+}
 
+.labelContent{
+  width: 150px;
+  display: inline-block;
+  color: blue;
+  font-size: 20px;
+}
+/* ************************************************************************STYLE ORDER************************************************************* */

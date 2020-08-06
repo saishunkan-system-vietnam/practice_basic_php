@@ -55,23 +55,26 @@
 
     require FILE_PHP_MENUTOP;
     
+    
     // Đặt hàng 
     if (isset($_POST['btnOder'])) {
         $name       = $_POST['name'];
         $phone      = $_POST['phone'];
         $address    = $_POST['address'];
         $payments   = $_POST['payments'];
-        $content       = $_POST['content'];
+        $note    = $_POST['note'];
         $idAccount  = $_SESSION[SESSION_USERNAME];
 
-        $insertOder="INSERT INTO t_order(`id_account`, `recipient`, `phone`, `address`, `payments`, `content`, `create_datetime`) VALUES ('$idAccount','$name','$phone','$address',$payments,'$content',CURRENT_TIMESTAMP())";
+        $insertOder="INSERT INTO t_order(`id_account`, `recipient`, `phone`, `address`, `payments`, `note`, `create_datetime`) VALUES ('$idAccount','$name','$phone','$address',$payments,'$note',CURRENT_TIMESTAMP())";
         $resultOder =$mysqli->query($insertOder);
         if ($resultOder) {
+            $idOrder = $mysqli->insert_id;
             $cookie_data = $_COOKIE['shopping_cart'];
             $cart_data = json_decode($cookie_data, true);
             
 			foreach($cart_data as $keys => $values){
-                $insertOderD="INSERT INTO t_order_detail(`id_product`, `quantity`, `price`, `create_datetime`) VALUES ($values[item_id],$values[item_quantity],$values[item_price],CURRENT_TIMESTAMP())";
+      
+                $insertOderD="INSERT INTO t_order_detail(`id_order`,`id_product`, `quantity`, `price`, `create_datetime`) VALUES ($idOrder,$values[item_id],$values[item_quantity],$values[item_price],CURRENT_TIMESTAMP())";
                 $resultOderD =$mysqli->query($insertOderD);
                 if (!$resultOderD) {
                     $_SESSION["error"] = "Xảy ra lỗi khi insert chi tiết đơn hàng!";
@@ -188,8 +191,8 @@
             </div>
 
             <div>
-                <span class="labelcontent label">Ghi chú: </span>
-                <textarea name="content" cols="70" rows="7"></textarea>
+                <span class="labelnote label">Ghi chú: </span>
+                <textarea name="note" cols="70" rows="7"></textarea>
             </div>
             <div>
                 <input type="submit" class="btnOder btn" name="btnOder" value="Đặt hàng" />
