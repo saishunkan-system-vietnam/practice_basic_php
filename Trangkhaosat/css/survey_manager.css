@@ -195,7 +195,6 @@ td {
     margin: 0;
 }
 
-
 .col {
     text-align: center;
 }
@@ -304,19 +303,18 @@ b {
     align-items: center;
 }
 
-.main_report{
+.main_report {
     /* height: 680px; */
-    width: 30%;
+    /* width: 30%; */
     background-color: #fff;
     opacity: 1;
-    overflow: hidden;
     border-radius: 10px;
     padding-bottom: 10px;
     padding-top: 5px;
     box-shadow: 0 0 5px #025583;
 }
 
-.btn_close{
+.btn_close {
     background-color: transparent;
     border: none !important;
     box-shadow: none !important;
@@ -326,6 +324,6 @@ b {
     top: 5px;
 }
 
-.btn_close:hover{
+.btn_close:hover {
     background-color: transparent;
 }

@@ -95,9 +95,9 @@ $(document).ready(function() {
                     if (index != "N/A") {
                         element += '</ul></td>\n' +
                             '<td class="ff col">' + index_asw + '</td>\n' +
-                            '<td class="col4"><button class="btn_report" multi = "' + id_multi + '" style = "background-color: rgb(24, 103, 192); color: #fb8c00" '+
+                            '<td class="col4"><button class="btn_report" multi = "' + id_multi + '" style = "background-color: rgb(24, 103, 192); color: #fb8c00" ' +
                             '><i class="fa fa-pie-chart" aria-hidden="true" style = "font-size: 23px"></i></button></td>\n' +
-                            '<td class="col4"><button class="btn_edit" categr = "'+categr+'" multi = "' + id_multi +
+                            '<td class="col4"><button class="btn_edit" categr = "' + categr + '" multi = "' + id_multi +
                             '">edit\n' +
                             '</button></td>\n' +
                             '<td class="col4"><button class="btn_del" multi = "' + id_multi +
@@ -132,11 +132,11 @@ $(document).ready(function() {
 
             element += '</ul></td>\n' +
                 '<td class="ff col">' + index_asw + '</td>\n' +
-                '<td class="col4"><button class="btn_report" multi = "' + id_multi + '" style = "background-color: rgb(24, 103, 192); color: #fb8c00" '+
-                            '><i class="fa fa-pie-chart" aria-hidden="true" style = "font-size: 23px"></i></button></td>\n' +
-                '<td class="col4"><button class="btn_edit" categr = "'+categr+'" multi = "' + id_multi + '">edit\n' +
+                '<td class="col4"><button class="btn_report" multi = "' + id_multi + '" style = "background-color: rgb(24, 103, 192); color: #fb8c00" ' +
+                '><i class="fa fa-pie-chart" aria-hidden="true" style = "font-size: 23px"></i></button></td>\n' +
+                '<td class="col4"><button class="btn_edit" categr = "' + categr + '" multi = "' + id_multi + '">edit\n' +
                 '</button></td>\n' +
-                '<td class="col4"><button class="btn_del" multi = "' + id_multi +'">delete</button></td>\n' +
+                '<td class="col4"><button class="btn_del" multi = "' + id_multi + '">delete</button></td>\n' +
                 '</tr>\n' +
                 '</table></div>';
         } else {
@@ -203,6 +203,15 @@ $(document).ready(function() {
         return false;
     });
 
+    $(document).on("keypress", '#txtfind', function(event) {
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13') {
+            $("#btn_find").trigger('click');
+        }
+    });
+
+
+
     $("#btn_find").click(function(e) {
         e.preventDefault();
 
@@ -259,8 +268,8 @@ $(document).ready(function() {
                 '<label for="txt_qs"><b>Câu hỏi:</b></label>' +
                 '<input type="text" id="txt_qs' + cnt_qs + '" class = "txt_qs"><br>' +
                 '<label for="txt_aws"><b>Câu trả lời:</b></label>' +
-                '<input type="text" name=txt_aws"" id="txt_aws' + cnt_qs + '" class = "txt_aws">' +
-                '<button class="btn_ins_asw add' + cnt_qs + '" name ="' + cnt_qs + '" id = "btn_ins_asw">Insert</button>' +
+                '<input type="text" name= "txt_aws" cnt_qs = "' + cnt_qs + '" id="txt_aws' + cnt_qs + '" class = "txt_aws">' +
+                '<button class="btn_ins_asw add' + cnt_qs + '" name ="' + cnt_qs + '" id = "btn_ins_asw' + cnt_qs + '" >Insert</button>' +
                 '<button class="btn_upd_asw upd' + cnt_qs + '" name = "' + cnt_qs + '"  style = "display:none">Update</button>' +
                 '<button class="btn_cancel_asw upd' + cnt_qs + '" name = "' + cnt_qs + '" style = "display:none">Cancel</button>' +
                 '<table cellpadding = "10px" id ="tbl_asw' + cnt_qs + '">' +
@@ -298,8 +307,8 @@ $(document).ready(function() {
                                 '<label for="txt_qs"><b>Câu hỏi:</b></label>' +
                                 '<input type="text"  id="txt_qs' + cnt_qs + '" class = "txt_qs"><br>' +
                                 '<label for="txt_aws"><b>Câu trả lời:</b></label>' +
-                                '<input type="text" name=txt_aws"" id="txt_aws' + cnt_qs + '" class = "txt_aws">' +
-                                '<button class="btn_ins_asw add' + cnt_qs + '" name ="' + cnt_qs + '" id = "btn_ins_asw">Insert</button>' +
+                                '<input type="text" name="txt_aws"  cnt_qs = "' + cnt_qs + '" id="txt_aws' + cnt_qs + '" class = "txt_aws">' +
+                                '<button class="btn_ins_asw add' + cnt_qs + '" name ="' + cnt_qs + '" id = "btn_ins_asw' + cnt_qs + '">Insert</button>' +
                                 '<button class="btn_upd_asw upd' + cnt_qs + '" name = "' + cnt_qs + '"  style = "display:none">Update</button>' +
                                 '<button class="btn_cancel_asw upd' + cnt_qs + '" name = "' + cnt_qs + '" style = "display:none">Cancel</button>' +
                                 '<table cellpadding = "10px" id ="tbl_asw' + cnt_qs + '">' +
@@ -320,7 +329,7 @@ $(document).ready(function() {
                                 '   <br><br><label for="txt_qs"><b>Câu hỏi:</b></label>' +
                                 '<input type="text" id="txt_qs' + cnt_qs + '" class = "txt_qs"><br>' +
                                 '<label for="txt_aws"><b>Câu trả lời:</b></label>' +
-                                '<input type="text" name=txt_aws"" id="txt_aws' + cnt_qs + '" class = "txt_aws">' +
+                                '<input type="text" name="txt_aws"  cnt_qs = "' + cnt_qs + '" id="txt_aws' + cnt_qs + '" class = "txt_aws">' +
                                 '<button class="btn_ins_asw add' + cnt_qs + '" name ="' + cnt_qs + '" id = "btn_ins_asw' + cnt_qs + '">Insert</button>' +
                                 '<button class="btn_upd_asw upd' + cnt_qs + '" name = "' + cnt_qs + '" style = "display:none">Update</button>' +
                                 '<button class="btn_cancel_asw upd' + cnt_qs + '" name = "' + cnt_qs + '" style = "display:none">Cancel</button>' +
@@ -366,7 +375,7 @@ $(document).ready(function() {
             '   <br><br><label for="txt_qs"><b>Câu hỏi:</b></label>' +
             '<input type="text" id="txt_qs' + cnt_qs + '" class = "txt_qs"><br>' +
             '<label for="txt_aws"><b>Câu trả lời:</b></label>' +
-            '<input type="text" name=txt_aws"" id="txt_aws' + cnt_qs + '" class = "txt_aws">' +
+            '<input type="text" name="txt_aws"  cnt_qs = "' + cnt_qs + '" id="txt_aws' + cnt_qs + '" class = "txt_aws">' +
             '<button class="btn_ins_asw add' + cnt_qs + '" name ="' + cnt_qs + '" id = "btn_ins_asw' + cnt_qs + '">Insert</button>' +
             '<button class="btn_upd_asw upd' + cnt_qs + '" name = "' + cnt_qs + '" style = "display:none">Update</button>' +
             '<button class="btn_cancel_asw upd' + cnt_qs + '" name = "' + cnt_qs + '" style = "display:none">Cancel</button>' +
@@ -374,6 +383,13 @@ $(document).ready(function() {
             '<tr><th class="ff asw"> Câu trả lời</th><th colspan="2"></th></tr>' +
             '</table><button class = "btn_del_qs" name = "' + cnt_qs + '" style ="background-color: rgb(255, 82, 82)"><i class="fa fa-minus-circle" aria-hidden="true" style = "font-size: 23px"></i></button></div>';
         $(".content_ad_svcu").append(element);
+    });
+
+    $(document).on("keypress", '.txt_aws', function(event) {
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13') {
+            $("#btn_ins_asw" + $(this).attr("cnt_qs")).trigger('click');
+        }
     });
 
     $(document).on("click", ".btn_ins_asw", function() {
@@ -553,7 +569,9 @@ $(document).ready(function() {
         id_multi = $(this).attr("multi");
         var title = '';
         var obj = $('#showrp')[0];
-        var content = [['Task', 'Aswwere']];
+        var content = [
+            ['Task', 'Aswwere']
+        ];
         var id_hdr = "";
         var element = "";
         var index = 0;
@@ -564,29 +582,27 @@ $(document).ready(function() {
             data: {
                 id_multi: id_multi,
                 report: 1,
-            },     
-            success: function (data) {
-                data.forEach(function(item){
-                    
-                    if(id_hdr != item.id)
-                    {
-                        index ++;
-                        if(index == 1)
-                        {
-                            element = '<div class="main_report"><button class="btn_close"><i class ="fa fa-close"></i></button><br>'+
-                            '<div id ="btn_close"><br><h1>THỐNG KÊ KHẢO SÁT</h1></div>'+
-                            '<div id = "showrp'+index+'"></div></div>';
+            },
+            success: function(data) {
+                data.forEach(function(item) {
+
+                    if (id_hdr != item.id) {
+                        index++;
+                        if (index == 1) {
+                            element = '<div class="main_report"><button class="btn_close"><i class ="fa fa-close"></i></button><br>' +
+                                '<div id ="btn_close"><br><h1>THỐNG KÊ KHẢO SÁT</h1></div>' +
+                                '<div id = "showrp' + index + '"></div></div>';
                             $('.warpper_report').append(element);
-                        }
-                        else
-                        {
+                        } else {
 
                             drawChart(title, content, obj);
-                            element = '<div id = "showrp'+index+'">';
+                            element = '<div id = "showrp' + index + '">';
                             $('.main_report').append(element);
                         }
 
-                        content = [['Task', 'Aswwere']];
+                        content = [
+                            ['Task', 'Aswwere']
+                        ];
                         title = item.content;
                         obj = $('#showrp' + index)[0];
                         id_hdr = item.id;
@@ -597,7 +613,7 @@ $(document).ready(function() {
             }
         });
         drawChart(title, content, obj);
-        $(".warpper_report").css("visibility", "visible");         
+        $(".warpper_report").css("visibility", "visible");
     });
 
     $(document).on("click", ".btn_close", function(e) {
@@ -605,18 +621,25 @@ $(document).ready(function() {
         $(".warpper_report").css("visibility", "hidden");
     });
 
-    function drawChart(title, content,obj) {
+    function drawChart(title, content, obj) {
         var data = google.visualization.arrayToDataTable(content);
 
         var options = {
-            height: 400,
+            // height: 300,
             sliceVisibilityThreshold: 0,
-            width: 600
-          };
+            width: 400,
+            'title': title,
+            is3D: true,
+        };
+
+
+
+
+
 
         var chart = new google.visualization.PieChart(obj);
         chart.draw(data, options);
-      }
+    }
 
     function GetDataUser(page) {
         $.ajax({
@@ -711,6 +734,14 @@ $(document).ready(function() {
         $("#pg_us").append(paginationHtml);
         window.scrollTo(0, 0);
     }
+
+    $(document).on("keypress", '#txt_find_user', function(event) {
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13') {
+            $("#btn_find_user").trigger('click');
+        }
+    });
+
     $("#btn_find_user").click(function(e) {
         e.preventDefault();
         fnd_content_us = $("#txt_find_user").val();
