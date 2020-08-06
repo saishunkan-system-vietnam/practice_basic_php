@@ -77,7 +77,7 @@ session_start();
 
         #txtsearch {
             margin-right: 15px;
-            background-color: #E5F8D1;
+            background-color: #F7F7F7;
             border-radius: 3px;
             border: 0.5px solid #ccc;
             padding: 4px;
@@ -118,11 +118,20 @@ session_start();
             margin-right: 5px
         }
 
-        #btndel {
+        .wrapper-account #btndel {
             float: right;
             border: 0;
             width: 60px;
             background-color: #FFEBEE;
+            border-radius: 4px;
+            margin-right: 10px
+        }
+
+        .wrapper-account #btnactive {
+            float: right;
+            border: 0;
+            width: 60px;
+            background-color: #E5F8D1;
             border-radius: 4px;
             margin-right: 10px
         }
@@ -146,12 +155,12 @@ session_start();
             /* width: 100%; */
             height: 20px;
             margin-top: 10px;
-            float:right;
+            float: right;
         }
 
-        .msg-result{
+        .msg-result {
             padding-top: 10px;
-            float:left;
+            float: left;
         }
     </style>
 </head>
@@ -189,10 +198,10 @@ session_start();
                             ?>
                             <?php
                             require_once "./config/config.php";
-                            $sqlCount = "SELECT count(*) as total FROM t_account where username  LIKE '%$key%' and del_flg = 0";
+                            $sqlCount = "SELECT count(*) as total FROM t_account where username  LIKE '%$key%'";
                             // $sqlCount = "SELECT count(*) as total FROM t_account where  del_flg = 0";
                             $result = $connect->query($sqlCount);
-                          
+
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
                                     $total_records = $row['total'];
@@ -211,7 +220,7 @@ session_start();
                             } else if ($current_page < 1) {
                                 $current_page = 1;
                             }
-                            ?>                           
+                            ?>
                         </tbody>
                         <!-- <tfoot>
                             <tr>
@@ -229,7 +238,7 @@ session_start();
                     </table>
                 </div>
                 <div class="msg-result">
-                   Tổng số records là <?php echo $total_records?>
+                    Tổng số records là <?php echo $total_records ?>
                 </div>
                 <div class="pgn_admin" id="pgn_admin">
                     <?php
@@ -249,13 +258,15 @@ session_start();
                         echo '<a href="admin.php?page=' . ($current_page + 1) . '&key=' . $key . '"><b>&#8680;</b></a>';
                     }
                     ?>
-                </div>               
+                </div>
             </div>
         </div>
     </div>
-    <div id="wrapper_edit">
+
+    <div id="wrapper_edit" style="margin-left: 196px;">
 
     </div>
+
     <script>
         var page = <?= $current_page ?>;
         var key = '<?= $key ?>';

@@ -4,7 +4,7 @@ require_once "./config/config.php";
 
 $key = $_GET["key"];
 $current_page = isset($_GET['current_page']) ?  $_GET['current_page'] : "";
-$sqlCount = "SELECT count(*) as total FROM t_account where username  LIKE '%$key%' and del_flg = 0";
+$sqlCount = "SELECT count(*) as total FROM t_account where username  LIKE '%$key%'";
 $result = $connect->query($sqlCount);
 
 if ($result->num_rows > 0) {
@@ -32,15 +32,29 @@ if ($current_page > $total_page) {
 // Trang bắt đầu
 $start = ($current_page - 1) * $limit;
 
-$sqlSelectData = "SELECT * FROM t_account where del_flg = 0 and username  LIKE '%$key%' order by id DESC LIMIT " . $limit . " OFFSET " . $start;
+$sqlSelectData = "SELECT * FROM t_account where username  LIKE '%$key%' order by id DESC LIMIT " . $limit . " OFFSET " . $start;
 $resultData = $connect->query($sqlSelectData);
 
 if ($resultData->num_rows > 0) {
+    $index = 0;
     while ($rowData = $resultData->fetch_assoc()) {
-
+    $index ++;
         // $rowData["admin_flg"] == 0 ? $role = "user" :  $role  = "admin";
         $rowData["admin_flg"] == 0 ? $role = "0" :  $role  = "3";
-        $rowData["del_flg"] == 0 ? $del_flg = "active" :  $del_flg  = "banned";
+        // $rowData["del_flg"] == 0 ? $del_flg = "active" :  $del_flg  = "<label style='color:red'>banned</label>";
+        if ($rowData["del_flg"] == 0)
+        {
+            $btnid = "btndel";
+            $btnvalue = "Delete";
+            $del_flg = "active";
+        }
+        else
+        {
+            $btnid = "btnactive";
+            $btnvalue = "Active";
+            $del_flg  = "<label style='color:red'>banned</label>";
+        }
+
         echo ' <tr>
            <td id ="t_id">
                ' . $rowData["id"] . '
@@ -49,14 +63,14 @@ if ($resultData->num_rows > 0) {
            ' . $rowData["username"] . '
            </td>
            <td>
-           <input type="range" style="width:40px;" data-old = "0" id=' . $rowData["id"] . ' class="btnrole" name=' . $rowData["id"] . ' value=' . $role . ' min=0 max=3 step="3"></input>
+           <input type="range" style="width:40px;" data-old = "0" id=' . $rowData["id"] . ' class="btnrole"  value=' . $role . ' min=0 max=3 step="3"></input>
            </td>
-           <td >
+           <td id = "stt'. $index .'">
            ' . $del_flg . '
            </td>
            <td class="action">
-               <input  type="button" id="btnedit" name=' . $rowData["id"] . ' value="Edit"></input>
-               <input  type="button" id="btndel" class="btndel" name=' . $rowData["id"] . ' value="Delete"></input>
+               <input  type="button" id="btnedit" email=' . $rowData["id"] . ' value="Edit"></input>
+               <input  type="button" stt = "'. $index .'"  id="'.$btnid.'" class="'.$rowData["id"].'" val ='.$rowData["del_flg"].' name="'. $rowData["id"] .'" value="'.$btnvalue.'"></input>
            </td>
        </tr>';
     }
@@ -64,6 +78,7 @@ if ($resultData->num_rows > 0) {
 
 close_connect();
 ?>
+<!-- <input  type="button" id="btndel" class="btndel" data-status ='.$rowData["del_flg"].' name=' . $rowData["id"] . ' value="Delete"></input> -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script> -->
 <script>

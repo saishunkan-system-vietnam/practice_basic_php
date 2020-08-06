@@ -4,12 +4,12 @@ require_once "./config/config.php";
  ?>
 <link href=<?= FILE_CSS_SIGNUP ?> rel="stylesheet" />
 <!-- <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script> -->
-<?php require_once FILE_PHP_SIDEBAR ?>
+
 <?php
 
 if (isset($_POST["id"])) {
     $id = $_POST["id"];
-    $sqlSelectData = "SELECT * FROM t_account where del_flg = 0 and  id='$id'";
+    $sqlSelectData = "SELECT * FROM t_account where id='$id'";
     $resultData = $connect->query($sqlSelectData);
 
     if ($resultData->num_rows > 0) {
