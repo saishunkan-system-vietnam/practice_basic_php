@@ -3,7 +3,16 @@ $(document).on('click', '#btnSearch', function () {
     if ($.trim($("#inpSearch").val()) != "") {
         cnt = "&content=" + $.trim($("#inpSearch").val());
     }
-    let newhref = "./qlthietbi.php?page=" + 1 + cnt;
+    let newhref;
+    switch (site)
+    {
+        case "account":
+            newhref = "./qlaccount.php?page=" + 1 + cnt;
+            break;
+        case "device":
+            newhref = "./qlthietbi.php?page=" + 1 + cnt;
+            break;
+    }
     window.location.href = newhref;
 });
 

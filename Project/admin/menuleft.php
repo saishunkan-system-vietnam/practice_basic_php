@@ -12,6 +12,6 @@ if (!isset($_COOKIE[COOKIE_LOGIN]) && !isset($_SESSION['admin_flg'])) {
     </div>
     <a class="active" href=""><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a>
     <a href="qlthietbi.php"><i class="fa fa-laptop" aria-hidden="true"></i> Device</a>
-    <a href="#contact"><i class="fa fa-user-o" aria-hidden="true"></i></i> Account</a>
+    <a href="qlaccount.php"><i class="fa fa-user-o" aria-hidden="true"></i></i> Account</a>
     <a href="#about"><i class="fa fa-handshake-o" aria-hidden="true"></i> Loan</a>
 </div>

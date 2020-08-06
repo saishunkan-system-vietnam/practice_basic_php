@@ -19,7 +19,8 @@ define('SITE_MENULEFT','./menuleft.php');
 define('SITE_TOPNAV','./topnav.php');
 define('SITE_POPUPADMIN','./popupadmin.php');
 define('SITE_INDEX_UADMIN','../index.php');
-define('SITE_DANHSACHQANLYTHIETBI','./admin/qlthietbi.php');
+define('SITE_QLDEVICE','./qlthietbi.php');
+define('SITE_QLACCOUNT','./qlaccount.php');
 
 // LINK JQUERY
 define('LINK_JQUERY','https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js');

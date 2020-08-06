@@ -4,7 +4,7 @@ require('../config/router.php');
 require(SITE_API_CONFIG);
 include(SITE_MENULEFT);
 include(SITE_POPUPADMIN);
-include(SITE_TOPNAV); 
+include(SITE_TOPNAV);
 
 ?>
 <!DOCTYPE html>
@@ -19,15 +19,14 @@ include(SITE_TOPNAV);
 <body>
 
     <?php
-
     $content = isset($_GET['content']) ? $_GET['content'] : '';
 
-    $result = mysqli_query($connect, "SELECT count(*) as total FROM t_device WHERE del_flg = 0 AND device_name LIKE '%{$content}%' ");
+    $result = mysqli_query($connect, "SELECT count(*) as total FROM t_account WHERE user_name LIKE '%{$content}%' ");
     $row = mysqli_fetch_assoc($result);
     $total_records = $row['total'];
 
     $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-    $limit = 12;
+    $limit = 1;
 
     $total_page = ceil($total_records / $limit);
 
@@ -39,19 +38,16 @@ include(SITE_TOPNAV);
 
     $start = ($current_page - 1) * $limit;
 
-    $sql_select_ds = "SELECT td.id, td.device_name, tc.category_name, ts.supplier_name, td.img 
-                    FROM t_category tc INNER JOIN t_device td ON tc.id = td.id_category 
-                                       INNER JOIN t_supplier ts on ts.id = td.id_supplier 
-                    WHERE td.del_flg = 0 AND device_name LIKE '%{$content}%' ORDER BY td.create_datetime DESC LIMIT $start, $limit ";
-    $result = mysqli_query($connect, $sql_select_ds);
+    $sql_select_acc = "SELECT * FROM t_account WHERE user_name LIKE '%{$content}%' ORDER BY create_datetime DESC LIMIT $start, $limit ";
+    $result_acc = mysqli_query($connect, $sql_select_acc);
     mysqli_close($connect);
     ?>
     <script>
         var content = "<?= $content ?>";
-        var site = "device";
+        var site = "account";
     </script>
     <div class="content">
-        
+
         <div class="div_tbl tbl_admin">
             <div class="header">
                 <button class="btnAdd btn fl" name="btnAdd"><i class="fa fa-plus-circle"></i> ADD</button>
@@ -61,34 +57,34 @@ include(SITE_TOPNAV);
 
             <table class="tbl_second" align="center">
                 <tr>
-                    <th class="th_second th_devicename">Tên Thiết bị</th>
-                    <th class="th_second th_category">Thể loại</th>
-                    <th class="th_second th_supplier">Nhà cung cấp</th>
-                    <th class="th_second th_img">Hình ảnh</th>
+                    <th class="th_second th_devicename">User name</th>
+                    <th class="th_second th_category">Password</th>
+                    <th class="th_second th_supplier">Email</th>
+                    <th class="th_second th_img">Avatar</th>
                     <th class="th_second th_func">Tác vụ</th>
                 </tr>
                 <?php
-                if (!$result) : ?>
+                if (!$result_acc) : ?>
                     <tr>
-                        <td class="td_second not_found" colspan="5">
+                        <td class="td_second not_found" colspan="6">
                             <?php echo "Could Not Found!" ?>
                         </td>
                     </tr>
                     <?php else :
-                    while ($row = mysqli_fetch_assoc($result)) : ?>
+                    while ($row = mysqli_fetch_assoc($result_acc)) : ?>
                         <tr>
                             <td class="td_second td_devicename">
-                                <?php echo $row['device_name']; ?>
+                                <?php echo $row['user_name']; ?>
                             </td>
                             <td class="td_second td_category">
-                                <?php echo $row['category_name']; ?>
+                                <?php echo $row['password']; ?>
                             </td>
                             <td class="td_second td_supplier">
-                                <?php echo $row['supplier_name']; ?>
+                                <?php echo $row['email']; ?>
                             </td>
                             <td class="td_second td_img" align="center">
-                                <?php !empty($row['img']) ? $row['img'] : $row['img'] = "img_null.jpg";
-                                echo "<img style='width: 150px; height: 130px;' src='../img/" . $row['img'] . "'>" ?>
+                                <?php !empty($row['avatar']) ? $row['avatar'] : $row['avatar'] = "img_null.jpg";
+                                echo "<img style='width: 150px; height: 130px;' src='../img/" . $row['avatar'] . "'>" ?>
                             </td>
                             <td class="td_btn">
                                 <button class="btnEdit btn" aria-hidden="true" name="btnEdit" id="btnEdit<?= $row['id']; ?>" data-id="<?= $row['id']; ?>" value="EDIT">
@@ -115,21 +111,21 @@ include(SITE_TOPNAV);
                 }
 
                 if ($current_page > 1 && $total_page > 1) {
-                    echo '<div><li><a href="' . SITE_QLDEVICE . '?page=1"><<</a></li><li><a href="' . SITE_QLDEVICE . '?page=' . ($current_page - 1) . '"><</a></li>';
+                    echo '<div><li><a href="' . SITE_QLACCOUNT . '?page=1"><<</a></li><li><a href="' . SITE_QLACCOUNT . '?page=' . ($current_page - 1) . '"><</a></li>';
                 } else {
                     echo '<div><li><a class="disabled" href="#"><<</a></li> <li><a class="disabled" href="#"><</a></li>';
                 }
 
                 for ($i = 1; $i <= $total_page; $i++) {
                     if ($i == $current_page) {
-                        echo '<li><a class="active" href=" ' . SITE_QLDEVICE . '?page=' . $i . '">' . $i . '</a></li>';
+                        echo '<li><a class="active" href=" ' . SITE_QLACCOUNT . '?page=' . $i . '">' . $i . '</a></li>';
                     } else {
-                        echo '<li><a href="' . SITE_QLDEVICE . '?page=' . $i . '">' . $i . '</a></li>';
+                        echo '<li><a href="' . SITE_QLACCOUNT . '?page=' . $i . '">' . $i . '</a></li>';
                     }
                 }
 
                 if ($current_page < $total_page && $total_page > 1) {
-                    echo '<li><a href="' . SITE_QLDEVICE . '?page=' . ($current_page + 1) . '">></a></li><li><a href="' . SITE_QLDEVICE . '?page=' . $total_page . '">>></a></li>';
+                    echo '<li><a href="' . SITE_QLACCOUNT . '?page=' . ($current_page + 1) . '">></a></li><li><a href="' . SITE_QLACCOUNT . '?page=' . $total_page . '">>></a></li>';
                 } else {
                     echo  '<li><a class="disabled" href="#">></a></li><li><a class="disabled" href="#">>></a></li>';
                 }
