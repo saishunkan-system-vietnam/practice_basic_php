@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    <?php require_once './test4.php' ?>
     <?php require_once FILE_PHP_SIDEBAR ?>
     <div class="wrapper-mng-rcm" id="wrapper-mng-rcm">
         <div class="container-mng-rcm">
@@ -34,7 +35,7 @@
                                 <th class="tbl-header">Candidates</th>
                                 <th class="tbl-header">View</th>
                                 <th class="tbl-header">Status</th>
-                                <th class="tbl-header">Create at</th>
+                                <th class="tbl-header">Created at</th>
                                 <th class="tbl-header" style="width:140px">Actions</th>
                             </tr>
                         </thead>
@@ -44,10 +45,8 @@
                             $key = isset($_GET['key']) ?  $_GET['key'] : "";
                             $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 
-                            ?>
-                            <?php
                             require_once "./config/config.php";
-                            $sqlCount ="WITH apl  as (SELECT 
+                            $sqlCount = "WITH apl  as (SELECT 
                             id_recruitment, 
                             COUNT(*) candidates
                             FROM
@@ -57,8 +56,8 @@
                             SELECT count(*) as total
                             FROM t_recruitment rcm
                             LEFT JOIN apl  ON rcm.id = apl.id_recruitment
-                            WHERE rcm.position like '%nhan%'";
-                            // $sqlCount = "SELECT count(*) as total FROM t_account where  del_flg = 0";
+                            WHERE rcm.position like '%$key%'";
+
                             $result = $connect->query($sqlCount);
 
                             if ($result->num_rows > 0) {
@@ -69,7 +68,7 @@
 
                             // Get số hàng hiện tại, số info tối đa hiển thị
                             $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-                            $limit = 10;
+                            $limit = 12;
 
                             $total_page = ceil($total_records / $limit);
 
@@ -108,14 +107,22 @@
                     }
                     ?>
                 </div>
-
             </div>
         </div>
     </div>
+
+    <div id="wrapper_edit_rcm" style="margin-left: 196px;">
+    </div>
+
+    <div id="wrapper_signup_rcm" style="margin-left: 196px;">    
+  
+    </div>
+
     <script>
         var page = <?= $current_page ?>;
         var key = '<?= $key ?>';
     </script>
+
     <script src="<?= FILE_JS_MANAGE_RECRUITMENT ?>"></script>
     <script src="<?= FILE_JS_COMMON ?>"></script>
 </body>

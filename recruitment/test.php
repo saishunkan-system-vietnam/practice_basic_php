@@ -1,65 +1,103 @@
-<link href=<?php echo './css/test.css' ?> rel="stylesheet" />
-<div class="card-content">
-    <!-- datatable start -->
-    <div class="responsive-table">
-        <div id="users-list-datatable_wrapper" class="dataTables_wrapper no-footer">
-              <div id="users-list-datatable_filter" class="dataTables_filter"><label>Search:<input type="search" class="" placeholder="" aria-controls="users-list-datatable"></label></div>
-            <table id="users-list-datatable" class="table dataTable no-footer dtr-inline collapsed" role="grid" aria-describedby="users-list-datatable_info" style="width: 1023px;">
-                <thead>
-                    <tr role="row">
-                        <th class="sorting_asc" rowspan="1" colspan="1" style="width: 5px;" aria-label=""></th>
-                        <th class="sorting" tabindex="0" aria-controls="users-list-datatable" rowspan="1" colspan="1" style="width: 31px;" aria-label="id: activate to sort column ascending">id</th>
-                        <th class="sorting" tabindex="0" aria-controls="users-list-datatable" rowspan="1" colspan="1" style="width: 113px;" aria-label="username: activate to sort column ascending">username</th>
-                        <th class="sorting" tabindex="0" aria-controls="users-list-datatable" rowspan="1" colspan="1" style="width: 178px;" aria-label="name: activate to sort column ascending">role</th>
-                        <th class="sorting" tabindex="0" aria-controls="users-list-datatable" rowspan="1" colspan="1" style="width: 109px;" aria-label="last activity: activate to sort column ascending">last activity</th>
-                        <!-- <th class="sorting" tabindex="0" aria-controls="users-list-datatable" rowspan="1" colspan="1" style="width: 75px;" aria-label="verified: activate to sort column ascending">verified</th> -->
-                        <th class="sorting" tabindex="0" aria-controls="users-list-datatable" rowspan="1" colspan="1" style="width: 40px;" aria-label="role: activate to sort column ascending">role</th>
-                        <th class="sorting" tabindex="0" aria-controls="users-list-datatable" rowspan="1" colspan="1" style="width: 82px; display: none;" aria-label="status: activate to sort column ascending">status</th>
-                        <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 42px; display: none;" aria-label="edit">edit</th>
-                        <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 48px; display: none;" aria-label="view">view</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr role="row" class="odd">
-                        <td tabindex="0" class="sorting_1"></td>
-                        <td>300</td>
-                        <td><a href="page-users-view.html">dean3004</a>
-                        </td>
-                        <td>Dean Stanley</td>
-                        <td>30/04/2019</td>
-                        <!-- <td>No</td> -->
-                        <td>Staff</td>
-                        <td style="display: none;"><span class="chip green lighten-5">
-                                <span class="green-text">Active</span>
-                            </span>
-                        </td>
-                        <td style="display: none;"><a href="page-users-edit.html"><i class="material-icons">edit</i></a></td>
-                        <td style="display: none;"><a href="page-users-view.html"><i class="material-icons">remove_red_eye</i></a></td>
-                    </tr>
-                    <tr role="row" class="even">
-                        <td tabindex="0" class="sorting_1"></td>
-                        <td>301</td>
-                        <td><a href="page-users-view.html">zena0604</a>
-                        </td>
-                        <td>Zena Buckley</td>
-                        <td>06/04/2020</td>
-                        <!-- <td>Yes</td> -->
-                        <td>User </td>
-                        <td style="display: none;"><span class="chip green lighten-5">
-                                <span class="green-text">Active</span>
-                        </span>
-                        </td>
-                        <td style="display: none;"><a href="page-users-edit.html"><i class="material-icons">edit</i></a></td>
-                        <td style="display: none;"><a href="page-users-view.html"><i class="material-icons">remove_red_eye</i></a></td>
-                    </tr>                   
-                </tbody>
-            </table>
-            <!-- <div class="dataTables_info" id="users-list-datatable_info" role="status" aria-live="polite">Showing 1 to 10 of 36 entries</div>
-            <div class="dataTables_paginate paging_simple_numbers" id="users-list-datatable_paginate"><a class="paginate_button previous disabled" aria-controls="users-list-datatable" data-dt-idx="0" tabindex="-1" id="users-list-datatable_previous">Previous</a><span><a class="paginate_button current" aria-controls="users-list-datatable" data-dt-idx="1" tabindex="0">1</a><a class="paginate_button " aria-controls="users-list-datatable" data-dt-idx="2" tabindex="0">2</a><a class="paginate_button " aria-controls="users-list-datatable" data-dt-idx="3" tabindex="0">3</a><a class="paginate_button " aria-controls="users-list-datatable" data-dt-idx="4" tabindex="0">4</a></span><a class="paginate_button next" aria-controls="users-list-datatable" data-dt-idx="5" tabindex="0" id="users-list-datatable_next">Next</a></div> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <?php require_once "./config/router.php"; ?>
+    <link href=<?php echo FILE_CSS_SIGNUP ?> rel="stylesheet" />
+</head>
+<body>
+<div class="wrapper_signup" style="height:auto">
+    <div class="signup_page">
+        <div class="title" style="margin-top : 30px;font-size:20px">
+            Đăng ký
         </div>
+        <form class="form" id="myform" name="myform" method="post">
+            <div class="label">
+                Họ và tên:
+            </div>
+            <div>
+                <input type="text" name="username" onkeypress="ClearError(id)" onchange="ClearError(id)" id="username" placeholder="Nhập họ tên đầy đủ" />
+                <div class="error_message"><label style="color:red;" name="error_username" id="error_username"> </label></div>
+            </div>
+            <div class="label">
+                Email:
+            </div>
+            <div>
+                <input type="text" name="email" id="email" placeholder="Nhập Email" onkeypress="ClearError(id)" onchange="ClearError(id)" />
+                <div class="error_message"><label style="color:red" id="error_email"></label></div>
+            </div>
+            <div class="label">
+                Password:
+            </div>
+            <div>
+                <input type="password" name="password" id="password" placeholder=" Nhập Password" onkeypress="ClearError(id)" onchange="ClearError(id)" />
+                <div class="error_message"><label style="color:red" id="error_password"></label></div>
+            </div>
+            <div class="label">
+                Xác nhận Password:
+            </div>
+            <div>
+                <input type="password" name="confirm_password" id="confirm_password" placeholder=" Nhập lại Password" onkeypress="ClearError(id)" onchange="ClearError(id)" />
+                <div class="error_message"><label style="color:red" id="error_confirm_password"></label></div>
+            </div>
+            <div class="label">
+                Ngày sinh:
+            </div>
+            <div>
+                <input type="date" id="birthdate" name="birthdate" style="text-align:left;width:172px;margin-bottom:5px" value="<?php echo date("Y-m-d"); ?>" onkeypress="ClearError(id)" onchange="ClearError(id)" />
+                <div class="error_message"><label style="color:red" id="error_birthdate"></label></div>
+            </div>
+            <div class="label">
+                Giới tính:
+            </div>
+            <div style="margin-top:5px;padding-bottom:10px;">
+                <div style="float:left; padding-left:0px;"><input type="radio" id="Male" name="gender" value="Male" checked />
+                    <label for="Male">Male</label><br>
+                </div>
+
+                <div style="float:left;padding-left:20px;">
+                    <div><input type="radio" id="female" name="gender" value="Female" />
+                        <label for="Female">Female</label><br>
+                    </div>
+                </div>
+
+                <div style="float:left;padding-left:20px;">
+                    <div><input type="radio" id="other" name="gender" value="Other" />
+                        <label for="Other">Other</label><br>
+                    </div>
+                </div>
+
+            </div>
+            <div class="label">
+                Số điện thoại:
+            </div>
+            <div>
+                <input type="number" placeholder="Nhập số điện thoại" id="tel" name="tel" style="text-align:left;width:169px;" onkeypress="ClearError(id)" onchange="ClearError(id)">
+                <div class="error_message"><label style="color:red" id="error_tel"></label></div>
+            </div>
+            <div class="label" style="clear: both; padding-top: 12px;">
+                Địa chỉ:
+            </div>
+            <div style="margin-top:5px;">
+                <textarea id="address" name="address" style="width:100%; text-align: left;" rows="3" onkeypress="ClearError(id)" onchange="ClearError(id)">
+                    </textarea>
+                <div class="error_message"><label style="color:red; margin-bottom:5px;" id="error_address"></label></div>
+            </div>
+            <div style="margin-top:25px;clear:both; display:block;">
+                <input type="checkbox" id="confirm" name="confirm" value="confirm">
+                <label for="confirm" style="font-size: 12px;">
+                    Tôi <span style="color:blue;font-weight:bold">xác nhận</span> các
+                    <span style="color:Red;font-weight:bold">thông tin</span> trên là sự thât
+                </label>
+                <div style="float:left" class="error_message"><label style="color:red" id="error_confirm"></label></div>
+            </div>
+            <div style="clear: both;">
+                <input type="button" class="btnsignup" id="btnsignup" name="btnsignup" value="Đăng ký"></input>
+            </div>
+        </form>
     </div>
-    <!-- datatable ends -->
 </div>
-
-
-
+</body>
+</html>

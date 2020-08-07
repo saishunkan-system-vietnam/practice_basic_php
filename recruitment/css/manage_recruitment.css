@@ -4,7 +4,7 @@
     left: 196px;
     background-color: green;
     width: 100%;
-    position: fixed;   
+    position: absolute;   
 }
 
 .wrapper-mng-rcm .container-mng-rcm
@@ -20,11 +20,12 @@
 .wrapper-mng-rcm .content-mng-rcm{
     background-color: #fff;
             width: 1080px;
-            height: fit-content;
+            height: auto;
             margin-left: -196px;
             box-shadow: 0 4px 9px 5px #ccc !important;
             border-radius: 10px;
             padding: 15px; 
+            margin-bottom: auto;
 }
 
 .container-add {
@@ -37,6 +38,7 @@
     float: right;
     font-size: 20px;
 }
+
 
 .conatiner-table {
     clear: both;
@@ -63,28 +65,40 @@ th,
 td {
     border: 1px solid #bbb;
     border-collapse: collapse;
+    /* padding-left: 10px; */
+    /* line-height: 28px;  */
+    text-align: center;
+    font-size: 18px;
+    overflow: auto;
+}
+
+.pos-row{
+    overflow: hidden; 
+    width: 400px;
+    text-overflow: ellipsis; 
     padding-left: 10px;
-    line-height: 26px;
-    font-size: 20px;
+    text-align: left;
 }
 
 .tbl-header {
     text-align: left;
     font-size: 24px;
     font-weight: bold;
-    /* text-align: center; */
+    text-align: center;
     padding-top: 5px;
-    padding-bottom: 10px;
+    padding-bottom: 10px;    
     color: green
 }
 
 #txtsearch {
     margin-right: 15px;
-    background-color: #FFFFFF;
+    background-color: #FFFFFF; 
     border-radius: 3px;
     border: 0.5px solid #ccc;
     padding: 4px;
     width: 202px;
+    /* border: none;
+    border-bottom: 1px solid #9e9e9e; */
 }
 
 #btnsearch {
@@ -115,22 +129,38 @@ td {
 #btnedit {
     float: left;
     border: 0;
-    width: 60px;
+    width: 55px;
     background-color: #E8F5E9;
-    border-radius: 4px;
-    margin-right: 5px
+    border-radius: 3px;
+    margin-right: 5px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin-left: 10px;
+    border: 1px solid #9ad39f;
+}
+
+#btnview {
+    border: 0;
+    width: 50px;
+    background-color: #E8EAF6;
+    border-radius: 3px;
+    /* margin-right: 5px; */
+    /* text-align: center; */
+    padding-top: 1px;
+    padding-bottom: 1px;
+    border: 1px solid #9da7e0;
 }
 
 #btndel {
     float: right;
     border: 0;
-    width: 60px;
+    width: 55px;
     background-color: #FFEBEE;
-    border-radius: 4px;
-    margin-right: 10px
+    border-radius: 3px;
+    margin-right: 10px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    border: 1px solid #ffbfc9;
 }
 
-.id{
-    width: 100px;
-}
 

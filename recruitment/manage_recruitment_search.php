@@ -18,7 +18,7 @@ if ($result->num_rows > 0) {
 
 // Get số hàng hiện tại, số info tối đa hiển thị
 // $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-$limit = 10;
+$limit = 12;
 
 $total_page = ceil($total_records / $limit);
 
@@ -43,7 +43,7 @@ GROUP BY id_recruitment)
 SELECT rcm.id,  rcm.position, IFNULL(apl.candidates, 0) candidates, rcm.create_datetime, rcm.del_flg
 FROM t_recruitment rcm
 LEFT JOIN apl  ON rcm.id = apl.id_recruitment
-WHERE rcm.position like '%nhan%'
+WHERE rcm.position like '%$key%'
 order by rcm.create_datetime DESC LIMIT " . $limit . " OFFSET " . $start;
 $resultData = $connect->query($sqlSelectData);
 
@@ -53,7 +53,7 @@ if ($resultData->num_rows > 0) {
         $index++;
         //     // $rowData["admin_flg"] == 0 ? $role = "user" :  $role  = "admin";
         //     $rowData["admin_flg"] == 0 ? $role = "0" :  $role  = "3";
-        //     // $rowData["del_flg"] == 0 ? $del_flg = "active" :  $del_flg  = "<label style='color:red'>banned</label>";
+        $rowData["del_flg"] == 0 ? $del_flg = "active" :  $del_flg  = "<label style='color:red'>banned</label>";
         //     if ($rowData["del_flg"] == 0) {
         //         $btnid = "btndel";
         //         $btnvalue = "Delete";
@@ -84,10 +84,11 @@ if ($resultData->num_rows > 0) {
         //    </tr>';
         echo '
         <tr>
-            <td >
+            <td style=" Height: 26px;">
             ' . $rowData["id"] . '
             </td>
-            <td>
+
+            <td class= "pos-row">
             ' . $rowData["position"] . '
             </td>
 
@@ -100,13 +101,15 @@ if ($resultData->num_rows > 0) {
             </td>
             
             <td>
-            ' . $rowData["del_flg"] . '
+            ' . $del_flg . '
             </td>
+
             <td>
             ' . $rowData["create_datetime"] . '
-            </td>       
+            </td> 
+                  
             <td class="action">
-                <input type="button" id="btnedit" email=' . $rowData["id"] . ' value="Edit"></input>
+                <input type="button" id="btnedit" data=' . $rowData["id"] . ' value="Edit"></input>
                 <input type="button" stt="btnedit" id="btndel" val=' . $rowData["del_flg"] . ' name="' . $rowData["id"] . '" value="Delete"></input>
             </td>
         </tr>';

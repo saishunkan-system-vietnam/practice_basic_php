@@ -13,6 +13,7 @@ define('FILE_PHP_ADMIN','admin.php');
 define('FILE_PHP_MANAGE_ACCOUNT','admin.php');
 define('FILE_PHP_EDIT_ACCOUNT','edit_account.php');
 
+define('FILE_CSS_MANAGE_ACCOUNT','./css/manage_account.css');
 define('FILE_CSS_MANAGE_RECRUITMENT','./css/manage_recruitment.css');
 define('FILE_CSS_SIDEBAR','./css/sidebar.css');
 define('FILE_CSS_INDEX','./css/index.css');
@@ -21,6 +22,7 @@ define('FILE_CSS_SIGNUP','./css/signup.css');
 define('FILE_CSS_APPLY','./css/apply.css');
 define('FILE_CSS_CHANGE_PASSWORD','./css/change_password.css');
 
+define('FILE_JS_SIGNUP_RECRUITMENT','./js/signup_recruitment.js');
 define('FILE_JS_MANAGE_RECRUITMENT','./js/manage_recruitment.js');
 define('FILE_JS_MANAGE_ACCOUNT','./js/manage_account.js');
 define('FILE_JS_APPLY','./js/apply.js');

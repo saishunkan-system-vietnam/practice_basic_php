@@ -1,7 +1,7 @@
 <?php
 require_once "./config/config.php";
 require_once "./config/router.php";
-require_once "./func_change_password.php";
+// require_once "./func_change_password.php";
 
 if (isset($_GET['email']) && isset($_GET['token'])) {
     $email = $connect->real_escape_string($_GET['email']);

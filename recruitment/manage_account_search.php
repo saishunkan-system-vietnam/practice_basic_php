@@ -17,7 +17,6 @@ if ($result->num_rows > 0) {
 }
 
 // Get số hàng hiện tại, số info tối đa hiển thị
-// $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 $limit = 10;
 
 $total_page = ceil($total_records / $limit);
@@ -78,66 +77,3 @@ if ($resultData->num_rows > 0) {
 
 close_connect();
 ?>
-<!-- <input  type="button" id="btndel" class="btndel" data-status ='.$rowData["del_flg"].' name=' . $rowData["id"] . ' value="Delete"></input> -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script> -->
-<script>
-    // $(document).ready(function() {
-    //     alert("j");
-
-    //     $("#btndel").on("click", function() {
-    //         alert("ss");
-    //     });
-
-    //     $("#btnedit").on("click", function() {
-    //         alert("ss");
-    //     });
-    // });
-
-    // $(document).on("click", ".btndel", function() {
-    //     alert("ss");
-    // });
-
-    // $(document).on("click", ".btnrole", function() {
-    //     var name = $(this).attr("name");
-    //     var id = $(this).attr("id");
-    //     var old = $(this).data("old")
-    //     alert(name);
-    //     alert(id);
-    //     alert(old);
-    //     if (confirm("Bạn đã chắc chắn muốn thay đổi quyền admin của " + id))
-    //     {
-    //         alert($(this).val());
-    //         alert($(this).data("old"))
-    //     }
-    //     else{
-    //         $(this).val($(this).data("old"));
-    //     }
-
-    //     $(this).data("old", $(this).val());
-    // });
-
-    // function b() {
-    //     var t_id = $("#btnrole").data("tid");
-    //     alert($("#btnrole").data("old"));
-    //     alert($("#btnrole").attr("name"));
-    //     if (confirm("Bạn đã chắc chắn muốn thay đổi quyền admin của "+ t_id)) {
-    //         alert($("#btnrole").val());
-    //     } else {
-    //         document.getElementById("btnrole").value = $("#btnrole").data("old");
-    //     }
-
-    //     $("#btnrole").data("old", document.getElementById("btnrole").value);
-    // }
-
-    // document.getElementById("btnrole").addEventListener("click", function(event) {
-
-    //     alert($("#btnrole").data("old"));
-    //     if (confirm("a u oke")) {
-
-    //     } else {
-    //         document.getElementById("points").value = $("#btnrole").data("old");
-    //     }
-    //     $("#btnrole").data("old", document.getElementById("btnrole").value);
-    // });
-</script>

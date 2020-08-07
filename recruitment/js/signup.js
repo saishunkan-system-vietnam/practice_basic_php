@@ -7,7 +7,8 @@ function ClearError(id) {
 $(document).ready(function () {
   $("#btnsignup").on("click", function (event) {
     event.preventDefault();
-    if (confirm("Bạn đã chắc chắn muốn update tài khoản này?")) {
+    
+    if (confirm("Bạn đã chắc chắn muốn " + $("#btnsignup").val() + " tài khoản này?")) {
     if (IsValid()) {
       // alert($(this).attr("name"));
       if ($(this).attr("name") == "btnsignup") {
