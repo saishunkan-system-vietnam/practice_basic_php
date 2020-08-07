@@ -631,12 +631,7 @@ $(document).ready(function() {
             'title': title,
             is3D: true,
         };
-
-
-
-
-
-
+        
         var chart = new google.visualization.PieChart(obj);
         chart.draw(data, options);
     }

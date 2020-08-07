@@ -88,8 +88,7 @@ function Validate_regist(isRegist) {
         $("#uid").css("border-bottom", "0px");
     }
 
-    if(isRegist)
-    {
+    if (isRegist) {
         if (uid != ruid) {
             $("#ruid").css("border-bottom", "2px solid #F90A0A");
             flag = false;
@@ -129,107 +128,107 @@ function OpenForm_Login() {
         async: false,
         type: "post",
         url: "./lib/getcookie_ajax.php",
-        success: function(data) {
+        success: function (data) {
             $("#uid_login").val(data.uid);
             $("#pass_login").val(data.pass);
             $("#chksave").prop("checked", data.pass == "" ? false : true);
+            // $("#pass_login").focus();
+            $("#uid_login").focus();
+
         }
     });
 }
 
-    function ShowFormSurvey(id)
-    {
-        var data = GetInfoSurvey(id);
-            var element = "";
-            var qs = "";
-            index = 0;
-            data.forEach(function(item) {
+function ShowFormSurvey(id) {
+    var data = GetInfoSurvey(id);
+    var element = "";
+    var qs = "";
+    index = 0;
+    data.forEach(function (item) {
 
-                if(qs != item.content)
-                {
-                    qs = item.content ;
-                    index ++;
-                    if (element == "") {
-                        element += '<div id ="btn_close"><button class="btn_close"><i class ="fa fa-close"></i></button></div><div class="question"><p class = "qs'+index+'">' + item.content + '</p></div><div class="answer"><ul>';
-                    }
-                    else
-                    {
-                        element += '</ul></div>' +
-                                    '<div class="question"><p class = "qs'+index+'">' + item.content + '</p></div><div class="answer"><ul>';
-                    }
-                }
-                
-                element += '<li><input type="radio" name="asw'+index+'" ';
+        if (qs != item.content) {
+            qs = item.content;
+            index++;
+            if (element == "") {
+                element += '<div id ="btn_close"><button class="btn_close"><i class ="fa fa-close"></i></button></div><div class="question"><p class = "qs' + index + '">' + item.content + '</p></div><div class="answer"><ul>';
+            }
+            else {
+                element += '</ul></div>' +
+                    '<div class="question"><p class = "qs' + index + '">' + item.content + '</p></div><div class="answer"><ul>';
+            }
+        }
 
-                if (item.sl_asw == "1") {
-                    element += ' checked ';
-                }
-                element += ' value="' + item.id_dtl + '" hdr = "'+item.id_hdr+'"><label for="asw">' + item.answer + '</label></li>';
-            });
+        element += '<li><input type="radio" name="asw' + index + '" ';
 
-            element += '</ul></div>' +
-                ' <div class="kq">' +
-                '<button class="btn-reply-survey" multi = "' + data[0].id_multi + '">Trả lời</button></div>';
+        if (item.sl_asw == "1") {
+            element += ' checked ';
+        }
+        element += ' value="' + item.id_dtl + '" hdr = "' + item.id_hdr + '"><label for="asw">' + item.answer + '</label></li>';
+    });
 
-                return element;
-    }
+    element += '</ul></div>' +
+        ' <div class="kq">' +
+        '<button class="btn-reply-survey" multi = "' + data[0].id_multi + '">Trả lời</button></div>';
 
-    function GetInfoSurvey(id) {
-        var result;
-        $.ajax({
-            async: false,
-            type: "post",
-            url: "./lib/survey_ajax.php",
-            data: {
-                id: id,
-                getInfoSurvey: true,
-            },
-            success: function(data) {
+    return element;
+}
+
+function GetInfoSurvey(id) {
+    var result;
+    $.ajax({
+        async: false,
+        type: "post",
+        url: "./lib/survey_ajax.php",
+        data: {
+            id: id,
+            getInfoSurvey: true,
+        },
+        success: function (data) {
             result = data;
-            }
-        });
+        }
+    });
 
-        return result;
-    }
+    return result;
+}
 
-    function CreateReply(id_hdr, id_dtl) {
-        let d = new Date();
-        var id = Math.floor((Math.random() * 1000) + 1) + "/" + d.getTime();
-        var result;
-        $.ajax({
-            async: false,
-            type: "post",
-            url: "./lib/survey_ajax.php",
-            data: {
-                id_hdr: id_hdr,
-                id_dtl: id_dtl,
-                id : id,
-                createSurvey: true,
-            },
-            success: function(data) {
-                result = data;
-            }
-        });
+function CreateReply(id_hdr, id_dtl) {
+    let d = new Date();
+    var id = Math.floor((Math.random() * 1000) + 1) + "/" + d.getTime();
+    var result;
+    $.ajax({
+        async: false,
+        type: "post",
+        url: "./lib/survey_ajax.php",
+        data: {
+            id_hdr: id_hdr,
+            id_dtl: id_dtl,
+            id: id,
+            createSurvey: true,
+        },
+        success: function (data) {
+            result = data;
+        }
+    });
 
-        return result;
-    }
+    return result;
+}
 
-    function GetIndexSvMulti(id_multi)
-    {
-        let result = 0;
-        $.ajax({
-            async: false,
-            type: "post",
-            url: "./lib/survey_ajax.php",
-            data: {
-                GetIndexSvMulti: true,
-                id_multi: id_multi,
-            },
-            success: function(data) {
-                console.log(data);
-                result = data;
-            }
-        });
+function GetIndexSvMulti(id_multi) {
+    let result = 0;
+    $.ajax({
+        async: false,
+        type: "post",
+        url: "./lib/survey_ajax.php",
+        data: {
+            GetIndexSvMulti: true,
+            id_multi: id_multi,
+        },
+        success: function (data) {
+            console.log(data);
+            result = data;
+        }
+    });
 
-        return result;
-    }
+    return result;
+}
+

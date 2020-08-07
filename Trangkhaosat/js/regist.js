@@ -34,7 +34,7 @@ $(document).ready(function() {
                 pass: $.trim($("#pass").val()),
                 tel: $.trim($("#tel").val()),
                 gender: $("input[name='gender']:checked").val(),
-                admin_flg = 0,
+                admin_flg: 0,
                 proc: "Regist",
             },
             success: function(data) {
@@ -89,6 +89,14 @@ $(document).ready(function() {
         $("#pass").val("");
         $("#rpass").val("");
         $("#tel").val("");
+
+        $("#fname").css("border-bottom", "0px");
+        $("#lname").css("border-bottom", "0px");
+        $("#uid").css("border-bottom", "0px");
+        $("#ruid").css("border-bottom", "0px");
+        $("#pass").css("border-bottom", "0px");
+        $("#rpass").css("border-bottom", "0px");
+        $("#tel").css("border-bottom", "0px");
     }
 
     $(document).on('keydown', function(e) {

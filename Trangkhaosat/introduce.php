@@ -1,22 +1,25 @@
-<?session_start();?>
+<?
+    session_start();   
+    require_once('./config/router.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>Giới thiệu</title>
-    <?    
-    require_once('./config/router.php');
-    $infoLogin = false;
-    if(!empty($_SESSION['dataLogin'])){
-        $infoLogin = true;
-    }
-    include_once(FILE_MENU);?>
     <link rel="stylesheet" href="<?= FILE_CSS_STYLESHEET?>">
     <link rel="stylesheet" href="<?= FILE_CSS_INTRODUCE?>">
 </head>
 
 <body>
+    <? 
+        $infoLogin = false;
+        if(!empty($_SESSION['dataLogin'])){
+            $infoLogin = true;
+        }
+        include_once(FILE_MENU);
+    ?>
     <div class="warrper_intro">
         <div class="container_intro">
             <div class="title_intro">
@@ -43,9 +46,7 @@
             </div>
         </div>
     </div>
-
+    <footer><?include(FILE_FOOTER)?></footer>
 </body>
-
-<footer><?include(FILE_FOOTER)?></footer>
 
 </html>

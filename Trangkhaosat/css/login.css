@@ -73,3 +73,13 @@ body {
     bottom: 0;
     font-size: 30x;
 }
+
+.btn_close_login{
+    float: right;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: red;
+}

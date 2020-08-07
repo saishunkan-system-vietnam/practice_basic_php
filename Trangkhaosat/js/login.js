@@ -3,7 +3,13 @@ $(document).ready(function() {
     $(document).on('keydown', function(e) {
         if (e.keyCode === 27) {
             form.css("visibility", "hidden");
+            form.focus();
         }
+    });
+
+    $("#btn_close").click(function (e) { 
+        e.preventDefault();
+        form.css("visibility", "hidden");
     });
 
     $("#btn_menu_login").click(function(e) {
@@ -25,6 +31,12 @@ $(document).ready(function() {
             }
         });
     }
+
+    $(document).on('keypress', '.warpper_login',  function(e) {
+        if (e.keyCode === 13) {
+            $("#btnlogin").trigger('click');
+        }
+    });
 
     $("#btnlogin").click(function(e) {
         e.preventDefault();

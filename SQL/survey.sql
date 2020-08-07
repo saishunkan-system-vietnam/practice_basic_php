@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 06, 2020 at 07:46 PM
+-- Generation Time: Aug 07, 2020 at 07:31 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.2.31
 
@@ -37,7 +37,7 @@ CREATE TABLE `counter` (
 --
 
 INSERT INTO `counter` (`id`, `cnt`) VALUES
-(9999, 23);
+(9999, 24);
 
 -- --------------------------------------------------------
 
@@ -56,24 +56,27 @@ CREATE TABLE `t_account` (
   `create_datetime` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'Thời gian tạo',
   `upadte_datetime` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Thời gian update',
   `upd_count` int(11) NOT NULL DEFAULT 0 COMMENT 'Số lần update',
-  `admin_flg` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Cờ quản trị'
+  `admin_flg` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Cờ quản trị',
+  `token` varchar(30) DEFAULT NULL COMMENT 'tokken',
+  `timeout` int(30) DEFAULT NULL COMMENT 'Time out'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `t_account`
 --
 
-INSERT INTO `t_account` (`uid`, `fname`, `lname`, `pass`, `tel`, `gender`, `del_flg`, `create_datetime`, `upadte_datetime`, `upd_count`, `admin_flg`) VALUES
-('12abc@gmail.com', 'lieu', 'nguyen', '1', '0564896565', 1, 0, '2020-08-04 13:24:35', '2020-08-04 13:24:35', 0, 0),
-('abc11@gmail.com', 'lieu', 'nguyen', '1', '0365898564', 1, 0, '2020-08-04 13:25:08', '2020-08-04 13:25:08', 0, 0),
-('abc1213@gmail.com', 'mn d,mf w.e', 'nguyen', '1', '0358978546', 2, 1, '2020-08-04 13:27:27', '2020-08-04 13:55:56', 0, 0),
-('abc12@gmail.com', 'lieu', 'nguyen', '1', '0564589652', 1, 0, '2020-08-04 13:23:42', '2020-08-04 13:23:42', 0, 0),
-('abc1@gmail.com', 'nguyen', 'thị a', '1', '0564856952', 2, 1, '2020-08-04 13:26:45', '2020-08-04 13:56:16', 0, 0),
-('abc2@gmail.com', 'lieu', 'nguyen', '123456', '0356898564', 1, 0, '2020-08-04 11:44:44', '2020-08-04 11:44:44', 0, 0),
-('abc@bcf.com', 'eqwe2', 'eqwe', '1', '0365654521', 1, 0, '2020-07-21 21:48:30', '2020-08-04 10:54:13', 0, 0),
-('abc@gmail.com', 'asd222', 'dasdas', 'fkdjsfkak', '0386279685', 1, 0, '2020-07-19 21:14:43', '2020-08-05 08:50:11', 0, 1),
-('admin1@gmail.com', 'nguyen', 'eqwe', '123456', '0386279685', 2, 0, '2020-07-20 22:33:45', '2020-08-04 13:23:24', 0, 0),
-('admin@gmail.com', 'nguyen', 'duc lieu', '1', '0386279685', 1, 0, '2020-07-19 20:37:32', '2020-08-04 12:39:51', 0, 1);
+INSERT INTO `t_account` (`uid`, `fname`, `lname`, `pass`, `tel`, `gender`, `del_flg`, `create_datetime`, `upadte_datetime`, `upd_count`, `admin_flg`, `token`, `timeout`) VALUES
+('12abc@gmail.com', 'lieu', 'nguyen', '1', '0564896565', 1, 0, '2020-08-04 13:24:35', '2020-08-04 13:24:35', 0, 0, '', NULL),
+('abc11@gmail.com', 'lieu', 'nguyen', '1', '0365898564', 1, 0, '2020-08-04 13:25:08', '2020-08-04 13:25:08', 0, 0, '', NULL),
+('abc1213@gmail.com', 'mn d,mf w.e', 'nguyen', '1', '0358978546', 2, 1, '2020-08-04 13:27:27', '2020-08-04 13:55:56', 0, 0, '', NULL),
+('abc12@gmail.com', 'lieu', 'nguyen', '1', '0564589652', 1, 0, '2020-08-04 13:23:42', '2020-08-04 13:23:42', 0, 0, '', NULL),
+('abc1@gmail.com', 'nguyen', 'thị a', '1', '0564856952', 2, 1, '2020-08-04 13:26:45', '2020-08-04 13:56:16', 0, 0, '', NULL),
+('abc2@gmail.com', 'lieu', 'nguyen', '123456', '0356898564', 1, 0, '2020-08-04 11:44:44', '2020-08-04 11:44:44', 0, 0, '', NULL),
+('abc@bcf.com', 'eqwe2', 'eqwe', '1', '0365654521', 1, 0, '2020-07-21 21:48:30', '2020-08-04 10:54:13', 0, 0, '', NULL),
+('abc@gmail.com', 'asd222', 'dasdas', 'fkdjsfkak', '0386279685', 1, 0, '2020-07-19 21:14:43', '2020-08-05 08:50:11', 0, 1, '', NULL),
+('admin1@gmail.com', 'nguyen', 'eqwe', '123456', '0386279685', 2, 0, '2020-07-20 22:33:45', '2020-08-04 13:23:24', 0, 0, '', NULL),
+('admin@gmail.com', 'nguyen', 'duc lieu', '1', '0386279685', 1, 0, '2020-07-19 20:37:32', '2020-08-04 12:39:51', 0, 1, '', NULL),
+('playkark@gmail.com', 'lieu', 'nguyen duc', '1', '0386279685', 1, 0, '2020-08-07 13:07:29', '2020-08-07 15:57:18', 0, 0, '15f2d176ee492c', 1596790938);
 
 -- --------------------------------------------------------
 
@@ -95,6 +98,7 @@ CREATE TABLE `t_answer` (
 --
 
 INSERT INTO `t_answer` (`id`, `id_hdr`, `id_dtl`, `usr_id`, `create_datetime`, `del_flg`) VALUES
+('131/1596792937271', 'HD_005', 'DT_023', 'abc11@gmail.com', '2020-08-07 16:35:37', 0),
 ('1595814688', 'HD_005', 'DT_025', 'abc@gmail.com', '2020-07-27 08:51:28', 0),
 ('1595814883', 'HD_017', 'DT_074', 'abc@gmail.com', '2020-07-27 08:54:43', 0),
 ('1595818525', 'HD_014', 'DT_063', 'abc@gmail.com', '2020-07-27 09:55:25', 0),
@@ -113,9 +117,14 @@ INSERT INTO `t_answer` (`id`, `id_hdr`, `id_dtl`, `usr_id`, `create_datetime`, `
 ('183/1596692802496', 'HD_005', 'DT_022', 'admin@gmail.com', '2020-08-06 12:46:42', 0),
 ('283/1596688117043', '210/1596613646582', '194/1596613673970', 'admin@gmail.com', '2020-08-06 11:28:37', 0),
 ('350/1596688117069', '392/1596679485609', '495/1596679493873', 'admin@gmail.com', '2020-08-06 11:28:37', 0),
+('370/1596795979181', 'HD_005', 'DT_024', '12abc@gmail.com', '2020-08-07 17:26:19', 0),
 ('384/1596688117057', '29/1596613686915', '459/1596613698045', 'admin@gmail.com', '2020-08-06 11:28:37', 0),
 ('538/1596692802507', '134/1596692694385', '626/1596692721269', 'admin@gmail.com', '2020-08-06 12:46:42', 0),
-('714/1596688038029', '415/1596252211710', '93/1596252254765', 'admin@gmail.com', '2020-08-06 11:27:18', 0);
+('546/1596792860347', '134/1596692694385', '901/1596692727261', 'playkark@gmail.com', '2020-08-07 16:34:20', 0),
+('586/1596792937282', '134/1596692694385', '901/1596692727261', 'abc11@gmail.com', '2020-08-07 16:35:37', 0),
+('714/1596688038029', '415/1596252211710', '93/1596252254765', 'admin@gmail.com', '2020-08-06 11:27:18', 0),
+('927/1596795979191', '134/1596692694385', '736/1596692713716', '12abc@gmail.com', '2020-08-07 17:26:19', 0),
+('937/1596792860335', 'HD_005', 'DT_022', 'playkark@gmail.com', '2020-08-07 16:34:20', 0);
 
 -- --------------------------------------------------------
 
@@ -332,7 +341,7 @@ CREATE TABLE `user_online` (
 --
 
 INSERT INTO `user_online` (`id`, `lastvisit`, `user`) VALUES
-('127.0.0.11596679460', 1596710668, 'admin@gmail.com');
+('127.0.0.11596765022', 1596795991, 'admin@gmail.com');
 
 --
 -- Indexes for dumped tables

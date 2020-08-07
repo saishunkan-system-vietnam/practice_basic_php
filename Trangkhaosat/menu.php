@@ -51,15 +51,9 @@
                         <strong><?=isset($_SESSION['dataLogin']) ? $_SESSION['dataLogin'] : "N/A"?></strong>
                     </a>
                     <ul>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                                <small>Chỉnh sửa thông tin</small>
-                            </a>
-                        </li>
                         <?if(!empty($_SESSION['admin_flg']) || $_SESSION['admin_flg'] == "1" ){ echo
                         ('<li><a href="'. SURVEY_MANAGER.'"><i class="fa fa-tachometer" aria-hidden="true"></i>'.
-                          '<small>Admin</small></a></li>'); }?>
+                          '<small>Quản trị dành cho Admin</small></a></li>'); }?>
                         <li>
                             <a href=<?= URL_LOGOUT?>>
                                 <i class="fa fa-sign-out" aria-hidden="true"></i>
@@ -129,6 +123,7 @@
 
     <div class="warpper_login" >
         <div class="main_login">
+            <div><button type="button" class = "btn_close_login" id = "btn_close"><i class ="fa fa-close"></i></button></div>
             <h1>💻 Đăng Nhập</h1>
             <form action="" method="post" id="frm_login">
                 <p>
@@ -146,7 +141,7 @@
                             class="checksave">
                         <label for="chksave">Lưu mật khẩu</label>
                         <br>
-                        <a href="" class="checksave">Quên mật khẩu</a>
+                        <a href="<?= URL_FORGOT_PASS?>" class="checksave">Quên mật khẩu</a>
                     </p>
                 </div>
             </form>

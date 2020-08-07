@@ -29,12 +29,12 @@ require("../config/config.php");
             else if ($current_page < 1){
                 $current_page = 1;
             }
-            $start = (($current_page - 1) *  $limit ) + 1;
+            $start = (($current_page - 1) *  $limit );
     
-            $sql = "SELECT uid, fname, lname, gender, CASE WHEN admin_flg = 1 THEN 'Admin' ELSE '' END AS admin FROM t_account \n"
-            ."WHERE del_flg = 0 AND (uid LIKE '%{$fnd_content}%' OR fname LIKE '%{$fnd_content}%' OR lname LIKE '%{$fnd_content}%' OR CONCAT( fname, ' ', lname ) LIKE '%{$fnd_content}%') "
-            ."ORDER BY create_datetime DESC LIMIT {$start}, {$limit}";
-    
+            $sql = "SELECT uid, fname, lname, gender, CASE WHEN admin_flg = 1 THEN 'Admin' ELSE '' END AS admin FROM t_account
+                    WHERE del_flg = 0 AND (uid LIKE '%{$fnd_content}%' OR fname LIKE '%{$fnd_content}%' OR lname LIKE '%{$fnd_content}%' OR CONCAT( fname, ' ', lname ) LIKE '%{$fnd_content}%')
+                    ORDER BY create_datetime DESC LIMIT {$start} , {$limit}";
+            // die($sql);
             $result = $conn->query($sql);
     
             if ($result->num_rows > 0)
