@@ -1,12 +1,12 @@
 <?php
 	require './config/router.php';
 
-    if (isset($_POST["productId"]) && isset($_POST["productName"]) && isset($_POST["productPrice"]) 
-        && isset($_POST["productImage"]) && isset($_POST["quantity"])) {
-
-        if (isset($_COOKIE["shopping_cart"])) {
+	if (isset($_POST["productId"]) && isset($_POST["productName"]) 
+		&& isset($_POST["productPrice"]) && isset($_POST["quantity"])) 
+	{
+		if (isset($_COOKIE["shopping_cart"])) 
+		{
             $cookie_data = $_COOKIE['shopping_cart'];
-
 		    $cart_data = json_decode($cookie_data, true);
         }
         else
@@ -31,7 +31,6 @@
 	    		'item_id'			=>	$_POST["productId"],
 	    		'item_name'			=>	$_POST["productName"],
                 'item_price'		=>	$_POST["productPrice"],
-                'item_image'		=>	$_POST["productImage"],
 				'item_quantity'		=>	$_POST["quantity"],
 	    	);
 	    	$cart_data[] = $item_array;

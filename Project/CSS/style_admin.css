@@ -1,4 +1,8 @@
 * {box-sizing: border-box}
+h2{
+  color: red;
+  text-align: center;
+}
 /* ********************************************************************Style header********************************************** */
 .headingPanel {
     background: #717171;
@@ -314,10 +318,8 @@ margin: 10px 0;
 
 .table th {
     border: 1px solid #ddd;
+    text-align: center;
     padding: 8px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
     background-color: #4CAF50;
     color: white;
 }
@@ -341,6 +343,14 @@ margin: 10px 0;
   float: left;
   width: 350px;
 }
+
+.wrap-field select{
+  margin-bottom: 10px;
+  line-height: 25px;
+  float: left;
+  height: 30px;
+  width: 350px;
+}
 .AddOrEdit {
   padding: 20px 15%;
 }
@@ -352,3 +362,46 @@ margin: 10px 0;
   font-size: 20px;
 }
 /* ************************************************************************STYLE ORDER************************************************************* */
+.main-product{
+  margin: 2%;
+  box-shadow: 0 4px 9px 0 #eee!important;
+  padding: 10px 30px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.btnAddProduct {
+  width: 60px;
+  margin: 5px;
+}
+
+.btnDelProduct {
+  margin: 5px;
+  padding: 5px;
+  font-size: 25px;
+  background-color: red;
+}
+
+.btnDelProduct:hover {background-color: #9e0821}
+  
+.btnDelProduct:active {
+   background-color: #9e0821;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
+.btnUpdOrder{
+  margin: 10px 0px;
+  background-color: rgb(216, 113, 29);
+}
+
+.btnUpdOrder:hover {background-color: #644305}
+    
+.btnUpdOrder:active {
+  background-color: #644305;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.btnOder {
+  margin: 20px 150px;
+}

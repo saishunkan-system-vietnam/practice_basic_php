@@ -1,4 +1,4 @@
-<div id="pagination">
+<div id="pagination" class="pagination modal-5">
     <?php
 if ($current_page > 3) {
     $first_page = 1;

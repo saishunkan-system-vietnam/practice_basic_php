@@ -30,7 +30,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'add' || $_GET['action'] == 'e
             $content                =   $_POST["content"];
 
             if ($_GET['action'] == 'edit' && !empty($_GET['id'])){
-                $sqlUpd="UPDATE t_product SET `name` = '$name', `origin` = '$origin', `price` = $price, `image` = '$image', `capacity` = '$capacity' = '$capacity', `describe_product` = '$describe_product', `content` = '$content',`upadte_datetime` = CURRENT_TIMESTAMP()
+                $sqlUpd="UPDATE t_product SET `name` = '$name', `origin` = '$origin', `price` = $price, `image` = '$image', `capacity` = '$capacity' , `describe_product` = '$describe_product', `content` = '$content',`upadte_datetime` = CURRENT_TIMESTAMP()
                          WHERE id =$_GET[id];";
                 $result = $mysqli->query($sqlUpd);
                 if ($result) {

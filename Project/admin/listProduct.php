@@ -13,42 +13,48 @@
 
     $result = $mysqli->query($sql) ;       
 
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
+    
+    if ($result->num_rows > 0) 
+    {
+        $index = 0;
+        
+        while ($row = $result->fetch_assoc()) 
+        { 
             $img = !empty($row["image"]) ? $row["image"] : "../img/logoProduct.png";
-            if (isset($_GET['name']) && $_GET['name'] == "add") {              
+            if (isset($_GET['name']) && $_GET['name'] == "add") 
+            {              
                 $output .= '
                     <tr>
                         <td>' . $row["name"] . '</td>
                         <td>' . "<img style='width: 150px; height: 150px;' src='$img'>" . '</td>
-                        <td>' . $row["price"] . '</td>
-                        <td><input type="number" name="quantity" value="1" min="1"></td>
-                        <td><button type="submit" class="btnAddProduct btn" name="btnAddProduct">Add</button></td>
-                        <input type="hidden" name="productId" value="'.$row["id"].'">
-                        <input type="hidden" name="productName" value="'.$row["name"].'">
-                        <input type="hidden" name="productPrice" value="'.$row["price"].'">
+                        <td><input type="number" name="quantity" id ="'.$index.'" value="1" min="1"  style="width: 50px; height: 30px;"></td>
+                        <td>' . $row["price"].'</td>
+                        <td><button type="submit" class="btnAddProduct btn" qnt ="'.$index.'" data-id="'.$row["id"].'">Add</button></td>
                     </tr>
-                ';
-            } else {
+                '; 
+                $index++;         
+            } 
+            else 
+            {
                 $output .= '
                     <tr>
-                        <td>' . $row["name"] . '</td>
-                        <td>' . "<img style='width: 150px; height: 150px;' src='$img'>" . '</td>
-                        <td>' . $row["describe_product"] . '</td>
-                        <td>' . $row["origin"] . '</td>
-                        <td>' . $row["price"] . '</td>
-                        <td>' . $row["capacity"] . '</td>
-                        <td>' . $row["content"] . '</td>
-                        <td>' . $row["del_flg"] . '</td>
-                        <td><a class="btnEdit btn" href="./product_editing.php?id=' . $row['id'] . '">Edit</a> </td>
-                        <td><a class="btnDelete btn" data-id=' . $row['id'] . '>Delete</a></td>
+                        <td>'.$row["name"].'</td>
+                        <td>'."<img style='width: 150px; height: 150px;' src='$img'>".'</td>
+                        <td>'.$row["describe_product"].'</td>
+                        <td>'.$row["origin"].'</td>
+                        <td>'.$row["price"].'</td>
+                        <td>'.$row["capacity"].'</td>
+                        <td>'.$row["content"].'</td>
+                        <td>'.$row["del_flg"].'</td>
+                        <td><a class="btnEdit btn" href="./product_editing.php?id='.$row['id'].'">Edit</a> </td>
+                        <td><a class="btnDelete btn" data-id='.$row['id'].'>Delete</a></td>
                     </tr>
                 ';
-            }
-                
-            }   
-        } 
-    else{
+            }          
+        }   
+    } 
+    else
+    {
         $output .= '<tr><td colspan="11" align="center">Không tìm thấy dữ liệu!</td></tr>';
     }
 

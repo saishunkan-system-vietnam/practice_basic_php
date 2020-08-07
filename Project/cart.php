@@ -16,17 +16,17 @@
     			{
     				unset($cart_data[$keys]);
                     $item_data = json_encode($cart_data);
-                    
-    				setcookie("shopping_cart", $item_data, time() + (86400 * 30));
-    				header("location: ./cart.php");
+    				setcookie("shopping_cart", $item_data, time() + (86400 * 30));			
     			}
     		}
-    	}
-    	if($_GET["action"] == "clear")
-    	{
-    		setcookie("shopping_cart", "", time() - 3600);
-    		header("location: ./cart.php");
-    	}
+        }
+        else{
+            if($_GET["action"] == "clear")
+            {
+                setcookie("shopping_cart", "", time() - 3600);
+            }
+        }   
+        header("location: ./cart.php");	
     }   
 
 

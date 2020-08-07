@@ -9,7 +9,7 @@ $(document).ready(function() {
             data: { page : page, content : content, name: "add"
              },
             success: function(data) {
-                $('tbody').html(data);
+                $('#tbodySearch').html(data);
             }
         });
     }
@@ -59,5 +59,14 @@ $(document).ready(function() {
                 }
             });
         }          
+    }) 
+
+    $(document).on('click', '.btnAddProduct', function() {
+
+        var id = $(this).attr('data-id');
+        var id_quantity = $(this).attr('qnt');
+        var quantity = $.trim($("#"+id_quantity).val());
+        let newhref = './order_editing.php?action=addProduct&id='+id+'&quantity='+quantity;
+        window.location.href = newhref;
     }) 
 });

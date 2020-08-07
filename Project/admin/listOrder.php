@@ -44,7 +44,7 @@
                 <td>'.$row["status"].'</td>
                 <td>'.$row["create_datetime"].'</td>
                 <td>'.$row["del_flg"].'</td>
-                <td><a class="btnEdit btn" href="./order_editing.php?id='.$row['id'].'">Edit</a> </td>
+                <td><a class="btnEdit btn" href="./order_editing.php?action=edit&id='.$row['id'].'">Edit</a> </td>
                 <td><a class="btnDelete btn" data-id='.$row['id'].'>Delete</a></td>
             </tr>
         ';
