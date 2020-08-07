@@ -3,7 +3,6 @@ session_start();
 require('../config/router.php');
 require(SITE_API_CONFIG);
 $name = isset($_POST['name']) ? trim($_POST['name']) : '';
-
 $data = array();
 
 if ($name == 'select') {

@@ -13,13 +13,16 @@ define('SITE_DANHSACHTHIETBI','./danhSachThietBi.php');
 define('SITE_QLTHIETBIMUON','./qlthietbimuon.php');
 define('SITE_POPUPMUONTB','./popupmuontb.php');
 define('SITE_SENDMAIL','./sendMail.php');
+define('SITE_QLDEVICE','./admin/qlthietbi.php');
+
 
 // ADMIN
 define('SITE_MENULEFT','./menuleft.php');
 define('SITE_TOPNAV','./topnav.php');
-define('SITE_POPUPADMIN','./popupadmin.php');
+define('SITE_POPUPDEVICE','./popupqldevice.php');
+define('SITE_POPUPACCOUNT','./popupqlaccount.php');
 define('SITE_INDEX_UADMIN','../index.php');
-define('SITE_QLDEVICE','./qlthietbi.php');
+define('SITE_QLDEVICE_UADMIN','./qlthietbi.php');
 define('SITE_QLACCOUNT','./qlaccount.php');
 
 // LINK JQUERY
@@ -52,8 +55,10 @@ define('FILE_JS_COMMOM','./js/commom.js');
 define('FILE_JS_COMMOMADMIN','../js/commom.js');
 define('FILE_JS_SENDMAIL','./js/sendmail.js');
 define('FILE_JS_CKEDITOR','./js/ckeditor/ckeditor.js');
+
 define('FILE_JS_ADMIN_CKEDITOR','../js/ckeditor/ckeditor.js');
 define('FILE_JS_SEARCHPAGINATION','../js/searchpagination.js');
+define('FILE_JS_VALIDATE_UADMIN','../js/validateacc.js');
 
 
 // URL FILE IMG

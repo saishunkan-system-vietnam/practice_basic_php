@@ -49,6 +49,115 @@ $(document).ready(function () {
             });
         }
 
+
+        if ($(".title_popup").text() == "Đăng ký tài khoản") {
+            console.log("sdsdsd")
+            $.ajax({
+                async: false,
+                url: "../api/apiqlaccount.php",
+                method: "POST",
+                data: {
+                    name: 'insert',
+                    user_name: $('#inpUser').val(),
+                    pass: $('#inpPass').val(),
+                    email: $('#inpEmail').val(),
+                    address: $('#inpaddress').val(),
+                    inpimg: $('#inpimg')[0].files[0]['name'],
+                },
+                success: function (data) {
+                    if (data == true) {
+                        alert("Thêm thiết bị thành công");
+                    }
+                    else {
+                        alert("Thêm thiết bị thất bại");
+                    }
+                }
+            });
+        }
+
     });
+
+    $(document).on('submit', '#form_account', function () {
+        if ($(".title_popup").text() == "Đăng ký tài khoản") {
+            console.log("sdsdsd")
+            $.ajax({
+                async: false,
+                url: "../api/apiqlaccount.php",
+                method: "POST",
+                data: {
+                    name: 'insert',
+                    user_name: $('#inpUser').val(),
+                    pass: $('#inpPass').val(),
+                    email: $('#inpEmail').val(),
+                    address: $('#inpaddress').val(),
+                    inpimg: $('#inpimg')[0].files[0]['name'],
+                },
+                success: function (data) {
+                    if (data == true) {
+                        alert("Thêm tài khoản thành công");
+                    }
+                    else {
+                        alert("Thêm tài khoản thất bại");
+                    }
+                }
+            });
+        }
+
+    });
+
 });
 
+function InvalidMsg(textbox) {
+    if (textbox.value != $.trim($('#inpPass').val())) {
+        textbox.setCustomValidity('Mật khẩu không trùng khớp');
+    }
+    else {
+        textbox.setCustomValidity('');
+    }
+    return true;
+}
+
+function checkUsername() {
+    $.ajax({
+        async: false,
+        url: "../api/apiqlaccount.php",
+        method: "POST",
+        data: {
+            name: 'check',
+            user_name: $('#inpUser').val(),
+
+        },
+        success: function (data) {
+            if (data == true) {
+                $("#inpUser")[0].setCustomValidity("User name đã tồn tại");
+            }
+            else {
+                $("#inpUser")[0].setCustomValidity("");
+            }
+        }
+    });
+
+}
+
+
+function checkEmail() {
+    $.ajax({
+        async: false,
+        url: "../api/apiqlaccount.php",
+        method: "POST",
+        data: {
+            name: 'check',
+            email: $('#inpEmail').val(),
+
+        },
+        success: function (data) {
+            if (data == true) {
+                $("#inpEmail")[0].setCustomValidity("Email đã tồn tại");
+            }
+            else {
+                $("#inpEmail")[0].setCustomValidity("");
+            }
+        }
+    });
+
+}

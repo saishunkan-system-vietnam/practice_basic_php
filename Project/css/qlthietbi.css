@@ -2,16 +2,14 @@
 	margin-top    : 3%;
 	margin-left   : 18%;
 	margin-right  : 18%;
-	padding-top   : 15px;
-	padding-left  : 15px;
-	padding-right : 15px;
-	padding-bottom: 15px;
+	padding       : 1%;
 	background    : #545454;
 	box-shadow    : 0 4px 9px 0 rgb(201, 159, 159) !important;
 }
-.tbl_admin{
-	margin-left   : 0%;
-	margin-right  : 0%;
+
+.tbl_admin {
+	margin-left : 0%;
+	margin-right: 0%;
 }
 
 .div_new {
@@ -29,7 +27,19 @@
 	border         : 1px solid black;
 	border-collapse: collapse;
 	padding        : 10px;
-	text-align     : left;
+	text-align     : center;
+}
+
+.td_second {
+	text-align: left;
+}
+
+.inp_pass {
+	border    : none;
+	background: 0 0;
+	outline   : 0;
+	height    : 40px;
+	font-size : 16px;
 }
 
 .tbl_new,
@@ -64,7 +74,34 @@
 	border    : 1px solid black;
 	text-align: center;
 	width     : 280px;
+}
 
+.th_user_name,
+.th_inp_pass,
+.th_email {
+	width: 20%;
+}
+
+.th_avatar {
+	width     : 11%;
+	text-align: center;
+}
+
+.th_del,
+.th_admin {
+	width: 5%;
+}
+
+.th_func_acc {
+	width     : 10%;
+	text-align: center;
+}
+
+
+.td_avatar,
+.td_admin,
+.td_del {
+	text-align: center;
 }
 
 .tbl_second tr:nth-child(even) {

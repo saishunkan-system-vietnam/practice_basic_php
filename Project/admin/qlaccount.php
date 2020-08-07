@@ -3,7 +3,7 @@ session_start();
 require('../config/router.php');
 require(SITE_API_CONFIG);
 include(SITE_MENULEFT);
-include(SITE_POPUPADMIN);
+include(SITE_POPUPACCOUNT);
 include(SITE_TOPNAV);
 
 ?>
@@ -21,12 +21,12 @@ include(SITE_TOPNAV);
     <?php
     $content = isset($_GET['content']) ? $_GET['content'] : '';
 
-    $result = mysqli_query($connect, "SELECT count(*) as total FROM t_account WHERE user_name LIKE '%{$content}%' ");
+    $result = mysqli_query($connect, "SELECT count(*) as total FROM t_account WHERE del_flg=0 AND user_name LIKE '%{$content}%' ");
     $row = mysqli_fetch_assoc($result);
     $total_records = $row['total'];
 
     $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-    $limit = 1;
+    $limit = 12;
 
     $total_page = ceil($total_records / $limit);
 
@@ -38,7 +38,7 @@ include(SITE_TOPNAV);
 
     $start = ($current_page - 1) * $limit;
 
-    $sql_select_acc = "SELECT * FROM t_account WHERE user_name LIKE '%{$content}%' ORDER BY create_datetime DESC LIMIT $start, $limit ";
+    $sql_select_acc = "SELECT * FROM t_account WHERE del_flg=0 AND user_name LIKE '%{$content}%' ORDER BY create_datetime DESC LIMIT $start, $limit ";
     $result_acc = mysqli_query($connect, $sql_select_acc);
     mysqli_close($connect);
     ?>
@@ -50,18 +50,19 @@ include(SITE_TOPNAV);
 
         <div class="div_tbl tbl_admin">
             <div class="header">
-                <button class="btnAdd btn fl" name="btnAdd"><i class="fa fa-plus-circle"></i> ADD</button>
+                <button class="btnAdd btn_admin fl" name="btnAdd"><i class="fa fa-plus-circle"></i> ADD</button>
                 <button id="btnSearch" name='btnSearch' class="btnAdd btn fr"><i class="fa fa-search"></i> SEARCH</button>
-                <input type="text" id="inpSearch" class="txt_find fr" style="width: 50%;">
+                <input type="text" id="inpSearch" class="txt_find fr" style="width: 50%;" placeholder="Enter Username">
             </div>
 
-            <table class="tbl_second" align="center">
+            <table class="tbl_second">
                 <tr>
-                    <th class="th_second th_devicename">User name</th>
-                    <th class="th_second th_category">Password</th>
-                    <th class="th_second th_supplier">Email</th>
-                    <th class="th_second th_img">Avatar</th>
-                    <th class="th_second th_func">Tác vụ</th>
+                    <th class="th_second th_user_name">User name</th>
+                    <th class="th_second th_inp_pass">Password</th>
+                    <th class="th_second th_email">Email</th>
+                    <th class="th_second th_avatar">Avatar</th>
+                    <th class="th_second th_admin">Admin</th>
+                    <th class="th_second th_func_acc">Tác vụ</th>
                 </tr>
                 <?php
                 if (!$result_acc) : ?>
@@ -73,25 +74,28 @@ include(SITE_TOPNAV);
                     <?php else :
                     while ($row = mysqli_fetch_assoc($result_acc)) : ?>
                         <tr>
-                            <td class="td_second td_devicename">
+                            <td class="td_second td_user_name">
                                 <?php echo $row['user_name']; ?>
                             </td>
-                            <td class="td_second td_category">
-                                <?php echo $row['password']; ?>
+                            <td class="td_second td_inp_pass">
+                                <input class="inp_pass" type="password" readonly value="<?php echo md5($row['password']); ?>">
                             </td>
-                            <td class="td_second td_supplier">
+                            <td class="td_second td_email">
                                 <?php echo $row['email']; ?>
                             </td>
-                            <td class="td_second td_img" align="center">
+                            <td class="td_second td_avatar">
                                 <?php !empty($row['avatar']) ? $row['avatar'] : $row['avatar'] = "img_null.jpg";
                                 echo "<img style='width: 150px; height: 130px;' src='../img/" . $row['avatar'] . "'>" ?>
                             </td>
+                            <td class="td_second td_admin">
+                                <input class="checkbox" type="checkbox" id="admin<?= $row['id']; ?>" data-id="<?= $row['id']; ?>" data-name="<?= $row['user_name']; ?>" <?php echo !$row['admin_flg'] == 0 ? "checked" : ""; ?>>
+                            </td>
                             <td class="td_btn">
-                                <button class="btnEdit btn" aria-hidden="true" name="btnEdit" id="btnEdit<?= $row['id']; ?>" data-id="<?= $row['id']; ?>" value="EDIT">
+                                <button class="btnEdit btn_admin" aria-hidden="true" name="btnEdit" id="btnEdit<?= $row['id']; ?>" data-id="<?= $row['id']; ?>" value="EDIT">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i> EDIT
                                 </button>
 
-                                <button class="btnDel btn" name="btnDel" id="btnDel<?= $row['id']; ?>" data-id="<?= $row['id']; ?>" value="DELETE">
+                                <button class="btnDel btn_admin" name="btnDel" id="btnDel<?= $row['id']; ?>" data-id="<?= $row['id']; ?>" value="DELETE">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i> DELETE
                                 </button>
                             </td>

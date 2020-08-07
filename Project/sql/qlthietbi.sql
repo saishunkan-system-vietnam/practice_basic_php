@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 05, 2020 at 12:31 PM
+-- Generation Time: Aug 07, 2020 at 12:34 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -47,10 +47,12 @@ CREATE TABLE `t_account` (
 
 INSERT INTO `t_account` (`id`, `user_name`, `password`, `email`, `address`, `avatar`, `del_flg`, `admin_flg`, `token`, `create_datetime`, `update_datetime`) VALUES
 (1, 'NhanVP', '1', 'shadowin1811@gmail.com', 'Phú thượng', NULL, b'0', b'1', '', '2020-07-22 10:55:14', NULL),
-(2, 'NhanVIP', '2', 'phungnhan0935488044@gmail.com', NULL, NULL, b'0', b'0', '24cceab7ffc1118f', '2020-07-22 10:55:21', '2020-07-30 13:50:43'),
-(3, 'phungNhanV', 'Nhan7895#', 'vophungnhan95@gmail.com', NULL, NULL, b'0', b'0', NULL, '2020-07-30 13:59:26', NULL),
-(4, 'NhanVPP', 'Nhan1478@', 'shadowin18111@gmail.com', NULL, NULL, b'0', b'0', NULL, '2020-07-30 14:00:25', NULL),
-(5, 'NhanVP1', 'Nhan12369@', 'shadowin18211@gmail.com', NULL, NULL, b'0', b'0', NULL, '2020-07-30 14:06:49', NULL);
+(2, 'NhanVIP', 'Nhan1235@', 'phungnhan0935488044@gmail.com', NULL, NULL, b'0', b'0', 'dd0cfa982e746de6', '2020-07-22 10:55:21', '2020-08-07 11:36:42'),
+(3, 'phungNhanV', 'Nhan7895#', 'vophungnhan95@gmail.com', NULL, NULL, b'0', b'0', NULL, '2020-07-30 13:59:26', '2020-08-07 11:36:36'),
+(4, 'NhanVPP', 'Nhan1478@', 'shadowin18111@gmail.com', NULL, NULL, b'1', b'0', NULL, '2020-07-30 14:00:25', '2020-08-07 09:58:25'),
+(5, 'NhanVP1', 'Nhan12369@', 'shadowin18211@gmail.com', NULL, NULL, b'0', b'0', NULL, '2020-07-30 14:06:49', '2020-08-07 11:36:40'),
+(6, 'NhanVIP123', 'Nhan1235@', 'shadowin12222811@gmail.com', 'sdsds', 'avatar.png', b'0', b'0', NULL, '2020-08-07 16:25:09', NULL),
+(7, 'NhanVIP111', 'Nhan1475@', 'shadowin18122221@gmail.com', 'sdsds', 'avatar_null.png', b'0', b'0', NULL, '2020-08-07 16:26:07', NULL);
 
 -- --------------------------------------------------------
 
@@ -119,11 +121,14 @@ INSERT INTO `t_device` (`id`, `device_name`, `id_category`, `id_supplier`, `del_
 (19, 'Laptop DELL E5450', 2, 1, b'0', '', NULL, '2020-07-31 15:29:56', NULL),
 (20, '	 Laptop DELL E5450', 2, 3, b'0', '', NULL, '2020-08-03 15:38:37', '2020-08-03 16:39:38'),
 (21, '	 Laptop DELL E5450', 3, 4, b'0', '', NULL, '2020-08-03 15:55:47', '2020-08-03 16:40:23'),
-(22, 'Bộ đồ bảo hộ lao động VIP', 1, 1, b'1', '', NULL, '2020-08-03 15:56:07', '2020-08-03 16:41:50'),
 (23, 'Bộ đồ bảo hộ lao động VIP', 2, 2, b'0', '', '<p><strong>1232</strong></p>', '2020-08-03 15:58:01', '2020-08-05 11:19:13'),
 (24, 'Laptop DELL E5450', 1, 1, b'0', '', '', '2020-08-04 13:41:19', '2020-08-05 11:16:23'),
-(25, 'Laptop DELL E5450', 1, 1, b'0', '', NULL, '2020-08-04 13:41:26', NULL),
-(26, 'Bộ đồ leo núi VIP (bản giới hạn)', 3, 2, b'0', '', '<p>Được sản xuất tại Paris chỉ c&oacute; 2 bản tr&ecirc;n thế giới</p>', '2020-08-05 10:49:10', NULL);
+(25, 'Laptop DELL E5450', 1, 1, b'0', 'dell vostro.jpeg', '', '2020-08-04 13:41:26', '2020-08-06 13:16:53'),
+(26, 'Bộ đồ leo núi VIP (bản giới hạn)', 3, 2, b'0', 'doboafnuoicon_1.jpg', '<p>Được sản xuất tại Paris chỉ c&oacute; 2 bản tr&ecirc;n thế giới</p>', '2020-08-05 10:49:10', '2020-08-06 13:17:29'),
+(27, 'PC  dell', 1, 1, b'0', 'dell vostro.jpeg', '', '2020-08-06 08:52:36', '2020-08-06 13:23:13'),
+(33, 'Laptop DELL E5450', 1, 1, b'1', 'dell vostro.jpeg', '', '2020-08-06 09:36:06', '2020-08-06 09:53:42'),
+(34, 'Laptop DELL E5450', 1, 1, b'1', 'dell vostro.jpeg', '', '2020-08-06 09:50:41', '2020-08-06 09:53:41'),
+(35, 'Laptop DELL E5450', 1, 1, b'1', 'dell vostro.jpeg', '', '2020-08-06 09:53:06', '2020-08-06 09:53:39');
 
 -- --------------------------------------------------------
 
@@ -306,7 +311,7 @@ ALTER TABLE `t_supplier`
 -- AUTO_INCREMENT for table `t_account`
 --
 ALTER TABLE `t_account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id', AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id', AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `t_category`
@@ -318,7 +323,7 @@ ALTER TABLE `t_category`
 -- AUTO_INCREMENT for table `t_device`
 --
 ALTER TABLE `t_device`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id', AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id', AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `t_loan`

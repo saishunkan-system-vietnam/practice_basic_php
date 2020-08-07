@@ -3,7 +3,9 @@ $(document).keydown(function (event) {
         $("#modal-wrapper").css("display", "none");
         $("body").css("overflow", "auto");
         $("#modal-wrapper").find('form').trigger('reset');
-        CKEDITOR.instances['inpinfo'].setData('');
+        if ($('#inpinfo').length != 0) {
+            CKEDITOR.instances['inpinfo'].setData('');
+        }
     }
 });
 
@@ -12,8 +14,10 @@ $(".btn").click(function () {
     if ($(this).attr("name") == 'Close') {
         $("#modal-wrapper").css("display", "none");
         $("body").css("overflow", "auto");
-        $("#modal-wrapper").find('form').trigger('reset')
-        CKEDITOR.instances['inpinfo'].setData('');
+        $("#modal-wrapper").find('form').trigger('reset');
+        if ($('#inpinfo').length != 0) {
+            CKEDITOR.instances['inpinfo'].setData('');
+        }
     }
 
     if ($(this).attr("name") == 'btnAdd') {
@@ -120,3 +124,84 @@ function preview() {
     var pathimg = $('#inpimg')[0].files[0]['name'];
     $(".display_img img").attr("src", "../img/" + pathimg);
 }
+
+$('.checkbox').click(function () {
+    $.ajax({
+        url: "../api/apiqlaccount.php",
+        method: "POST",
+        data: {
+            name: "upd_admin",
+            admin_flg: $(this).is(':checked'),
+            id_account: $(this).attr("data-id")
+        },
+    })
+    if ($(this).is(':checked')) {
+        alert("Tài khoản " + $(this).attr("data-name") + " đã được cấp quyền Admin!");
+    } else {
+        alert("Tài khoản " + $(this).attr("data-name") + " đã bị hủy quyền Admin!");
+    }
+});
+
+
+$(".btn_admin").click(function () {
+
+    if ($(this).attr("name") == 'btnAdd') {
+        $("#modal-wrapper").css("display", "block");
+        $("body").css("overflow", "hidden");
+        $(".title_popup").text("Đăng ký tài khoản");
+        $(".display_img img").attr("src", "../img/img_null.jpg");
+    }
+
+    if ($(this).attr("name") == 'btnEdit') {
+        $("#modal-wrapper").css("display", "block");
+        $("body").css("overflow", "hidden");
+        $(".title_popup").text("Edit tài khoản");
+
+        $.ajax({
+            url: "../api/apiqlaccount.php",
+            method: "POST",
+            data: {
+                name: "select",
+                id_account: $(this).attr("data-id")
+            },
+
+            success: function (data) {
+                data.forEach(function (item) {
+                    $('#deviceId').text(item.id);
+                    $('#inpUser').val(item.user_name);
+                    $('#inpPass').val(item.password);
+                    $('#inpEmail').text(item.email);
+                    $('#inpaddress').val(item.address);
+                    if (item.img != '') {
+                        $(".display_img img").attr("src", "../img/" + item.avatar);
+                    } else {
+                        $(".display_img img").attr("src", "../img/img_null.jpg");
+                    }
+                });
+            }
+        })
+    }
+
+
+    if ($(this).attr("name") == 'btnDel') {
+        if (confirm('Are you sure you want to delete this item?')) {
+            $.ajax({
+                url: "../api/apiqlaccount.php",
+                method: "POST",
+                data: {
+                    name: "delete",
+                    id_account: $(this).attr("data-id")
+                },
+                success: function (data) {
+                    if (data == true) {
+                        alert("Delete thiết bị thành công");
+                        location.reload(true);
+                    }
+                    else {
+                        alert("Delete thiết bị thất bại");
+                    }
+                }
+            })
+        }
+    }
+});

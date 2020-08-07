@@ -33,7 +33,7 @@ $(document).ready(function () {
         messages: {
             inpUser:
             {
-                required: "Vui lòng UserName",
+                required: "Vui lòng nhập UserName",
                 minlength: "Nhập nhiều hơn 4 kí tự",
             },
             inpEmail: {
@@ -53,7 +53,6 @@ $(document).ready(function () {
             form.submit();
         },
         errorPlacement: function (error, element) {
-
             element.css('background', '#ffc107');
             error.insertAfter(element);
         },

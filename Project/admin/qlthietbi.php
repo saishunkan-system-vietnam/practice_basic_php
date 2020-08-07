@@ -3,7 +3,7 @@ session_start();
 require('../config/router.php');
 require(SITE_API_CONFIG);
 include(SITE_MENULEFT);
-include(SITE_POPUPADMIN);
+include(SITE_POPUPDEVICE);
 include(SITE_TOPNAV); 
 
 ?>
@@ -56,7 +56,7 @@ include(SITE_TOPNAV);
             <div class="header">
                 <button class="btnAdd btn fl" name="btnAdd"><i class="fa fa-plus-circle"></i> ADD</button>
                 <button id="btnSearch" name='btnSearch' class="btnAdd btn fr"><i class="fa fa-search"></i> SEARCH</button>
-                <input type="text" id="inpSearch" class="txt_find fr" style="width: 50%;">
+                <input type="text" id="inpSearch" class="txt_find fr" style="width: 50%;" placeholder="Enter device name">
             </div>
 
             <table class="tbl_second" align="center">
@@ -115,21 +115,21 @@ include(SITE_TOPNAV);
                 }
 
                 if ($current_page > 1 && $total_page > 1) {
-                    echo '<div><li><a href="' . SITE_QLDEVICE . '?page=1"><<</a></li><li><a href="' . SITE_QLDEVICE . '?page=' . ($current_page - 1) . '"><</a></li>';
+                    echo '<div><li><a href="' . SITE_QLDEVICE_UADMIN . '?page=1"><<</a></li><li><a href="' . SITE_QLDEVICE_UADMIN . '?page=' . ($current_page - 1) . '"><</a></li>';
                 } else {
                     echo '<div><li><a class="disabled" href="#"><<</a></li> <li><a class="disabled" href="#"><</a></li>';
                 }
 
                 for ($i = 1; $i <= $total_page; $i++) {
                     if ($i == $current_page) {
-                        echo '<li><a class="active" href=" ' . SITE_QLDEVICE . '?page=' . $i . '">' . $i . '</a></li>';
+                        echo '<li><a class="active" href=" ' . SITE_QLDEVICE_UADMIN . '?page=' . $i . '">' . $i . '</a></li>';
                     } else {
-                        echo '<li><a href="' . SITE_QLDEVICE . '?page=' . $i . '">' . $i . '</a></li>';
+                        echo '<li><a href="' . SITE_QLDEVICE_UADMIN . '?page=' . $i . '">' . $i . '</a></li>';
                     }
                 }
 
                 if ($current_page < $total_page && $total_page > 1) {
-                    echo '<li><a href="' . SITE_QLDEVICE . '?page=' . ($current_page + 1) . '">></a></li><li><a href="' . SITE_QLDEVICE . '?page=' . $total_page . '">>></a></li>';
+                    echo '<li><a href="' . SITE_QLDEVICE_UADMIN . '?page=' . ($current_page + 1) . '">></a></li><li><a href="' . SITE_QLDEVICE_UADMIN . '?page=' . $total_page . '">>></a></li>';
                 } else {
                     echo  '<li><a class="disabled" href="#">></a></li><li><a class="disabled" href="#">>></a></li>';
                 }
