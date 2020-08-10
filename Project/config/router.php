@@ -13,7 +13,7 @@ define('SITE_DANHSACHTHIETBI','./danhSachThietBi.php');
 define('SITE_QLTHIETBIMUON','./qlthietbimuon.php');
 define('SITE_POPUPMUONTB','./popupmuontb.php');
 define('SITE_SENDMAIL','./sendMail.php');
-define('SITE_QLDEVICE','./admin/qlthietbi.php');
+define('SITE_DASHBOARD_TO','./admin/dashboard.php');
 
 
 // ADMIN
@@ -21,9 +21,13 @@ define('SITE_MENULEFT','./menuleft.php');
 define('SITE_TOPNAV','./topnav.php');
 define('SITE_POPUPDEVICE','./popupqldevice.php');
 define('SITE_POPUPACCOUNT','./popupqlaccount.php');
+define('SITE_USERLOAN','./userloan.php');
 define('SITE_INDEX_UADMIN','../index.php');
-define('SITE_QLDEVICE_UADMIN','./qlthietbi.php');
+define('SITE_QLDEVICE','./qldevice.php');
 define('SITE_QLACCOUNT','./qlaccount.php');
+define('SITE_DASHBOARD','./dashboard.php');
+define('SITE_LOAN','./qlloan.php');
+
 
 // LINK JQUERY
 define('LINK_JQUERY','https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js');
@@ -45,6 +49,7 @@ define('FILE_CSS_SENDMAIL','./css/sendmail.css');
 define('FILE_CSS_POPUP','./css/popup.css');
 define('FILE_CSS_MENUADMIN','../css/menuadmin.css');
 define('FILE_CSS_POPUPADMIN','../css/popupadmin.css');
+define('FILE_CSS_DASHBOARD','../css/dashboard.css');
 
 //URL FILE JS
 define('FILE_JS_BANNER','./js/banner.js');

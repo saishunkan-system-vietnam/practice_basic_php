@@ -18,7 +18,6 @@ if ($name == 'select') {
     mysqli_close($connect);
 }
 
-
 if ($name == 'insert') {
     $user_name =  isset($_POST['user_name']) ? trim($_POST['user_name']) : '';
     $pass = isset($_POST['pass']) ? trim($_POST['pass']) : '';
@@ -38,15 +37,13 @@ if ($name == 'insert') {
 }
 
 if ($name == 'update') {
-    $deviceId = isset($_POST['deviceId']) ? trim($_POST['deviceId']) : '';
-    $devicename =  isset($_POST['devicename']) ? trim($_POST['devicename']) : '';
-    $idcategory = isset($_POST['idcategory']) ? trim($_POST['idcategory']) : '';
-    $idsupplier = isset($_POST['idsupplier']) ?  trim($_POST['idsupplier']) : '';
+    $id_account = isset($_POST['id_account']) ? trim($_POST['id_account']) : '';
+    $pass = isset($_POST['pass']) ? trim($_POST['pass']) : '';
+    $address = isset($_POST['address']) ? trim($_POST['address']) : '';
     $inpimg = isset($_POST['inpimg']) ? trim($_POST['inpimg']) : '';
-    $info = isset($_POST['info']) ? trim($_POST['info']) : '';
 
-    $sql_Update_device = "UPDATE t_account SET user_name='$devicename', id_category=$idcategory, id_supplier=$idsupplier, img='$inpimg', info='$info', update_datetime=CURRENT_TIMESTAMP() WHERE id=$deviceId";
-    $result_Update = mysqli_query($connect, $sql_Update_device) or die("lỗi truy vấn update");
+    $sql_Update_account = "UPDATE t_account SET password='$pass', address='$address', avatar='$inpimg', update_datetime=CURRENT_TIMESTAMP() WHERE id=$id_account";
+    $result_Update = mysqli_query($connect, $sql_Update_account) or die("lỗi truy vấn update");
 
     if (!$result_Update) {
         echo false;
@@ -65,7 +62,6 @@ if ($name == 'upd_admin') {
 
     mysqli_close($connect);
 }
-
 
 if ($name == 'delete') {
     $id_account = isset($_POST['id_account']) ? trim($_POST['id_account']) : '';

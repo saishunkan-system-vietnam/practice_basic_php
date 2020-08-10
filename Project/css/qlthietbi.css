@@ -1,14 +1,14 @@
 .div_tbl {
-	margin-top    : 3%;
-	margin-left   : 18%;
-	margin-right  : 18%;
-	padding       : 1%;
-	background    : #545454;
-	box-shadow    : 0 4px 9px 0 rgb(201, 159, 159) !important;
+	margin-top: 3%;
+	margin-left: 18%;
+	margin-right: 18%;
+	padding: 1%;
+	background: #545454;
+	box-shadow: 0 4px 9px 0 rgb(201, 159, 159) !important;
 }
 
 .tbl_admin {
-	margin-left : 0%;
+	margin-left: 0%;
 	margin-right: 0%;
 }
 
@@ -20,33 +20,37 @@
 	margin-bottom: 60px;
 }
 
-.tbl_new,
-.tbl_second,
-.th_second,
-.td_second {
-	border         : 1px solid black;
+.tbl_new, .tbl_second, .th_second, .td_second {
+	border: 1px solid black;
 	border-collapse: collapse;
-	padding        : 10px;
-	text-align     : center;
+	padding: 10px;
+	text-align: center;
+}
+
+.th_stt {
+	width: 5%;
 }
 
 .td_second {
 	text-align: left;
 }
 
-.inp_pass {
-	border    : none;
-	background: 0 0;
-	outline   : 0;
-	height    : 40px;
-	font-size : 16px;
+.td_stt {
+	text-align: center;
 }
 
-.tbl_new,
-.tbl_second {
+.inp_pass {
+	border: none;
+	background: 0 0;
+	outline: 0;
+	height: 40px;
+	font-size: 16px;
+}
+
+.tbl_new, .tbl_second {
 	padding-top: 15px;
-	text-align : center;
-	width      : 100%;
+	text-align: center;
+	width: 100%;
 }
 
 .th_devicename {
@@ -66,41 +70,59 @@
 }
 
 .th_func {
-	width     : 30%;
+	width: 30%;
 	text-align: center;
+}
+
+.th_sum_amount, .th_total_user {
+	width: 13%;
+}
+
+.td_sum_amount, .td_total_user, .td_img {
+	text-align: center;
+}
+
+.th_device_name {
+	width: 40%;
 }
 
 .td_btn {
-	border    : 1px solid black;
+	border: 1px solid black;
 	text-align: center;
-	width     : 280px;
+	width: 280px;
 }
 
-.th_user_name,
-.th_inp_pass,
-.th_email {
+.th_user_name, .th_inp_pass, .th_email {
 	width: 20%;
 }
 
 .th_avatar {
-	width     : 11%;
+	width: 11%;
 	text-align: center;
 }
 
-.th_del,
-.th_admin {
+.th_del, .th_admin {
 	width: 5%;
 }
 
 .th_func_acc {
-	width     : 10%;
+	width: 10%;
 	text-align: center;
 }
 
+.th_reason {
+	width: 20%;
+}
 
-.td_avatar,
-.td_admin,
-.td_del {
+.th_user {
+	width: 15%;
+}
+
+.th_pay_date, .th_loan_date {
+	width: 10%;
+}
+
+.td_avatar, .td_admin, .td_del {
 	text-align: center;
 }
 
@@ -114,70 +136,68 @@
 
 .tbl_second th {
 	background-color: #2196F3;
-	color           : white;
+	color: white;
 }
 
 .txt_find {
-	padding      : 6px 8px;
+	padding: 6px 8px;
 	margin-bottom: 8px;
-	margin-right : 26px;
+	margin-right: 26px;
 }
 
 .btnAdd {
-	box-shadow      : inset 0px 1px 0px 0px #caefab;
-	background      : linear-gradient(to bottom, #77d42a 5%, #5cb811 100%);
+	box-shadow: inset 0px 1px 0px 0px #caefab;
+	background: linear-gradient(to bottom, #77d42a 5%, #5cb811 100%);
 	background-color: #77d42a;
-	border-radius   : 6px;
-	border          : 1px solid #268a16;
-	display         : inline-block;
-	cursor          : pointer;
-	color           : #306108;
-	font-family     : Arial;
-	font-size       : 15px;
-	font-weight     : bold;
-	padding         : 6px 15px;
-	text-decoration : none;
-	text-shadow     : 0px 1px 0px #aade7c;
+	border-radius: 6px;
+	border: 1px solid #268a16;
+	display: inline-block;
+	cursor: pointer;
+	color: #306108;
+	font-family: Arial;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 6px 15px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #aade7c;
 }
 
 .btnAdd:hover {
-	background      : linear-gradient(to bottom, #5cb811 5%, #77d42a 100%);
+	background: linear-gradient(to bottom, #5cb811 5%, #77d42a 100%);
 	background-color: #5cb811;
 }
 
 .btnAdd:active {
 	position: relative;
-	top     : 1px;
+	top: 1px;
 }
 
 .btnDetail {
-	box-shadow      : inset 0px 1px 0px 0px #bee2f9;
-	background      : linear-gradient(to bottom, #63b8ee 5%, #468ccf 100%);
+	box-shadow: inset 0px 1px 0px 0px #bee2f9;
+	background: linear-gradient(to bottom, #63b8ee 5%, #468ccf 100%);
 	background-color: #63b8ee;
-	border-radius   : 6px;
-	border          : 1px solid #3866a3;
-	display         : inline-block;
-	cursor          : pointer;
-	color           : #14396a;
-	font-family     : Arial;
-	font-size       : 15px;
-	font-weight     : bold;
-	padding         : 6px 15px;
-	text-decoration : none;
-	text-shadow     : 0px 1px 0px #7cacde;
+	border-radius: 6px;
+	border: 1px solid #3866a3;
+	display: inline-block;
+	cursor: pointer;
+	color: #14396a;
+	font-family: Arial;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 6px 15px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #7cacde;
 }
 
 .btnDetail:hover {
-	background      : linear-gradient(to bottom, #468ccf 5%, #63b8ee 100%);
+	background: linear-gradient(to bottom, #468ccf 5%, #63b8ee 100%);
 	background-color: #468ccf;
 }
 
 .btnDetail:active {
 	position: relative;
-	top     : 1px;
+	top: 1px;
 }
-
-
 
 .fl {
 	float: left;
@@ -187,87 +207,86 @@
 	float: right;
 }
 
-
 .btnDel {
-	box-shadow      : inset 0px 1px 0px 0px #f5978e;
-	background      : linear-gradient(to bottom, #f24537 5%, #c62d1f 100%);
+	box-shadow: inset 0px 1px 0px 0px #f5978e;
+	background: linear-gradient(to bottom, #f24537 5%, #c62d1f 100%);
 	background-color: #f24537;
-	border-radius   : 6px;
-	border          : 1px solid #d02718;
-	display         : inline-block;
-	cursor          : pointer;
-	color           : #ffffff;
-	font-family     : Arial;
-	font-size       : 15px;
-	font-weight     : bold;
-	padding         : 6px 15px;
-	text-decoration : none;
-	text-shadow     : 0px 1px 0px #810e05;
-	margin-top      : 10px;
+	border-radius: 6px;
+	border: 1px solid #d02718;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 6px 15px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #810e05;
+	margin-top: 10px;
 }
 
 .btnDel:hover {
-	background      : linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);
+	background: linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);
 	background-color: #c62d1f;
 }
 
 .btnDel:active {
 	position: relative;
-	top     : 1px;
+	top: 1px;
 }
 
 .btnEdit {
-	box-shadow      : inset 0px 1px 0px 0px #97c4fe;
-	background      : linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
+	box-shadow: inset 0px 1px 0px 0px #97c4fe;
+	background: linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
 	background-color: #3d94f6;
-	border-radius   : 6px;
-	border          : 1px solid #337fed;
-	display         : inline-block;
-	cursor          : pointer;
-	color           : #ffffff;
-	font-family     : Arial;
-	font-size       : 15px;
-	font-weight     : bold;
-	padding         : 6px 24px;
-	text-decoration : none;
-	text-shadow     : 0px 1px 0px #1570cd;
+	border-radius: 6px;
+	border: 1px solid #337fed;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 6px 24px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #1570cd;
 }
 
 .btnEdit :hover {
-	background      : linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+	background: linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
 	background-color: #1e62d0;
 }
 
 .btnEdit :active {
 	position: relative;
-	top     : 1px;
+	top: 1px;
 }
 
 .pagination {
 	list-style-type: none;
-	margin         : 0;
-	padding        : 0;
-	border         : 1px solid #ccc;
-	overflow       : auto;
-	display        : inline-block;
-	border-radius  : 5px;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #ccc;
+	overflow: auto;
+	display: inline-block;
+	border-radius: 5px;
 }
 
 .pagination li {
-	float           : left;
+	float: left;
 	background-color: #fff;
 }
 
 .pagination li a {
-	height         : 36px;
-	width          : 36px;
-	line-height    : 36px;
-	display        : block;
-	color          : #444;
-	text-align     : center;
+	height: 36px;
+	width: 36px;
+	line-height: 36px;
+	display: block;
+	color: #444;
+	text-align: center;
 	text-decoration: none;
-	font-size      : 16px;
-	border-left    : 1px solid #ccc;
+	font-size: 16px;
+	border-left: 1px solid #ccc;
 }
 
 .pagination li a:hover {
@@ -276,25 +295,25 @@
 
 .pagination li a.active {
 	background: #004990;
-	color     : #fff;
+	color: #fff;
 }
 
 .pagination .disabled {
-	opacity       : 0.5;
+	opacity: 0.5;
 	pointer-events: none;
 }
 
 .pg_nd {
 	text-align: center;
-	width     : 100%;
+	width: 100%;
 }
 
 .not_found {
-	width           : 1000px;
-	text-align      : center;
-	font-size       : 50px;
-	height          : 50px;
+	width: 1000px;
+	text-align: center;
+	font-size: 50px;
+	height: 50px;
 	background-color: #fffefd;
-	color           : #333;
-	letter-spacing  : .1em;
+	color: #333;
+	letter-spacing: .1em;
 }

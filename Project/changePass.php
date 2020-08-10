@@ -28,7 +28,7 @@ if (!mysqli_num_rows($result_check)) {
     header("location: index.php");
 }
 
-$sql_check_time_token = "SELECT * FROM t_account WHERE email = '$email' AND token = '$token' AND admin_flg = 0 AND del_flg = 0 AND ADDTIME(update_datetime,'0:05:00') > CURRENT_TIMESTAMP()";
+$sql_check_time_token = "SELECT * FROM t_account WHERE email = '$email' AND token = '$token' AND admin_flg = 0 AND del_flg = 0 AND time_token > CURRENT_TIMESTAMP()";
 $result_time_token = mysqli_query($connect, $sql_check_time_token) or die("Lỗi truy vấn");
 
 if (!mysqli_num_rows($result_time_token)) {
@@ -37,7 +37,7 @@ if (!mysqli_num_rows($result_time_token)) {
 } else {
     if (isset($_POST['changPass'])) {
         $pass = $_POST['inpPass'];
-        $sqlUpdPass = "UPDATE t_account SET password = '$pass', update_datetime = CURRENT_TIMESTAMP() WHERE email = '$email' AND token = '$token' AND admin_flg = 0 AND del_flg = 0";
+        $sqlUpdPass = "UPDATE t_account SET password = '$pass', update_datetime = CURRENT_TIMESTAMP(), time_token=CURRENT_TIMESTAMP() WHERE email = '$email' AND token = '$token' AND admin_flg = 0 AND del_flg = 0";
         $result_UpdPass = mysqli_query($connect, $sqlUpdPass) or die("Lỗi truy vấn");
 
         if (!$result_UpdPass) {

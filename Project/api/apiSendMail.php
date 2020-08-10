@@ -4,8 +4,7 @@ require('../config/router.php');
 require(SITE_API_CONFIG);
 $to =  trim($_POST['mail']);
 $subject = 'Link đổi mật khẩu';
-// mb_internal_encoding('UTF-8');
-// $encoded_subject = mb_encode_mimeheader($subject, 'UTF-8', 'B', "\r\n", strlen('Subject: '));
+
 $encoded_subject = mb_encode_mimeheader($subject,"UTF-8");
 
 $from = 'shadowin1811@gmail.com';
@@ -27,14 +26,15 @@ $message = "
 $sql_select_mail = "SELECT * FROM t_account WHERE email = '$to' AND admin_flg = 0 AND del_flg = 0";
 $result_select_mail = mysqli_query($connect, $sql_select_mail) or die("Lỗi truy vấn");
 
+
 if (!mysqli_num_rows($result_select_mail)) {
     echo false;
 } else {
 
-    $sqlUPD = "UPDATE t_account SET token = '$token', update_datetime = CURRENT_TIMESTAMP() WHERE email = '$to' AND admin_flg = 0 AND del_flg = 0";
+    $sqlUPD = "UPDATE t_account SET token = '$token', update_datetime = CURRENT_TIMESTAMP(), time_token = ADDTIME(CURRENT_TIMESTAMP(), '00:05:00') WHERE email = '$to' AND admin_flg = 0 AND del_flg = 0";
+
     if (mysqli_query($connect, $sqlUPD)) {
         $success = mail($to, $encoded_subject, $message, $headers);
-
         if ($success) {
             echo true;
         } else {

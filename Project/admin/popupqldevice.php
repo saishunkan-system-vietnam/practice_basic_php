@@ -28,37 +28,36 @@ $result_supplier = mysqli_query($connect, $query_supplier);
                     Chọn hình ảnh
                 </label>
                 <div class='display_img'>
-                    <img id="inpimg" style='width: 150px; height: 130px;' src=''>
+                    <img id="image" style='width: 150px; height: 130px;' src=''>
                 </div>
             </div>
             <p>Thể loại</p>
-            <select id="category" name="category">
+            <input class="inp_category" id="inp_category" type="text"/>
+            <select id="category" name="category" onchange="setcategory()">
                 <?php while ($row = mysqli_fetch_assoc($result_category)) {
                 ?>
-                    <option id="opt_category" value=" <?php echo $row['id']; ?> ">
+                    <option value=" <?php echo $row['id']; ?> ">
                         <?php echo $row['category_name']; ?>
                     </option>
                 <?php
                 }
                 ?>
             </select>
-            
+
             <div>
             </div>
             <p>Nhà cung cấp</p>
-            <select id="supplier" name="supplier">
+            <input class="inp_supplier" id="inp_supplier" type="text"/>
+            <select id="supplier" name="supplier" onchange="setsupplier()">
                 <?php while ($row = mysqli_fetch_assoc($result_supplier)) {
                 ?>
-                    <option id="opt_supplier" value=" <?php echo $row['id']; ?> ">
+                    <option value=" <?php echo $row['id']; ?> ">
                         <?php echo $row['supplier_name']; ?>
                     </option>
                 <?php
                 }
                 ?>
             </select>
-            
-
-
             <div class="info">
                 <label>Thông tin chi tiết</label>
                 <textarea id="inpinfo" cols="45" rows="5">

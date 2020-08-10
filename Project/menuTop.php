@@ -51,7 +51,7 @@ require(SITE_CONFIG);
         echo "</div>";
         if (isset($_SESSION['admin_flg'])) {
             echo "<div class='admin_flg'>";
-            echo "<button id='admin_flg' onclick=" . "location.href='./" . SITE_QLDEVICE . "' value='ADMIN'>ADMIN</button>";
+            echo "<button id='admin_flg' onclick=" . "location.href='./" . SITE_DASHBOARD_TO . "' value='ADMIN'>ADMIN</button>";
             echo "</div>";
         }
         echo "<div style='float: right;'>";
@@ -66,7 +66,7 @@ require(SITE_CONFIG);
         echo "</div>";
         if (isset($_SESSION['admin_flg'])) {
             echo "<div class='admin_flg'>";
-            echo "<button id='admin_flg' onclick=" . "location.href='./" . SITE_QLDEVICE . "' value='ADMIN'>ADMIN</button>";
+            echo "<button id='admin_flg' onclick=" . "location.href='./" . SITE_DASHBOARD_TO . "' value='ADMIN'>ADMIN</button>";
             echo "</div>";
         }
         echo "<div style='float: right;'>";

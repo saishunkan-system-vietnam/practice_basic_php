@@ -36,12 +36,13 @@ if ($name == 'insert') {
 }
 
 if ($name == 'update') {
-    $deviceId = isset($_POST['deviceId']) ? trim($_POST['deviceId']) : '';
-    $devicename =  isset($_POST['devicename']) ? trim($_POST['devicename']) : '';
-    $idcategory = isset($_POST['idcategory']) ? trim($_POST['idcategory']) : '';
-    $idsupplier = isset($_POST['idsupplier']) ?  trim($_POST['idsupplier']) : '';
-    $inpimg = isset($_POST['inpimg']) ? trim($_POST['inpimg']) : '';
-    $info = isset($_POST['info']) ? trim($_POST['info']) : '';
+
+    $deviceId = trim($_POST['deviceId']);
+    $devicename = trim($_POST['devicename']);
+    $idcategory = trim($_POST['idcategory']);
+    $idsupplier =trim($_POST['idsupplier']);
+    $inpimg = trim($_POST['inpimg']);
+    $info = trim($_POST['info']);
 
     $sql_Update_device = "UPDATE t_device SET device_name='$devicename', id_category=$idcategory, id_supplier=$idsupplier, img='$inpimg', info='$info', update_datetime=CURRENT_TIMESTAMP() WHERE id=$deviceId";
     $result_Update = mysqli_query($connect, $sql_Update_device) or die("lỗi truy vấn update");

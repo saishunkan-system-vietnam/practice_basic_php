@@ -4,7 +4,7 @@ require('../config/router.php');
 require(SITE_API_CONFIG);
 include(SITE_MENULEFT);
 include(SITE_POPUPDEVICE);
-include(SITE_TOPNAV); 
+include(SITE_TOPNAV);
 
 ?>
 <!DOCTYPE html>
@@ -38,9 +38,10 @@ include(SITE_TOPNAV);
     }
 
     $start = ($current_page - 1) * $limit;
+    $stt = ($current_page - 1) * $limit + 1;
 
     $sql_select_ds = "SELECT td.id, td.device_name, tc.category_name, ts.supplier_name, td.img 
-                    FROM t_category tc INNER JOIN t_device td ON tc.id = td.id_category 
+                      FROM t_category tc INNER JOIN t_device td ON tc.id = td.id_category 
                                        INNER JOIN t_supplier ts on ts.id = td.id_supplier 
                     WHERE td.del_flg = 0 AND device_name LIKE '%{$content}%' ORDER BY td.create_datetime DESC LIMIT $start, $limit ";
     $result = mysqli_query($connect, $sql_select_ds);
@@ -51,8 +52,8 @@ include(SITE_TOPNAV);
         var site = "device";
     </script>
     <div class="content">
-        
-        <div class="div_tbl tbl_admin">
+
+        <div>
             <div class="header">
                 <button class="btnAdd btn fl" name="btnAdd"><i class="fa fa-plus-circle"></i> ADD</button>
                 <button id="btnSearch" name='btnSearch' class="btnAdd btn fr"><i class="fa fa-search"></i> SEARCH</button>
@@ -61,6 +62,7 @@ include(SITE_TOPNAV);
 
             <table class="tbl_second" align="center">
                 <tr>
+                    <th class="th_second th_stt">STT</th>
                     <th class="th_second th_devicename">Tên Thiết bị</th>
                     <th class="th_second th_category">Thể loại</th>
                     <th class="th_second th_supplier">Nhà cung cấp</th>
@@ -70,13 +72,16 @@ include(SITE_TOPNAV);
                 <?php
                 if (!$result) : ?>
                     <tr>
-                        <td class="td_second not_found" colspan="5">
+                        <td class="td_second not_found" colspan="6">
                             <?php echo "Could Not Found!" ?>
                         </td>
                     </tr>
                     <?php else :
                     while ($row = mysqli_fetch_assoc($result)) : ?>
                         <tr>
+                            <td class="td_second td_stt">
+                                <?php echo $stt; ?>
+                            </td>
                             <td class="td_second td_devicename">
                                 <?php echo $row['device_name']; ?>
                             </td>
@@ -100,7 +105,8 @@ include(SITE_TOPNAV);
                                 </button>
                             </td>
                         </tr>
-                <?php endwhile;
+                <?php $stt++;
+                    endwhile;
                 endif; ?>
 
             </table>
@@ -115,21 +121,21 @@ include(SITE_TOPNAV);
                 }
 
                 if ($current_page > 1 && $total_page > 1) {
-                    echo '<div><li><a href="' . SITE_QLDEVICE_UADMIN . '?page=1"><<</a></li><li><a href="' . SITE_QLDEVICE_UADMIN . '?page=' . ($current_page - 1) . '"><</a></li>';
+                    echo '<div><li><a href="' . SITE_QLDEVICE . '?page=1"><<</a></li><li><a href="' . SITE_QLDEVICE . '?page=' . ($current_page - 1) . '"><</a></li>';
                 } else {
                     echo '<div><li><a class="disabled" href="#"><<</a></li> <li><a class="disabled" href="#"><</a></li>';
                 }
 
                 for ($i = 1; $i <= $total_page; $i++) {
                     if ($i == $current_page) {
-                        echo '<li><a class="active" href=" ' . SITE_QLDEVICE_UADMIN . '?page=' . $i . '">' . $i . '</a></li>';
+                        echo '<li><a class="active" href=" ' . SITE_QLDEVICE . '?page=' . $i . '">' . $i . '</a></li>';
                     } else {
-                        echo '<li><a href="' . SITE_QLDEVICE_UADMIN . '?page=' . $i . '">' . $i . '</a></li>';
+                        echo '<li><a href="' . SITE_QLDEVICE . '?page=' . $i . '">' . $i . '</a></li>';
                     }
                 }
 
                 if ($current_page < $total_page && $total_page > 1) {
-                    echo '<li><a href="' . SITE_QLDEVICE_UADMIN . '?page=' . ($current_page + 1) . '">></a></li><li><a href="' . SITE_QLDEVICE_UADMIN . '?page=' . $total_page . '">>></a></li>';
+                    echo '<li><a href="' . SITE_QLDEVICE . '?page=' . ($current_page + 1) . '">></a></li><li><a href="' . SITE_QLDEVICE . '?page=' . $total_page . '">>></a></li>';
                 } else {
                     echo  '<li><a class="disabled" href="#">></a></li><li><a class="disabled" href="#">>></a></li>';
                 }

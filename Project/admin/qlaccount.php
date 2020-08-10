@@ -5,7 +5,6 @@ require(SITE_API_CONFIG);
 include(SITE_MENULEFT);
 include(SITE_POPUPACCOUNT);
 include(SITE_TOPNAV);
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,7 +12,7 @@ include(SITE_TOPNAV);
 <head>
     <link rel="stylesheet" href=<?= LINK_JQUERY_AWESOM ?>>
     <link rel="stylesheet" href=<?= FILE_CSS_QLTHIETBI ?>>
-    <title>Quản lý thiết bị</title>
+    <title>Quản lý Account</title>
 </head>
 
 <body>
@@ -37,6 +36,7 @@ include(SITE_TOPNAV);
     }
 
     $start = ($current_page - 1) * $limit;
+    $stt = ($current_page - 1) * $limit + 1;
 
     $sql_select_acc = "SELECT * FROM t_account WHERE del_flg=0 AND user_name LIKE '%{$content}%' ORDER BY create_datetime DESC LIMIT $start, $limit ";
     $result_acc = mysqli_query($connect, $sql_select_acc);
@@ -48,7 +48,7 @@ include(SITE_TOPNAV);
     </script>
     <div class="content">
 
-        <div class="div_tbl tbl_admin">
+        <div>
             <div class="header">
                 <button class="btnAdd btn_admin fl" name="btnAdd"><i class="fa fa-plus-circle"></i> ADD</button>
                 <button id="btnSearch" name='btnSearch' class="btnAdd btn fr"><i class="fa fa-search"></i> SEARCH</button>
@@ -57,6 +57,7 @@ include(SITE_TOPNAV);
 
             <table class="tbl_second">
                 <tr>
+                    <th class="th_second th_stt">STT</th>
                     <th class="th_second th_user_name">User name</th>
                     <th class="th_second th_inp_pass">Password</th>
                     <th class="th_second th_email">Email</th>
@@ -67,13 +68,16 @@ include(SITE_TOPNAV);
                 <?php
                 if (!$result_acc) : ?>
                     <tr>
-                        <td class="td_second not_found" colspan="6">
+                        <td class="td_second not_found" colspan="7">
                             <?php echo "Could Not Found!" ?>
                         </td>
                     </tr>
                     <?php else :
                     while ($row = mysqli_fetch_assoc($result_acc)) : ?>
                         <tr>
+                            <td class="td_second td_stt">
+                                <?php echo $stt; ?>
+                            </td>
                             <td class="td_second td_user_name">
                                 <?php echo $row['user_name']; ?>
                             </td>
@@ -84,11 +88,11 @@ include(SITE_TOPNAV);
                                 <?php echo $row['email']; ?>
                             </td>
                             <td class="td_second td_avatar">
-                                <?php !empty($row['avatar']) ? $row['avatar'] : $row['avatar'] = "img_null.jpg";
+                                <?php !empty($row['avatar']) ? $row['avatar'] : $row['avatar'] = "avatar_null.png";
                                 echo "<img style='width: 150px; height: 130px;' src='../img/" . $row['avatar'] . "'>" ?>
                             </td>
                             <td class="td_second td_admin">
-                                <input class="checkbox" type="checkbox" id="admin<?= $row['id']; ?>" data-id="<?= $row['id']; ?>" data-name="<?= $row['user_name']; ?>" <?php echo !$row['admin_flg'] == 0 ? "checked" : ""; ?>>
+                                <input class="checkbox" type="checkbox" name="admin" id="admin<?= $row['id']; ?>" data-id="<?= $row['id']; ?>" data-name="<?= $row['user_name']; ?>" <?php echo !$row['admin_flg'] == 0 ? "checked" : ""; ?>>
                             </td>
                             <td class="td_btn">
                                 <button class="btnEdit btn_admin" aria-hidden="true" name="btnEdit" id="btnEdit<?= $row['id']; ?>" data-id="<?= $row['id']; ?>" value="EDIT">
@@ -100,7 +104,7 @@ include(SITE_TOPNAV);
                                 </button>
                             </td>
                         </tr>
-                <?php endwhile;
+                <?php $stt++; endwhile;
                 endif; ?>
 
             </table>

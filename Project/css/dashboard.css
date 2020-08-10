@@ -1,0 +1,34 @@
+.flex-container {
+    display: flex;
+    margin-top: 5%;
+    width: 90%;
+}
+
+.flex-container>div {
+    color: #fff;
+    width: 90%;
+    margin: 10px;
+    padding: 20px;
+    font-size: 30px;
+}
+
+label {
+    float: right;
+    font-size: 50px;
+}
+
+.acc {
+    background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+}
+
+.acc_loan {
+    background-image: linear-gradient(to bottom, #00b09b, #96c93d) !important;
+}
+
+.device {
+    background-image: radial-gradient(circle 248px at center, #a1c4fd  0%, #30c7ec 47%, #46aef7 100%) !important;
+}
+
+.device_loan {
+    background-image: linear-gradient(to right, #434343 0%, black 100%) !important;
+}

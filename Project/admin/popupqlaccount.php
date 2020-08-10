@@ -14,24 +14,24 @@
             <div class="devicename">
                 <p>User Name</p>
                 <input class="inpdevice" id="inpUser" type="text" name='inpUser' placeholder="Enter User name" oninput="checkUsername()" required >
-                <span hidden id="deviceId"></span>
+                <span hidden id="id_account"></span>
             </div>
 
             <div class="devicename">
                 <p>Password</p>
-                <input class="inpdevice" id="inpPass" type="password" name='inpPass' placeholder="Enter Password name" required pattern=<?= PATTERN_PASSWORD?>/>
+                <input class="inpdevice" id="inpPass" type="password" name='inpPass' placeholder="Enter Password" required pattern=<?= PATTERN_PASSWORD?>/>
             </div>
             <div class="devicename">
                 <p>Confirm Password</p>
-                <input class="inpdevice" id="inpRePass" type="password" name='inpRePass' placeholder="Enter Confirm Password name" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required/>
+                <input class="inpdevice" id="inpRePass" type="password" name='inpRePass' placeholder="Enter Confirm Password" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required/>
             </div>
             <div class="devicename">
                 <p>Email</p>
-                <input class="inpdevice" id="inpEmail" type="text" name='inpEmail' placeholder="Enter Email name"  oninput="checkEmail()" required pattern=<?= PATTERN_EMAIL?>/>
+                <input class="inpdevice" id="inpEmail" type="text" name='inpEmail' placeholder="Enter Email"  oninput="checkEmail()" required pattern=<?= PATTERN_EMAIL?>/>
             </div>
             <div class="devicename">
                 <p>Address</p>
-                <input class="inpdevice" id="inpaddress" type="text" name='inpaddress' placeholder="Enter Address name"/>
+                <input class="inpdevice" id="inpaddress" type="text" name='inpaddress' placeholder="Enter Address"/>
             </div>
             <div style="text-align: center;">
                 <label class="custom-file-upload">
@@ -39,7 +39,7 @@
                     Avatar
                 </label>
                 <div class='display_img'>
-                    <img id="inpimg" style='width: 150px; height: 130px;' src=''>
+                    <img id="image" style='width: 150px; height: 150px;' src=''>
                 </div>
             </div>
             <button class="btnsave" id="inpSub">SAVE</button>

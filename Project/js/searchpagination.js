@@ -4,13 +4,19 @@ $(document).on('click', '#btnSearch', function () {
         cnt = "&content=" + $.trim($("#inpSearch").val());
     }
     let newhref;
-    switch (site)
-    {
+    console.log(id);
+    switch (site) {
         case "account":
             newhref = "./qlaccount.php?page=" + 1 + cnt;
             break;
         case "device":
-            newhref = "./qlthietbi.php?page=" + 1 + cnt;
+            newhref = "./qldevice.php?page=" + 1 + cnt;
+            break;
+        case "loan":
+            newhref = "./qlloan.php?page=" + 1 + cnt;
+            break;
+        case "userloan":
+            newhref = "./userloan.php?id=" + id + "&page=" + 1 + cnt;
             break;
     }
     window.location.href = newhref;

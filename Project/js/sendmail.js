@@ -53,7 +53,7 @@ $(document).ready(function () {
                 },
                 success: function (data) {
                     if (data == true) {
-                        alert("Thành công! Link lấy lại mật khẩu đã được gửi vào mail bạn");
+                        alert("Thành công! Link lấy lại mật khẩu đã được gửi vào mail bạn. Chú ý: Thời hạn đổi mật của bạn là 5 phút");
                     }
                     else {
                         alert("Email khôi phục không chính xác vui lòng nhập lại");
