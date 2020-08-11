@@ -166,24 +166,4 @@ $(document).ready(function() {
         $(".warpper-survey").css("visibility", "hidden");
         $(".container-survey").css("display", "none");
     });
-
-    // $(".pagination").on("click", "a", function(e) {
-    //     e.preventDefault();
-    //     var page = $(this).text(),
-    //         currentPage = parseInt($(".pagination li a.active").text());
-
-    //     if (page == "<<") {
-    //         var newPage = 1;
-    //     } else if (page == ">>") {
-    //         var newPage = totalPages;
-    //     } else if (page == "<") {
-    //         var newPage = currentPage - 1;
-    //     } else if (page == ">") {
-    //         var newPage = currentPage + 1;
-    //     } else {
-    //         var newPage = parseInt(page);
-    //     }
-
-    //     return true;
-    // });
 });

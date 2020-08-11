@@ -1,5 +1,4 @@
 <?
-
 define('BASE_PATH',dirname(__FILE__,2));
 
 // URL SITE
@@ -27,6 +26,7 @@ define('FILE_CSS_SURVEY_MANAGER',SITE_URL.'/css/survey_manager.css');
 define('FILE_CSS_STATISTIC',SITE_URL.'/css/statistic.css');
 define('FILE_CSS_FORGOT_PASS',SITE_URL.'/css/forgotpass.css');
 define('FILE_CSS_CHANGE_PASS',SITE_URL.'/css/changepass.css');
+define('FILE_CSS_ADMIN',SITE_URL.'/css/admin.css');
 
 //JS
 define('FILE_JS_LOGIN',SITE_URL.'/js/login.js');
@@ -37,6 +37,7 @@ define('FILE_JS_LISTSURVEY',SITE_URL.'/js/listsurvey.js');
 define('FILE_JS_SVMANAGER',SITE_URL.'/js/sv_manager.js');
 define('FILE_JS_FORGOT_PASS',SITE_URL.'/js/forgotpass.js');
 define('FILE_JS_CHANGE_PASS',SITE_URL.'/js/changepass.js');
+define('FILE_JS_MANAGER',SITE_URL.'/js/manager.js');
 
 //LIB
 define('FILE_LIB_LOGIN',BASE_PATH.'/lib/login_ajax.php');
@@ -45,6 +46,7 @@ define('FILE_LIB_HOME',BASE_PATH.'/js/home_ajax.php');
 
 // IMAGE
 define('FILE_IMG_LOGO',SITE_URL."/image/logo.png");
+define('FILE_IMG_BANNER',SITE_URL."/image/banner.jpg");
 
 //CONFIG
 define('FILE_CONFIG',BASE_PATH.'/config/config.php');

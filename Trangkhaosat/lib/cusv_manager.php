@@ -29,20 +29,10 @@ require("../config/config.php");
                     $conn->query($sql);
                     
                     foreach ($lst as $item) {
-                        // if($item[0]['del_flg']== 1)
-                        // {
-                        //     continue;
-                        // }
-                        // else
-                        // {
-                            $id_dtl = $item['id'];
-                            $content = $item['cnt_asw'];
-                            // if($item[0]['del_flg'] == "0")
-                            // {
-                                $sql = "INSERT INTO t_surveydtl(id, id_hdr, answer) VALUES('{$id_dtl}', '{$id_hdr}', '{$content}')";
-                            // }
+                        $id_dtl = $item['id'];
+                        $content = $item['cnt_asw'];
+                        $sql = "INSERT INTO t_surveydtl(id, id_hdr, answer) VALUES('{$id_dtl}', '{$id_hdr}', '{$content}')";
                         $conn->query($sql);
-                        // }
                     }
                 }
                 else if($stt == "Upd")
@@ -52,8 +42,6 @@ require("../config/config.php");
 
                     $conn->query($sql);
 
-
-                    //cnt_asw; "id": id, "db": "0",upd_flg "del_flg": "0"
                     foreach ($lst as $item) {
                
                             $id_dtl = $item['id'];
@@ -69,7 +57,6 @@ require("../config/config.php");
                                     if($item['upd_flg'] =="1")
                                     {
                                         $sql = "UPDATE t_surveydtl SET answer = '{$content}'WHERE id = '{$id_dtl}'";
-                                        // die $sql;
                                     }
                                 }
                             }

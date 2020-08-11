@@ -15,32 +15,32 @@
 
     if(isset($_POST['getInfoSurvey']) && isset($_POST['id']))
     {  
-            $id = $_POST['id'];
+        $id = $_POST['id'];
 
-            $sql = "SELECT hdr.content, dt.answer, hdr.id_multi, hdr.id as id_hdr, dt.id as id_dtl, dt.sl_asw, dt.id_asw \n"
-                ."FROM t_surveyhdr hdr \n" 
-                ."LEFT JOIN \n"
-                ."( \n"
-                ."SELECT IFNULL(asw.id,'N/A') as id_asw, dt.id, dt.stt, dt.id_hdr, dt.answer, CASE WHEN asw.id is null then 0 else 1 END as sl_asw \n"
-                ."FROM t_surveydtl dt \n"
-                ."LEFT JOIN t_answer asw on dt.id = asw.id_dtl and asw.del_flg = 0 and asw.usr_id = '{$uid}' \n"
-                ."where dt.del_flg = 0\n"
-                .") \n"
-                ."dt on hdr.id = dt.id_hdr\n"
-                ."where hdr.del_flg = 0 and hdr.id_multi = '{$id}'
-                ORDER BY hdr.stt,  dt.stt";
+        $sql = "SELECT hdr.content, dt.answer, hdr.id_multi, hdr.id as id_hdr, dt.id as id_dtl, dt.sl_asw, dt.id_asw \n"
+            ."FROM t_surveyhdr hdr \n" 
+            ."LEFT JOIN \n"
+            ."( \n"
+            ."SELECT IFNULL(asw.id,'N/A') as id_asw, dt.id, dt.stt, dt.id_hdr, dt.answer, CASE WHEN asw.id is null then 0 else 1 END as sl_asw \n"
+            ."FROM t_surveydtl dt \n"
+            ."LEFT JOIN t_answer asw on dt.id = asw.id_dtl and asw.del_flg = 0 and asw.usr_id = '{$uid}' \n"
+            ."where dt.del_flg = 0\n"
+            .") \n"
+            ."dt on hdr.id = dt.id_hdr\n"
+            ."where hdr.del_flg = 0 and hdr.id_multi = '{$id}'
+            ORDER BY hdr.stt,  dt.stt";
 
-            $result = $conn->query($sql);
+        $result = $conn->query($sql);
 
-            if ($result->num_rows > 0)
+        if ($result->num_rows > 0)
+        {
+            while( $data = $result->fetch_assoc()) 
             {
-                while( $data = $result->fetch_assoc()) 
-                {
-                    $myJSON[count($myJSON)] = $data;
-                }  
-            header('Content-Type: application/json');  
-            echo json_encode($myJSON);
-            }
+                $myJSON[count($myJSON)] = $data;
+            }  
+        header('Content-Type: application/json');  
+        echo json_encode($myJSON);
+        }
     }
 
     if(isset($_POST['GetIndexSvMulti']) && isset($_POST['id_multi']))
@@ -53,7 +53,6 @@
         if ($result->num_rows > 0)
         {
             $data = $result->fetch_assoc();
-
             echo  ($data['result']);
         }
     }
@@ -76,14 +75,13 @@
             echo $result_upd;
         }
         else
-        {
-            
-                
+        {   
             $sql = "INSERT INTO t_answer(id, id_hdr ,id_dtl, usr_id) VALUES ('{$id}','{$id_hdr}','{$id_dtl}','{$uid}')";
             $result = $conn->query($sql);
             echo $result;
         }
             
     }
+    
     DisconnectDB($conn);
 ?>

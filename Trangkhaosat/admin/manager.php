@@ -17,7 +17,7 @@ require_once(FILE_CONFIG);
     
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-    <link rel="stylesheet" href="../css/admin.css?" <?time()?>>
+    <link rel="stylesheet" href="<?= FILE_CSS_ADMIN?>">
     <link rel="stylesheet" href="<?= FILE_CSS_SURVEY_MANAGER?>">
     <link rel="stylesheet" href="<?= FILE_CSS_STATISTIC?>">
     <link rel="stylesheet" href="<?= FILE_CSS_REGIST?>">
@@ -153,10 +153,9 @@ require_once(FILE_CONFIG);
         </div>
         <script src="<?= FILE_JS_SVMANAGER?>"></script>
         <script src="<?= FILE_JS_COMMON?>"></script>
-        <script src="<?= '../js/manager.js'?>"></script>
+        <script src="<?= FILE_JS_MANAGER?>"></script>
         <script>
         google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
         </script>
 </body>
 

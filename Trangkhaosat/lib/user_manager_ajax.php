@@ -1,5 +1,4 @@
 <?
-
 require("../config/config.php");
 
     $conn = ConnectDB();
@@ -56,11 +55,5 @@ require("../config/config.php");
         } 
     }
 
-    else
-    {
-
-    }
-    
     DisconnectDB($conn);
-
 ?>

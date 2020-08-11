@@ -9,7 +9,6 @@ $(document).ready(function() {
       $("button").click(function(){
         $("#txt").load("demo_ajax_load.asp");
       });
-      
 
     $(document).on("click", "#btn_run", function() {
         $("#kq_fg").css("display","none");

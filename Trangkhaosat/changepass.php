@@ -17,7 +17,6 @@
 
 <body>
     <?
-
     if(empty($_GET['uid']) && empty($_GET['token']))
     {
         $homepage = "Location: ". SITE_URL;
@@ -48,6 +47,8 @@
             </div>
         </div>
     </div>
+
+    <div class="footer"  style="position: absolute;"><?include_once(FILE_FOOTER)?></div>
     <script>
     var uid = '<?= $uid?>';
     var token = '<?= $token?>';

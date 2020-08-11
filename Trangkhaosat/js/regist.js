@@ -46,7 +46,6 @@ $(document).ready(function() {
     }
 
     function CheckExist() {
-
         var result;
 
         $.ajax({
@@ -64,7 +63,6 @@ $(document).ready(function() {
         });
 
         return result;
-
     }
 
     var form = $(".warpper_regist");

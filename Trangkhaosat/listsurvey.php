@@ -1,19 +1,13 @@
-<?session_start()?>
+<?
+    session_start();
+    require_once('./config/router.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>Danh sách khảo sát</title>
-    <?
-    require_once('./config/router.php');
-    
-    $infoLogin = false;
-    if(!empty($_SESSION['dataLogin'])){        
-        $infoLogin = true;
-    }
-    include_once(FILE_MENU);
-     ?>
 
     <link rel="stylesheet" href=<?= FILE_CSS_STYLESHEET?>>
     <link rel="stylesheet" href=<?= FILE_CSS_LISTSURVEY?>>
@@ -23,6 +17,12 @@
 
 <body>
 <?
+    $infoLogin = false;
+    if(!empty($_SESSION['dataLogin'])){        
+        $infoLogin = true;
+    }
+    include_once(FILE_MENU);
+
     if(isset($_GET['page']))
     {
         $page = $_GET['page'];

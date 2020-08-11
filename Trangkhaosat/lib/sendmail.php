@@ -39,31 +39,27 @@ if(isset($_POST['email']))
                 $result=$conn->query($sql);
 
 
-                $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+                $mail = new PHPMailer(true);
                 try {
-                    //Server settings
-                    $mail->SMTPDebug = 2;                                 // Enable verbose debug output
-                    $mail->isSMTP();                                      // Set mailer to use SMTP
-                    $mail->Host = 'smtp.gmail.com';                       // Specify main and backup SMTP servers
-                    $mail->SMTPAuth = true;                               // Enable SMTP authentication
-                    $mail->Username = 'ssv.survey2020@gmail.com';                 // SMTP username
-                    $mail->Password = 'b9425116a@';                           // SMTP password
-                    $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-                    $mail->Port = 587;                                    // TCP port to connect to
+                    $mail->SMTPDebug = 2;
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.gmail.com';
+                    $mail->SMTPAuth = true;
+                    $mail->Username = 'ssv.survey2020@gmail.com';
+                    $mail->Password = 'b9425116a@';
+                    $mail->SMTPSecure = 'tls';
+                    $mail->Port = 587;
                 
-                    //Recipients
                     $mail->CharSet = 'UTF-8';
                     $mail->setFrom('ssv.survey2020@gmail.com', 'SSV Survey');
-                    $mail->addAddress($toEmail);     // Add a recipient
+                    $mail->addAddress($toEmail);
                 
-                    //Content
-                    $mail->isHTML(true);                                  // Set email format to HTML
+                    $mail->isHTML(true);
                     $mail->Subject = 'Xác nhận lấy lại mật khẩu';
                     $mail->Body    = $content;
                     $mail->AltBody = '';
                 
                     $mail->send();
-                    // echo (0);
                 } catch (Exception $e) {
                     echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
                 }

@@ -54,7 +54,6 @@
             $online = $data['cnt'];
         }
 
-
         $sql="select count(*) as cnt from user_online where user!=''";
         $result=$conn->query($sql);
         

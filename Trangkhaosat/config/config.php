@@ -22,10 +22,9 @@ function GetCookieUid()
   
     if(isset($_COOKIE[COOKIE_NAME]))
     { 
-            //======
-            parse_str($_COOKIE[COOKIE_NAME]);
+      parse_str($_COOKIE[COOKIE_NAME]);
 
-            $result = $uid;
+      $result = $uid;
     }
     return $result;
 }
@@ -36,10 +35,9 @@ function GetCookiePass()
   
     if(isset($_COOKIE[COOKIE_NAME]))
     { 
-            //======
-            parse_str($_COOKIE[COOKIE_NAME]);
+      parse_str($_COOKIE[COOKIE_NAME]);
 
-            $result = $pass;
+      $result = $pass;
     }
     return $result;
 }

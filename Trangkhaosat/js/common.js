@@ -187,7 +187,6 @@ function GetInfoSurvey(id) {
             result = data;
         }
     });
-
     return result;
 }
 
@@ -209,7 +208,6 @@ function CreateReply(id_hdr, id_dtl) {
             result = data;
         }
     });
-
     return result;
 }
 

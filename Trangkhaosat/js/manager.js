@@ -20,7 +20,6 @@ $(document).ready(function() {
             $(this).parent().attr("id", "active");
 
             $('#' + $(this).attr('name')).fadeIn();
-
         }
     });
 });

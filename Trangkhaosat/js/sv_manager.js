@@ -254,7 +254,6 @@ $(document).ready(function() {
                 option = result;
             }
         });
-        lst_asw = [];
         lst_sv = [];
 
         if (status_sv == "Add") {
@@ -393,7 +392,6 @@ $(document).ready(function() {
     });
 
     $(document).on("click", ".btn_ins_asw", function() {
-
         cr_cnt_qs = $(this).attr("name");
 
         if ($.trim($("#txt_aws" + cr_cnt_qs).val()) != "") {
@@ -419,7 +417,6 @@ $(document).ready(function() {
         indextr++;
         var td_asw = "td_" + indextr;
         var tr_asw = "tr_" + indextr;
-
 
         lst_sv[cr_cnt_qs].dtl[indextr] = { "cnt_asw": content, "id": id, "db": db, "upd_flg": 0, "del_flg": 0 };
 
@@ -484,7 +481,6 @@ $(document).ready(function() {
         }
     });
 
-
     $(document).on("click", "#btn_save", function() {
 
         var cnt_hdr = lst_sv.filter(function(item) { return (item.del_flg != 1 || item.db != 0) });
@@ -525,15 +521,12 @@ $(document).ready(function() {
                     },
                     success: function(result) {}
                 });
-
-
             });
 
             GetDataSv(page_sv);
 
             $(".container_ad_svcu").remove();
             $(".list_ad_survey").css("display", "block");
-
         }
     });
 
@@ -549,7 +542,6 @@ $(document).ready(function() {
                 },
                 success: function(result) {
                     GetDataSv(page_sv);
-
                 }
             });
         }
@@ -854,11 +846,9 @@ $(document).ready(function() {
                 alert("Vui lòng điền vào mẫu chính xác");
             }
         }
-
     });
 
     function CheckExist() {
-
         var result;
         $.ajax({
             async: false,
@@ -875,7 +865,6 @@ $(document).ready(function() {
         });
 
         return result;
-
     }
 
     function Save_account() {

@@ -3,9 +3,9 @@
 require("../config/config.php");
 
     $conn = ConnectDB();
-  
-        $myJSON = array();
-        $content = array();
+
+    $myJSON = array();
+    $content = array();
 
     if(isset($_POST["curentpage"]) && isset($_POST["limit"]) && isset($_POST["id_catogery"]) && isset($_POST["fnd_content"]))
     {
