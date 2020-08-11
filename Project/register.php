@@ -1,19 +1,6 @@
 <?php
-    require './config/router.php';
-    require FILE_PHP_CONFIG;
-    echo "ágdjadjsd";
-    $isExists = false;
-
-    if (isset($_GET["email"])) {
-        $email = $_GET["email"];
-        $result = $mysqli->query("SELECT * FROM t_account WHERE id = '$email' AND del_flg = 0 ");
-
-        if ($result->num_rows){
-            $isExists = true;
-        }
-
-        echo $isExists;
-    }
+    require_once './config/router.php';
+    require_once FILE_PHP_CONFIG;
 
     if (isset($_POST["email"])) {
         $name=$_POST["fullname"];
@@ -24,9 +11,12 @@
         $address = $_POST['address'];
         $password = md5($_POST['password']);
 
-        $sqlinsert="INSERT INTO t_account(`fullname`, `password`, `birthday`, `sex`, `phone`, `id`, `address`,`create_datetime`) VALUES ('$name','$password','$bday',$sex,'$phone','$email','$address', CURRENT_TIMESTAMP())";
+        // Kết nối DataBase
+        connect();
 
-        if($mysqli->query($sqlinsert)){
+        $sqlinsert="INSERT INTO t_account(`fullname`, `password`, `birthday`, `sex`, `phone`, `id`, `address`,`create_datetime`) VALUES ('$name','$password','$bday',$sex,'$phone','$email','$address', CURRENT_TIMESTAMP())";
+        $result = $conn->query($sqlinsert);
+        if($result){
             echo json_encode(['status'=>'success']);
         }else{
             echo json_encode(['status'=>'error']);
@@ -34,5 +24,5 @@
     }
 
     // Đóng kết nối
-    $mysqli -> close();
+    disconnect();
 ?>

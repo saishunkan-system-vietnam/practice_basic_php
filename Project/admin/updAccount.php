@@ -1,5 +1,6 @@
 <?php 
-    require '../config/config.php';
+    require_once '../config/router.php';
+    require_once FILE_PHP_CONFIG;
 
     if (isset($_POST["id"]) && isset($_POST["fullname"]) && isset($_POST["sex"]) && isset($_POST["bday"])
     && isset($_POST["phone"]) && isset($_POST["address"]) ) {
@@ -11,9 +12,12 @@
         $address = $_POST["address"];
         $role = $_POST["role"];
 
+        // Kết nối DataBase
+        connect();
+
         // update dữ liệu
         $sql = "UPDATE t_account SET fullname ='$fullname', sex =$sex , birthday = '$bday', phone = '$phone', address = '$address',  role =$role WHERE id = '$id'";
-        $result = $mysqli->query($sql); 
+        $result = $conn->query($sql); 
         if ($result) {
             echo json_encode(['status'=>'success']);
         }
@@ -23,6 +27,6 @@
     }
     
     // Đóng kết nối
-    $mysqli -> close();
+    disconnect();
 
 ?>

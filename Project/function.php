@@ -1,86 +1,5 @@
 <?php
 
-function checkPrivilege($uri = false) {
-    $uri = $uri != false ? $uri : $_SERVER['REQUEST_URI'];
-    $privileges = $_SESSION['current_user']['privileges'];
-    $privileges = implode("|", $privileges);
-    preg_match('/dashboard\.php$|' . $privileges . '/', $uri, $matches);
-    return !empty($matches);
-}
-
-function deleteChildrenMenu($parent_id, $menuList, $con) {
-    foreach ($menuList as $item) {
-        if ($item['parent_id'] == $parent_id) {
-            deleteChildrenMenu($item['id'], $menuList, $con);
-            mysqli_query($con, "DELETE FROM `menu` WHERE `id` = " . $item['id']);
-        }
-    }
-}
-
-function showMenuSelectBox($list, $num, $parent_id) {
-    $num++;
-    foreach ($list as $item) {
-        $selected = "";
-        if ($item['id'] == $parent_id) {
-            $selected = "selected";
-        }
-        echo "<option value='" . $item['id'] . "' " . $selected . ">" . str_repeat("---", $num - 1) . $item['name'] . "</option>";
-        if (!empty($item['children'])) {
-            showMenuSelectBox($item['children'], $num, $parent_id);
-        }
-    }
-}
-
-function showMenuTree($list, $num, $config_name) {
-    $num++;
-    foreach ($list as $item) {
-        echo renderTemplate('admin/li-template.php', array('num' => $num, 'config_name' => $config_name, 'row' => $item));
-        if (!empty($item['children'])) {
-            showMenuTree($item['children'], $num, $config_name);
-        }
-    }
-}
-
-function renderTemplate($filePath, $params) {
-    $output = "";
-    // Extract the variables to a local namespace
-    extract($params);
-
-    // Start output buffering
-    ob_start();
-
-    // Include the template file
-    include $filePath;
-
-    // End buffering and return its contents
-    $output = ob_get_clean();
-    return $output;
-}
-
-function createMenuTree(&$menuList, $parent_id) {
-    $menuTree = array();
-    foreach ($menuList as $key => $menu) {
-        if ($menu['parent_id'] == $parent_id) {
-            $children = createMenuTree($menuList, $menu['id']);
-            if ($children) {
-                $menu['children'] = $children;
-            }
-            $menuTree[] = $menu;
-            unset($menuList[$key]);
-        }
-    }
-    return $menuTree;
-}
-
-function getAllFiles() {
-    $allFiles = array();
-    $allDirs = glob('uploads/*');
-    foreach ($allDirs as $dir) {
-        $allFiles = array_merge($allFiles, glob($dir . "/*"));
-    }
-    return $allFiles;
-}
-
 function uploadFiles($uploadedFiles) {
     $files = array();
     $errors = array();
@@ -173,73 +92,93 @@ function validateUploadFile($file, $uploadPath) {
     return $file;
 }
 
-//Hàm login sau khi mạng xã hội trả dữ liệu về
-function loginFromSocialCallBack($socialUser) {
-    include './connect_db.php';
-    $result = mysqli_query($con, "Select `id`,`username`,`email`,`fullname` from `user` WHERE `email` ='" . $socialUser['email'] . "'");
-    if ($result->num_rows == 0) {
-        $result = mysqli_query($con, "INSERT INTO `user` (`fullname`,`email`, `status`, `created_time`, `last_updated`) VALUES ('" . $socialUser['name'] . "', '" . $socialUser['email'] . "', 1, " . time() . ", '" . time() . "');");
-        if (!$result) {
-            echo mysqli_error($con);
-            exit;
-        }
-        $result = mysqli_query($con, "Select `id`,`username`,`email`,`fullname` from `user` WHERE `email` ='" . $socialUser['email'] . "'");
+// Product
+// Hàm đếm tổng số sản phẩm
+function count_all_product($productname = '')
+{
+    global $conn;
+     
+    if ($productname){
+        $query = $conn->query('SELECT count(*) AS total FROM t_product WHERE name LIKE \'%'.$conn->real_escape_string($productname).'%\''); 
     }
-    if ($result->num_rows > 0) {
-        $user = mysqli_fetch_assoc($result);
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
-        $_SESSION['current_user'] = $user;
-        header('Location: ./login.php');
+    else{
+        $query = $conn->query('SELECT count(*) AS total FROM t_product');
     }
+     
+    if ($query){
+        $row = $query->fetch_assoc();
+        return $row['total'];
+    }
+    return 0;
 }
 
-function validateDateTime($date) {
-    //Kiểm tra định dạng ngày tháng xem đúng DD/MM/YYYY hay chưa?
-    preg_match('/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}$/', $date, $matches);
-    if (count($matches) == 0) { //Nếu ngày tháng nhập không đúng định dạng thì $match = array(); (rỗng)
-        return false;
+// Lấy danh sách thành viên
+function get_all_product($productname = '', $limit = 10, $start = 0)
+{
+    global $conn;
+     
+    if ($productname){
+        $sql = 'SELECT * FROM t_product WHERE name LIKE \'%'.$conn->real_escape_string($productname).'%\'  LIMIT '.(int)$start . ','.(int)$limit;
     }
-    $separateDate = explode('-', $date);
-    $day = (int) $separateDate[0];
-    $month = (int) $separateDate[1];
-    $year = (int) $separateDate[2];
-    //Nếu là tháng 2
-    if ($month == 2) {
-        if ($year % 4 == 0) { //Nếu là năm nhuận
-            if ($day > 29) {
-                return false;
-            }
-        } else { //Không phải năm nhuận
-            if ($day > 28) {
-                return false;
-            }
+    else{
+        $sql = 'SELECT * FROM t_product LIMIT '.(int)$start . ','.(int)$limit;
+    }
+     
+    $query = $conn->query($sql);
+      
+      
+    if ($query->num_rows>0)
+    {
+        while ($row = $query->fetch_assoc()){
+            $result[] = $row;
         }
     }
-    //Check các tháng khác
-    switch ($month) {
-        case 1:
-        case 3:
-        case 5:
-        case 7:
-        case 8:
-        case 10:
-        case 12:
-            if ($day > 31) {
-                return false;
-            }
-            break;
-        case 4:
-        case 6:
-        case 9:
-        case 11:
-            if ($day > 30) {
-                return false;
-            }
-            break;
-    }
-    return true;
+      
+    return $result;
 }
 
+// Order
+// // Hàm đếm tổng số order
+function count_all_order($id = '')
+{
+    global $conn;
+     
+    if ($id){
+        $query = $conn->query('SELECT count(*) AS total FROM t_order WHERE id LIKE \'%'.$conn->real_escape_string($id).'%\' AND del_flg = 0'); 
+    }
+    else{
+        $query = $conn->query('SELECT count(*) AS total FROM t_order WHERE del_flg = 0');
+    }
+     
+    if ($query){
+        $row = $query->fetch_assoc();
+        return $row['total'];
+    }
+    return 0;
+}
+
+// Lấy danh sách order
+function get_all_order($id = '', $limit = 10, $start = 0)
+{
+    global $conn;
+     
+    if ($id){
+        $sql = 'SELECT * FROM t_order WHERE id LIKE \'%'.$conn->real_escape_string($id).'%\' AND del_flg = 0 LIMIT '.(int)$start . ','.(int)$limit;
+    }
+    else{
+        $sql = 'SELECT * FROM t_order WHERE del_flg = 0 LIMIT '.(int)$start . ','.(int)$limit;
+    }
+     
+    $query = $conn->query($sql);
+      
+      
+    if ($query->num_rows>0)
+    {
+        while ($row = $query->fetch_assoc()){
+            $result[] = $row;
+        }
+    }
+      
+    return $result;
+}
 ?>

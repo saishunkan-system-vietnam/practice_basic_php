@@ -1,6 +1,6 @@
 <?php   
-    require '../config/router.php';
-    require FILE_PHP_CONFIG;
+    require_once '../config/router.php';
+    require_once FILE_PHP_CONFIG;
     $output = '';
 
 
@@ -9,33 +9,20 @@
     $content = !empty($_GET['content'])? $_GET['content']:""; 
    
     $offset = ($current_page - 1) * $item_per_page;
+
+    // Kết nối DataBase
+    connect();
+
     $sql = "SELECT * FROM t_product WHERE name  LIKE '%{$content}%' LIMIT " . $item_per_page . " OFFSET " . $offset;
 
-    $result = $mysqli->query($sql) ;       
+    $result = $conn->query($sql) ;       
 
     
     if ($result->num_rows > 0) 
-    {
-        $index = 0;
-        
+    {     
         while ($row = $result->fetch_assoc()) 
         { 
             $img = !empty($row["image"]) ? $row["image"] : "../img/logoProduct.png";
-            if (isset($_GET['name']) && $_GET['name'] == "add") 
-            {              
-                $output .= '
-                    <tr>
-                        <td>' . $row["name"] . '</td>
-                        <td>' . "<img style='width: 150px; height: 150px;' src='$img'>" . '</td>
-                        <td><input type="number" name="quantity" id ="'.$index.'" value="1" min="1"  style="width: 50px; height: 30px;"></td>
-                        <td>' . $row["price"].'</td>
-                        <td><button type="submit" class="btnAddProduct btn" qnt ="'.$index.'" data-id="'.$row["id"].'">Add</button></td>
-                    </tr>
-                '; 
-                $index++;         
-            } 
-            else 
-            {
                 $output .= '
                     <tr>
                         <td>'.$row["name"].'</td>
@@ -44,13 +31,11 @@
                         <td>'.$row["origin"].'</td>
                         <td>'.$row["price"].'</td>
                         <td>'.$row["capacity"].'</td>
-                        <td>'.$row["content"].'</td>
                         <td>'.$row["del_flg"].'</td>
                         <td><a class="btnEdit btn" href="./product_editing.php?id='.$row['id'].'">Edit</a> </td>
                         <td><a class="btnDelete btn" data-id='.$row['id'].'>Delete</a></td>
                     </tr>
-                ';
-            }          
+                ';              
         }   
     } 
     else
@@ -60,6 +45,7 @@
 
     echo $output;  
 
-    $mysqli -> close();
+    // Đóng kết nối
+    disconnect();
     
 ?>

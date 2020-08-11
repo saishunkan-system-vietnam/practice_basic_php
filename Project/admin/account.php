@@ -1,6 +1,6 @@
 <?php
-require '../config/router.php';
-require FILE_PHP_CONFIG;
+require_once '../config/router.php';
+require_once FILE_PHP_CONFIG;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,14 +16,19 @@ require FILE_PHP_CONFIG;
 <body>
     <?php require FILE_PHP_HEADERAD ?>
     <?php
-    $content = isset($_GET['content']) ?  $_GET['content'] : "";
+    // Kết nối DataBase
+    connect();
 
+    $content = isset($_GET['content']) ?  $_GET['content'] : "";
     $item_per_page = 2;
     $current_page = !empty($_GET['page']) ? $_GET['page'] : 1; //Trang hiện tại
     $offset = ($current_page - 1) * $item_per_page;
-    $totalRecords =  $mysqli->query("SELECT * FROM t_account WHERE fullname  LIKE '%{$content}%'");
+    $totalRecords =  $conn->query("SELECT * FROM t_account WHERE fullname  LIKE '%{$content}%'");
     $totalRecords = $totalRecords->num_rows;
     $totalPages = ceil($totalRecords / $item_per_page);
+
+    // Đóng kết nối
+    disconnect();
     ?>
     <script>
         var page = <?= $current_page ?>;

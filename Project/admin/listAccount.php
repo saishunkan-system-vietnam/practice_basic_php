@@ -1,5 +1,6 @@
 <?php   
-    require '../config/config.php';
+    require_once '../config/router.php';
+    require_once FILE_PHP_CONFIG;
     $output = '';
 
 
@@ -8,9 +9,12 @@
     $content = !empty($_GET['content'])? $_GET['content']:""; //Trang hiện tại
    
     $offset = ($current_page - 1) * $item_per_page;
+
+    // Kết nối DataBase
+    connect();
     $sql = "SELECT * FROM t_account WHERE fullname  LIKE '%{$content}%' LIMIT " . $item_per_page . " OFFSET " . $offset;
 
-    $result = $mysqli->query($sql) ;       
+    $result = $conn->query($sql) ;       
 
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()){
@@ -38,6 +42,7 @@
 
     echo $output;  
 
-    $mysqli -> close();
+    // Đóng kết nối
+    disconnect();
     
 ?>

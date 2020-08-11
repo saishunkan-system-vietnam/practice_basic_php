@@ -1,17 +1,13 @@
 <?php
-    session_start();
-    require './config/router.php';
-    require FILE_PHP_CONFIG;
+    require_once './config/router.php';
+    require_once FILE_PHP_CONFIG;
 
     // Logout
     if(isset($_REQUEST['type']) && $_REQUEST['type'] == 'logout'){
         // xoa session
         unset($_SESSION[SESSION_USERNAME]);
         unset($_SESSION["role"]);
-
-        // Xóa cookie
-        setcookie(COOKIE_USERNAME, '', time() - 14400);
-        header("location: ./index.php");
+        header("location: ./index.php");	
     }
 
     // Login
@@ -19,7 +15,10 @@
         $email = $_POST["uid"];
         $password = md5($_POST["pass"]);
 
-        $result = $mysqli->query("SELECT * FROM t_account WHERE id = '$email' AND password = '$password' AND del_flg =0");
+        // Kết nối DataBase
+        connect();
+
+        $result = $conn->query("SELECT * FROM t_account WHERE id = '$email' AND password = '$password' AND del_flg = 0");
 
         if ($result->num_rows>0) {
             while($row = $result->fetch_assoc()){
@@ -30,7 +29,7 @@
 
             if ($_POST["save"] == "1") {
                 setcookie(COOKIE_USERNAME, $email, time() + 14400);
-                setcookie(COOKIE_PASSWORD, $password, time() + 14400);
+                setcookie(COOKIE_PASSWORD, $_POST["pass"], time() + 14400);
             }
             echo json_encode(['status'=>'success']);   
         } else{
@@ -39,5 +38,5 @@
     }
 
     // Đóng kết nối
-    $mysqli -> close();
+    disconnect();
 ?>

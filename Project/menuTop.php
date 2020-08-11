@@ -1,14 +1,6 @@
 <?php
-session_start();
-
-require FILE_PHP_CONFIG;
-
-//Kiểm tra SESSION
-if (empty($_SESSION[SESSION_USERNAME])) {
-    if (isset($_COOKIE[COOKIE_USERNAME])) {
-        $_SESSION[SESSION_USERNAME] = $_COOKIE[COOKIE_USERNAME];
-    }
-}
+require_once './config/router.php';
+require_once FILE_PHP_CONFIG;
 ?>
 
 <link rel="stylesheet" href=<?= LINK_ICON ?>>
@@ -20,32 +12,31 @@ if (empty($_SESSION[SESSION_USERNAME])) {
         <li id="active"><a href=<?= SITE_URL ?>><i class="fa fa-home"></i>&nbsp;Trang chủ</a></li>
         <li><a href=<?= SITE_PRODUCT ?>><i class="fa fa-th-large" aria-hidden="true"></i>&nbsp;Sản Phẩm</a></li>
         <li><a href=""><i class="fa fa-share-alt" aria-hidden="true"></i>&nbsp;Giới thiệu</a></li>
-        <li><a href="./admin/index.php"><i class="fa fa-fw fa-envelope"></i>&nbsp;Liên hệ</a></li>
+        <li><a href=""><i class="fa fa-fw fa-envelope"></i>&nbsp;Liên hệ</a></li>
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 1) { ?>
+            <li><a href="./admin/index.php"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp;Admin</a></li>
+        <?php } ?>
         <li style="float: right;">
             <?php
-            // count items in the cart
-            $cookie = isset($_COOKIE['shopping_cart']) ? $_COOKIE['shopping_cart'] : "";
-            $cookie = stripslashes($cookie);
-            $saved_cart_items = json_decode($cookie, true);
-            if ($saved_cart_items == null) {
-                $cart_count = 0;
-            } else {
-                $cart_count = count($saved_cart_items);
+            $total = 0;
+            if (isset($_COOKIE['shopping_cart'])) {
+                $cookie_data = $_COOKIE['shopping_cart'];
+                $cart_data = json_decode($cookie_data, true);
+                foreach ($cart_data as $keys => $values) {
+                    $total = $total + $cart_data[$keys]["item_quantity"];
+                }
             }
-
             ?>
-
-            <?php if (!isset($_SESSION['username'])) : ?>
+            <?php if (!isset($_SESSION[SESSION_USERNAME])) : ?>
                 <a class="login-window button" onclick="openForm('login')"><i class="fa fa-fw fa-user"></i>&nbsp;Đăng Nhập</a>
                 <a class="registration button" onclick="openForm('regist')"><i class="fa fa-address-card" aria-hidden="true"></i></i>&nbsp;Đăng Kí</a>
             <?php else : ?>
-                <a href=<?= FILE_PHP_CART ?>><i class="fa fa-shopping-cart"> <?= $cart_count; ?></i></a>
+                <a href=<?= FILE_PHP_CART ?>><i class="fa fa-shopping-cart"> <?= $total; ?></i></a>
                 <a href=<?= SITE_LOGOUT ?>>Đăng xuất &emsp;</a>
-                <a href=""><?= $_SESSION['username'] ?></a>
+                <a href=""><?= $_SESSION[SESSION_USERNAME] ?></a>
             <?php endif ?>
         </li>
     </ul>
-
 </nav>
 
 <!-- Đăng ký tài khoản -->
@@ -67,16 +58,16 @@ if (empty($_SESSION[SESSION_USERNAME])) {
             <input type="date" name="bday" id="bday" required>
 
             <label for="phone"><b>Số điện thoại</b></label>
-            <input type="text" name="phone" placeholder="Nhập số đện thoại" id="phone" pattern=<?= PATTERN_PHONE ?>required>
+            <input type="text" name="phone" placeholder="Nhập số đện thoại" id="phone" pattern="<?= PATTERN_PHONE ?>" required>
 
             <label for="email"><b>Email</b></label>
-            <input type="text" placeholder="Nhập Email" name="email" id="email" pattern=<?= PATTERN_EMAIL ?> required>
+            <input type="text" placeholder="Nhập Email" name="email" id="email" pattern="<?= PATTERN_EMAIL ?>" required>
 
             <label for="address"><b>Địa chỉ</b></label>
             <input type="text" placeholder="Nhập địa chỉ" name="address" id="address" required>
 
             <label for="psw"><b>Mật khẩu</b></label>
-            <input type="password" placeholder="Nhập mật khẩu" name="password" id="password" pattern=<?= PATTERN_PASSWORD ?> title="Phải chứa ít nhất một số và một chữ hoa và chữ thường và ít nhất 8 ký tự trở lên" required>
+            <input type="password" placeholder="Nhập mật khẩu" name="password" id="password" pattern="<?= PATTERN_PASSWORD ?>" title="Phải chứa ít nhất một số và một chữ hoa và chữ thường và ít nhất 8 ký tự trở lên" required>
 
             <label for="re_password"><b>Mật khẩu xác nhận</b></label>
             <input type="password" placeholder="Xác nhận mật khẩu" name="re_password" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required>
@@ -95,10 +86,10 @@ if (empty($_SESSION[SESSION_USERNAME])) {
             <h1>Đăng nhập Email</h1>
             <hr>
             <label for="email"><b>Email</b></label>
-            <input type="text" placeholder="Nhập Email" id="uid" name="email" required>
+            <input type="text" placeholder="Nhập Email" id="uid" name="email" value="<?= isset($_COOKIE[COOKIE_USERNAME]) ? $_COOKIE[COOKIE_USERNAME] : "" ?>" required>
 
             <label for="psw"><b>Mật khẩu</b></label>
-            <input type="password" placeholder="Nhập mật khẩu" id="pass" name="password" required>
+            <input type="password" placeholder="Nhập mật khẩu" id="pass" name="password" value="<?= isset($_COOKIE[COOKIE_PASSWORD]) ? $_COOKIE[COOKIE_PASSWORD] : "" ?>" required>
             <div class="loginforgot">
                 <label>
                     <input type="checkbox" checked="checked" id="save" name="remember" value="1"> Lưu tài khoản

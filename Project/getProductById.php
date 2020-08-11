@@ -1,6 +1,6 @@
 <?php
-require './config/router.php';
-require FILE_PHP_MENUTOP;
+require_once './config/router.php';
+require_once FILE_PHP_MENUTOP;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,10 +14,14 @@ require FILE_PHP_MENUTOP;
     <?php
     if (isset($_GET["id"])) {
         $productId = $_GET["id"];
-        $result = $mysqli->query("SELECT * FROM t_product WHERE id = $productId AND del_flg = 0");
+
+        // Kết nối DataBase
+        connect();
+        $result = $conn->query("SELECT * FROM t_product WHERE id = $productId AND del_flg = 0");
     }
+
     // Đóng kết nối
-    $mysqli->close();
+    disconnect();
     ?>
 
     <?php while ($row = $result->fetch_assoc()) : ?>
@@ -37,7 +41,7 @@ require FILE_PHP_MENUTOP;
                             <h4>Giá: <?= $row["price"] ?> K</h4>
                             <p><?= $row["describe_product"] ?></p>
                             <p><input type="number" name="quantity" id="quantityTable" value="1" max="100" min="1"></p>
-                            <button type="submit" class="btncart btn" name="btnDetail" id="btnAddCart"><i class="fa fa-shopping-cart"> Thêm vào giỏ hàng</i></button>
+                            <button type="submit" class="btnAdd-cart btn" name="btnDetail" id="btnAddCart"><i class="fa fa-shopping-cart"> Thêm vào giỏ hàng</i></button>
 
                             <li>Ngay sau khi quý khách đặt hàng và thanh toán, HNCmua sẽ đặt hàng sản phẩm và vận chuyển
                                 về Việt Nam.</li>
@@ -62,10 +66,11 @@ require FILE_PHP_MENUTOP;
             <p><?= $row["content"] ?></p>
         </div>
     <?php endwhile; ?>
+    
+    <!-- include footer -->
+    <?php include FILE_PHP_FOOTER ?>
 
     <script src=<?= FILE_JS_SLIDESHOW ?>></script>
-    <!-- include footer -->
-    <?php require FILE_PHP_FOOTER ?>
 </body>
 
 </html>

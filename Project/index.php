@@ -1,6 +1,6 @@
 <?php 
-    require './config/router.php';
-    require FILE_PHP_MENUTOP;
+    require_once './config/router.php';
+    require_once FILE_PHP_MENUTOP;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,11 +40,14 @@
     </div>
 
     <?php
+    // Kết nối DataBase
+    connect();
+
     // Select dữ liệu
-    $result = $mysqli->query("SELECT * FROM t_product WHERE del_flg = 0 ORDER BY create_datetime DESC LIMIT 12");   
+    $result = $conn->query("SELECT * FROM t_product WHERE del_flg = 0 ORDER BY create_datetime DESC LIMIT 12");   
 
     // Đóng kết nối
-    $mysqli -> close();
+    disconnect();
     ?>
 
     <div class="listProduct">
@@ -65,16 +68,18 @@
                 <input type="hidden" name="productPrice" value=<?= $row["price"] ?>>
                 <input type="hidden" name="productImage" value=<?= $row["image"] ?>>
                 <p><input type="number" name="quantity" id="quantity" value="1"></p>
-                <button type="submit" name="btnIndex" class="btncart"><i class="fa fa-shopping-cart"></i></button>
+                <button type="submit" name="btnIndex" class="btncart btn"><i class="fa fa-shopping-cart"></i></button>     
+                
             </form>
-        </div>
+        </div> 
         <?php endwhile ; ?>
+        <br>
+        <div class="clear-both"></div>
     </div>
-
-    <div class="clear-both"></div>
+    <div class="clear-both"></div>   
+    <!-- include footer -->
+    <?php include FILE_PHP_FOOTER ?>
 
 
     <script src=<?= FILE_JS_SLIDESHOW ?>></script>
-    <!-- include footer -->
-    <?php require FILE_PHP_FOOTER ?>
 </body>

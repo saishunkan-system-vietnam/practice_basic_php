@@ -1,6 +1,6 @@
 <?php 
-    require './config/router.php';
-    require FILE_PHP_MENUTOP;
+    require_once './config/router.php';
+    require_once FILE_PHP_MENUTOP;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,15 +40,20 @@
     </div>
 
     <?php
+
+        // Kết nối DataBase
+        connect();
+
         $item_per_page = 12;
         $current_page = !empty($_GET['page'])?$_GET['page']:1; //Trang hiện tại
         $offset = ($current_page - 1) * $item_per_page;
-        $products = $mysqli->query("SELECT * FROM t_product WHERE del_flg = 0 LIMIT " . $item_per_page . " OFFSET " . $offset) ;
-        $totalRecords =  $mysqli->query("SELECT * FROM t_product WHERE del_flg = 0");
+        $products = $conn->query("SELECT * FROM t_product WHERE del_flg = 0 ORDER BY create_datetime DESC LIMIT " . $item_per_page . " OFFSET " . $offset) ;
+        $totalRecords =  $conn->query("SELECT * FROM t_product WHERE del_flg = 0");
         $totalRecords = $totalRecords->num_rows;
         $totalPages = ceil($totalRecords / $item_per_page);
+
         // Đóng kết nối
-        $mysqli -> close();
+        disconnect();
     ?>
 
     <div class="listProduct">
@@ -67,21 +72,19 @@
                 <input type="hidden" name="productPrice" value=<?= $row["price"] ?>>
                 <input type="hidden" name="productImage" value=<?= $row["image"] ?>>
                 <p><input type="number" name="quantity" id="quantity" value="1"></p>
-                <button type="submit" class="btncart" name="btnProduct"><i class="fa fa-shopping-cart"></i></button>
+                <button type="submit" class="btncart btn" name="btnProduct"><i class="fa fa-shopping-cart"></i></button>
             </form>
         </div>
         <?php endwhile ; ?>
         <br>
         <div class="clear-both"></div>
-        <?php include './pagination.php';?>
+        <?php require_once './pagination.php';?>
         <div class="clear-both"></div>
 
     </div>
 
-
+    <!-- include footer -->
+    <?php include FILE_PHP_FOOTER ?>
 
     <script src=<?= FILE_JS_SLIDESHOW ?>></script>
-
-    <!-- include footer -->
-    <?php require FILE_PHP_FOOTER ?>
 </body>

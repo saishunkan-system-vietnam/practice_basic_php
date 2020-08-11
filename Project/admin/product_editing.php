@@ -1,9 +1,11 @@
 <?php
-require '../config/router.php';
-require FILE_PHP_CONFIG;
-require FILE_PHP_HEADERAD;
-require FILE_PHP_FUNCTION;
+require_once '../config/router.php';
+require_once FILE_PHP_CONFIG;
+require_once FILE_PHP_HEADERAD;
+require_once FILE_PHP_FUNCTION;
 
+// Kết nối DataBase
+connect();
 
 if (isset($_GET['action']) && ($_GET['action'] == 'add' || $_GET['action'] == 'edit')) {
     if (isset($_POST["name"]) && isset($_POST["origin"]) && isset($_POST["price"])
@@ -25,14 +27,14 @@ if (isset($_GET['action']) && ($_GET['action'] == 'add' || $_GET['action'] == 'e
             $name                   =   $_POST["name"];
             $origin                 =   $_POST["origin"];
             $price                  =   (int)$_POST["price"];
-            $capacity               =   $_POST["capacity"].'ml';
+            $capacity               =   $_POST["capacity"];
             $describe_product       =   $_POST["describe_product"];
             $content                =   $_POST["content"];
 
             if ($_GET['action'] == 'edit' && !empty($_GET['id'])){
                 $sqlUpd="UPDATE t_product SET `name` = '$name', `origin` = '$origin', `price` = $price, `image` = '$image', `capacity` = '$capacity' , `describe_product` = '$describe_product', `content` = '$content',`upadte_datetime` = CURRENT_TIMESTAMP()
                          WHERE id =$_GET[id];";
-                $result = $mysqli->query($sqlUpd);
+                $result = $conn->query($sqlUpd);
                 if ($result) {
                     echo '<script type="text/javascript">alert("Update sản phẩm thành công")</script>';
                 } else {
@@ -40,10 +42,9 @@ if (isset($_GET['action']) && ($_GET['action'] == 'add' || $_GET['action'] == 'e
                 }
             }
             else{
-                $sqlinsert = "INSERT INTO t_product(`name`, `origin`, `price`, `image`, `capacity`, `describe_product`, `content`,`create_datetime`) 
-                    VALUES ('$name','$origin',$price,'$image','$capacity','$describe_product','$content', CURRENT_TIMESTAMP())";
+                $sqlinsert = "INSERT INTO t_product(name, origin, price, image, capacity, describe_product, content,create_datetime) VALUES ('$name','$origin',$price,'$image','$capacity','$describe_product','$content', CURRENT_TIMESTAMP())";
     
-                $result = $mysqli->query($sqlinsert);
+                $result = $conn->query($sqlinsert);
     
                 if ($result) {
                     echo '<script type="text/javascript">alert("Thêm sản phẩm thành công")</script>';
@@ -60,11 +61,13 @@ else{
         $id = $_GET['id'];
 
         // Select dữ liệu
-        $result = $mysqli->query("SELECT * FROM t_product WHERE id = '$id'"); 
+        $result = $conn->query("SELECT * FROM t_product WHERE id = '$id'"); 
         $product = $result->fetch_assoc();
     }
 }
 
+// Ngắt kế nối
+disconnect();
 ?>
 
 <!DOCTYPE html>
@@ -80,7 +83,7 @@ else{
 
 <body>
     <div class="main-content">
-        <h1><?= !empty($_GET['id']) ?  "Sửa sản phẩm" : "Thêm sản phẩm" ?></h1>
+        <h1><?= !empty($_GET['id']) ?  "Update sản phẩm" : "Thêm sản phẩm" ?></h1>
         <div class="AddOrEdit">
             <form id="editing-form" method="POST" action="<?= (!empty($product)) ? "?action=edit&id=" . $_GET['id'] : "?action=add" ?>" enctype="multipart/form-data">
                 <div class="wrap-field">

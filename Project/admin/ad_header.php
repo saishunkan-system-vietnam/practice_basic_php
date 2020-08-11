@@ -1,5 +1,6 @@
 <?php 
-    session_start();
+    require_once '../config/router.php';
+    require_once FILE_PHP_CONFIG;
      if (isset($_SESSION["role"])) {
          if ($_SESSION["role"] != 1) {
             header("location: ../index.php");
@@ -19,7 +20,7 @@
             <img height="24" src="../img/home.png" />
             <a href="../index.php">Trang chủ</a>
             <img height="24" src="../img/logout.png" />
-            <a href="logout.php">Đăng xuất</a>
+            <a href="<?= SITE_LOGOUT ?>">Đăng xuất</a>
         </div>
     </div>
 </div>
@@ -36,7 +37,6 @@
                     <li><a href="ad_order.php">Đơn hàng</a></li>
 
                     <li><a href="./account.php">Quản lý thành viên</a></li>
-
                 </ul>
             </div>
         </div>

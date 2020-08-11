@@ -1,7 +1,21 @@
 * {box-sizing: border-box}
+
+body{
+  font-family: arial;
+  padding: 0;
+  margin: 20px 0px 0px 0px;
+  font-size: 14px;
+}
+h2{
+  color: red;
+  text-align: center;
+}
 h1 {
   color: red;
   text-align: center;
+}
+.clear-both{
+  clear: both;
 }
 
 /* ***************************************************************************STYLE MENU************************************************************************* */
@@ -42,6 +56,59 @@ h1 {
     background-color: #eba25f;
     font-weight: bold;
   }
+/* ***************************************************************************STYLE BTN************************************************************************* */
+.btn {
+  width: 100px;
+  padding: 8px 5px;
+  font-size: 15px;
+  margin: 5px 32%;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 3px #999;
+}
+
+.btn:hover {background-color: #3e8e41}
+
+.btn:active {
+ background-color: #3e8e41;
+  box-shadow: 0 3px #666;
+  transform: translateY(4px);
+}
+
+.btnEdit{
+  width: 60px;
+  margin: 5px;
+  background-color: rgb(216, 113, 29);
+}
+
+.btnEdit:hover {background-color: #644305}
+    
+.btnEdit:active {
+  background-color: #644305;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.btnDelete{
+  width: 60px;
+  margin: 5px;
+  background-color: red;
+}
+
+.btnDelete:hover {background-color: #9e0821}
+  
+.btnDelete:active {
+   background-color: #9e0821;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
 /* ************************************************************************STYLE POPUP************************************************************* */
 .popup{
   display: none; /* Hidden by default */
@@ -91,30 +158,6 @@ h1 {
   border-top: 4px double #0e0d0d;
   text-align: center;
  }
-
- .btn {
-  width: 100px;
-  padding: 8px 5px;
-  font-size: 15px;
-  margin: 5px 32%;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: #fff;
-  background-color: #4CAF50;
-  border: none;
-  border-radius: 6px;
-  box-shadow: 0 9px #999;
-}
-
-.btn:hover {background-color: #3e8e41}
-
-.btn:active {
- background-color: #3e8e41;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}
 
 .close {
   float: right;
@@ -237,10 +280,20 @@ background-color: rgb(216, 113, 29);
 }
 
 .btnOder{
-  margin: 10px 0;
+  margin: 10px 150px ;
 }
 
-.label{
-  display: block;
-  margin: 10px 0px;
+.cart-label{
+  float: left;
+  width: 150px;
+  display: inline-block;
 }
+
+.cart-info input{
+  margin-bottom: 10px;
+  line-height: 25px;
+  float: left;
+  width: 350px;
+}
+
+

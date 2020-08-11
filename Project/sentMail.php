@@ -1,9 +1,8 @@
 <?php 
-    session_start();
-    require './config/router.php';
-    require FILE_PHP_CONFIG;
+    require_once './config/router.php';
+    require_once FILE_PHP_CONFIG;
 
-    require 'PHPMailer/PHPMailerAutoload.php';
+    require_once 'PHPMailer/PHPMailerAutoload.php';
 
 
     if (isset($_POST['email'])) {
@@ -11,19 +10,22 @@
         $token = substr(md5(uniqid(rand(),1)),3,8);
         $_SESSION['token'] = $token;
 
+        // Kết nối DataBase
+        connect();
+
         // update dữ liệu
         $sql = "UPDATE t_account SET token = '$token', update_datetime = CURRENT_TIMESTAMP()  WHERE id = '$mTo' AND del_flg = 0";
-        $result = $mysqli->query($sql); 
+        $result = $conn->query($sql); 
 
         // Đóng kết nối
-        $mysqli -> close();
+        disconnect();
 
         if ($result) {
 
             $nFrom = "ngotasinh.net";   
             $mFrom = 'ngotasinh@gmail.com';  
             $mPass = 'uoijckptvmbgltwm';       
-            $nTo = 'Huudepzai'; 
+            $nTo = 'SinhNT'; 
             
 
             $resetPassLink = 'http://sinh.com/changePassword.php?email='.$_POST['email'].'&token='.$token;

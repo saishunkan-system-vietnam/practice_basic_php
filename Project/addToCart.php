@@ -1,5 +1,6 @@
 <?php
-	require './config/router.php';
+	require_once './config/router.php';
+	require_once FILE_PHP_CONFIG;
 
 	if (isset($_POST["productId"]) && isset($_POST["productName"]) 
 		&& isset($_POST["productPrice"]) && isset($_POST["quantity"])) 
@@ -44,7 +45,6 @@
 			header("location: ./product.php");
 		}else{
 			header("location: ./index.php");
-		}
-		
+		}	
     }
 ?>

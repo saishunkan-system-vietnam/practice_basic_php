@@ -30,7 +30,7 @@ $(document).ready(function () {
                 success: function (data) {
                     console.log(data);
                     if (data.status == 'success') {
-                        document.getElementById('regist').style.display = 'none';
+                        openForm('regist');
                         alert("Bạn đã đăng kí thành công")
                     } else {
                         lert("Bạn chưa đăng kí thành công!!!!!")

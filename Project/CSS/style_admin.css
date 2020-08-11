@@ -1,4 +1,11 @@
 * {box-sizing: border-box}
+
+body{
+  font-family: arial;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+}
 h2{
   color: red;
   text-align: center;
@@ -280,7 +287,7 @@ margin: 10px 0;
 
 .search {
   float: left;
-  margin: 10px 0;
+  margin: 10px;
   }
   
 .search input {
@@ -330,11 +337,9 @@ margin: 10px 0;
 
 /* ************************************************************************STYLE PRODCTEDING************************************************************* */
 .wrap-field label{
+  float: left;
   width: 150px;
   display: inline-block;
-  float: left;
-  color: blue;
-  font-size: 20px;
 }
 
 .wrap-field input{
@@ -358,21 +363,14 @@ margin: 10px 0;
 .labelContent{
   width: 150px;
   display: inline-block;
-  color: blue;
-  font-size: 20px;
 }
 /* ************************************************************************STYLE ORDER************************************************************* */
-.main-product{
+.main-order{
   margin: 2%;
   box-shadow: 0 4px 9px 0 #eee!important;
   padding: 10px 30px;
   border-radius: 5px;
   border: 1px solid #ccc;
-}
-
-.btnAddProduct {
-  width: 60px;
-  margin: 5px;
 }
 
 .btnDelProduct {
@@ -404,4 +402,32 @@ margin: 10px 0;
 }
 .btnOder {
   margin: 20px 150px;
+}
+
+/* ************************************************************************STYLE ORDERTEST************************************************************* */
+
+.card {
+  width: 23%;
+  margin: 20px 1% 20px;
+  box-shadow: 0 4px 9px 0 #eee!important;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  float: left;
+}
+.card h1{
+    margin: 0;
+    text-align: center;
+    background:  #4CAF50;
+    color: #fff;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 40px;
+    border-radius: 10px 10px 0 0;
+    padding: 0 10px;
+}
+.number{
+  font-size: 30px;
+  color: red;
 }
