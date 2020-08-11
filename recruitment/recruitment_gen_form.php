@@ -3,6 +3,8 @@ require_once "./config/router.php";
 ?>
 <link href=<?php echo FILE_CSS_SIGNUP ?> rel="stylesheet" />
 <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+<!-- <script src="../ckeditor.js"></script> -->
+<!-- <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script> -->
 
 <?php
 
@@ -16,7 +18,7 @@ function GenRegistUpdateForm($title, $button, $value)
         $style = "background-color:#b6e08a; color:black; border:none;font-size:16px";
         $bgr_color = ";background-color:#E5F8D1";
         $ttl_color = "color:#4A7E08";
-        $company = $position = $address = $salary = $detail = "";
+        $id = $company = $position = $address = $salary = $detail = $string_detail = "";
         $deadline = date("Y-m-d");
     } else if ($button == "btnupdate") {
         $style = "background-color:#c3deecdb; color:black; border:none;font-size:16px";
@@ -39,10 +41,16 @@ function GenRegistUpdateForm($title, $button, $value)
                 $address = $rowData["address"];
                 $salary = $rowData["salary"];
                 $deadline = $rowData["deadline"];
-                $detail_data = $rowData["detail"];
+                $detail = $rowData["detail"];
+                $array = preg_split ('/\n/', $detail);
+                $string_detail = "";
+                foreach ($array as $row) {
+                    $string_detail = $string_detail . trim($row);
+                }
+
             }
         } else {
-            $company = $position = $address = $salary = $detail = "";
+            $company = $position = $address = $salary = $detail = $string_detail = "";
             $deadline = date("Y-m-d");
         }
     }
@@ -57,36 +65,35 @@ function GenRegistUpdateForm($title, $button, $value)
                 Company:
             </div>
             <div style="margin-right: 6px;">
-                <input type="text" value = "'.$company.'" id="company" name="company" onkeypress="ClearError(id)" onchange="ClearError(id)" placeholder="Nhập tên company" />
+                <input type="text" value = "' . $company . '" id="company" name="company" onkeypress="ClearError(id)" onchange="ClearError(id)" placeholder="Nhập tên company" />
                 <div class="error_message"><label style="color:red;" name="error_company" id="error_company"> </label></div>
             </div>
             <div class="label">
                 Position Title:
             </div>
             <div style="margin-right: 6px;">
-                <textarea id="pos_title" placeholder="Nhập position title" style="width:100%; text-align:left; overflow:auto; margin-top: 10px;"  rows="3"  onkeypress="ClearError(id)" onchange="ClearError(id)">
-                '.$position.'</textarea>
+                <input type="text" id="pos_title" value="' . $position . '" placeholder="Nhập position title" style="width:100%; text-align:left; overflow:auto; margin-top: 10px;"  rows="3"  onkeypress="ClearError(id)" onchange="ClearError(id)">           
                 <div class="error_message"><label style="color:red" id="error_pos_title"></label></div>
             </div>
             <div class="label" >
                 Address:
             </div>
             <div style="margin-right: 6px;"> 
-                <input type="text" value = "' .$address. '" name="address" id="address" placeholder=" Nhập address" onkeypress="ClearError(id)" onchange="ClearError(id)" />
+                <input type="text" value = "' . $address . '" name="address" id="address" placeholder=" Nhập address" onkeypress="ClearError(id)" onchange="ClearError(id)" />
                 <div class="error_message"><label style="color:red" id="error_address"></label></div>
             </div>
             <div class="label">
                 Salary:
             </div>
             <div style="margin-right: 6px;">
-                <input type="text" name="salary" id="salary" value = "' .$salary. '" placeholder=" Nhập salary" onkeypress="ClearError(id)" onchange="ClearError(id)" />
+                <input type="text" name="salary" id="salary" value = "' . $salary . '" placeholder=" Nhập salary" onkeypress="ClearError(id)" onchange="ClearError(id)" />
                 <div class="error_message"><label style="color:red" id="error_salary"></label></div>
             </div>
             <div class="label">
                 Deadline:
             </div>
             <div style="margin-bottom:5px">
-                <input type="date" id="deadline" class="deadline" style="text-align:left;width:169px;" value='.$deadline.' onkeypress="ClearError(id)" onchange="ClearError(id)"/>
+                <input type="date" id="deadline" class="deadline" style="text-align:left;width:169px;" value=' . $deadline . ' onkeypress="ClearError(id)" onchange="ClearError(id)"/>
                 <div class="error_message"><label style="color:red;" id="error_deadline"></label></div>
             </div>
             <div class="label" style="clear: both; padding-top: 12px;">
@@ -98,18 +105,17 @@ function GenRegistUpdateForm($title, $button, $value)
                 <div class="error_message"><label style="color:red" id="error_detail"></label></div>
             </div>
             <div style="clear: both;">
-                <input type="button" style="' . $style . '" class="btnsignup" id="btnsignup" name=' . $button . ' value="' . $value . '"></input>
+                <input type="button" style="' . $style . '" class="btnsignup" id="btnsignup" data ="'.$id.'" name="' .$button. '" value="' . $value . '"></input>
             </div>
         </form>
     </div>
 </div>
-<script>
-    CKEDITOR.replace("detail",{height:250});   
-    alert("'.$company.'");
-    CKEDITOR.instances["detail"].setData("'.$company.'");
+<script  type="text/javascript">
+    CKEDITOR.replace("detail", {height:450});   
+    CKEDITOR.instances["detail"].setData("' . $string_detail . '"); 
 </script>';
 }
-
+// alert(CKEDITOR.instances["detail"].getData());
 //GenRegistUpdateForm("Đăng ký", "btnsignup", "Đăng ký");
 //GenRegistUpdateForm("Đăng nhập", "btnupdate", "Update");
 function GetData($id)
@@ -148,11 +154,11 @@ function GetData($id)
     } else {
         $field = array(
             "company"   => "",
-            "position" => "",
-            "address"  => "",
-            "salary"   => "",
-            "deadline" => "",
-            "detail"   => "",
+            "position"  => "",
+            "address"   => "",
+            "salary"    => "",
+            "deadline"  => "",
+            "detail"    => "",
         );
     }
 
@@ -234,6 +240,3 @@ function GetData($id)
 // }
 ?>
 <script src="<?= FILE_JS_SIGNUP_RECRUITMENT ?>"></script>
-<script>
-       // CKEDITOR.instances["detail"].setData($detail);      
-</script>

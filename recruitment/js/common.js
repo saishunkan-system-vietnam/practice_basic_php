@@ -1,3 +1,4 @@
+// Hàm xóa message lỗi
 function ClearError(id) {
     document.getElementById(id).style.borderColor = "#ddd";
     var err = "error_" + id;

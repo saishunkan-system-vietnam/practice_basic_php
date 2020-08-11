@@ -1,0 +1,51 @@
+.wrapper-view {
+  top: 0;
+  bottom: 0;
+  left: 196px;
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.wrapper-view .container-view {
+  background-color: rgb(214, 214, 214);
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper-view .content-view {
+  background-color: #fff;
+  width: 350px;
+  margin-left: -196px;
+  box-shadow: 0 4px 9px 5px #ccc !important;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: auto;
+}
+
+.wrapper-view table,
+th,
+td {
+  border: 1px solid #bbb;
+  border-collapse: collapse;
+  text-align: center;
+  overflow: auto;
+}
+
+.wrapper-view #btnclose {
+  float: right;
+  margin-bottom: 8px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.wrapper-view .pgn_view_number:hover {
+  color: darkblue;
+  font-weight: bold;
+}

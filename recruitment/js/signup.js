@@ -7,78 +7,72 @@ function ClearError(id) {
 $(document).ready(function () {
   $("#btnsignup").on("click", function (event) {
     event.preventDefault();
-    
-    if (confirm("Bạn đã chắc chắn muốn " + $("#btnsignup").val() + " tài khoản này?")) {
-    if (IsValid()) {
-      // alert($(this).attr("name"));
-      if ($(this).attr("name") == "btnsignup") {
-        $.ajax({
-          async: false,
-          url: "signup_insert.php",
-          method: "post",
-          data: {
-            username: $.trim($("#username").val()),
-            email: $.trim($("#email").val()),
-            password: $.trim($("#password").val()),
-            confirm_password: $.trim($("#confirm_password").val()),
-            birthdate: $.trim($("#birthdate").val()),
-            gender: $("input[name=gender]:checked").val(),
-            address: $.trim($("#address").val()),
-            // confirm: $.trim($("#confirm").is(':checked')),
-            tel: $.trim($("#tel").val()),
-          },
-          success: function (response) {
-            if (response == 1) {
-              alert("Đăng ký thành công");
-              // window.location = "login.php";
 
-              if ($("#admin_page").text() != "") {
-                window.location = "admin.php";
-                // manage_account
+    if (
+      confirm(
+        "Bạn đã chắc chắn muốn " + $("#btnsignup").val() + " tài khoản này?"
+      )
+    ) {
+      if (IsValid()) {
+        if ($(this).attr("name") == "btnsignup") {
+          $.ajax({
+            async: false,
+            url: "signup_insert.php",
+            method: "post",
+            data: {
+              username: $.trim($("#username").val()),
+              email: $.trim($("#email").val()),
+              password: $.trim($("#password").val()),
+              confirm_password: $.trim($("#confirm_password").val()),
+              birthdate: $.trim($("#birthdate").val()),
+              gender: $("input[name=gender]:checked").val(),
+              address: $.trim($("#address").val()),
+              tel: $.trim($("#tel").val()),
+            },
+            success: function (response) {
+              if (response == 1) {
+                alert("Đăng ký thành công");
+
+                if ($("#admin_page").text() != "") {
+                  window.location = "admin.php";
+                  // manage_account
+                } else {
+                  window.location = "index.php";
+                }
+              } else if (response == 2) {
+                alert("Email này đã có người đăng ký. Vui lòng chọn lại!");
               } else {
-                window.location = "index.php";
+                alert("Đăng ký thất bại. Lỗi " + response);
               }
-              // window.location = "<?php echo FILE_LOGIN ?>";
-            } else if (response == 2) {
-              // $("#error_message").text("Đăng ký thất bại. Lỗi: " + response);
-              // alert(response);
-              alert("Email này đã có người đăng ký. Vui lòng chọn lại!");
-            } else {
-              alert("Đăng ký thất bại. Lỗi " + response);
-            }
-          },
-        });
-      } 
-      else if ($(this).attr("name") == "btnupdate") {
+            },
+          });
+        } else if ($(this).attr("name") == "btnupdate") {
+          $.ajax({
+            async: false,
+            url: "update_account.php",
+            method: "post",
+            data: {
+              username: $.trim($("#username").val()),
+              email: $.trim($("#email").val()),
+              password: $.trim($("#password").val()),
+              birthdate: $.trim($("#birthdate").val()),
+              gender: $("input[name=gender]:checked").val(),
+              address: $.trim($("#address").val()),
+              tel: $.trim($("#tel").val()),
+            },
+            success: function (response) {
+              if (response == 1) {
+                alert("Update thành công");
 
-        $.ajax({
-          async: false,
-          url: "update_account.php",
-          method: "post",
-          data: {
-            username: $.trim($("#username").val()),
-            email: $.trim($("#email").val()),
-            password: $.trim($("#password").val()),
-            birthdate: $.trim($("#birthdate").val()),
-            gender: $("input[name=gender]:checked").val(),
-            address: $.trim($("#address").val()),
-            // confirm: $.trim($("#confirm").is(':checked')),
-            tel: $.trim($("#tel").val()),
-          },
-          success: function (response) {
-            if (response == 1) {
-              alert("Update thành công");
-
-              window.location = "admin.php";
-
-            } else {
-              alert("Update thất bại. Lỗi " + response);
-            }
-          },
-        });
+                window.location = "admin.php";
+              } else {
+                alert("Update thất bại. Lỗi " + response);
+              }
+            },
+          });
+        }
       }
     }
-}
   });
 
   function IsValid() {
@@ -129,12 +123,6 @@ $(document).ready(function () {
       $("#confirm_password").css("borderColor", "red");
       is_valid = false;
     }
-
-    // if (password != confirm_password && confirm_password != "") {
-    //     $("#error_confirm_password").text("Mật khẩu không khớp!");
-    //     $("#confirm_password").css("borderColor", "red");
-    //     is_valid = false;
-    // }
 
     if (
       password != "" &&

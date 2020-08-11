@@ -1,212 +1,176 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: "Arial", "helvetica neue", "Helvetica", "sans-serif";
-    margin     : 0;
+  font-family: "Arial", "helvetica neue", "Helvetica", "sans-serif";
+  margin: 0;
 }
 
 .wrapper {
-
-    margin              : auto;
-    /* display          : flex;
-    flex-direction      : column; */
-    align-items         : center;
-    /* border              : 1px solid #ccc; */
-    /* background       : rgb(228, 226, 221); */
+  margin: auto;
+  align-items: center;
 }
 
 .header {
-    background : rgb(26, 26, 26);
-    height     : 40px;
-    width      : 100%;
-    /* margin  : 0; */
-    /* position: fixed; */
-    margin-top : 0px;
+  background: rgb(26, 26, 26);
+  height: 40px;
+  width: 100%;
+  margin-top: 0px;
 }
 
 .main {
-    /* background: #e1e1e1 url(http://portal.finnandconway.com/images/bg-product.png) repeat-x; */
-    /* background: #F0F8FF; */
-    background      : white;
-    /* height       : 100px; */
-    /* width        : 1000px; */
-    margin          : auto;
+  background: white;
+  margin: auto;
 }
 
 .main .container .recruitment_header ul {
-    margin : 0px;
-    padding: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 .main .container .recruitment_header ul li {
-    /* list-style: none;    
-    background: #dcf0fa;
-    clear: left;
-    border-bottom: 2px solid rgba(174, 233, 255, 0.986);
-    float: left;
-    width: 100%;
-    margin-top: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 9px 0 #ccc!important;
-    padding: 15px; */
-    list-style   : none;
-    background   : #dcf0fa;
-    clear        : left;
-    border-bottom: 2px solid rgb(141 146 148 / 99%);
-    float        : left;
-    width        : 100%;
-    margin-bottom   : 22px !important;    
-    padding      : 15px;
-    border-radius: 12px;
-    box-shadow   : 0 4px 9px 0 #ccc !important;
-    /* font-size: 14px; */
+  list-style: none;
+  background: #dcf0fa;
+  clear: left;
+  border-bottom: 2px solid rgb(141 146 148 / 99%);
+  float: left;
+  width: 100%;
+  margin-bottom: 22px !important;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 9px 0 #ccc !important;
 }
 
 .main .container .recruitment_header ul li img {
-    float        : left;
-    margin-right : 15px;
-    width        : 116px;
-    height       : 120px;
-    margin-bottom: 10px;
-    border       : 1px solid #ccc;
-    margin-left  : 10px;
+  float: left;
+  margin-right: 15px;
+  width: 116px;
+  height: 120px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  margin-left: 10px;
 }
 
 .main .container .recruitment_detail img {
-    float        : left;
-    /* margin-right : 15px; */
-    width        : 116px;
-    height       : 120px;
-    margin-bottom: 10px;
-    border       : 1px solid #ccc;
-    margin-left  : 10px;
+  float: left;
+  width: 116px;
+  height: 120px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  margin-left: 10px;
 }
 
 .main .container .recruitment_header ul li h2 {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .banner {
-    background   : #F0F8FF;
-    height       : auto;
-    width        : 100%;
-    /* margin    : auto */
-    margin-bottom: 22px;
+  background: #f0f8ff;
+  height: auto;
+  width: 100%;
+  margin-bottom: 22px;
 }
 
 .banner img {
-    width         : 100%;
-    /* margin-left: 5px;
-    margin-right  : 5px;
-    margin-top    : 5px; */
+  width: 100%;
 }
 
 .left {
-    background: rgba(174, 233, 255, 0.986);
-    width     : 20%;
-    min-height: 800px;
-    float     : left;
+  background: rgba(174, 233, 255, 0.986);
+  width: 20%;
+  min-height: 800px;
+  float: left;
 }
 
 .container {
-    /* background: #dcf0fa; */
-    width        : 60%;
-    min-height   : 800px;
-    /* float     : left; */
-    margin       : 0 auto;
+  width: 60%;
+  min-height: 800px;
+  margin: 0 auto;
 }
 
 .right {
-    background: rgba(174, 233, 255, 0.986);
-    width     : 20%;
-    min-height: 800px;
-    float     : right;
-    padding   : 10px;
-    margin-top: 10px
+  background: rgba(174, 233, 255, 0.986);
+  width: 20%;
+  min-height: 800px;
+  float: right;
+  padding: 10px;
+  margin-top: 10px;
 }
 
 .pagination {
-    margin-top         : 0px;
-    /* background-color: #CBF1FA; */
-    clear              : both;
-    height             : 25px;
-    margin-bottom      : 10px;
-    padding-top        : 0px;
-    padding-bottom     : 20px;
-    /*add*/
+  margin-top: 0px;
+  clear: both;
+  height: 25px;
+  margin-bottom: 10px;
+  padding-top: 0px;
+  padding-bottom: 20px;
 }
 
 .footer {
-    background    : rgb(43, 43, 43);
-    width         : 200px;
-    text-align    : center;
-    clear         : left;
-    height        : 87px;
-    color         : floralwhite;
-    width         : 100%;
-    /* line-height: 40px; */
-    /* position   : absolute;
-    bottom        : 0; */
+  background: rgb(43, 43, 43);
+  width: 200px;
+  text-align: center;
+  clear: left;
+  height: 87px;
+  color: floralwhite;
+  width: 100%;
 }
 
 .footer div {
-    padding-top   : 7 px;
-    padding-bottom: 7px
+  padding-top: 7 px;
+  padding-bottom: 7px;
 }
 
 .header ul {
-    margin : 0px;
-    padding: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 .header ul li {
-    list-style: none;
-    float     : left;
+  list-style: none;
+  float: left;
 }
 
 .header ul li a {
-    text-decoration: none;
-    display        : block;
-    height         : 40px;
-    /*bằng chiều cao header*/
-    /*bằng chiều cao header, cho text căn giữa*/
-    line-height    : 40px;
-    color          : white;
-    padding        : 0px 15px 0px 15px;
-    border-right   : 1px solid #eeeeee;
+  text-decoration: none;
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  color: white;
+  padding: 0px 15px 0px 15px;
+  border-right: 1px solid #eeeeee;
 }
 
 .header ul li a:active,
 a:hover {
-    background-color     : rgb(31, 88, 112);
-    text-decoration-color: black;
+  background-color: rgb(31, 88, 112);
+  text-decoration-color: black;
 }
 
 @media (min-width: 992px) and (max-width: 1366px) {
-    .banner img {
-        width: 100%;
-    }
+  .banner img {
+    width: 100%;
+  }
 }
 
 @media (max-width: 992px) {
-    .banner img {
-        width: 100%;
-    }
+  .banner img {
+    width: 100%;
+  }
 }
 
 .error_message {
-    color        : red;
-    margin-top   : 7px;
-    text-align   : right;
-    margin-bottom: 0px;
-    font-size    : 14px;
+  color: red;
+  margin-top: 7px;
+  text-align: right;
+  margin-bottom: 0px;
+  font-size: 14px;
 }
 
 #password-error,
 #email-error {
-    color    : red;
-    clear    : both;
-    font-size: 10px;
+  color: red;
+  clear: both;
+  font-size: 10px;
 }

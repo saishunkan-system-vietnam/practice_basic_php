@@ -38,12 +38,13 @@ id_recruitment,
 COUNT(*) candidates
 FROM
 t_apply
+WHERE del_flg = 0
 GROUP BY id_recruitment) 
 
 SELECT rcm.id,  rcm.position, IFNULL(apl.candidates, 0) candidates, rcm.create_datetime, rcm.del_flg
 FROM t_recruitment rcm
-LEFT JOIN apl  ON rcm.id = apl.id_recruitment
-WHERE rcm.position like '%$key%'
+LEFT JOIN apl  ON rcm.id = apl.id_recruitment 
+WHERE rcm.position like '%$key%' 
 order by rcm.create_datetime DESC LIMIT " . $limit . " OFFSET " . $start;
 $resultData = $connect->query($sqlSelectData);
 
@@ -97,10 +98,10 @@ if ($resultData->num_rows > 0) {
             </td>
 
             <td>
-            <input type="button" id="btnview"  value="View"></input>
+            <input type="button" data=' . $rowData["id"] . ' id="btnview"  value="View"></input>
             </td>
             
-            <td>
+            <td id = "stt'. $index .'">
             ' . $del_flg . '
             </td>
 
@@ -110,7 +111,7 @@ if ($resultData->num_rows > 0) {
                   
             <td class="action">
                 <input type="button" id="btnedit" data=' . $rowData["id"] . ' value="Edit"></input>
-                <input type="button" stt="btnedit" id="btndel" val=' . $rowData["del_flg"] . ' name="' . $rowData["id"] . '" value="Delete"></input>
+                <input type="button" id="btndel" stt = "'. $index .'" name="' . $rowData["id"] . '" value="Delete"></input>
             </td>
         </tr>';
     }

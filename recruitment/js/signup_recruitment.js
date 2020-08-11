@@ -1,13 +1,58 @@
 $("#btnsignup").on("click", function () {
-  // event.preventDefault();
-  //alert(CKEDITOR.instances.detail.getData());
   if (
     confirm(
       "Bạn đã chắc chắn muốn " + $("#btnsignup").val() + " tài khoản này?"
     )
   ) {
     if (IsValidRecruitmentData()) {
-      alert("ok");
+      if ($(this).attr("name") == "btnsignup") {
+        $.ajax({
+          async: false,
+          url: "recruitment_insert.php",
+          method: "post",
+          data: {
+            company: $.trim($("#company").val()),
+            position: $.trim($("#pos_title").val()),
+            address: $.trim($("#address").val()),
+            salary: $.trim($("#salary").val()),
+            deadline: $.trim($("#deadline").val()),
+            detail: $.trim(CKEDITOR.instances.detail.getData()),
+          },
+          success: function (response) {
+            if (response == 1) {
+              alert("Đăng ký thành công");
+              window.location = "./manage_recruitment.php";
+            } else if (response == 2) {
+              alert("Tin tuyển dụng này đã đăng ký. Vui lòng kiểm tra lại!");
+            } else {
+              alert("Đăng ký thất bại. Lỗi " + response);
+            }
+          },
+        });
+      } else if ($(this).attr("name") == "btnupdate") {
+        $.ajax({
+          async: false,
+          url: "recruitment_update.php",
+          method: "post",
+          data: {
+            id: $.trim($(this).attr("data")),
+            company: $.trim($("#company").val()),
+            position: $.trim($("#pos_title").val()),
+            address: $.trim($("#address").val()),
+            salary: $.trim($("#salary").val()),
+            deadline: $.trim($("#deadline").val()),
+            detail: $.trim(CKEDITOR.instances.detail.getData()),
+          },
+          success: function (response) {
+            if (response == 1) {
+              alert("Update thành công");
+              window.location = "manage_recruitment.php";
+            } else {
+              alert("Update thất bại. Lỗi " + response);
+            }
+          },
+        });
+      }
     }
   }
 });
@@ -18,8 +63,7 @@ function IsValidRecruitmentData() {
   var address = $.trim($("#address").val());
   var salary = $.trim($("#salary").val());
   var deadline = $.trim($("#deadline").val());
-  var detail = $.trim($("#detail").val());
-
+  var detail = $.trim(CKEDITOR.instances.detail.getData());
   var is_valid = true;
 
   if (company == "") {
@@ -53,7 +97,7 @@ function IsValidRecruitmentData() {
     $("#salary").css("borderColor", "red");
     is_valid = false;
   }
-  alert(deadline);
+
   if (!isDate(deadline)) {
     $("#error_deadline").text("Định dạng ngày deadline không hợp lệ!");
     $("#deadline").css("borderColor", "red");

@@ -3,11 +3,6 @@
 
 <div class="sidebar">
     <div class="sidebar-content">
-        <!-- <div class="admin-info">
-            <div id="admin_id">
-                nguyenminh15cdt1@gmmail.comsfđ
-            </div>
-        </div> -->
         <div class="home">
             <button class="btnsidebar" type="button" id="btnmanage_home">🏠 Home</button>
         </div>
@@ -21,3 +16,5 @@
         </div>
     </div>
 </div>
+
+<script src="<?= FILE_JS_SIDEBAR ?>"></script>

@@ -1,49 +1,35 @@
 $(document).ready(function () {
+
+  // Click button back
   $("#btnback").on("click", function () {
     BackToPreviousPage();
   });
 
 });
 
-function ShowData(tag_id) {
-  $.ajax({
-    async: false,
-    url: "recruitment_detail.php",
-    method: "post",
-    data: {
-      recruitment_id: $(tag_id).data("id"),
-    },
-    success: function (response) {
-      //alert(response);
-      $("#data_detail").remove();
-      $("#recruitment_detail").append(response);
-      $("#recruitment_detail").show();
-      $("#recruitment_header").hide();
-      $("#btnback").hide();
-      if (IsThisPage("recruitment.php")) {
-        $("#pagination_recruitment").hide();
-      }
-    },
-  });
-}
-
+// Hàm check url
 function IsThisPage(str_search) {
   var url = new URLSearchParams(location.search);
   var result = window.location.href.search(str_search);
 
+  // Trường hợp check đúng thì return true
   if (result != -1) {
     return true;
   }
 
+  // Trả về false
   return false;
 }
 
 function BackToPreviousPage() {
+
+  //  Trường hợp là trang chủ
   if (IsThisPage("http://minhnn.com")) {
     $("#recruitment_detail").hide();
     $("#recruitment_header").show();
   }
 
+  //  Trường hợp là tuyển dụng
   if (IsThisPage("recruitment.php")) {
     $("#recruitment_detail").hide();
     $("#recruitment_header").show();
@@ -51,13 +37,14 @@ function BackToPreviousPage() {
   }
 }
 
+// Click button ứng tuyển
 $(document).on("click", ".btnapply", function () {
   var id = $(this).attr("name");
-  // alert(
-  //   id + " " + $("#position" + id).data("pos") + " " + $("#user_email").text()
-  // );
 
+  // Trường hợp user_email khác rỗng
   if ($("#user_email").text() != "") {
+
+    // Ajax apply
     $.ajax({
       async: false,
       url: "apply.php",
@@ -68,12 +55,13 @@ $(document).on("click", ".btnapply", function () {
         user_email: $("#user_email").text(),
       },
       success: function (response) {
-        // alert(response);
         $("#apply_form").css("visibility", "visible");
         $("#apply_form").html(response);
       },
     });
   } else {
+
+    // Chuyển đến trang login
     window.location = "login.php";
   }
 });
