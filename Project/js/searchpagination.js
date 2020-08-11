@@ -4,7 +4,6 @@ $(document).on('click', '#btnSearch', function () {
         cnt = "&content=" + $.trim($("#inpSearch").val());
     }
     let newhref;
-    console.log(id);
     switch (site) {
         case "account":
             newhref = "./qlaccount.php?page=" + 1 + cnt;

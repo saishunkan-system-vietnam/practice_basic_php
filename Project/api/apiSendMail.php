@@ -10,7 +10,7 @@ $encoded_subject = mb_encode_mimeheader($subject,"UTF-8");
 $from = 'shadowin1811@gmail.com';
 
 $token = substr(md5(rand(0, 100000)), 0, 16);
-$route = "http://nhanvp.com/Project/changePass.php?email=$to&token=$token";
+$route = "http://nhanvp.com/changePass.php?email=$to&token=$token";
 
 $headers = 'From: nhanvp.com' . "\r\n" .
     'Reply-To: ' . $from . "\r\n" .

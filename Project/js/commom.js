@@ -28,6 +28,40 @@ $(".btn").click(function () {
         $(".display_img img").attr("src", "../img/img_null.jpg");
     }
 
+    if ($(this).attr("name") == 'btnAdd_loan') {
+        var sessName = $(this).attr("data-sess");
+        if (sessName != '') {
+            $.ajax({
+                url: "../api/apiMuonthietbi.php",
+                method: "POST",
+                data: {
+                    name: "check",
+                    user: sessName
+                },
+                success: function (data) {
+                    data.forEach(function (item) {
+                        if (item.total >= 5) {
+                            alert("Sồ lần mượn không được vượt quá 5");
+                        } else {
+                            $("#modal-wrapper").css("display", "block");
+                            $("body").css("overflow", "hidden");
+                        }
+
+                    });
+                }
+            })
+
+        }
+        else {
+            var flg = confirm("Bạn sẽ được chuyển tới trang đăng nhập để được sử dụng chức năng này!!");
+            if (flg == true) {
+                window.location.href = "./dangnhap.php";
+            } else {
+                location.reload(true);
+            }
+        }
+    }
+
     if ($(this).attr("name") == 'btnEdit') {
         $("#modal-wrapper").css("display", "block");
         $("body").css("overflow", "hidden");
@@ -49,7 +83,7 @@ $(".btn").click(function () {
                     $('#inp_devicename').val(item.device_name);
                     $('#inp_category').val(item.category_name);
                     $('#inp_supplier').val(item.supplier_name);
-                    if (item.img != '') {
+                    if ($.trim(item.img) != '') {
                         $('#image').val(item.img);
                         $(".display_img img").attr("src", "../img/" + item.img);
                     } else {
@@ -85,26 +119,44 @@ $(".btn").click(function () {
 
     if ($(this).attr("name") == 'btnMuon') {
         var sessName = $(this).attr("data-sess");
+        var id_device = $(this).attr("data-id");
         if (sessName != '') {
-            $("#modal-wrapper").css("display", "block");
-            $("body").css("overflow", "hidden");
-
             $.ajax({
                 url: "../api/apiMuonthietbi.php",
                 method: "POST",
                 data: {
-                    name: "select",
-                    id_device: $(this).attr("data-id")
+                    name: "check",
+                    user: sessName
                 },
                 success: function (data) {
                     data.forEach(function (item) {
-                        $('#opt_device').val(item.id);
-                        $('#opt_device').text(item.device_name);
-                        $('#device').css('pointer-events', 'none');
+                        if (item.total >= 5) {
+                            alert("Sồ lần mượn không được vượt quá 5");
+                        } else {
+                            $("#modal-wrapper").css("display", "block");
+                            $("body").css("overflow", "hidden");
+
+                            $.ajax({
+                                url: "../api/apiMuonthietbi.php",
+                                method: "POST",
+                                data: {
+                                    name: "select",
+                                    id_device: id_device,
+                                },
+                                success: function (data) {
+                                    data.forEach(function (items) {
+                                        $('#opt_device').val(items.id);
+                                        $('#opt_device').text(items.device_name);
+                                        $('#device').css('pointer-events', 'none');
+                                    });
+                                }
+                            })
+                        }
 
                     });
                 }
             })
+
         }
         else {
             var flg = confirm("Bạn sẽ được chuyển tới trang đăng nhập để được sử dụng chức năng này!!");
@@ -122,11 +174,27 @@ $(".btn").click(function () {
     }
 });
 
-function preview() {
-    var pathimg = $('#inpimg')[0].files[0]['name'];
-    $(".display_img img").attr("src", "../img/" + pathimg);
-    $('#image').val(pathimg);
-}
+
+$('#inpimg').change(function (event) {
+    if (this.files && this.files[0] && this.files[0].name.match(/\.(jpg|jpeg|png|gif)$/)) {
+        var pathimg = $('#inpimg')[0].files[0]['name'];
+        $('#image').val(pathimg);
+        $(".display_img img").fadeIn("fast").attr('src', URL.createObjectURL(event.target.files[0]));
+
+        var fd = new FormData();
+        var files = $('#inpimg')[0].files[0];
+        fd.append('file', files);
+
+        $.ajax({
+            url: '../api/apiupload.php',
+            type: 'post',
+            data: fd,
+            contentType: false,
+            processData: false,
+        });
+
+    } else alert('This is not an image file!');
+});
 
 function setcategory() {
     $('#inp_category').val($.trim($('#category option:selected').text()));

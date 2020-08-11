@@ -15,13 +15,14 @@ include(SITE_TOPNAV);
     <link rel="stylesheet" href=<?= FILE_CSS_DASHBOARD ?>>
     <title>Dashboard</title>
 </head>
+
 <body>
 
     <?php
 
     $sql_acc = "SELECT COUNT(*) as total_acc  FROM `t_account` WHERE del_flg = 0";
     $sql_device = "SELECT COUNT(*) as total_device FROM `t_device` WHERE del_flg = 0";
-    $sql_device_loan = "SELECT SUM(amount) as sum_device_loan FROM t_loan_detail WHERE del_flg = 0";
+    $sql_device_loan = "SELECT SUM(amount) as sum_device_loan FROM t_loan_detail WHERE del_flg = 0 AND pay_flg = 0";
     $sql_acc_loan = "SELECT COUNT(DISTINCT tl.id_account) as total_acc_loan FROM `t_loan` tl INNER JOIN t_loan_detail tld ON tl.id = tld.id_loan WHERE tld.del_flg = 0 AND tld.pay_flg = 0";
 
 

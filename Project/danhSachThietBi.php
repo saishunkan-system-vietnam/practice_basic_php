@@ -36,7 +36,7 @@ include(SITE_POPUPMUONTB);
     $result = mysqli_query($connect, "SELECT td.id, td.device_name, tc.category_name, ts.supplier_name, td.img 
                                       FROM t_category tc INNER JOIN t_device td ON tc.id = td.id_category 
                                                          INNER JOIN t_supplier ts on ts.id = td.id_supplier 
-                                      WHERE td.del_flg = 0 LIMIT $start, $limit");
+                                      WHERE td.del_flg = 0 ORDER BY td.create_datetime DESC LIMIT $start, $limit");
     mysqli_close($connect);
     ?>
     <div class="div_tbl div_new">

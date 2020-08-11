@@ -59,7 +59,6 @@ include(SITE_TOPNAV);
                 <tr>
                     <th class="th_second th_stt">STT</th>
                     <th class="th_second th_user_name">User name</th>
-                    <th class="th_second th_inp_pass">Password</th>
                     <th class="th_second th_email">Email</th>
                     <th class="th_second th_avatar">Avatar</th>
                     <th class="th_second th_admin">Admin</th>
@@ -80,9 +79,6 @@ include(SITE_TOPNAV);
                             </td>
                             <td class="td_second td_user_name">
                                 <?php echo $row['user_name']; ?>
-                            </td>
-                            <td class="td_second td_inp_pass">
-                                <input class="inp_pass" type="password" readonly value="<?php echo md5($row['password']); ?>">
                             </td>
                             <td class="td_second td_email">
                                 <?php echo $row['email']; ?>

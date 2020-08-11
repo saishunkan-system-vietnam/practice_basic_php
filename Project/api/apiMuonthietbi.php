@@ -11,7 +11,7 @@ if ($name == 'insert') {
     $reason = trim($_POST['reason']);
     $soLuong = trim($_POST['soluong']);
 
-    $sql_Insert_tbl_muontra = "INSERT INTO t_loan (id_account, loan_date, intend_date, create_datetime) VALUES ($_SESSION[txtId], CURDATE(), '$date', CURRENT_TIMESTAMP())";
+    $sql_Insert_tbl_muontra = "INSERT INTO t_loan (id_account, loan_date, intend_date, create_datetime) VALUES ($_SESSION[txtId], CURRENT_TIMESTAMP(), '$date', CURRENT_TIMESTAMP())";
     $result_tbl_muontra = mysqli_query($connect, $sql_Insert_tbl_muontra);
 
     if (!$result_tbl_muontra) {
@@ -29,6 +29,21 @@ if ($name == 'insert') {
     }
 }
 
+if ($name == 'check') {
+    $user = isset($_POST['user']) ? trim($_POST['user']) : '';
+    
+    $sql_check = "SELECT COUNT(*) total FROM t_loan_detail tld INNER JOIN t_loan tl ON tld.id_loan  = tl.id INNER JOIN t_account tc on  tl.id_account = tc.id where tc.user_name = '$user' AND tld.del_flg = 0 and tld.pay_flg = 0";
+
+    $result_select = mysqli_query($connect, $sql_check) or die("lỗi truy vấn select");
+    
+    while ($row = $result_select->fetch_assoc()) {
+        $data[count($data)] = $row;
+    }
+    header('Content-Type: application/json');
+    echo (json_encode($data));
+    mysqli_close($connect);
+}
+
 if ($name == 'select') {
     $id_device = isset($_POST['id_device']) ? trim($_POST['id_device']) : '';
     $sql_select = "SELECT * FROM t_device WHERE del_flg = 0 AND id=$id_device";
@@ -41,3 +56,5 @@ if ($name == 'select') {
     echo (json_encode($data));
     mysqli_close($connect);
 }
+
+

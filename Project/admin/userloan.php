@@ -9,18 +9,18 @@ $is_page_refreshed = (isset($_SERVER['HTTP_CACHE_CONTROL']) && $_SERVER['HTTP_CA
 
 $id_device = isset($_GET['id']) ? $_GET['id'] : '';
 
-// if (empty($id_device)) {
-//     $_SESSION['error'] = "Trang này không tồn tại. Vui lòng kiểm tra lại";
-//     header("location: qlloan.php");
-// }
+if (empty($id_device)) {
+    $_SESSION['error'] = "Trang này không tồn tại. Vui lòng kiểm tra lại";
+    header("location: qlloan.php");
+}
 
-// $sql_check = "select * FROM t_loan_detail where id_device =$id_device";
-// $result_check = mysqli_query($connect, $sql_check);
+$sql_check = "select * FROM t_loan_detail where id_device =$id_device";
+$result_check = mysqli_query($connect, $sql_check);
 
-// if ($result_check->num_rows == 0) {
-//     $_SESSION['error'] = "Trang này không tồn tại. Vui lòng kiểm tra lại";
-//     header("location: qlloan.php");
-// } else {
+if ($result_check->num_rows == 0) {
+    $_SESSION['error'] = "Trang này không tồn tại. Vui lòng kiểm tra lại";
+    header("location: qlloan.php");
+} else {
     $content = isset($_GET['content']) ? $_GET['content'] : '';
 
     $sql_total = "SELECT count(*) as total 
@@ -34,7 +34,7 @@ $id_device = isset($_GET['id']) ? $_GET['id'] : '';
     $row = mysqli_fetch_assoc($result_total);
     $total_records = $row['total'];
     $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-    $limit = 1;
+    $limit = 4;
 
     $total_page = ceil($total_records / $limit);
 
@@ -47,13 +47,13 @@ $id_device = isset($_GET['id']) ? $_GET['id'] : '';
     $start = ($current_page - 1) * $limit;
     $stt = ($current_page - 1) * $limit + 1;
 
-    $sql_select_acc = "SELECT tl.id_account, tc.avatar, tc.user_name, tld.amount, tl.loan_date, tld.pay_date, tld.reason, tld.pay_flg, tld.create_datetime 
+    $sql_select_acc = "SELECT tl.id_account, tc.avatar, tc.user_name, tld.amount, tl.loan_date, tl.intend_date, tld.reason, tld.pay_flg, tld.create_datetime 
                        FROM t_loan_detail tld INNER JOIN t_loan tl ON tld.id_loan = tl.id 
                                               INNER JOIN t_account tc ON tc.id = tl.id_account 
                        WHERE tld.del_flg = 0 AND tld.pay_flg = 0 AND tld.id_device = $id_device AND user_name LIKE '%{$content}%' ORDER by tl.id_account LIMIT $start, $limit ";
     $result_acc = mysqli_query($connect, $sql_select_acc);
     mysqli_close($connect);
-// }
+}
 
 ?>
 <!DOCTYPE html>
@@ -86,7 +86,7 @@ $id_device = isset($_GET['id']) ? $_GET['id'] : '';
                     <th class="th_second th_user">User name</th>
                     <th class="th_second th_amount">Số lượng</th>
                     <th class="th_second th_loan_date">Ngày mượn</th>
-                    <th class="th_second th_pay_date">Ngày trả</th>
+                    <th class="th_second th_pay_date">Ngày hẹn trả</th>
                     <th class="th_second th_reason">Lý do</th>
                     <th class="th_second th_status">Trạng thái</th>
                     <th class="th_second th_pay_device">Trả thiết bị</th>
@@ -118,7 +118,7 @@ $id_device = isset($_GET['id']) ? $_GET['id'] : '';
                                 <?php echo $row['loan_date']; ?>
                             </td>
                             <td class="td_second td_admin">
-                                <?php echo $row['pay_date']; ?>
+                                <?php echo $row['intend_date']; ?>
                             </td>
                             <td class="td_second">
                                 <?php echo $row['reason']; ?>
@@ -135,6 +135,8 @@ $id_device = isset($_GET['id']) ? $_GET['id'] : '';
                 endif; ?>
 
             </table>
+        </div>
+        <div>
         </div>
         <div class="pg_nd">
             <div class="pagination" style=" margin-top: 15px;">

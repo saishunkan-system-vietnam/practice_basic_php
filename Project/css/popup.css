@@ -1,5 +1,5 @@
 /* Set a style for all buttons */
-label{
+label {
     font-weight: bold;
 }
 
@@ -67,29 +67,32 @@ label{
 }
 
 .device {
-    height: 30px;
+    height      : 30px;
     margin-right: 26px;
 }
 
-.device_lbl{
-    margin-left: 26px;
-}
 .reason {
     float : left;
     width : 90%;
     margin: 5px 26px 20px 26px;
 }
 
+.inp_device,
 .intend_date,
 .inp_amount {
     height: 30px;
     margin: 8px 26px;
 }
 
+
 #inpamount {
     -webkit-appearance: none;
     width             : 50px;
     height            : 25px;
+}
+
+#inp_intend {
+    height     : 25px;
 }
 
 .modal-content {
@@ -104,4 +107,18 @@ label{
     to {
         transform: scale(1)
     }
+}
+
+
+.Row
+{
+    clear: both;
+    display: table;
+    width: 40%; /*Optional*/
+    table-layout: fixed; /*Optional*/
+}
+
+.Column
+{
+    display: table-cell;
 }

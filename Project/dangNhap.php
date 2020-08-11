@@ -2,6 +2,11 @@
 require('./config/router.php');
 include(SITE_MENUTOP);
 
+if (isset($_SESSION['error'])) {
+    echo "<script type='text/javascript'>alert('$_SESSION[error]');</script>";
+    unset($_SESSION['error']);
+}
+
 if (isset($_SESSION['success'])) {
     echo "<script type='text/javascript'>alert('$_SESSION[success]');</script>";
     unset($_SESSION['success']);

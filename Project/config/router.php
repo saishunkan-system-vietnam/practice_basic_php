@@ -33,8 +33,8 @@ define('SITE_LOAN','./qlloan.php');
 define('LINK_JQUERY','https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js');
 define('LINK_JQUERY_VALIDATE','https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js');
 define('LINK_JQUERY_AWESOM','https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
-// URL FILE CSS
 
+// URL FILE CSS
 define('FILE_CSS_MENUTOP','./css/menutop.css');
 define('FILE_CSS_BANNER','./css/banner.css');
 define('FILE_CSS_FOOTER','./css/footer.css');
