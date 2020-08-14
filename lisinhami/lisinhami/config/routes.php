@@ -74,6 +74,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
     Router::prefix('Admin', function (RouteBuilder $routes) {
         // Profile
         $routes->connect('/', ['controller' => 'Dashboard', 'action' => 'top']);
+        $routes->connect('/listsanpham', ['controller' => 'Dashboard', 'action' => 'viewporduct']);
     });
     $builder->fallbacks();
 });
