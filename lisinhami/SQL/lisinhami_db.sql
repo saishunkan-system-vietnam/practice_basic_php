@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th8 14, 2020 lúc 12:31 PM
+-- Thời gian đã tạo: Th8 14, 2020 lúc 01:34 PM
 -- Phiên bản máy phục vụ: 10.4.13-MariaDB
 -- Phiên bản PHP: 7.2.31
 
@@ -30,8 +30,6 @@ SET time_zone = "+00:00";
 CREATE TABLE `t_address` (
   `id` int(11) NOT NULL COMMENT 'Id địa chỉ',
   `id_user` varchar(30) COLLATE utf8_unicode_ci NOT NULL COMMENT 'id user',
-  `address_cd1` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'Mã địa chỉ chính',
-  `address_cd2` tinyint(1) NOT NULL DEFAULT 2 COMMENT 'Mã địa chỉ phụ',
   `address1` varchar(150) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Địa chỉ chính',
   `address2` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Địa chỉ phụ',
   `del_flg` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Cờ xóa(0: Không xóa, 1: Xóa)',
@@ -92,8 +90,7 @@ CREATE TABLE `t_order_header` (
   `phone` varchar(10) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Số điện thoại người nhận hàng',
   `note` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Ghi chú đơn hàng',
   `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'Trạng thái đơn hàng (\r\n1: chờ xử lý xác nhận đơn hàng\r\n2: đã xử lý, chờ xuất hàng.\r\n3: đã xuất hàng chờ vận chuyển\r\n4: đang vận chuyển, chờ giao hàng\r\n5: Đang giao hàng\r\n6: Nhận hàng, hoàn thành đơn hàng\r\n0: Hủy đơn hàng\r\n)',
-  `sample_flg` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Cờ xác định đơn hàng sản phẩm sample (0: không phải là đơn hàng sample, 1: là đơn hàng sản phẩm sample)',
-  `login_flg` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Cờ xác định mua hàng đăng nhập(0: Không đăng nhập, 1:có đăng nhập)',
+  `odr_flg` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Cờ xác định đơn hàng (0: đơn hàng đã đăng nhập, 1 là đơn hàng không đăng nhập, 2 là đơn hàng sample)',
   `create_datetime` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'Thời gian tạo',
   `update_datetime` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Thời gian update'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
