@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th8 14, 2020 lúc 01:34 PM
+-- Thời gian đã tạo: Th8 14, 2020 lúc 07:46 PM
 -- Phiên bản máy phục vụ: 10.4.13-MariaDB
 -- Phiên bản PHP: 7.2.31
 
@@ -149,6 +149,13 @@ CREATE TABLE `t_product` (
   `create_datetime` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'thời gian tạo',
   `update_datetime` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Thời gian cập nhật'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `t_product`
+--
+
+INSERT INTO `t_product` (`id`, `name`, `category_cd`, `price`, `discount`, `tax`, `made_in`, `info_gen`, `info_dtl`, `point`, `slug`, `del_flg`, `create_datetime`, `update_datetime`) VALUES
+(1, 'Sản phẩm test', 1, '10000', '1000', 5, 'Viet Nam', 'abc', 'xyz', 10, 'San-pham-test', 0, '2020-08-14 06:49:29', '2020-08-14 06:49:29');
 
 -- --------------------------------------------------------
 
@@ -308,7 +315,7 @@ ALTER TABLE `t_point`
 -- AUTO_INCREMENT cho bảng `t_product`
 --
 ALTER TABLE `t_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id sản phẩm';
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id sản phẩm', AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `t_reset_pass`
