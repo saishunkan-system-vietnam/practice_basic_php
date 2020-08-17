@@ -61,7 +61,7 @@ class TProductTable extends Table
             ->notEmptyString('name');
 
         $validator
-            ->boolean('category_cd')
+            ->integer('category_cd')
             ->notEmptyString('category_cd');
 
         $validator

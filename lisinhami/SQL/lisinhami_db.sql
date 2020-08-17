@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th8 14, 2020 lúc 07:46 PM
+-- Thời gian đã tạo: Th8 16, 2020 lúc 03:55 PM
 -- Phiên bản máy phục vụ: 10.4.13-MariaDB
--- Phiên bản PHP: 7.2.31
+-- Phiên bản PHP: 7.4.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -89,8 +89,8 @@ CREATE TABLE `t_order_header` (
   `reciever` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Tên người nhận hàng',
   `phone` varchar(10) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Số điện thoại người nhận hàng',
   `note` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Ghi chú đơn hàng',
-  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'Trạng thái đơn hàng (\r\n1: chờ xử lý xác nhận đơn hàng\r\n2: đã xử lý, chờ xuất hàng.\r\n3: đã xuất hàng chờ vận chuyển\r\n4: đang vận chuyển, chờ giao hàng\r\n5: Đang giao hàng\r\n6: Nhận hàng, hoàn thành đơn hàng\r\n0: Hủy đơn hàng\r\n)',
-  `odr_flg` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Cờ xác định đơn hàng (0: đơn hàng đã đăng nhập, 1 là đơn hàng không đăng nhập, 2 là đơn hàng sample)',
+  `status` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT '1' COMMENT 'Trạng thái đơn hàng (\r\n1: chờ xử lý xác nhận đơn hàng\r\n2: đã xử lý, chờ xuất hàng.\r\n3: đã xuất hàng chờ vận chuyển\r\n4: đang vận chuyển, chờ giao hàng\r\n5: Đang giao hàng\r\n6: Nhận hàng, hoàn thành đơn hàng\r\n0: Hủy đơn hàng\r\n)',
+  `odr_flg` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0' COMMENT 'Cờ xác định đơn hàng (0: đơn hàng đã đăng nhập, 1 là đơn hàng không đăng nhập, 2 là đơn hàng sample)',
   `create_datetime` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'Thời gian tạo',
   `update_datetime` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Thời gian update'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -103,7 +103,7 @@ CREATE TABLE `t_order_header` (
 
 CREATE TABLE `t_payment _method` (
   `id` int(11) NOT NULL COMMENT 'id',
-  `payment_cd` tinyint(3) NOT NULL COMMENT 'mã phương thức thanh toán',
+  `payment_cd` varchar(3) COLLATE utf8_unicode_ci NOT NULL COMMENT 'mã phương thức thanh toán',
   `method_paymnt` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Phương thức thanh toán',
   `slug` varchar(60) COLLATE utf8_unicode_ci NOT NULL COMMENT 'link thân thiện',
   `del_flg` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'cờ xóa (0: không xóa, 1: xóa)',
@@ -136,10 +136,10 @@ CREATE TABLE `t_point` (
 CREATE TABLE `t_product` (
   `id` int(11) NOT NULL COMMENT 'Id sản phẩm',
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Tên sản phẩm',
-  `category_cd` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'Mã thể loại(1:sản phẩm mỹ phẩm, 2: sản phẩm dùng thử, 3: sản phẩm quà tặng)',
+  `category_cd` int(1) NOT NULL DEFAULT 1 COMMENT 'Mã thể loại(1:sản phẩm mỹ phẩm, 2: sản phẩm dùng thử, 3: sản phẩm quà tặng)',
   `price` decimal(10,0) NOT NULL DEFAULT 0 COMMENT 'Giá sản phẩm',
   `discount` decimal(10,0) NOT NULL DEFAULT 0 COMMENT 'Giảm giá',
-  `tax` tinyint(2) NOT NULL COMMENT 'Thuế ',
+  `tax` int(2) NOT NULL COMMENT 'Thuế ',
   `made_in` varchar(30) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Xuất xứ',
   `info_gen` varchar(200) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Mô tả',
   `info_dtl` text COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Nội dung',
@@ -155,7 +155,18 @@ CREATE TABLE `t_product` (
 --
 
 INSERT INTO `t_product` (`id`, `name`, `category_cd`, `price`, `discount`, `tax`, `made_in`, `info_gen`, `info_dtl`, `point`, `slug`, `del_flg`, `create_datetime`, `update_datetime`) VALUES
-(1, 'Sản phẩm test', 1, '10000', '1000', 5, 'Viet Nam', 'abc', 'xyz', 10, 'San-pham-test', 0, '2020-08-14 06:49:29', '2020-08-14 06:49:29');
+(1, '0', 1, '10000', '1000', 5, 'Viet Nam', 'abc', 'xyz', 10, 'San-pham-test', 0, '2020-08-14 06:49:29', '2020-08-14 06:49:29'),
+(2, '0', 1, '650000', '50000', 5, 'Korea', 'sản phẩm abnbc', 'sdkfjhkj', 150, 'abc-123', 0, '2020-08-15 11:30:12', '2020-08-15 11:30:12'),
+(3, '0', 1, '650000', '50000', 5, 'Korea', 'sản phẩm abnbc', 'sdkfjhkj', 150, 'san-pham-test-thu-23', 0, '2020-08-15 11:31:42', '2020-08-15 11:31:42'),
+(4, '0', 1, '650000', '50000', 5, 'Korea', 'sản phẩm abnbc', 'sdkfjhkj', 150, 'abc-123', 0, '2020-08-15 11:32:44', '2020-08-15 11:32:44'),
+(5, 'fsdaf', 3, '650000', '50000', 5, 'Korea', 'sản phẩm abnbc', 'sdkfjhkj5345345', 150, 'san-pham-test-thu-234234-dfsfs', 0, '2020-08-15 13:18:30', '2020-08-15 13:18:30'),
+(6, 'fsdaf', 3, '650000', '50000', 5, 'Korea', 'sản phẩm abnbc', 'sdkfjhkj5345345', 150, 'san-pham-test-thu-234234-dfsfs', 0, '2020-08-15 13:19:37', '2020-08-15 13:19:37'),
+(7, 'fsdaf', 3, '650000', '50000', 5, 'Korea', 'sản phẩm abnbc', 'sdkfjhkj5345345', 150, 'san-pham-test-thu-234234-dfsfs', 0, '2020-08-15 13:20:05', '2020-08-15 13:20:05'),
+(8, 'fsdaf', 3, '650000', '50000', 5, 'Korea', 'sản phẩm abnbc', 'sdkfjhkj5345345', 150, 'san-pham-test-thu-234234-dfsfs', 0, '2020-08-15 13:20:14', '2020-08-16 10:03:16'),
+(9, 'fsdaf22234', 3, '650000', '50000', 5, 'Korea', 'sản phẩm abnbc', 'sdkfjhkj5345345', 150, 'san-pham-test-thu-234234-dfsfs', 1, '2020-08-15 13:21:42', '2020-08-16 09:45:43'),
+(10, 'test sản phẩm point', 3, '0', '0', 0, 'Korea', 'sản phẩm abnbc', 'sdkfjhkj', 0, 'san-pham-test-thu-23', 0, '2020-08-15 13:57:04', '2020-08-16 06:57:10'),
+(11, 'fsdaf2', 3, '650000', '50000', 5, 'Korea', 'sản phẩm abnbc', 'sdkfjhkj5345345', 150, 'san-pham-test-thu-234234-dfsfs', 0, '2020-08-16 13:48:04', '2020-08-16 13:48:04'),
+(12, '02323jh', 1, '650000', '50000', 5, 'Korea', 'sản phẩm abnbc', 'sdkfjhkj', 150, 'abc-123', 0, '2020-08-16 13:48:35', '2020-08-16 13:50:32');
 
 -- --------------------------------------------------------
 
@@ -180,7 +191,7 @@ CREATE TABLE `t_reset_pass` (
 
 CREATE TABLE `t_shipping_unit` (
   `id` int(11) NOT NULL COMMENT 'id',
-  `ship_cd` tinyint(3) NOT NULL COMMENT 'mã đơn vị vận chuyển',
+  `ship_cd` varchar(3) COLLATE utf8_unicode_ci NOT NULL COMMENT 'mã đơn vị vận chuyển',
   `shipping_unit` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT 'đơn vị vận chuyển',
   `fee` decimal(10,0) NOT NULL DEFAULT 0 COMMENT 'phí vận chuyển',
   `slug` varchar(60) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Link thân thiện',
@@ -315,7 +326,7 @@ ALTER TABLE `t_point`
 -- AUTO_INCREMENT cho bảng `t_product`
 --
 ALTER TABLE `t_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id sản phẩm', AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id sản phẩm', AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT cho bảng `t_reset_pass`

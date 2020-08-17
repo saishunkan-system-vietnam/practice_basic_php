@@ -12,32 +12,60 @@ class ProductComponent extends CommonComponent
         $this->loadModel(['TProduct']);
     }
 
-    public function getAllProduct(): array
+    public function getAllProduct($key)
     {
-        $query = $this->TProduct->find()
-                ->order(['TProduct.id DESC'])
-                ->limit(3);
-        return $query->all()->toArray();   
+        if($key){
+            $query = $this->TProduct->find()
+            -> where(['And'=>['del_flg' => 0,
+                     ['Or'=>[
+                                'name like'=>'%'.$key.'%',
+                                'made_in like'=>'%'.$key.'%',
+                                'info_gen like'=>'%'.$key.'%'
+                            ]]
+                     ]])
+            ->order(['id DESC']);
+        }
+        else
+        {
+            $query = $this->TProduct->find()
+            -> where(['TProduct.del_flg' => 0])
+            ->order(['TProduct.id DESC']);
+        }
+       
+        // return $query->all()->toArray();
+        return $query;
     }
 
-    // public function update($data): array
-    // {
-    //     if (!empty($data['id'])) {
-    //         $ac = $this->TAccounts->get($data['id']);
-    //         $ac = $this->TAccounts->patchEntity($ac, $data);
-    //     } else {
-    //         $ac = $this->TAccounts->newEntity($data);
-    //     }
-    //     $result = $this->TAccounts->save($ac);
-    //     if ($ac->hasErrors()) {
-    //         return [
-    //             'result' => 'invalid',
-    //             'data' => $ac->getErrors()
-    //         ];
-    //     }
-    //     return [
-    //         'result' => 'success',
-    //         'data' =>  $result
-    //     ];
-    // }
+    public function getProductById($id)
+    {
+        $data = $this->TProduct
+                ->find()
+                ->where([
+                    'TProduct.id' =>  $id
+                ])
+                ->first();
+
+        return $data ? $data->toArray() : [];
+    }
+
+    public function save($data): array
+    {
+        if (!empty($data['id'])) {
+            $prd = $this->TProduct->get($data['id']);
+            $prd = $this->TProduct->patchEntity($prd, $data);
+        } else {
+            $prd = $this->TProduct->newEntity($data);
+        }
+        $result = $this->TProduct->save($prd);
+        if ($prd->hasErrors()) {
+            return [
+                'result' => 'invalid',
+                'data' => $prd->getErrors()
+            ];
+        }
+        return [
+            'result' => 'success',
+            'data' =>  $result
+        ];
+    }
 }
