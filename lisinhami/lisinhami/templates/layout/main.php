@@ -13,13 +13,15 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     <?= $this->Html->meta('icon') ?>
 
+    <?= $this->Html->css(['bootstrap.min', 'owl.carousel.min', 'smoothproducts']) ?>
+
+    <?= $this->Html->script(['jquery-3.3.1.min', 'jquery.cycle', 'bootstrap.min', 'owl.carousel.min', 'smoothproducts.min']) ?>
+
     <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
 
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
 
-    <?= $this->Html->css(['nav', 'footer']) ?>
-    <?= $this->Html->css(['bootstrap.min', 'owl.carousel.min', 'smoothproducts', 'detailproduct']) ?>
-    <?= $this->Html->script(['jquery-3.3.1.min', 'jquery.cycle', 'bootstrap.min', 'owl.carousel.min', 'smoothproducts.min']) ?>
+    <?= $this->Html->css(['nav', 'footer', 'home', 'detailproduct']) ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
