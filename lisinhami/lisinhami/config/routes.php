@@ -77,7 +77,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
         $routes->connect('/sanpham', ['controller' => 'Dashboard', 'action' => 'viewPorduct']);
         $routes->connect('/addsanpham', ['controller' => 'Dashboard', 'action' => 'addPorduct']);
         $routes->connect('/editsanpham/*', ['controller' => 'Dashboard', 'action' => 'editPorduct']);
-        $routes->connect('/delsanpham/*', ['controller' => 'Dashboard', 'action' => 'deletePorduct']);
+        $routes->connect('/delsanpham/*', ['controller' => 'Dashboard', 'action' => 'deletePorduct']);  
 
         $routes->fallbacks(DashedRoute::class);
     });

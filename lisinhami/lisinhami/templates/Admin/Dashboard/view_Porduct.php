@@ -1,7 +1,3 @@
-<?php
-
-use function PHPSTORM_META\type;
-?>
 <br>
 <div class="content">
 <legend><?= __($title) ?></legend>
@@ -10,6 +6,7 @@ use function PHPSTORM_META\type;
     <input type="text" class="form-control" type="submit" name= "key" id = "key"
                 value="<?= $this->request->getQuery('key') ?>">
     <?= $this->Form->end();?>
+
     <a href="addsanpham" title="Thêm sản phẩm" class="btn btn-primary btn-lg btn-radius" style="margin-bottom: 10px;"><i
             class="fa fa-plus" aria-hidden="true"></i> Add</a>      
 
@@ -40,9 +37,9 @@ use function PHPSTORM_META\type;
                 <td><?= $item->info_gen?></td>
                 <!-- <td><?= $item->info_dtl?></td> -->
                 <!-- <td><?= $item->slug?></td> -->
-                <!-- <td><?=
-                $this->Html->link('<span class="fa fa-pencil"> Edit</span>'
-                                        , 'admin/editsanpham/'.$item->id, ['escape' => false, 'title' => __('Edit Sản phẩm'),'class'=>'btn btn-warning  btn-lg btn-radius']) 
+                <!-- <td><?= ''
+                // $this->Html->link('<span class="fa fa-pencil"> Edit</span>'
+                //                         , 'admin/editsanpham/'.$item->id, ['escape' => false, 'title' => __('Edit Sản phẩm'),'class'=>'btn btn-warning  btn-lg btn-radius']) 
                 ?></td> -->
 
                 <!-- <td><a href="./editsanpham/" title="Xóa sản phẩm" class="btn btn-danger btn-lg btn-radius"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a></td> -->

@@ -22,15 +22,14 @@ class DashboardController extends AppController
         {
             $key = $this->request->getQuery('key');
             $TProduct = $this->{'Product'}->getAllProduct($key);
-            $this->set('TProduct', $this->paginate($TProduct,['limit'=>'5']));
+            $this->set('TProduct', $this->paginate($TProduct,['limit'=>5]));
             $this->set('title','Danh sách sản phẩm');
         }
 
         public function addPorduct(){
             if ($this->request->is('post')) {
-                $inputData = $this->request->getParsedBody(); 
-
-               $result = $this->{'Product'}->save($inputData);
+            $inputData = $this->request->getParsedBody(); 
+            $result = $this->{'Product'}->save($inputData);
                if($result['result'] == "invalid"){
                     foreach($result['data'] as $key => $item){
                         foreach($item as $err)
@@ -53,7 +52,7 @@ class DashboardController extends AppController
             if ($this->request->is('post')) {
                 $inputData = $this->request->getParsedBody();
                 $inputData += ["id"=>$id];
-
+                dd($inputData);
                 $result = $this->{'Product'}->save($inputData);
                 if($result['result'] == "invalid"){
                      foreach($result['data'] as $key => $item){
