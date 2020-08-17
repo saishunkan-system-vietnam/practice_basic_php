@@ -29,13 +29,19 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 </head>
 
 <body>
-    <?= $this->element('nav') ?>
-    <main class="main">
+
+    <main class="main" style="min-height: 100%;">
+        <?= $this->element('nav') ?>
+        <? if($this->request->getParam('action') != "register"){
+        echo $this->element('banner') ;
+        }
+        ?>
         <div class="container">
             <?= $this->Flash->render() ?>
             <?= $this->fetch('content') ?>
         </div>
     </main>
+    
     <?= $this->element('footer'); ?>
 </body>
 

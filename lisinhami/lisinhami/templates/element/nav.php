@@ -21,7 +21,7 @@
                     <a class="nav-user-img" href="#" data-toggle="modal" data-target="#modalLRForm" data-abc="true">
                         <span class="login">Đăng nhập</span>
                     </a>
-                    <a class="nav-user-img" href="#" data-toggle="modal" data-target="#modalLRForm" data-abc="true">
+                    <a class="nav-user-img" href=<?= $this->url->build(['controller' => 'pages', 'action' => 'register']) ?> data-abc="true">
                         <span class="register">Đăng ký</span>
                     </a>
                 </div>
@@ -46,37 +46,6 @@
         </div>
     </div>
 </nav>
-
-<!-- Banner -->
-<div class="banner" style="margin-top: 10px; margin-right: 20%; margin-left: 20%;">
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <span class="d-block w-100"><?= $this->Html->image('1.jpg', array('alt' => 'logo', 'border' => '0', 'width' => '100%')); ?></span>
-                <!-- <img class="d-block w-100" src="..." alt="First slide"> -->
-            </div>
-            <div class="carousel-item">
-                <span class="d-block w-100"><?= $this->Html->image('2.jpg', array('alt' => 'logo', 'border' => '0', 'width' => '100%')); ?></span>
-            </div>
-            <div class="carousel-item">
-                <span class="d-block w-100"><?= $this->Html->image('3.jpg', array('alt' => 'logo', 'border' => '0', 'width' => '100%')); ?></span>
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-</div>
-<script>
-    $('.carousel').carousel({
-        interval: 4000
-    });
-</script>
 <!-- Modal -->
 <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -89,22 +58,29 @@
             </div>
             <div class="modal-body">
                 <!--Body-->
-                <form>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                    </div>
-                    <div class="form-check" style="margin-bottom: 10px;">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Remember me</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
-                </form>
+                <!-- <form> -->
+                <?= $this->Form->create(); ?>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email</label>
+                    <input class="form-control" name="email" placeholder="Enter email" type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" title="Email không hợp lệ">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <div class="form-check" style="margin-bottom: 10px;">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                </div>
+                <?= $this->Form->postLink(
+                    __('Login'),
+                    "",
+                    ['controller' => 'pages', 'action' => 'login','class' => 'btn btn-primary btn-lg btn-block']
+                ) ?>
+
+                <!-- <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button> -->
+                <?= $this->Form->end(); ?>
+                <!-- </form> -->
             </div>
         </div>
     </div>
