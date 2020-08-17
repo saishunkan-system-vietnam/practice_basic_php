@@ -51,7 +51,20 @@ class PagesController extends AppController
         $this->viewBuilder()->setLayout('main');
     }
 
+    // Trang chủ
     public function home()
+    {
+        
+    }
+
+    // chi tiết sản phẩm
+    public function detailProduct()
+    {
+        
+    }
+
+    // Danh sách sản phẩm
+    public function viewList()
     {
         
     }

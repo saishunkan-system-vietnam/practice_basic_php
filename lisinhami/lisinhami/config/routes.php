@@ -53,24 +53,11 @@ $routes->scope('/', function (RouteBuilder $builder) {
      */
     $builder->connect('/', ['controller' => 'Pages', 'action' => 'home']);
 
-    /*
-     * ...and connect the rest of 'Pages' controller's URLs.
-     */
     $builder->connect('/home', ['controller' => 'Pages', 'action' => 'home']);
 
-    /*
-     * Connect catchall routes for all controllers.
-     *
-     * The `fallbacks` method is a shortcut for
-     *
-     * ```
-     * $builder->connect('/:controller', ['action' => 'index']);
-     * $builder->connect('/:controller/:action/*', []);
-     * ```
-     *
-     * You can remove these routes once you've connected the
-     * routes you want in your application.
-     */
+    $builder->connect('/chitiet', ['controller' => 'Pages', 'action' => 'detailProduct']);
+    $builder->connect('/danhsach', ['controller' => 'Pages', 'action' => 'viewList']);
+
     Router::prefix('Admin', function (RouteBuilder $routes) {
         // Profile
         $routes->connect('/', ['controller' => 'Dashboard', 'action' => 'top']);
@@ -84,14 +71,3 @@ $routes->scope('/', function (RouteBuilder $builder) {
     $builder->fallbacks();
 });
 
-/*
- * If you need a different set of middleware or none at all,
- * open new scope and define routes there.
- *
- * ```
- * $routes->scope('/api', function (RouteBuilder $builder) {
- *     // No $builder->applyMiddleware() here.
- *     // Connect API actions here.
- * });
- * ```
- */
