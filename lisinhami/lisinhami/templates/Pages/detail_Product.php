@@ -15,8 +15,8 @@
 					Loading Images
 				</div>
 				<div class="sp-wrap">
-					<a href="img/mp1-1-big.png"><?= $this->Html->image('mp1-1.png') ?></a>
-					<a href="img/mp1-2-big.png"><?= $this->Html->image('mp1-2.png') ?></a>
+					<a href="http://lisinhami.com/img/mp1-1-big.png"><?= $this->Html->image('mp1-1.png') ?></a>
+					<a href="http://lisinhami.com/img/mp1-1-big.png"><?= $this->Html->image('mp1-2.png') ?></a>
 				</div>
 			</div>
 			<div class="col-lg-5">
