@@ -58,13 +58,21 @@ $routes->scope('/', function (RouteBuilder $builder) {
     $builder->connect('/chitiet', ['controller' => 'Pages', 'action' => 'detailProduct']);
     $builder->connect('/danhsach', ['controller' => 'Pages', 'action' => 'viewList']);
 
+    // *******Danh mục sản phẩm *********
+    $builder->connect('/danhmuc/*', ['controller' => 'Pages', 'action' => 'viewList']);
+
     Router::prefix('Admin', function (RouteBuilder $routes) {
         // Profile
         $routes->connect('/', ['controller' => 'Dashboard', 'action' => 'top']);
+
+        // sản phẩm
         $routes->connect('/sanpham', ['controller' => 'Dashboard', 'action' => 'viewPorduct']);
         $routes->connect('/addsanpham', ['controller' => 'Dashboard', 'action' => 'addPorduct']);
         $routes->connect('/editsanpham/*', ['controller' => 'Dashboard', 'action' => 'editPorduct']);
-        $routes->connect('/delsanpham/*', ['controller' => 'Dashboard', 'action' => 'deletePorduct']);  
+        $routes->connect('/delsanpham/*', ['controller' => 'Dashboard', 'action' => 'deletePorduct']);
+
+        // Image
+        $routes->connect('/image/*', ['controller' => 'Dashboard', 'action' => 'editImg']);
 
         $routes->fallbacks(DashedRoute::class);
     });

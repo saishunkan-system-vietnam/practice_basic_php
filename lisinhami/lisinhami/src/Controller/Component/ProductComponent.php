@@ -68,4 +68,29 @@ class ProductComponent extends CommonComponent
             'data' =>  $result
         ];
     }
+
+    // Get dánh sách theo danh mục sản phẩm
+    public function getAllProductByCategory($category_cd)
+    {
+        if ($category_cd) {
+            $query = $this->TProduct->find()
+                ->where(['And' => ['del_flg' => 0, 'category_cd' => $category_cd]])
+                ->order(['id DESC'])
+                ->limit(12);
+        }
+
+        return $query;
+    }
+
+    // Get và lọc danh sách sản phaame theo giá
+    public function getAllProductFilterPrice($category_cd, $price)
+    {
+        if ($price) {
+            $query = $this->TProduct->find()
+                ->where(['And' => ['del_flg' => 0, 'category_cd' => $category_cd, 'price' < $price]])
+                ->order(['id DESC']);
+        }
+
+        return $query;
+    }
 }

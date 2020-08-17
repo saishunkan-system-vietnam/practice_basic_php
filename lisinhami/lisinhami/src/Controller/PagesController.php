@@ -54,7 +54,20 @@ class PagesController extends AppController
     // Trang chủ
     public function home()
     {
+        $this->loadComponent('Product');
         
+        $category_cd = 1;
+        $cosmetic = $this->{'Product'}->getProductByCatagory($category_cd);
+
+        $category_cd = 2;
+        $sample = $this->{'Product'}->getProductByCatagory($category_cd);
+
+        $category_cd = 3;
+        $point = $this->{'Product'}->getProductByCatagory($category_cd);
+
+        $this->set('cosmetic', $cosmetic);
+        $this->set('sample', $sample);
+        $this->set('point', $point);
     }
 
     // chi tiết sản phẩm
@@ -64,8 +77,40 @@ class PagesController extends AppController
     }
 
     // Danh sách sản phẩm
-    public function viewList()
+    public function viewList($ctgry_cd = null)
     {
-        
+        $this->loadComponent('Product');
+
+        if ($ctgry_cd == 1 || $ctgry_cd == 2 || $ctgry_cd == 3) {
+            $ttl =  ($ctgry_cd == 1) ? 'Sản phẩm mỹ phẩm' : [($ctgry_cd == 2) ? 'Sản phẩm dùng thử' : 'Sản phẩm quà tặng'];
+            $ctgry_url =  ($ctgry_cd == 1) ? 'san-pham-my-pham' : (($ctgry_cd == 2) ? 'san-pham-dung-thu' : 'san-pham-qua-tang');
+            $this->set('title', $ttl);
+            $this->set('ctgry_url', $ctgry_url);
+            $TProduct = $this->{'Product'}->getAllProductByCategory($ctgry_cd);
+            $this->set('TProduct', $TProduct);
+            $this->set('TProduct', $this->paginate($TProduct, ['limit' => 4]));
+        } else {
+            $this->redirect(SITE_URL);
+        }
+    }
+
+    // Login + Register
+    public function login()
+    {
+        if ($this->request->is('post')) {
+            $user = $this->Auth->identify();
+            if ($user) {
+                $this->Auth->setUser($user);
+                return $this->redirect(['controller' =>'home']);
+            } else {
+                $this->Flash->error(__('Username or password is incorrect'));
+            }
+            $this->render(SITE_URL);
+        }
+    }
+
+    public function register()
+    {
+
     }
 }
