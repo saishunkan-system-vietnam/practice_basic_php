@@ -18,20 +18,25 @@ class ImageComponent extends CommonComponent
                 ->find()
                 ->where([
                     'TImage.id_prd' =>  $id_prd
+                    ,'TImage.del_flg' =>  0
                 ]);
 
         return $data;
     }
 
     public function save($data): array
-    {   
-        $img = $this->TImage->newEntity($data);
-        
-        $result = $this->TImage->save($img);
-        if ($img->hasErrors()) {
+    {
+        if (!empty($data['id'])) {
+            $prd = $this->TImage->get($data['id']);
+            $prd = $this->TImage->patchEntity($prd, $data);
+        } else {
+            $prd = $this->TImage->newEntity($data);
+        }
+        $result = $this->TImage->save($prd);
+        if ($prd->hasErrors()) {
             return [
                 'result' => 'invalid',
-                'data' => $img->getErrors()
+                'data' => $prd->getErrors()
             ];
         }
         return [

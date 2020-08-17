@@ -73,7 +73,7 @@
     </div>
 
     <div style="width: 90%;">
-    <a href=<?= URL_SANPHAM?> title="Trở về" style="font-size: 40px;">
+    <a href=<?= $refererURL?> title="Trở về" style="font-size: 40px;">
             <i class="fa fa-arrow-left" aria-hidden="true"></i></a>
     <button  class= "btn btn-success  btn-lg btn-radius" style="float: right;">Lưu</button>
     </div>

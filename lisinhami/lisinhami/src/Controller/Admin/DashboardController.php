@@ -49,13 +49,13 @@ class DashboardController extends AppController
                 $this->redirect(URL_SANPHAM);
                 $this->Flash->success(__("Thêm sản phẩm thành công"));
                }
-            } 
+            }
+            $this->set('refererURL', $this->referer());
         }
 
         public function editPorduct($id = null)
         {
             $this->loadComponent('Product');
-
             if ($this->request->is('post')) {
                 $inputData = $this->request->getParsedBody();
                 $inputData += ["id"=>$id];
@@ -82,6 +82,7 @@ class DashboardController extends AppController
                     $this->Flash->error('Sản phẩm không tồn tại');
                 }  
                 $this->set('data', $TProduct);
+                $this->set('refererURL', $this->referer());
             }
         }
         
@@ -100,7 +101,7 @@ class DashboardController extends AppController
                 {
                   $this->Flash->success(__("Xóa sản phẩm thành công"));
                 }
-                $this->redirect(URL_SANPHAM);
+                $this->redirect($this->referer());
             }
         }
 
@@ -120,6 +121,7 @@ class DashboardController extends AppController
                 
                 $data = ['img_url'=>$id_prd.'/'.$name, 'id_prd'=>$id_prd];
                 $result = $this->{'Image'}->save($data);
+                
                 if($result['result'] == "invalid"){
                      foreach($result['data'] as $key => $item){
                          foreach($item as $err)
@@ -128,11 +130,12 @@ class DashboardController extends AppController
                          }
                      }
                 }
+                else
+                {
+                    $this->Flash->success(__("Thêm hình ảnh thành công"));
+                    $this->redirect($this->referer());
+                }
             }
-
-            // Sửa ở đây
-            // $this->redirect();
-
             $lstImg = $this->{'Image'}->getImgByPrd($id_prd);
 
             if(empty($lstImg))
@@ -140,5 +143,24 @@ class DashboardController extends AppController
 
             $this->set('lstImg',$lstImg);
             $this->set('title','Danh sách hình ảnh của sản phẩm');
+        }
+
+        public function deleteImg($id = null)
+        {
+            $this->loadComponent('Image');
+
+            if ($this->request->is('post')) {
+                $data = ["id"=>$id,"del_flg"=>1];
+                $result = $this->{'Image'}->save($data);
+
+                if($result['result'] == "invalid"){
+                    $this->Flash->error(__("Xóa hình ảnh thất bại"));
+                }
+                else
+                {
+                  $this->Flash->success(__("Xóa hình ảnh thành công"));
+                }
+                $this->redirect($this->referer());
+            }
         }
     }

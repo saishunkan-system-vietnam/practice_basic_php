@@ -43,8 +43,8 @@
                 ?></td> -->
 
                 <!-- <td><a href="./editsanpham/" title="Xóa sản phẩm" class="btn btn-danger btn-lg btn-radius"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a></td> -->
-                <td><a href= "<?= URL_EDIT_SANPHAM.$item->id?>" class="btn btn-warning  btn-lg btn-radius"><i
-                            class="fa fa-pencil" aria-hidden="true"></i> Edit</a></td>
+                <td><a href= "<?= URL_IMG.$item->id?>" class="btn btn-info  btn-lg btn-radius"><i
+                            class="fa fa-file-image-o" aria-hidden="true"></i> IMG</a></td>
                 <td><a href= "<?= URL_EDIT_SANPHAM.$item->id?>" class="btn btn-warning  btn-lg btn-radius"><i
                             class="fa fa-pencil" aria-hidden="true"></i> Edit</a></td>
                 <td><?= $this->Form->postLink(
