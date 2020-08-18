@@ -57,13 +57,13 @@ class PagesController extends AppController
         $this->loadComponent('Product');
         
         $category_cd = 1;
-        $cosmetic = $this->{'Product'}->getProductByCatagory($category_cd);
+        $cosmetic = $this->{'Product'}->getProductByCategory($category_cd);
 
         $category_cd = 2;
-        $sample = $this->{'Product'}->getProductByCatagory($category_cd);
+        $sample = $this->{'Product'}->getProductByCategory($category_cd);
 
         $category_cd = 3;
-        $point = $this->{'Product'}->getProductByCatagory($category_cd);
+        $point = $this->{'Product'}->getProductByCategory($category_cd);
 
         $this->set('cosmetic', $cosmetic);
         $this->set('sample', $sample);
