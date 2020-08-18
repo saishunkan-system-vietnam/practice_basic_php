@@ -1,3 +1,12 @@
+<?
+if ($this->request->getSession()->check('success')) {
+    echo "<script type='text/javascript'>alert('$_SESSION[success]');</script>";
+    $this->request->getSession()->delete('success');
+}
+var_dump($cookie123);
+// var_dump($cookie_val);
+?>
+
 <section class="header-main">
     <div class="container-fluid">
         <div class="row align-items-center">
@@ -38,50 +47,52 @@
         </form> <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#dropdown6" aria-expanded="false"> <span class="navbar-toggler-icon"></span> </button>
         <div class="navbar-collapse collapse" id="dropdown6">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item"> <a class="nav-link" href="" data-abc="true"><i class="fa fa-home" aria-hidden="true"></i> Trang chủ</a> </li>
-                <li class="nav-item"> <a class="nav-link" href="" data-abc="true">Sản phẩm thường</a> </li>
-                <li class="nav-item"> <a class="nav-link" href="" data-abc="true">Sản phẩm dùng thử</a> </li>
-                <li class="nav-item"> <a class="nav-link" href="" data-abc="true">Sản phẩm quà tặng</a> </li>
+                <li class="nav-item"> <a class="nav-link" href=<?= SITE_URL ?> data-abc="true"><i class="fa fa-home" aria-hidden="true"></i> Trang chủ</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="/danhmuc/san-pham-my-pham" data-abc="true">Sản phẩm mỹ phẩm</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="/danhmuc/san-pham-dung-thu" data-abc="true">Sản phẩm dùng thử</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="/danhmuc/san-pham-qua-tang" data-abc="true">Sản phẩm quà tặng</a> </li>
             </ul>
         </div>
     </div>
 </nav>
 <!-- Modal -->
-<div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Sign in</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!--Body-->
-                <!-- <form> -->
-                <?= $this->Form->create(); ?>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email</label>
-                    <input class="form-control" name="email" placeholder="Enter email" type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" title="Email không hợp lệ">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
-                <div class="form-check" style="margin-bottom: 10px;">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Remember me</label>
-                </div>
-                <?= $this->Form->postLink(
-                    __('Login'),
-                    "",
-                    ['controller' => 'pages', 'action' => 'login','class' => 'btn btn-primary btn-lg btn-block']
-                ) ?>
 
-                <!-- <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button> -->
-                <?= $this->Form->end(); ?>
-                <!-- </form> -->
+<?if ($this->request->getSession()->check('error')) :?>
+
+<div class="modal" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: block; padding-right: 17px;">
+
+    <?= "<script type='text/javascript'>alert('$_SESSION[error]'); $('#modalLRForm').modal('show')</script>";
+    $this->request->getSession()->delete('error'); ?>
+    <?else: ?>
+    <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <?endif?>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel">Sign in</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!--Body-->
+
+                    <?= $this->Form->create(null, ['url' => URL_LOGIN]); ?>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email</label>
+                        <input class="form-control" name="email" placeholder="Enter email" type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" title="Email không hợp lệ">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" name="pass" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    <div class="form-check" style="margin-bottom: 10px;">
+                        <input type="checkbox" name='remember' class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+                    <?= $this->Form->end(); ?>
+                </div>
             </div>
         </div>
     </div>
-</div>
