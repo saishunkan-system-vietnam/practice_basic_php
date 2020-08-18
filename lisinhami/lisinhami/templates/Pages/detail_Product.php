@@ -1,3 +1,7 @@
+<?= $this->Html->css(['detailproduct', 'owl.carousel.min', 'smoothproducts']) ?> -->
+<?= $this->Html->script(['jquery.cycle', 'owl.carousel.min', 'smoothproducts.min']) ?>
+<?= $this->fetch('css') ?>
+
 <div class="detail-product">
 	<div class="bracum">
 		<ol class="breadcrumb">
@@ -117,7 +121,7 @@
 		</div>
 	</div>
 	<div class="box-products">
-		<!-- <div class="head-box">
+		<div class="head-box">
 			<div class="title-box">
 				<strong>
 					SẢN PHẨM CÙNG LOẠI
@@ -127,8 +131,8 @@
 		<div class="clr"></div>
 		<div class="owl-carousel">
 			<?= $this->element('cards', ["data" => isset($data) ? $data : null]); ?>
-		</div> -->
-		<div class="col-lg-12">
+		</div>
+		<!-- <div class="col-lg-12">
 			<div class="box-products">
 				<div class="head-box">
 					<div class="title-box">
@@ -145,9 +149,10 @@
 				</div>
 			</div>
 
-		</div>
-	</div>
+		</div> -->
 
+	</div>
+	<?= $this->fetch('script') ?>
 
 	<script>
 		$(document).ready(function() {
@@ -157,25 +162,30 @@
 			});
 
 			$('.owl-carousel').owlCarousel({
-				items: 4,
+				items: 6,
 				loop: true,
-				margin: 15,
+				margin: 0,
 				autoplay: true,
 				autoplayTimeout: 3000, //3 Second
+
 				nav: true,
 				responsiveClass: true,
 				responsive: {
 					0: {
-						items: 1,
-						nav: true
+						nav: true,
+						items: 1
 					},
 					600: {
-						items: 3,
-						nav: true
+						nav: true,
+						items: 3
 					},
-					1000: {
-						items: 4,
-						nav: true
+					960: {
+						nav: true,
+						items: 5
+					},
+					1200: {
+						nav: true,
+						items: 6
 					}
 				}
 

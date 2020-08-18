@@ -257,6 +257,28 @@
     margin-bottom: -1px;
 }
 
+.pd-box-category {
+    border: none !important;
+}
+
+.pd-box {
+    border: 1px solid #fff;
+    overflow: hidden;
+}
+
+.pd-box-category .box-images {
+    border-right-color: #fff;
+    border-top-color: #fff;
+}
+
+.box-images {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #eee;
+    border-bottom: none;
+    min-height: 190px;
+}
+
 
 /* ************** */
 

@@ -1,3 +1,9 @@
+<?= $this->Html->css(['home']) ?>
+<!-- <?= $this->Html->css(['home', 'owl.carousel.min', 'smoothproducts']) ?> -->
+<!-- <?= $this->Html->script(['jquery-3.3.1.min', 'jquery.cycle', 'bootstrap.min', 'owl.carousel.min', 'smoothproducts.min']) ?> -->
+<?= $this->fetch('css') ?>
+<?= $this->fetch('script') ?>
+
 <div class="container">
     <div class="back-gray pad-30">
         <div class="container">
