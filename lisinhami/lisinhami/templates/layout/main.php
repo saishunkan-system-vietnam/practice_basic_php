@@ -13,9 +13,12 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     <?= $this->Html->meta('icon') ?>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    
     <?= $this->Html->css(['bootstrap.min', 'owl.carousel.min', 'smoothproducts']) ?>
 
     <?= $this->Html->script(['jquery-3.3.1.min', 'jquery.cycle', 'bootstrap.min', 'owl.carousel.min', 'smoothproducts.min']) ?>
+
 
     <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
 
@@ -29,7 +32,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 </head>
 
 <body>
-
     <main class="main" style="min-height: 100%;">
         <?= $this->element('nav') ?>
         <? if($this->request->getParam('action') != "register"){
@@ -41,7 +43,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <?= $this->fetch('content') ?>
         </div>
     </main>
-    
     <?= $this->element('footer'); ?>
 </body>
 
