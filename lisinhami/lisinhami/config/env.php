@@ -17,4 +17,7 @@
     // CLIENT
     define('URL_CHITIET_SANPHAM',SITE_URL.'chitiet/');
     define('URL_DANHSACH_SANPHAM',SITE_URL.'danhsach/');
+
+    // login
+    define('URL_LOGIN',SITE_URL.'login');
 ?>

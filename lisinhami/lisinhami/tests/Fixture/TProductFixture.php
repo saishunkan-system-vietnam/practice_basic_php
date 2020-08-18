@@ -25,10 +25,10 @@ class TProductFixture extends TestFixture
     public $fields = [
         'id' => ['type' => 'integer', 'length' => null, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => 'Id sản phẩm', 'autoIncrement' => true, 'precision' => null],
         'name' => ['type' => 'string', 'length' => 50, 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => 'Tên sản phẩm', 'precision' => null],
-        'category_cd' => ['type' => 'boolean', 'length' => null, 'null' => false, 'default' => '1', 'comment' => 'Mã thể loại(1:sản phẩm mỹ phẩm, 2: sản phẩm dùng thử, 3: sản phẩm quà tặng)', 'precision' => null],
+        'category_cd' => ['type' => 'integer', 'length' => null, 'unsigned' => false, 'null' => false, 'default' => '1', 'comment' => 'Mã thể loại(1:sản phẩm mỹ phẩm, 2: sản phẩm dùng thử, 3: sản phẩm quà tặng)', 'precision' => null, 'autoIncrement' => null],
         'price' => ['type' => 'decimal', 'length' => 10, 'precision' => 0, 'unsigned' => false, 'null' => false, 'default' => '0', 'comment' => 'Giá sản phẩm'],
         'discount' => ['type' => 'decimal', 'length' => 10, 'precision' => 0, 'unsigned' => false, 'null' => false, 'default' => '0', 'comment' => 'Giảm giá'],
-        'tax' => ['type' => 'tinyinteger', 'length' => null, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => 'Thuế ', 'precision' => null],
+        'tax' => ['type' => 'integer', 'length' => null, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => 'Thuế ', 'precision' => null, 'autoIncrement' => null],
         'made_in' => ['type' => 'string', 'length' => 30, 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => 'Xuất xứ', 'precision' => null],
         'info_gen' => ['type' => 'string', 'length' => 200, 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => 'Mô tả', 'precision' => null],
         'info_dtl' => ['type' => 'text', 'length' => null, 'null' => true, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => 'Nội dung', 'precision' => null],
@@ -39,6 +39,7 @@ class TProductFixture extends TestFixture
         'update_datetime' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => 'current_timestamp()', 'comment' => 'Thời gian cập nhật'],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
+            'id' => ['type' => 'unique', 'columns' => ['id', 'name', 'slug'], 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -67,8 +68,8 @@ class TProductFixture extends TestFixture
                 'point' => 1,
                 'slug' => 'Lorem ipsum dolor sit amet',
                 'del_flg' => 1,
-                'create_datetime' => '2020-08-14 09:42:35',
-                'update_datetime' => '2020-08-14 09:42:35',
+                'create_datetime' => '2020-08-18 09:24:34',
+                'update_datetime' => '2020-08-18 09:24:34',
             ],
         ];
         parent::init();

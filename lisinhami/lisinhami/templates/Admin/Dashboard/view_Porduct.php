@@ -1,4 +1,9 @@
 <br>
+<div class="btn-group btn-group-lg" >
+    <a href=<?= URL_SANPHAM.'my-pham'?> class="btn <?= $category_cd == 1 ? 'btn-dark' : 'btn-primary'?>">Mỹ phẩm</a>  
+    <a href=<?= URL_SANPHAM.'dung-thu'?> class="btn <?= $category_cd == 2 ? 'btn-dark' : 'btn-primary'?>">Dùng thử</a>
+    <a href=<?= URL_SANPHAM.'qua-tang'?> class="btn <?= $category_cd == 3 ? 'btn-dark' : 'btn-primary'?>">Quà tặng</a>
+  </div>
 <div class="content">
 <legend><?= __($title) ?></legend>
     <?= $this->Form->create(null,['type'=>'get']);?>

@@ -4,6 +4,7 @@
     use App\Controller\AppController;
     use Cake\Event\EventInterface;
 use phpDocumentor\Reflection\DocBlock\Tags\Reference\Reference;
+use Reflector;
 use Symfony\Component\Console\Input\Input;
 
 class DashboardController extends AppController
@@ -11,6 +12,7 @@ class DashboardController extends AppController
         public function beforeFilter(EventInterface $event)
         {
             $this->viewBuilder()->setLayout('main_admin');
+            $this->loadComponent('Common');
         }
 
         public function top()
@@ -18,39 +20,84 @@ class DashboardController extends AppController
 
         }
 
-        public function viewPorduct()
-        {
+        public function viewPorduct($category = null)
+        {    
+            switch($category){
+                case "my-pham":
+                    $category_cd = 1; 
+                break;
+                case "dung-thu":
+                    $category_cd = 2; 
+                break;
+                case "qua-tang":
+                    $category_cd = 3; 
+                break;
+                case null:
+                    $category_cd = 1; 
+                break;
+                default: 
+                $category_cd = 99; 
+            }
+
+            if($category_cd == 99 )
+            {
+                $this->redirect(URL_SANPHAM);
+            }
             $this->loadComponent('Product');
 
             $key = $this->request->getQuery('key');
-            $TProduct = $this->{'Product'}->getAllProduct($key);
+            $TProduct = $this->{'Product'}->getAllProduct($key, $category_cd);
             $this->set('TProduct', $this->paginate($TProduct,['limit'=>5]));
             $this->set('title','Danh sách sản phẩm');
+            $this->set('category_cd',$category_cd);
         }
 
         // Sản phẩm
         public function addPorduct(){
             $this->loadComponent('Product');
+            if ($this->request->is('post')) 
+            {
+                $inputData = $this->request->getParsedBody();
 
-            if ($this->request->is('post')) {
-            $inputData = $this->request->getParsedBody(); 
-            $result = $this->{'Product'}->save($inputData);
-               if($result['result'] == "invalid"){
-                    foreach($result['data'] as $key => $item){
-                        foreach($item as $err)
-                        {
-                            $this->Flash->error(__($key .": " .$err));
-                        }
-                    }
+                if(empty($inputData['slug']))
+                {
+                    $inputData['slug'] = $inputData['name']; 
+                }
+
+                $inputData['slug'] = $this->{'Common'}->crtSlug($inputData['slug']);
+                
+                $checkSlug = $this->{'Product'}->checkSlug(0,  $inputData['slug']);
+
+                if(!empty($checkSlug))
+                {
+                    $this->Flash->error("Giá trị Slug: bị trùng dữ liệu");
                     $this->set('data', $inputData);
-               }
-               else
-               {
-                $this->redirect(URL_SANPHAM);
-                $this->Flash->success(__("Thêm sản phẩm thành công"));
-               }
+                }
+                else
+                {
+                    $result = $this->{'Product'}->save($inputData);
+                    if($result['result'] == "invalid")
+                    {
+                            foreach($result['data'] as $key => $item){
+                                foreach($item as $err)
+                                {
+                                    $this->Flash->error(__($key .": " .$err));
+                                }
+                            }
+                            $this->set('data', $inputData);
+                    }
+                    else
+                    {
+                        $this->redirect(URL_SANPHAM);
+                        $this->Flash->success(__("Thêm sản phẩm thành công"));
+                    }
+                }
             }
-            $this->set('refererURL', $this->referer());
+            else
+            {
+                $data = ['refererUrl'=>$this->referer()];
+                $this->set('data', $data);
+            }
         }
 
         public function editPorduct($id = null)
@@ -58,31 +105,50 @@ class DashboardController extends AppController
             $this->loadComponent('Product');
             if ($this->request->is('post')) {
                 $inputData = $this->request->getParsedBody();
-                $inputData += ["id"=>$id];
+                if(empty($inputData['slug']))
+                {
+                    $inputData['slug'] = $inputData['name']; 
+                }
 
-                $result = $this->{'Product'}->save($inputData);
-                if($result['result'] == "invalid"){
-                     foreach($result['data'] as $key => $item){
-                         foreach($item as $err)
-                         {
-                             $this->Flash->error(__($key .": " .$err));
-                         }
-                     }
-                     $this->set('data', $inputData);
+                $inputData['slug'] = $this->{'Common'}->crtSlug($inputData['slug']);
+                
+                $checkSlug = $this->{'Product'}->checkSlug( $id,  $inputData['slug']);
+
+                if(!empty($checkSlug))
+                {
+                    $this->Flash->error("Giá trị Slug: bị trùng dữ liệu");
+                    $this->set('data', $inputData);
                 }
                 else
                 {
-                  $this->redirect(URL_SANPHAM);
-                  $this->Flash->success(__("Sửa sản phẩm thành công"));
+                    $refererUrl = $inputData['refererUrl'];
+
+                    $inputData += ["id"=>$id];
+
+                    $result = $this->{'Product'}->save($inputData);
+                    if($result['result'] == "invalid"){
+                        foreach($result['data'] as $key => $item){
+                            foreach($item as $err)
+                            {
+                                $this->Flash->error(__($key .": " .$err));
+                            }
+                        }
+                        $this->set('data', $inputData);
+                    }
+                    else
+                    {
+                    $this->redirect($refererUrl);
+                    $this->Flash->success(__("Sửa sản phẩm thành công"));
+                    }
                 }
             }
             else{
                 $TProduct = $this->{'Product'}->getProductById($id);
                 if(empty($TProduct)){
                     $this->Flash->error('Sản phẩm không tồn tại');
-                }  
+                }
+                $TProduct += ['refererUrl'=>$this->referer()];
                 $this->set('data', $TProduct);
-                $this->set('refererURL', $this->referer());
             }
         }
         
@@ -108,6 +174,15 @@ class DashboardController extends AppController
         // Image
         public function editImg($id_prd = null)
         {
+
+            $this->loadComponent('Product');
+            $TProduct = $this->{'Product'}->getProductById($id_prd);
+
+            if(empty($TProduct)){
+                $this->Flash->error('Sản phẩm không tồn tại');
+                $this->redirect(URL_SANPHAM);
+            }
+
             $this->loadComponent('Image');
             if ($this->request->is('post')) {
                 $image = $this->request->getData('image_file');
@@ -135,12 +210,8 @@ class DashboardController extends AppController
                     $this->Flash->success(__("Thêm hình ảnh thành công"));
                     $this->redirect($this->referer());
                 }
-            }
+            }           
             $lstImg = $this->{'Image'}->getImgByPrd($id_prd);
-
-            if(empty($lstImg))
-                $this->Flash->error('Sản phẩm không tồn tại');
-
             $this->set('lstImg',$lstImg);
             $this->set('title','Danh sách hình ảnh của sản phẩm');
         }

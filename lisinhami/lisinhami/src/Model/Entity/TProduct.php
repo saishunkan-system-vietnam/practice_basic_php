@@ -10,7 +10,7 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $name
- * @property bool $category_cd
+ * @property int $category_cd
  * @property string $price
  * @property string $discount
  * @property int $tax

@@ -73,6 +73,7 @@ class TProductTable extends Table
             ->notEmptyString('discount');
 
         $validator
+            ->integer('tax')
             ->requirePresence('tax', 'create')
             ->notEmptyString('tax');
 

@@ -55,8 +55,11 @@ $routes->scope('/', function (RouteBuilder $builder) {
 
     $builder->connect('/home', ['controller' => 'Pages', 'action' => 'home']);
 
-    $builder->connect('/chitiet', ['controller' => 'Pages', 'action' => 'detailProduct']);
+    $builder->connect('/chitiet/*', ['controller' => 'Pages', 'action' => 'detailProduct']);
     $builder->connect('/danhsach', ['controller' => 'Pages', 'action' => 'viewList']);
+    
+
+    $builder->connect('/login', ['controller' => 'Pages', 'action' => 'login']);
 
     // *******Danh mục sản phẩm *********
     $builder->connect('/danhmuc/*', ['controller' => 'Pages', 'action' => 'viewList']);
@@ -66,7 +69,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
         $routes->connect('/', ['controller' => 'Dashboard', 'action' => 'top']);
 
         // sản phẩm
-        $routes->connect('/sanpham', ['controller' => 'Dashboard', 'action' => 'viewPorduct']);
+        $routes->connect('/sanpham/*', ['controller' => 'Dashboard', 'action' => 'viewPorduct']);
         $routes->connect('/addsanpham', ['controller' => 'Dashboard', 'action' => 'addPorduct']);
         $routes->connect('/editsanpham/*', ['controller' => 'Dashboard', 'action' => 'editPorduct']);
         $routes->connect('/delsanpham/*', ['controller' => 'Dashboard', 'action' => 'deletePorduct']);
