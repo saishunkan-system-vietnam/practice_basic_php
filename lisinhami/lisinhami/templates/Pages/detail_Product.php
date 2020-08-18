@@ -15,30 +15,31 @@
 					Loading Images
 				</div>
 				<div class="sp-wrap">
-					<a href="http://lisinhami.com/img/mp1-1-big.png"><?= $this->Html->image('mp1-1.png') ?></a>
-					<a href="http://lisinhami.com/img/mp1-1-big.png"><?= $this->Html->image('mp1-2.png') ?></a>
+					<?php foreach ($image as $key => $item) { ?>
+						<a href=<?= SITE_URL . 'img/' . $item->img_url ?>><?= $this->Html->image($item->img_url) ?></a>
+					<?php }; ?>
 				</div>
 			</div>
 			<div class="col-lg-5">
 				<div>
-					<h1 class="title-Product">
-						Gel Rửa Tay Sát Khuẩn Treat&amp;Ease Hand Sanitiser
-					</h1>
+					<h1 class="title-Product"><?= $product->name ?></h1>
 				</div>
 				<div class="box-price">
 					<div class="price-drop">
-						<span>32,000₫</span>
-						<span class="issale ">45,000₫</span>
+						<?php if ($product->discount == 0) { ?>
+							<span><?= number_format($product->price / 10, 0, '.', ',') ?>đ</span>
+							<span class="issale"></span>
+						<?php } else { ?>
+							<span><?= number_format(($product->price - $product->discount) / 10, 0, '.', ',') ?>đ</span>
+							<span class="issale "><?= number_format($product->price / 10, 0, '.', ',') ?>đ</span>
+						<?php } ?>
 					</div>
 					<div class="hanc">
-						<p>Thương hiệu: Thương Hiệu Khác</p>
+						<p><?= $product->made_in ?></p>
 					</div>
 				</div>
 				<div class="box-note ">
-					<p>- Tiêu diệt đến 99,9% vi khuẩn</p>
-					<p>- Phù hợp mang thoe bên mình</p>
-					<p>- Sử dụng làm sạch da tay mà không cần rửa lại với nước</p>
-					<p>- Mùi hương dễ chịu và dưỡng ẩm da tay mềm mại</p>
+					<?= $product->info_gen ?>
 				</div>
 				<div class="card-box">
 					<div class="box-add">
@@ -111,17 +112,12 @@
 				<h2>Thông tin sản phẩm</h2>
 			</div>
 			<div class="back-content">
-				<p><strong>Gel Rửa Tay Sát Khuẩn Treat&amp;Ease Hand Sanitiser 57ml</strong> Điều trị &amp; làm dịu Gel kháng khuẩn này giết chết 99,9% vi khuẩn và vi rút mà không cần nước.&nbsp;</p>
-				<p>Dung tích:&nbsp;57ml</p>
-				<p><strong>Gel Rửa Tay Sát Khuẩn Treat&amp;Ease Hand Sanitiser 57ml</strong> Điều trị &amp; làm dịu Gel kháng khuẩn này giết chết 99,9% vi khuẩn và vi rút mà không cần nước. Gel đi kèm trong một chai hành động bơm tiện dụng để dễ dàng sử dụng và lý tưởng để đặt trong nhà vệ sinh và khu vực nhà bếp để vệ sinh ngay lập tức.</p>
-				<p>&nbsp;- Gel tay kháng khuẩn Giết chết 99,9% vi khuẩn và vi rút</p>
-				<p>- Không cần nước hay khăn Bơm hành động cho ứng dụng dễ dàng.</p>
-				<p>- Lý tưởng cho nhà vệ sinh và nhà bếp</p>
+				<?= $product->info_dtl ?>
 			</div>
 		</div>
 	</div>
 	<div class="box-products">
-		<div class="head-box">
+		<!-- <div class="head-box">
 			<div class="title-box">
 				<strong>
 					SẢN PHẨM CÙNG LOẠI
@@ -130,11 +126,25 @@
 		</div>
 		<div class="clr"></div>
 		<div class="owl-carousel">
-			<div class="item"><?= $this->Html->image('mp1-1.png') ?></div>
-			<div class="item"><?= $this->Html->image('mp1-1.png') ?></div>
-			<div class="item"><?= $this->Html->image('mp1-1.png') ?></div>
-			<div class="item"><?= $this->Html->image('mp1-1.png') ?></div>
-			<div class="item"><?= $this->Html->image('mp1-1.png') ?></div>
+			<?= $this->element('cards', ["data" => isset($data) ? $data : null]); ?>
+		</div> -->
+		<div class="col-lg-12">
+			<div class="box-products">
+				<div class="head-box">
+					<div class="title-box">
+						<h2>
+							<a title="">
+								SẢN PHẨM CÙNG LOẠI
+							</a>
+						</h2>
+					</div>
+				</div>
+				<div class="body-box">
+					<div class="owl-carousel new-sale owl-loaded owl-drag">
+					</div>
+				</div>
+			</div>
+
 		</div>
 	</div>
 
@@ -172,39 +182,6 @@
 			});
 
 			$(function() {
-				$(".topbar ul li").click(function() {
-					$(".topbar ul li").not(this).find("ul").slideUp();
-					$(this).find("ul").slideToggle();
-				});
-				$(".topbar ul li ul li, productCategories ul li .megamenu").click(function(e) {
-					e.stopPropagation();
-				});
-				$(".productCategories ul li").click(function() {
-					$(".productCategories ul li").not(this).find(".megamenu").hide();
-					$(this).find(".megamenu").toggle();
-				});
-				$(".otherInfoBody").hide();
-				$(".otherInfoHandle").click(function() {
-					$(".otherInfoBody").slideToggle();
-				});
-				$(".signBtn").click(function() {
-					$("body").css("overflow", "hidden");
-					$(".loginBox").slideDown();
-				});
-				$(".closeBtn").click(function() {
-					$("body").css("overflow", "visible");
-					$(".loginBox").slideUp();
-				});
-				$(".productViewBtn").click(function(e) {
-					e.preventDefault();
-					$("body").css("overflow", "hidden");
-					$(".productViewBox").slideDown();
-				});
-				$(".productViewBox-closeBtn").click(function() {
-					$("body").css("overflow", "visible");
-					$(".productViewBox").slideUp();
-				});
-
 				$(".sp-wrap").smoothproducts();
 			});
 		});
