@@ -15,17 +15,21 @@
                 <th style="width: 5%;">ID</th>
                 <th style="width: 10%;">Hình ảnh</th>
                 <th>Url</th>
-                <th colspan="2" style="width: 10%;"></th>
+                <th colspan="3" style="width: 10%;"></th>
             </tr>
             <? foreach($lstImg as $key => $item){?>
             <tr>
                 <td><?= $item->id?></td>
-                <td><?= $this->html->image($item->img_url,['width'=>'100%']);?></td>
+                
+                <td><?= $this->Html->image(isset($item->img_url) ? $item->img_url : "/img/noproduct.png",['class'=> 'img-reponsive lazy']); ?></td>
                 <td><?= WWW_ROOT.'img'.DS.$item->img_url?></td>
-                <!-- <td><a href="./editsanpham/" title="Xóa sản phẩm" class="btn btn-danger btn-lg btn-radius"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a></td> -->
+                <td><?= $item->top_flg == 1 ? $this->Html->image("/img/top.png",['alt'=>'TOP']) :''?></td>
+                <td><?= $this->Form->postLink(
+                __('Set top'),
+                URL_SETTOP_IMG.$item->id.'/'.$id_prd,
+                ['confirm' => __('Bạn có chắc chăn muốn chọn ảnh này làm ảnh mặc định không?'), 'class' => 'btn btn-warning btn-lg btn-radius']
+            ) ?></td>
 
-                <td><a href="<?= URL_EDIT_SANPHAM.$item->id?>" class="btn btn-warning  btn-lg btn-radius"><i
-                            class="fa fa-pencil" aria-hidden="true"></i> Set Top</a></td>
                 <td><?= $this->Form->postLink(
                 __('Delete'),
                 URL_DEL_IMG.$item->id,
@@ -36,7 +40,7 @@
         </thead>
     </table>
     <a href=<?= URL_SANPHAM?> title="Trở về" style="font-size: 40px;">
-    <i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+        <i class="fa fa-arrow-left" aria-hidden="true"></i></a>
 </div>
 <style>
 

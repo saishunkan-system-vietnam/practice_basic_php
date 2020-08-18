@@ -12,6 +12,7 @@
     // IMG
     define('URL_IMG',SITE_URL.'admin/image/');
     define('URL_DEL_IMG',SITE_URL.'admin/xoahinhanh/');
+    define('URL_SETTOP_IMG',SITE_URL.'admin/settop/');
     
 
     // CLIENT

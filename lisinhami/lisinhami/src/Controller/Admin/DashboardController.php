@@ -155,6 +155,7 @@ class DashboardController extends AppController
         public function deletePorduct($id = null)
         {
             $this->loadComponent('Product');
+            $this->loadComponent('Image');
 
             if ($this->request->is('post')) {
                 $data = ["id"=>$id,"del_flg"=>1];
@@ -165,7 +166,8 @@ class DashboardController extends AppController
                 }
                 else
                 {
-                  $this->Flash->success(__("Xóa sản phẩm thành công"));
+                    $this->{'Image'}->delAllImg($id);
+                    $this->Flash->success(__("Xóa sản phẩm thành công"));
                 }
                 $this->redirect($this->referer());
             }
@@ -213,6 +215,7 @@ class DashboardController extends AppController
             }           
             $lstImg = $this->{'Image'}->getImgByPrd($id_prd);
             $this->set('lstImg',$lstImg);
+            $this->set('id_prd',$id_prd);
             $this->set('title','Danh sách hình ảnh của sản phẩm');
         }
 
@@ -229,8 +232,21 @@ class DashboardController extends AppController
                 }
                 else
                 {
-                  $this->Flash->success(__("Xóa hình ảnh thành công"));
+                    $this->Flash->success(__("Xóa hình ảnh thành công"));
                 }
+                $this->redirect($this->referer());
+            }
+        }
+
+        public function setTopImg($id = null, $id_prd = null)
+        {
+            $this->loadComponent('Image');
+
+            if ($this->request->is('post')) {
+
+                $result = $this->{'Image'}->setTop($id, $id_prd);
+
+                $this->Flash->success(__("Set hình ảnh thành công"));
                 $this->redirect($this->referer());
             }
         }

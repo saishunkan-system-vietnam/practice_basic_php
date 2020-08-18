@@ -77,6 +77,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
         
         // Image
         $routes->connect('/xoahinhanh/*', ['controller' => 'Dashboard', 'action' => 'deleteImg']);
+        $routes->connect('/settop/*', ['controller' => 'Dashboard', 'action' => 'setTopImg']);
         $routes->connect('/image/*', ['controller' => 'Dashboard', 'action' => 'editImg']);
 
         $routes->fallbacks(DashedRoute::class);
