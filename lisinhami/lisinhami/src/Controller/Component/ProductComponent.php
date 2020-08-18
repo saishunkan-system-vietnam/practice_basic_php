@@ -70,7 +70,7 @@ class ProductComponent extends CommonComponent
     }
 
     // Get dánh sách theo danh mục sản phẩm
-    public function getAllProductByCategory($category_cd)
+    public function getProductByCategory($category_cd)
     {
         if ($category_cd) {
             $query = $this->TProduct->find()
@@ -83,7 +83,7 @@ class ProductComponent extends CommonComponent
     }
 
     // Get và lọc danh sách sản phaame theo giá
-    public function getAllProductFilterPrice($category_cd, $price)
+    public function getProductFilterPrice($category_cd, $price)
     {
         if ($price) {
             $query = $this->TProduct->find()

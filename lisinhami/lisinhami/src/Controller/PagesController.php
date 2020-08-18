@@ -86,7 +86,7 @@ class PagesController extends AppController
             $ctgry_url =  ($ctgry_cd == 1) ? 'san-pham-my-pham' : (($ctgry_cd == 2) ? 'san-pham-dung-thu' : 'san-pham-qua-tang');
             $this->set('title', $ttl);
             $this->set('ctgry_url', $ctgry_url);
-            $TProduct = $this->{'Product'}->getAllProductByCategory($ctgry_cd);
+            $TProduct = $this->{'Product'}->getProductByCategory($ctgry_cd);
             $this->set('TProduct', $TProduct);
             $this->set('TProduct', $this->paginate($TProduct, ['limit' => 4]));
         } else {
