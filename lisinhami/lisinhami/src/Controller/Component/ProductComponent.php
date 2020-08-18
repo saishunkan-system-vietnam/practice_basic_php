@@ -74,8 +74,14 @@ class ProductComponent extends CommonComponent
     {
         if ($category_cd) {
             $query = $this->TProduct->find()
-                ->where(['And' => ['del_flg' => 0, 'category_cd' => $category_cd]])
-                ->order(['id DESC'])
+                ->select(['TProduct.name','TProduct.price','TProduct.discount','TProduct.slug', 't_image.img_url'])
+                ->join([
+                    'table' => 't_image',
+                    "type" => "left",
+                    "conditions" => ['TProduct.id = t_image.id_prd','t_image.top_flg'=>1]
+                    ])
+                ->where(['And' => ['TProduct.del_flg' =>0, 'TProduct.category_cd' => $category_cd]])
+                ->order(['TProduct.id DESC'])
                 ->limit(12);
         }
 
