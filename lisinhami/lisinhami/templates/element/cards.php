@@ -1,9 +1,9 @@
-<?php foreach ($data as $key => $item) { ?>
 
+<?php foreach ($data as $key => $item) { ?>
     <div class="col-2-ct">
         <div class="pd-box pd-box-category">
             <div class="box-images">
-                <?= $this->Html->image("mp1-1.png", array(
+                <?= $this->Html->image(isset($item->t_image['img_url'])?$item->t_image['img_url']:"/img/noproduct.png", array(
                     "class" => "img-reponsive lazy ",
                     'title' => $item->name,
                     'url' => array('controller' => 'Pages', 'action' => 'detailProduct', $item->slug)
