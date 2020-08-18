@@ -6,7 +6,7 @@
                     <div class="box-products-category">
                         <div class="head-box-category">
                             <div class="filter">
-                                <div class="fl price">
+                                <div class="fl price" id="sel_price">
                                     <label>Chọn mức giá: </label>
                                     <a href="/<?= isset($ctgry_url) ? $ctgry_url : " " ?>?p=duoi-1-trieu" class=" " data-id="7">
                                         Dưới 1 triệu
@@ -24,17 +24,32 @@
                                     </a>
                                 </div>
                                 <div style="float:right;">
-                                    <select class="selectpicker" id="sel_pcker">
+                                    <!-- <select class="selectpicker" id="sel_pcker">
                                         <option hidden value="">Sắp xếp</option>
                                         <option value="asc">Giá cao đến thấp</option>
                                         <option value="desc">Giá thấp đến cao</option>
-                                    </select>
+                                    </select> -->
+                                    <div class="dropdown">
+                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                            Sắp xếp
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" <?= (isset($sortby) && $sortby =="asc") ? "style='background-color:#93c1f2'" : ''?> href=<?= $current_url.'?sortby=asc'?> value="asc">
+                                            Giá cao đến thấp</a>
+                                            <a class="dropdown-item" <?= (isset($sortby) && $sortby =="desc")  ? "style='background-color:#93c1f2'" : (!isset($sortby) ? "style='background-color:#93c1f2'" : '')?> <?= (isset($sortby) && $sortby != "desc")  ? "href=".$current_url."?sortby=desc" :"href=' '"?> value="desc">
+                                            Giá thấp đến cao</a>
+                                        </div style="">
+                                    </div>
+
+
                                 </div>
+
+
                             </div>
                             <div class="clr"></div>
                         </div>
                         <div class="body-box-category">
-                            <? foreach($TProduct as $key => $item){?>
+                            <!-- <? foreach($TProduct as $key => $item){?>
                             <div class="col-2-ct">
                                 <div class="pd-box pd-box-category">
                                     <div class="box-images">
@@ -54,7 +69,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <? }?>
+                            <? }?> -->
+                            <?= $this->element('cards', ['data' => $TProduct]); ?>
                             <div class="clr"></div>
                         </div>
                     </div>
@@ -532,6 +548,10 @@
         color: #288ad6;
         border-color: #288ad6;
     }
+
+    #sel_price a:focus {
+        color: red;
+    }
 </style>
 
 <script>
@@ -539,4 +559,9 @@
     $('#sel_pcker').change(function() {
         alert($(this).val());
     })
+
+    //    $( '#sel_price a').on('click', function() {
+    //        $(this).css('color', 'red');
+    //         alert("hello");
+    //    })
 </script>
