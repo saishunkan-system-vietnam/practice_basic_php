@@ -56,29 +56,36 @@ $routes->scope('/', function (RouteBuilder $builder) {
     $builder->connect('/home', ['controller' => 'Pages', 'action' => 'home']);
 
     $builder->connect('/chitiet/*', ['controller' => 'Pages', 'action' => 'detailProduct']);
-    $builder->connect('/danhsach', ['controller' => 'Pages', 'action' => 'viewList']);
+
+    // *******Hiển thị sản phẩm *********
+    $builder->connect('/danhmuc/*', ['controller' => 'View', 'action' => 'viewList']);
+    $builder->connect('/timkiem/*', ['controller' => 'View', 'action' => 'searchProduct']);
+    $builder->connect('/sendemail', ['controller' => 'View', 'action' => 'sendEmail']);
     
 
-    $builder->connect('/login', ['controller' => 'Pages', 'action' => 'login']);
-
-    // *******Danh mục sản phẩm *********
-    $builder->connect('/danhmuc/*', ['controller' => 'Pages', 'action' => 'viewList']);
+    $builder->connect('/login', ['controller' => 'User', 'action' => 'login']);
+    $builder->connect('/dangky', ['controller' => 'User', 'action' => 'register']);
+    $builder->connect('/logout', ['controller' => 'User', 'action' => 'logout']);
 
     Router::prefix('Admin', function (RouteBuilder $routes) {
         // Profile
         $routes->connect('/', ['controller' => 'Dashboard', 'action' => 'top']);
 
         // sản phẩm
-        $routes->connect('/sanpham/*', ['controller' => 'Dashboard', 'action' => 'viewPorduct']);
-        $routes->connect('/addsanpham', ['controller' => 'Dashboard', 'action' => 'addPorduct']);
-        $routes->connect('/editsanpham/*', ['controller' => 'Dashboard', 'action' => 'editPorduct']);
-        $routes->connect('/delsanpham/*', ['controller' => 'Dashboard', 'action' => 'deletePorduct']);
+        $routes->connect('/sanpham/*', ['controller' => 'Product', 'action' => 'viewPorduct']);
+        $routes->connect('/addsanpham', ['controller' => 'Product', 'action' => 'addPorduct']);
+        $routes->connect('/editsanpham/*', ['controller' => 'Product', 'action' => 'editPorduct']);
+        $routes->connect('/delsanpham/*', ['controller' => 'Product', 'action' => 'deletePorduct']);
 
         
         // Image
-        $routes->connect('/xoahinhanh/*', ['controller' => 'Dashboard', 'action' => 'deleteImg']);
-        $routes->connect('/settop/*', ['controller' => 'Dashboard', 'action' => 'setTopImg']);
-        $routes->connect('/image/*', ['controller' => 'Dashboard', 'action' => 'editImg']);
+        $routes->connect('/xoahinhanh/*', ['controller' => 'Image', 'action' => 'deleteImg']);
+        $routes->connect('/settop/*', ['controller' => 'Image', 'action' => 'setTopImg']);
+        $routes->connect('/image/*', ['controller' => 'Image', 'action' => 'editImg']);
+
+        // Đơn hàng
+        $routes->connect('/order/*', ['controller' => 'Order', 'action' => 'viewOrder']);
+        $routes->connect('/proc/*', ['controller' => 'Order', 'action' => 'processOdr']);
 
         $routes->fallbacks(DashedRoute::class);
     });

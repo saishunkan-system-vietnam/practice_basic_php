@@ -6,19 +6,19 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * TUser Entity
+ * TOrderDetail Entity
  *
- * @property string $uid
- * @property string $pass
- * @property string $full_name
- * @property bool $gender
- * @property string $phone
- * @property bool $admin_flg
+ * @property int $id
+ * @property int $id_odrh
+ * @property int $id_product
+ * @property int $amount
+ * @property string $price
+ * @property string $tax
  * @property bool $del_flg
  * @property \Cake\I18n\FrozenTime $create_datetime
  * @property \Cake\I18n\FrozenTime $update_datetime
  */
-class TUser extends Entity
+class TOrderDetail extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -30,12 +30,11 @@ class TUser extends Entity
      * @var array
      */
     protected $_accessible = [
-        'uid' => true,
-        'pass' => true,
-        'full_name' => true,
-        'gender' => true,
-        'phone' => true,
-        'admin_flg' => true,
+        'id_odrh' => true,
+        'id_product' => true,
+        'amount' => true,
+        'price' => true,
+        'tax' => true,
         'del_flg' => true,
         'create_datetime' => true,
         'update_datetime' => true,

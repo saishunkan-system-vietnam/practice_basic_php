@@ -81,69 +81,28 @@ class ProductComponent extends CommonComponent
         ];
     }
 
-    // Get dánh sách theo danh mục sản phẩm
+    // Get danh sách theo danh mục sản phẩm
     public function getProductByCategory($category_cd)
     {
         if ($category_cd) {
             $query = $this->TProduct->find()
-                ->select(['TProduct.name','TProduct.price','TProduct.discount','TProduct.slug', 't_image.img_url'])
+                ->select(['TProduct.name', 'TProduct.price', 'TProduct.discount', 'TProduct.slug', 't_image.img_url'])
                 ->join([
                     'table' => 't_image',
                     "type" => "left",
-                    "conditions" => ['TProduct.id = t_image.id_prd','t_image.top_flg'=>1]
-                    ])
+                    "conditions" => ['TProduct.id = t_image.id_prd', 't_image.top_flg' => 1]
+                ])
                 ->where(['And' => ['TProduct.del_flg' => 0, 'TProduct.category_cd' => $category_cd]])
-                ->order(['TProduct.id DESC'])
-                ->limit(12);
+                ->order(['TProduct.price - TProduct.discount ASC', 'TProduct.price ASC', 'TProduct.create_datetime ASC'])
+                ->limit(LIMIT_PAGINATE);
         }
 
         return $query;
     }
 
-    // Get và lọc danh sách sản phẩm theo giá
-    public function getProductFilterPrice($category_cd, $price, $flg_order_asc)
+    // Tìm kiếm sản phẩm
+    public function searchAllProduct($key = null)
     {
-        // if ($price) {
-        //     $query = $this->TProduct->find()
-        //         ->where(['And' => ['del_flg' => 0, 'category_cd' => $category_cd, 'price < 500'  => $price, 'category_cd' => $category_cd]])
-        //         ->order(['id DESC']);
-        // }
-
-        // return $query;
-
-        $orderby_price = ($flg_order_asc == 1) ? "TProduct.price ASC" : "TProduct.price ASC";
-
-        if (count($price) == 2) {
-            // $price_from = $price['from'];
-            // $price_from = $price['to'];
-            // $expression_price = 'TProduct.price BETWEEN ? and ?';
-            $expression_price = 'TProduct.price BETWEEN '.$price['from'].' and '.$price['to'];
-            
-            $query = $this->TProduct->find()
-            ->select(['TProduct.name', 'TProduct.price', 'TProduct.discount', 'TProduct.slug', 't_image.img_url'])
-            ->join([
-                'table' => 't_image',
-                "type" => "left",
-                "conditions" => ['TProduct.id = t_image.id_prd', 't_image.top_flg' => 1]
-            ])
-            ->where(['And' => ['TProduct.del_flg' => 0, 'TProduct.category_cd' => $category_cd, $expression_price]])
-            ->order([$orderby_price])
-            ->limit(12);
-        // }
-
-        return $query;
-
-        } else if (count($price) == 1) {
-            if (array_key_exists('less', $price)) {
-                $expression_price = 'TProduct.price <';
-                $price_val = $price['less'];
-            } else {
-                $expression_price = 'TProduct.price >';
-                $price_val = $price['greater'];
-            }
-        }
-
-        // if ($category_cd) {
         $query = $this->TProduct->find()
             ->select(['TProduct.name', 'TProduct.price', 'TProduct.discount', 'TProduct.slug', 't_image.img_url'])
             ->join([
@@ -151,10 +110,8 @@ class ProductComponent extends CommonComponent
                 "type" => "left",
                 "conditions" => ['TProduct.id = t_image.id_prd', 't_image.top_flg' => 1]
             ])
-            ->where(['And' => ['TProduct.del_flg' => 0, 'TProduct.category_cd' => $category_cd, $expression_price => $price_val]])
-            ->order([$orderby_price])
-            ->limit(12);
-        // }
+            ->where(['And' => ['TProduct.del_flg' => 0, 'TProduct.name like' => (isset($key) ? '%' . $key . '%' : '%%')]])
+            ->order(['TProduct.category_cd ASC', 'TProduct.price - TProduct.discount ASC', 'TProduct.price ASC', 'TProduct.create_datetime ASC']);
 
         return $query;
     }

@@ -6,19 +6,24 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * TUser Entity
+ * TOrderHeader Entity
  *
- * @property string $uid
- * @property string $pass
- * @property string $full_name
- * @property bool $gender
+ * @property int $id
+ * @property string|null $id_user
+ * @property \Cake\I18n\FrozenDate $odr_date
+ * @property string $paymnt_method
+ * @property string $shipping_unit
+ * @property string $fee
+ * @property string $address
+ * @property string $reciever
  * @property string $phone
- * @property bool $admin_flg
- * @property bool $del_flg
+ * @property string|null $note
+ * @property string $status
+ * @property string $odr_flg
  * @property \Cake\I18n\FrozenTime $create_datetime
  * @property \Cake\I18n\FrozenTime $update_datetime
  */
-class TUser extends Entity
+class TOrderHeader extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -30,13 +35,17 @@ class TUser extends Entity
      * @var array
      */
     protected $_accessible = [
-        'uid' => true,
-        'pass' => true,
-        'full_name' => true,
-        'gender' => true,
+        'id_user' => true,
+        'odr_date' => true,
+        'paymnt_method' => true,
+        'shipping_unit' => true,
+        'fee' => true,
+        'address' => true,
+        'reciever' => true,
         'phone' => true,
-        'admin_flg' => true,
-        'del_flg' => true,
+        'note' => true,
+        'status' => true,
+        'odr_flg' => true,
         'create_datetime' => true,
         'update_datetime' => true,
     ];

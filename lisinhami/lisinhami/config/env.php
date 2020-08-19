@@ -9,6 +9,10 @@
     define('URL_EDIT_SANPHAM',SITE_URL.'admin/editsanpham/');
     define('URL_DEL_SANPHAM',SITE_URL.'admin/delsanpham/');
 
+    // Đơn hàng
+    define('URL_DONHANG',SITE_URL.'admin/order/');
+    define('URL_PROC_ODR',SITE_URL.'admin/proc/');
+
     // IMG
     define('URL_IMG',SITE_URL.'admin/image/');
     define('URL_DEL_IMG',SITE_URL.'admin/xoahinhanh/');
@@ -17,8 +21,14 @@
 
     // CLIENT
     define('URL_CHITIET_SANPHAM',SITE_URL.'chitiet/');
-    define('URL_DANHSACH_SANPHAM',SITE_URL.'danhsach/');
+    define('URL_DANHMUC_SANPHAM',SITE_URL.'danhmuc/');
 
     // login
     define('URL_LOGIN',SITE_URL.'login');
+    define('URL_REGISTER',SITE_URL.'dangky');
+    define('URL_LOGOUT',SITE_URL.'logout');
+
+    // LIMIT
+    define('LIMIT_PAGINATE',12);
+
 ?>
