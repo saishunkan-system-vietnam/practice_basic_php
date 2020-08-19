@@ -160,7 +160,7 @@ class ProductComponent extends CommonComponent
     }
 
     // Get product theo slug
-    public function getProductBySlug($slug = null)
+    public function getProductBySlug($slug)
     {
         $data = $this->TProduct
                 ->find()

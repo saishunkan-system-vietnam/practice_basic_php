@@ -54,8 +54,9 @@ class ImageComponent extends CommonComponent
                     'top_flg'=>'CASE WHEN id ='.$id.' THEN 1 ELSE 0 END'
                 ])
                 ->where([
-                    'TImage.id_prd' =>  $id_prd
-                    ,'TImage.del_flg' =>  0
+                    'TImage.id_prd' =>  $id_prd,
+                    'TImage.del_flg' =>  0,
+                    'OR'=>['TImage.top_flg' =>  1, 'TImage.id' => $id]
                 ]);
                 
         foreach($data as $item)

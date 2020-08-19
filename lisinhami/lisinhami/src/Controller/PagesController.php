@@ -73,19 +73,21 @@ class PagesController extends AppController
         $this->set('point', $point);
     }
 
-// chi tiết sản phẩm
-    public function detailProduct($slug = null)
+    // chi tiết sản phẩm
+    public function detailProduct($slug = '')
     {
         $this->loadComponent('Product');
         $this->loadComponent('Image');
-        
         $TProduct = $this->{'Product'}->getProductBySlug($slug);
-        dd($TProduct);
-        $TImage = $this->{'Image'}->getImgByPrd($TProduct->id);
-        $data = $this->{'Product'}->getProductByCategory($TProduct->category_cd);
-        $this->set('product', $TProduct);
-        $this->set('image', $TImage);
-        $this->set('data', $data);
+        if(empty($TProduct)){
+            return $this->redirect(['Controller'=>'page','action' => 'home']);
+        }else{
+            $TImage = $this->{'Image'}->getImgByPrd($TProduct->id);
+            $data = $this->{'Product'}->getProductByCategory($TProduct->category_cd);
+            $this->set('product', $TProduct);
+            $this->set('image', $TImage);
+            $this->set('data', $data);
+        }  
     }
 
     // Danh sách sản phẩm
