@@ -25,6 +25,8 @@
 
     // login
     define('URL_LOGIN',SITE_URL.'login');
+    define('URL_REGISTER',SITE_URL.'dangky');
+    define('URL_LOGOUT',SITE_URL.'logout');
 
     // LIMIT
     define('LIMIT_PAGINATE',12);

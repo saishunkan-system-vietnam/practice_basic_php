@@ -63,7 +63,9 @@ $routes->scope('/', function (RouteBuilder $builder) {
     $builder->connect('/sendemail', ['controller' => 'View', 'action' => 'sendEmail']);
     
 
-    $builder->connect('/login', ['controller' => 'Pages', 'action' => 'login']);
+    $builder->connect('/login', ['controller' => 'User', 'action' => 'login']);
+    $builder->connect('/dangky', ['controller' => 'User', 'action' => 'register']);
+    $builder->connect('/logout', ['controller' => 'User', 'action' => 'logout']);
 
     Router::prefix('Admin', function (RouteBuilder $routes) {
         // Profile
