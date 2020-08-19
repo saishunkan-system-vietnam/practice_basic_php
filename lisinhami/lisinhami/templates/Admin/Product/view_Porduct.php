@@ -7,9 +7,8 @@
 <div class="content">
 <legend><?= __($title) ?></legend>
     <?= $this->Form->create(null,['type'=>'get']);?>
-
-    <input type="text" class="form-control" type="submit" name= "key" id = "key"
-                value="<?= $this->request->getQuery('key') ?>">
+    <div class="input-group w-100"> <input type="text" class="form-control search-form" name="key" id="key" style="width:55%;" placeholder="Search">
+     <div class="input-group-append"> <button class="btn btn-primary search-button" type="submit"> <i class="fa fa-search"></i> </button> </div></div>
     <?= $this->Form->end();?>
 
     <a href=<?= URL_ADD_SANPHAM?> title="Thêm sản phẩm" class="btn btn-primary btn-lg btn-radius" style="margin-bottom: 10px;"><i
@@ -34,7 +33,7 @@
             <tr>
                 <td><?= $item->id?></td>
                 <td><?= $item->name?></td>
-                <td><?= $item->price?></td>
+                <td><?= $item->odr_date?></td>
                 <td><?= $item->discount?></td>
                 <td><?= $item->tax?></td>
                 <td><?= $item->point?></td>

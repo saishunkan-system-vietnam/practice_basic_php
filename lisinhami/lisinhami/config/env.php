@@ -9,6 +9,10 @@
     define('URL_EDIT_SANPHAM',SITE_URL.'admin/editsanpham/');
     define('URL_DEL_SANPHAM',SITE_URL.'admin/delsanpham/');
 
+    // Đơn hàng
+    define('URL_DONHANG',SITE_URL.'admin/order/');
+    define('URL_PROC_ODR',SITE_URL.'admin/proc/');
+
     // IMG
     define('URL_IMG',SITE_URL.'admin/image/');
     define('URL_DEL_IMG',SITE_URL.'admin/xoahinhanh/');
@@ -21,4 +25,8 @@
 
     // login
     define('URL_LOGIN',SITE_URL.'login');
+
+    // LIMIT
+    define('LIMIT_PAGINATE',12);
+
 ?>
