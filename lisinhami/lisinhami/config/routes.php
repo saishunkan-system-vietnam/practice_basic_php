@@ -56,13 +56,14 @@ $routes->scope('/', function (RouteBuilder $builder) {
     $builder->connect('/home', ['controller' => 'Pages', 'action' => 'home']);
 
     $builder->connect('/chitiet/*', ['controller' => 'Pages', 'action' => 'detailProduct']);
-    $builder->connect('/danhsach', ['controller' => 'Pages', 'action' => 'viewList']);
+
+    // *******Hiển thị sản phẩm *********
+    $builder->connect('/danhmuc/*', ['controller' => 'View', 'action' => 'viewList']);
+    $builder->connect('/timkiem/*', ['controller' => 'View', 'action' => 'searchProduct']);
+    $builder->connect('/sendemail', ['controller' => 'View', 'action' => 'sendEmail']);
     
 
     $builder->connect('/login', ['controller' => 'Pages', 'action' => 'login']);
-
-    // *******Danh mục sản phẩm *********
-    $builder->connect('/danhmuc/*', ['controller' => 'Pages', 'action' => 'viewList']);
 
     Router::prefix('Admin', function (RouteBuilder $routes) {
         // Profile
