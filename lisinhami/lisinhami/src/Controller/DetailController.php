@@ -25,18 +25,24 @@ class DetailController extends AppController
              $data = $this->{'Product'}->getProductByCategory($TProduct->category_cd);
  
              if ($this->request->is('post')) {
+                $session = $this->getRequest()->getSession();
                  $inputData = $this->request->getParsedBody();
-          
-                 $item=[
-                     'id'        =>  $TProduct->id,
-                     'name'      =>  $TProduct->name,
-                     'price'     =>  $TProduct->price-$TProduct->discount,
-                     'amount'    =>  $inputData
-                 ];
-     
-                 $this->request->getSession()->write('cart', $item);
-                 dd($this->request->getSession()->read('cart'));
-                 // code ở đây
+                
+                 if($session->check('cart.'.$TProduct->id)){
+                    $item = $session->read('cart.'.$TProduct->id);
+
+                    $item['amount'] =  $item['amount'] + $inputData['numberproduct'];
+                 }else{
+                    $item=[
+                        'id'        =>  $TProduct->id,
+                        'name'      =>  $TProduct->name,
+                        'price'     =>  $TProduct->price-$TProduct->discount,
+                        'amount'    =>  $inputData['numberproduct']
+                    ];
+                 }
+                   
+                 $session->write('cart.'.$TProduct->id, $item);
+
                  $this->redirect(URL_CHITIET_SANPHAM.$slug);
              }
              
