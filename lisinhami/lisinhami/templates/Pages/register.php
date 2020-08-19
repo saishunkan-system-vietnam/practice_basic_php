@@ -1,25 +1,27 @@
+<?= $this->Flash->render('error'); ?>
 <div class="contai">
     <div class="row">
         <div class="well col-md-5 offset-md-4">
             <legend class="head"><i class="glyphicon glyphicon-globe"></i> Đăng ký thành viên!
             </legend>
-            <form action="" method="post" class="form" role="form">
+            <?= $this->Form->create(null, ['class'=>'form','url' => URL_REGISTER]); ?>
+            <!-- <form action="" method="post" class="form" role="form"> -->
                 <label >Họ và tên</label>
-                <input class="form-control" name="fullname" placeholder="Họ và tên" required autofocus="" type="text">
+                <input class="form-control" name="full_name" placeholder="Họ và tên" required autofocus="" type="text">
                 <label for="">Email</label>
-                <input class="form-control" name="email" placeholder="Email" type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" title="Email không hợp lệ">
+                <input class="form-control" name="uid" placeholder="Email" type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" title="Email không hợp lệ">
                 <label for="">Mật khẩu</label>
-                <input class="form-control" name="password" placeholder="Mật khẩu" required type="password">
+                <input class="form-control" name="pass" placeholder="Mật khẩu" required type="password">
                 <label for="">Xác nhận mật khẩu</label>
                 <input class="form-control" name="retypepassword" placeholder="Nhập lại mật khẩu" required type="password" oninput='retypepassword.setCustomValidity(retypepassword.value != password.value ? "Passwords do not match." : "")'>
                 <label for="">Số điện thoại</label>
-                <input class="form-control" type="text" placeholder="Số điện thoại" name="Phone" required pattern="(09|03|07|08|05)+([0-9]{8})\b" title="Số điện thoại hợp lệ" maxlength="10">
+                <input class="form-control" type="text" placeholder="Số điện thoại" name="phone" required pattern="(09|03|07|08|05)+([0-9]{8})\b" title="Số điện thoại hợp lệ" maxlength="10">
                 <label for="">Giới tính&emsp;</label>
                 <label class="radio-inline">
-                    <input name="gender" id="inlineCheckbox1" value="male" type="radio" checked> Nam
+                    <input name="gender" id="inlineCheckbox1" value="1" type="radio" checked> Nam
                 </label>
                 <label class="radio-inline">
-                    <input name="gender" id="inlineCheckbox2" value="female" type="radio"> Nữ
+                    <input name="gender" id="inlineCheckbox2" value="0" type="radio"> Nữ
                 </label>
                 <br>
                 <label >Địa chỉ chính</label>
@@ -28,7 +30,8 @@
                 <input class="form-control" name="address2" placeholder="Nhập địa chỉ" type="text">
                 <br>
                 <button class="btn btn-lg btn-primary btn-block" type="submit"> Đăng ký</button>
-            </form>
+            <!-- </form> -->
+            <?= $this->Form->end(); ?>
         </div>
     </div>
 </div>
@@ -36,6 +39,7 @@
 <style>
     .contai {
         margin-top: 2%;
+        margin-bottom: 4%;
         padding-right: 15px;
         padding-left: 15px;
         margin-right: auto;

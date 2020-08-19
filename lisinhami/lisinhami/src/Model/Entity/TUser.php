@@ -30,6 +30,7 @@ class TUser extends Entity
      * @var array
      */
     protected $_accessible = [
+        'uid' => true,
         'pass' => true,
         'full_name' => true,
         'gender' => true,

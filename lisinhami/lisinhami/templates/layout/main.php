@@ -9,22 +9,21 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-        <?= $this->fetch('title') ?>
+        <?= $title?>
     </title>
     <?= $this->Html->meta('icon') ?>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     
-    <?= $this->Html->css(['bootstrap.min', 'owl.carousel.min', 'smoothproducts']) ?>
+    <?= $this->Html->css(['bootstrap.min']) ?>
 
-    <?= $this->Html->script(['jquery-3.3.1.min', 'jquery.cycle', 'bootstrap.min', 'owl.carousel.min', 'smoothproducts.min']) ?>
-
+    <?= $this->Html->script(['jquery-3.3.1.min', 'jquery.cycle', 'bootstrap.min']) ?>
 
     <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
 
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
 
-    <?= $this->Html->css(['nav', 'footer', 'home', 'detailproduct']) ?>
+    <?= $this->Html->css(['nav', 'footer']) ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
