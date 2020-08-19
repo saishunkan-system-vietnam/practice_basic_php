@@ -13,9 +13,7 @@ body {
     background-color: #fff;
 }
 
-*,
-::after,
-::before {
+*, ::after, ::before {
     box-sizing: border-box;
 }
 
@@ -27,7 +25,6 @@ body {
     max-width: 1150px;
     position: relative;
 }
-
 
 /* @media (min-width: 1200px){
     .container {
@@ -186,10 +183,7 @@ body {
     margin-left: -4px;
 }
 
-[type=button]:not(:disabled),
-[type=reset]:not(:disabled),
-[type=submit]:not(:disabled),
-button:not(:disabled) {
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
     cursor: pointer;
 }
 
@@ -208,28 +202,19 @@ button:not(:disabled) {
     }
 }
 
-[type=button],
-[type=reset],
-[type=submit],
-button {
+[type=button], [type=reset], [type=submit], button {
     -webkit-appearance: button;
 }
 
-button,
-select {
+button, select {
     text-transform: none;
 }
 
-button,
-input {
+button, input {
     overflow: visible;
 }
 
-button,
-input,
-optgroup,
-select,
-textarea {
+button, input, optgroup, select, textarea {
     margin: 0;
     font-family: inherit;
     font-size: inherit;
@@ -258,6 +243,7 @@ button {
 .col-2-ct {
     display: inline-block;
     padding: 0;
+    float: left;
 }
 
 .pd-box-category {
@@ -345,23 +331,11 @@ img {
     margin-bottom: 3px;
 }
 
-.h3,
-h3 {
+.h3, h3 {
     font-size: 1.75rem;
 }
 
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
     margin-bottom: .5rem;
     font-weight: 500;
     line-height: 1.2;
