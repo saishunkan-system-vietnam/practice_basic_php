@@ -64,19 +64,26 @@ class TUserTable extends Table
         $validator
             ->scalar('full_name')
             ->maxLength('full_name', 50)
-            ->requirePresence('full_name', 'create')
-            ->notEmptyString('full_name');
+            ->allowEmptyString('full_name');
 
         $validator
             ->boolean('gender')
-            ->requirePresence('gender', 'create')
-            ->notEmptyString('gender');
+            ->allowEmptyString('gender');
 
         $validator
             ->scalar('phone')
             ->maxLength('phone', 15)
-            ->requirePresence('phone', 'create')
-            ->notEmptyString('phone');
+            ->allowEmptyString('phone');
+
+        $validator
+            ->scalar('address1')
+            ->maxLength('address1', 150)
+            ->allowEmptyString('address1');
+
+        $validator
+            ->scalar('address2')
+            ->maxLength('address2', 150)
+            ->allowEmptyString('address2');
 
         $validator
             ->boolean('admin_flg')
