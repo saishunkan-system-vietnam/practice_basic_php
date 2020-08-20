@@ -22,6 +22,7 @@
     // CLIENT
     define('URL_CHITIET_SANPHAM',SITE_URL.'chitiet/');
     define('URL_DANHMUC_SANPHAM',SITE_URL.'danhmuc/');
+    define('URL_SEARCH',SITE_URL.'timkiem/');
 
     // login
     define('URL_LOGIN',SITE_URL.'login');

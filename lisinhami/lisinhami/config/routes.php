@@ -51,11 +51,11 @@ $routes->scope('/', function (RouteBuilder $builder) {
      * its action called 'display', and we pass a param to select the view file
      * to use (in this case, templates/Pages/home.php)...
      */
-    $builder->connect('/', ['controller' => 'Pages', 'action' => 'home']);
+    $builder->connect('/', ['controller' => 'Home', 'action' => 'home']);
 
-    $builder->connect('/home', ['controller' => 'Pages', 'action' => 'home']);
+    $builder->connect('/home', ['controller' => 'Home', 'action' => 'home']);
 
-    $builder->connect('/chitiet/*', ['controller' => 'Pages', 'action' => 'detailProduct']);
+    $builder->connect('/chitiet/*', ['controller' => 'Detail', 'action' => 'detailProduct']);
 
     // *******Hiển thị sản phẩm *********
     $builder->connect('/danhmuc/*', ['controller' => 'View', 'action' => 'viewList']);

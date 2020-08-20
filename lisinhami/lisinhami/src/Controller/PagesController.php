@@ -53,40 +53,4 @@ class PagesController extends AppController
     {
         $this->viewBuilder()->setLayout('main');
     }
-
-    // Trang chủ
-    public function home()
-    {
-        $this->loadComponent('Product');
-        
-        $category_cd = 1;
-        $cosmetic = $this->{'Product'}->getProductByCategory($category_cd);
-
-        $category_cd = 2;
-        $sample = $this->{'Product'}->getProductByCategory($category_cd);
-
-        $category_cd = 3;
-        $point = $this->{'Product'}->getProductByCategory($category_cd);
-
-        $this->set('cosmetic', $cosmetic);
-        $this->set('sample', $sample);
-        $this->set('point', $point);
-    }
-
-    // chi tiết sản phẩm
-    public function detailProduct($slug = '')
-    {
-        $this->loadComponent('Product');
-        $this->loadComponent('Image');
-        $TProduct = $this->{'Product'}->getProductBySlug($slug);
-        if(empty($TProduct)){
-            return $this->redirect(['Controller'=>'page','action' => 'home']);
-        }else{
-            $TImage = $this->{'Image'}->getImgByPrd($TProduct->id);
-            $data = $this->{'Product'}->getProductByCategory($TProduct->category_cd);
-            $this->set('product', $TProduct);
-            $this->set('image', $TImage);
-            $this->set('data', $data);
-        }  
-    }
 }

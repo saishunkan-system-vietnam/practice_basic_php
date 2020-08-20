@@ -63,22 +63,30 @@ class UserController extends AppController
             $inputData = $this->request->getParsedBody();
 
             $result = $this->{'User'}->getUser($inputData['email'], $inputData['pass']);
-
-            if ($result->delflg == 1) {
+            
+            if(empty($result))
+            {
                 $this->request->getSession()->write('error', $inputData['email'] . ' không tồn tại');
                 $this->redirect($this->referer());
-            } else {
-                $this->request->getSession()->write('success', 'tài khoản ' . $inputData['email'] . ' đã đăng nhập thành công');
-                $this->request->getSession()->write('email', $inputData['email']);
-
-                if (isset($inputData['remember'])) {
-                    $dataCookie['email'] = $inputData['email'];
-                    $dataCookie['pass'] = $inputData['pass'];
-                    setcookie('COOKIE_LOGIN', json_encode($dataCookie), time() + $cookie_time);
+            }
+            else
+            {
+                if ($result->delflg == 1) {
+                    $this->request->getSession()->write('error', $inputData['email'] . ' đã bị vô hiệu hóa');
+                    $this->redirect($this->referer());
                 } else {
-                    setcookie('COOKIE_LOGIN', '', time() - $cookie_time);
+                    $this->request->getSession()->write('success', 'tài khoản ' . $inputData['email'] . ' đã đăng nhập thành công');
+                    $this->request->getSession()->write('email', $inputData['email']);
+
+                    if (isset($inputData['remember'])) {
+                        $dataCookie['email'] = $inputData['email'];
+                        $dataCookie['pass'] = $inputData['pass'];
+                        setcookie('COOKIE_LOGIN', json_encode($dataCookie), time() + $cookie_time);
+                    } else {
+                        setcookie('COOKIE_LOGIN', '', time() - $cookie_time);
+                    }
+                    $this->redirect($this->referer());
                 }
-                $this->redirect($this->referer());
             }
         }
     }
