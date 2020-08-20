@@ -24,66 +24,36 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td data-th="Product">
-                                <div class="row">
-                                    <div class="col-sm-2 hidden-xs">
-                                        <img src="http://placehold.it/100x100" alt="..." class="img-responsive" />
+                        <?php
+                        foreach ($data as $item) { ?>
+                            <tr>
+                                <td data-th="Product">
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <?= $this->Html->image(isset($item['img']) ? $item['img'] : "/img/noproduct.png", ['class' => 'img-responsive','style'=>'width: 100px;']); ?>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <p><?=$item['name']?></p>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-10">
-                                        <h4 class="nomargin">Product 1</h4>
-                                        <p>
-                                            Quis aute iure reprehenderit in voluptate velit esse
-                                            cillum dolore eu fugiat nulla pariatur. Lorem ipsum
-                                            dolor sit amet.
-                                        </p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td data-th="Price">$1.99</td>
-                            <td data-th="Quantity">
-                                <input type="number" class="form-control text-center" value="1" />
-                            </td>
-                            <td data-th="Subtotal" class="text-center">1.99</td>
-                            <td class="actions" data-th="">
-                                <button class="btn btn-info btn-sm">
-                                    <i class="fa fa-refresh"></i>
-                                </button>
-                                <button class="btn btn-danger btn-sm">
-                                    <i class="fa fa-trash-o"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td data-th="Product">
-                                <div class="row">
-                                    <div class="col-sm-2 hidden-xs">
-                                        <img src="http://placehold.it/100x100" alt="..." class="img-responsive" />
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <h4 class="nomargin">Product 2</h4>
-                                        <p>
-                                            Quis aute iure reprehenderit in voluptate velit esse
-                                            cillum dolore eu fugiat nulla pariatur. Lorem ipsum
-                                            dolor sit amet.
-                                        </p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td data-th="Price">$2.09</td>
-                            <td data-th="Quantity">
-                                <input type="number" class="form-control text-center" value="1" />
-                            </td>
-                            <td data-th="Subtotal" class="text-center">2.09</td>
-                            <td class="actions" data-th="">
-                                <button class="btn btn-info btn-sm">
-                                    <i class="fa fa-refresh"></i>
-                                </button>
-                                <button class="btn btn-danger btn-sm">
-                                    <i class="fa fa-trash-o"></i>
-                                </button>
-                            </td>
-                        </tr>
+                                </td>
+                                <td data-th="Price"><?=$item['price']?></td>
+                                <td data-th="Quantity">
+                                    <input type="number" class="form-control text-center" value="<?=$item['amount']?>" />
+                                </td>
+                                <td data-th="Subtotal" class="text-center"><?=$item['amount']* $item['price']?></td>
+                                <td class="actions" data-th="">
+                                    <button class="btn btn-info btn-sm">
+                                        <i class="fa fa-refresh"></i>
+                                    </button>
+                                    <button class="btn btn-danger btn-sm">
+                                        <i class="fa fa-trash-o"></i>
+                                    </button>
+                                </td>
+                            </tr>
+
+                        <?php } ?>
+
                     </tbody>
                     <tfoot>
                         <tr>
@@ -104,15 +74,15 @@
             <div id="formStep" class="col-sm-4 stepwizard">
                 <div class="stepwizard-row setup-panel">
                     <div class="stepwizard-step">
-                        <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
+                        <a href="#step-1" type="button" class="btn btn-primary btn-circle border border-primary">1</a>
                         <p>Thông tin người nhận</p>
                     </div>
                     <div class="stepwizard-step">
-                        <a href="#step-2" type="button" class="btn btn-default btn-circle disabled">2</a>
+                        <a href="#step-2" type="button" class="btn btn-default btn-circle disabled border border-primary">2</a>
                         <p>Phương thức thanh toán và vận chuyển</p>
                     </div>
                     <div class="stepwizard-step">
-                        <a href="#step-3" type="button" class="btn btn-default btn-circle disabled">3</a>
+                        <a href="#step-3" type="button" class="btn btn-default btn-circle disabled border border-primary">3</a>
                         <p>Xác nhận đơn hàng</p>
                     </div>
                 </div>
@@ -182,5 +152,6 @@
         </div>
     </div>
 </div>
-
-</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/js/jquery.tooltipster.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
+<?= $this->fetch('script') ?>

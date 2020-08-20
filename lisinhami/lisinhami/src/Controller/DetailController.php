@@ -22,6 +22,12 @@ class DetailController extends AppController
              return $this->redirect(SITE_URL);
          }else{
              $tableImage = $this->{'Image'}->getImgByPrd($tableProduct->id);
+             $img= null;
+             foreach ($tableImage as $key => $item) {
+                 if($item->top_flg == 1){
+                    $img= $item->img_url;
+                 }
+             }
              $data = $this->{'Product'}->getProductByCategory($tableProduct->category_cd);
  
              if ($this->request->is('post')) {
@@ -47,7 +53,7 @@ class DetailController extends AppController
                         'price'             =>  $tableProduct->price-$tableProduct->discount,
                         'amount'            =>  $inputData['numberproduct'],
                         'category_cd'       =>  $tableProduct->category_cd,
-                        'img'               =>  $tableImage[array_key_first($tableImage)]['img_url']
+                        'img'               =>  $img
                     ];
                  }
                    
