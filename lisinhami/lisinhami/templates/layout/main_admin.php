@@ -40,9 +40,11 @@
 
         <main class="page-content">
             <div class="container-fluid">
+                <?= $this->Flash->render() ?>
                 <?= $this->fetch('content') ?>
             </div>
         </main>
     </div>
 </body>
+
 </html>
