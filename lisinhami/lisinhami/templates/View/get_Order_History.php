@@ -22,7 +22,7 @@
                 <td><?= $item->shipping_unit ?></td>
                 <td><?= $item->paymnt_method ?></td>
                 <td><?= $item->status ?></td>
-                <td><a href="<?= URL_IMG . $item->id ?>" class="btn btn-info  btn-lg btn-radius"><i class="fa fa-file-image-o" aria-hidden="true"></i> View</a></td>
+                <td><a href="<?= URL_CHITIET_DONHANG. $item->id ?>" class="btn btn-info  btn-lg btn-radius"><i class="fa fa-file-image-o" aria-hidden="true"></i> View</a></td>
             </tr>
             <? }?>
         </thead>
