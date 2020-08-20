@@ -72,72 +72,24 @@ class ViewController extends AppController
         }
     }
 
-    // // Gửi email
-    // public function sendEmail()
-    // {
-
-    //     // $mailer = new Mailer('default');
-    //     // $mailer->setProfile('default');
-    //     // // $email->to('nguyenminh15cdt1@gmail.com', 'Minh');
-    //     // //$email->addTo('to2@example.com', 'To2 Example');
-    //     // // The email's To recipients are: to@example.com and to2@example.com
-    //     // //$email->to('test@example.com', 'ToTest Example');
-    //     // // The email's To recipient is: test@example.com
-    //     // $mailer->setSender('minhmailfortest@gmail.com', 'Admin');
-
-    //     // $email = new Email();
-    //     // $email->transport('default');
-    //     // $email->from('minhmailfortest@gmail.com')
-    //     //     //->attachments(TICKET_PDF . $file)
-    //     //     ->to('nguyenminh15cdt1@gmail.com')
-    //     //     ->emailFormat('html')
-    //     //     ->subject("sfdsđsfds")
-    //     //     ->viewVars(array('msg' => "dsfdsfdsf"))
-    //     //     ->send("sdfsfdsfds");
-
-    //     // $mailer = new Mailer('default');
-    //     //$mailer->setProfile('default');
-    //     // $mailer->setSender('minhmailfortest@gmail.com', 'AdminMinh');
-    //     // $mailer->setTo('nguyenminh15cdt1@gmail.com', 'User');
-    //     // $mailer->setFrom(['minhmailfortest@gmail.com' => 'My Site'])
-    //     //     ->setTo('nguyenminh15cdt1@gmail.com')
-    //     //     ->setSubject('About')
-    //     //     ->deliver('My message');
-
-    //     // $mailer = new Mailer('default');
-    //     // $mailer
-    //     //   //  ->setEmailFormat('html')
-    //     //     ->setTo('nguyenminh15cdt1@gmail.com')
-    //     //     ->setFrom('minhmailfortest@gmail.com')
-    //     //    ->viewBuilder()
-    //     //     // ->setTemplate('welcome')
-    //     //     // ->setLayout('fancy');
-    //     //     ;
-    //     //    $mailer->deliver();
-
-    //     // $email = new Email('default');
-    //     // $email->from(['nguyenminh15cdt1@gmail.com' => 'Welcome To Trinity'])
-    //     //     ->to('minhmailfortest@gmail.com')
-    //     //     ->subject('My Subject')
-    //     //     ->send('Heloo ..');
-
-    //     // $mailer = new Mailer('default');     
-    //     // $mailer->setSender('minhmailfortest@gmail.com', 'AdminMinh');
-    //     // $mailer->setTo('nguyenminh15cdt1@gmail.com', 'User');
-    //     // $mailer->setFrom(['minhmailfortest@gmail.com']);
-    //     // $mailer->delivery(' Your message');  
-
-    //     // $mailer->
-    //     //     ->to('nguyenminh15cdt1@gmail.com')
-    //     //     ->subject('about email')
-    //     //     ->delivery(' Your message');            
-    // }
-
     public function getOrderHistory($uid = null)
     {
         $this->loadComponent('Order');
         $tableOrder = $this->{'Order'}->getAllOrderByID($uid);
         $this->set('tableOrder', $tableOrder);
         $this->set('tableOrder', $this->paginate($tableOrder, ['limit' => LIMIT_PAGINATE]));
+    }
+
+    public function viewContOrder($id = 0)
+    {
+        $this->loadComponent('Order');
+        $dataOdrH = $this->{'Order'}->getOrderHdrById($id);
+        $dataOdrD = $this->{'Order'}->getOrderDtlByIdOdrH($id);
+
+        $this->set('dataOdrH', $dataOdrH[0]);
+        $this->set('dataOdrD', $dataOdrD);
+        $this->set('stt', 0);
+        $this->set('title', 'Chit tiết đơn hàng');
+        $this->set('refererUrl', $this->referer());
     }
 }

@@ -25,6 +25,7 @@
     define('URL_DANHMUC_SANPHAM',SITE_URL.'danhmuc/');
     define('URL_SEARCH',SITE_URL.'timkiem/');
     define('URL_LICHSU_MUAHANG',SITE_URL.'lichsumuahang/');
+    define('URL_CHITIET_DONHANG',SITE_URL.'chitietdonhang/');
 
     // gửi email
     define('URL_SEND_EMAIL',SITE_URL.'sendemail/');

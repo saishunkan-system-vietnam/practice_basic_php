@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Routes configuration.
  *
@@ -42,6 +43,7 @@ use Cake\Routing\Router;
  * inconsistently cased URLs when used with `:plugin`, `:controller` and
  * `:action` markers.
  */
+
 /** @var \Cake\Routing\RouteBuilder $routes */
 $routes->setRouteClass(DashedRoute::class);
 
@@ -64,9 +66,12 @@ $routes->scope('/', function (RouteBuilder $builder) {
     // lịch sử mua hàng
     $builder->connect('/lichsumuahang/*', ['controller' => 'View', 'action' => 'getOrderHistory']);
 
+    // Chi tiết lịch sử mua hàng
+    $builder->connect('/chitietdonhang/*', ['controller' => 'View', 'action' => 'viewContOrder']);
+
     // Gửi email
     $builder->connect('/sendemail/*', ['controller' => 'Email', 'action' => 'sendEmail']);
-    
+
 
     $builder->connect('/login', ['controller' => 'User', 'action' => 'login']);
     $builder->connect('/dangky', ['controller' => 'User', 'action' => 'register']);
@@ -82,7 +87,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
         $routes->connect('/editsanpham/*', ['controller' => 'Product', 'action' => 'editPorduct']);
         $routes->connect('/delsanpham/*', ['controller' => 'Product', 'action' => 'deletePorduct']);
 
-        
+
         // Image
         $routes->connect('/xoahinhanh/*', ['controller' => 'Image', 'action' => 'deleteImg']);
         $routes->connect('/settop/*', ['controller' => 'Image', 'action' => 'setTopImg']);
@@ -97,4 +102,3 @@ $routes->scope('/', function (RouteBuilder $builder) {
     });
     $builder->fallbacks();
 });
-

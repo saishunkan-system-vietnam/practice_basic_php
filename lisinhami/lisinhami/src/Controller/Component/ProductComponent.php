@@ -110,8 +110,8 @@ class ProductComponent extends CommonComponent
                 "type" => "left",
                 "conditions" => ['TProduct.id = t_image.id_prd', 't_image.top_flg' => 1]
             ])
-            ->where(['And' => ['TProduct.del_flg' => 0, 'TProduct.name like' => (isset($key) ? '%' . $key . '%' : '%%')]])
-            ->order(['TProduct.category_cd ASC', 'TProduct.price - TProduct.discount ASC', 'TProduct.price ASC', 'TProduct.create_datetime ASC']);
+            ->where(['And' => ['TProduct.del_flg' => 0, 'TProduct.category_cd' => 1, 'TProduct.name like' => (isset($key) ? '%' . $key . '%' : '%%')]])
+            ->order(['TProduct.price - TProduct.discount ASC', 'TProduct.price ASC', 'TProduct.create_datetime ASC']);
 
         return $query;
     }
