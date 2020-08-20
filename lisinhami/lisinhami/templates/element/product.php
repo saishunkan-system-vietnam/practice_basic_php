@@ -77,6 +77,7 @@ use function PHPSTORM_META\type;
 
     <?= $this->Form->control('refererUrl',['type'=>'hidden','value'=> $data['refererUrl']]);?>
 
+    <br>
     <div style="width: 90%;">
     <a href=<?= $data["refererUrl"]?> title="Trở về" style="font-size: 40px;">
             <i class="fa fa-arrow-left" aria-hidden="true"></i></a>

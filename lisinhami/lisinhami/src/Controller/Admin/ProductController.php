@@ -46,6 +46,8 @@ class ProductController extends AppController
 
         // Add sản phẩm
         public function addPorduct(){
+            $this->loadComponent('Common');
+
             if ($this->request->is('post')) 
             {
                 $inputData = $this->request->getParsedBody();
@@ -94,7 +96,8 @@ class ProductController extends AppController
         // Edit sản phẩm
         public function editPorduct($id = null)
         {
-            $this->loadComponent('Product');
+            $this->loadComponent('Common');
+
             if ($this->request->is('post')) {
                 $inputData = $this->request->getParsedBody();
                 if(empty($inputData['slug']))
@@ -103,7 +106,6 @@ class ProductController extends AppController
                 }
 
                 $inputData['slug'] = $this->{'Common'}->crtSlug($inputData['slug']);
-                
                 $checkSlug = $this->{'Product'}->checkSlug( $id,  $inputData['slug']);
 
                 if(!empty($checkSlug))
@@ -138,6 +140,7 @@ class ProductController extends AppController
                 $TProduct = $this->{'Product'}->getProductById($id);
                 if(empty($TProduct)){
                     $this->Flash->error('Sản phẩm không tồn tại');
+                    $this->redirect(URL_SANPHAM);
                 }
                 $TProduct += ['refererUrl'=>$this->referer()];
                 $this->set('data', $TProduct);
@@ -147,7 +150,6 @@ class ProductController extends AppController
         // 
         public function deletePorduct($id = null)
         {
-            $this->loadComponent('Product');
             $this->loadComponent('Image');
 
             if ($this->request->is('post')) {

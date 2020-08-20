@@ -102,5 +102,6 @@ class OrderController extends AppController
         $this->set('dataOdrD', $dataOdrD);
         $this->set('stt', 0);        
         $this->set('title', 'Chit tiết đơn hàng');
+        $this->set('refererUrl', $this->referer());
     }
 }
