@@ -10,9 +10,11 @@ use Cake\ORM\Entity;
  *
  * @property string $uid
  * @property string $pass
- * @property string $full_name
- * @property bool $gender
- * @property string $phone
+ * @property string|null $full_name
+ * @property bool|null $gender
+ * @property string|null $phone
+ * @property string|null $address1
+ * @property string|null $address2
  * @property bool $admin_flg
  * @property bool $del_flg
  * @property \Cake\I18n\FrozenTime $create_datetime
@@ -35,6 +37,8 @@ class TUser extends Entity
         'full_name' => true,
         'gender' => true,
         'phone' => true,
+        'address1' => true,
+        'address2' => true,
         'admin_flg' => true,
         'del_flg' => true,
         'create_datetime' => true,

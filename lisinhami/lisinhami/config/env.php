@@ -23,6 +23,7 @@
     define('URL_CHITIET_SANPHAM',SITE_URL.'chitiet/');
     define('URL_DANHMUC_SANPHAM',SITE_URL.'danhmuc/');
     define('URL_SEARCH',SITE_URL.'timkiem/');
+    define('URL_LICHSUMUAHANG',SITE_URL.'lichsumuahang/');
 
     // login
     define('URL_LOGIN',SITE_URL.'login');
