@@ -1,12 +1,7 @@
 <?php
 
-if ($this->request->getSession()->check('success')) {
-    echo "<script type='text/javascript'>alert('$_SESSION[success]');</script>";
-    $this->request->getSession()->delete('success');
-}
-
-if (isset($_COOKIE['COOKIE_LOGIN'])) {
-    $dataSaveUser = json_decode($_COOKIE['COOKIE_LOGIN'], true);
+if (isset($_COOKIE[COOKIE_LOGIN])) {
+    $dataSaveUser = json_decode($_COOKIE[COOKIE_LOGIN], true);
     $email = $dataSaveUser['email'];
     $pass = $dataSaveUser['pass'];
 } else {
@@ -36,11 +31,11 @@ if (isset($_COOKIE['COOKIE_LOGIN'])) {
                 <a href="" class="div-cart"><i class="fa fa-shopping-cart cart"></i><span class="cart"> Giỏ hàng</span></a>
             </div>
             <div class="col-lg-3 col-xl-4 col-sm-2 col-2" style="text-align: right;">
-                <?if(!isset($_SESSION['email'])):?>
+                <?if(!$this->request->getsession()->check(SESSION_EMAIL)):?>
                 <a href="#" data-toggle="modal" data-target="#modalLRForm" data-abc="true">
                     <span class="login">Đăng nhập</span>
                 </a>
-                <a href=<?= URL_REGISTER?> data-abc="true">
+                <a href=<?= URL_REGISTER ?> data-abc="true">
                     <span class="register">Đăng ký</span>
                 </a>
                 <?else:?>
@@ -50,11 +45,13 @@ if (isset($_COOKIE['COOKIE_LOGIN'])) {
                     </a>
 
                     <div class="dropdown-menu">
-                        <!-- <a class="dropdown-item" href="#"></a> -->
+                        <?if($this->request->getsession()->check(SESSION_ADMIN) && $this->request->getsession()->read(SESSION_ADMIN) == 1):?>
+                        <a class="dropdown-item" href=<?= SITE_URL.'admin'?>>Admin</a>
+                        <? endif?>
                         <a class="dropdown-item" href=<?= URL_LICHSUMUAHANG ?>>Lịch sử mua hàng</a>
                         <!-- <a class="dropdown-item" href="#">Something else here</a> -->
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href=<?= URL_LOGOUT?>>Đăng xuất</a>
+                        <a class="dropdown-item" href=<?= URL_LOGOUT ?>>Đăng xuất</a>
                     </div>
                 </div>
                 <? endif?>
@@ -74,9 +71,9 @@ if (isset($_COOKIE['COOKIE_LOGIN'])) {
         <div class="navbar-collapse collapse" id="dropdown6">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item"> <a class="nav-link" href=<?= SITE_URL ?> data-abc="true"><i class="fa fa-home" aria-hidden="true"></i> Trang chủ</a> </li>
-                <li class="nav-item"> <a class="nav-link" href=<?= URL_DANHMUC_SANPHAM."san-pham-my-pham" ?> data-abc="true">Sản phẩm mỹ phẩm</a> </li>
+                <li class="nav-item"> <a class="nav-link" href=<?= URL_DANHMUC_SANPHAM . "san-pham-my-pham" ?> data-abc="true">Sản phẩm mỹ phẩm</a> </li>
                 <?if(!isset($_SESSION['email'])):?>
-                <li class="nav-item"> <a class="nav-link" href=<?= URL_DANHMUC_SANPHAM."san-pham-dung-thu" ?> data-abc="true">Sản phẩm dùng thử</a> </li>
+                <li class="nav-item"> <a class="nav-link" href=<?= URL_DANHMUC_SANPHAM . "san-pham-dung-thu" ?> data-abc="true">Sản phẩm dùng thử</a> </li>
                 <? endif?>
             </ul>
         </div>
