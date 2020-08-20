@@ -1,4 +1,3 @@
-<?= $this->Flash->render(); ?>
 <div class="contai">
     <div class="row">
         <div class="well col-md-5 offset-md-4">

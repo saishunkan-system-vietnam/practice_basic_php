@@ -1,3 +1,4 @@
+
 <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
         <div class="sidebar-brand">
@@ -11,10 +12,11 @@
                 <?= $this->Html->image('user.png', array('alt' => 'User picture', 'border' => '0', 'class' => 'img-responsive img-rounded')); ?>
             </div>
             <div class="user-info">
-                <span class="user-name"> Họ và tên
+                <span class="user-name"><?= $this->request->getsession()->read(SESSION_EMAIL)?>
                 </span>
                 <span class="user-role">Administrator</span>
-                <span class="user-role">logout</span>
+                <a class="user-role" href=<?= URL_LOGOUT ?>>logout</a>
+                <!-- <span class="user-role">logout</span> -->
             </div>
         </div>
 

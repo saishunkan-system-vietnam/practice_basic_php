@@ -32,19 +32,31 @@
 </head>
 
 <body>
-    <div class="page-wrapper chiller-theme toggled">
-        <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-            <i class="fas fa-bars"></i>
-        </a>
-        <?= $this->element('nav_admin') ?>
+    <? $checkAdmin = 0?>
+    <?php
+    if ($this->request->getsession()->check(SESSION_ADMIN) && $this->request->getsession()->read(SESSION_ADMIN) == 1) :
+        $checkAdmin = 1;?>
+        <div class="page-wrapper chiller-theme toggled">
+            <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+                <i class="fas fa-bars"></i>
+            </a>
+            <?= $this->element('nav_admin') ?>
 
-        <main class="page-content">
-            <div class="container-fluid">
-                <?= $this->Flash->render() ?>
-                <?= $this->fetch('content') ?>
-            </div>
-        </main>
-    </div>
+            <main class="page-content">
+                <div class="container-fluid">
+                    <?= $this->Flash->render() ?>
+                    <?= $this->fetch('content') ?>
+                </div>
+            </main>
+        </div>
+    <?php endif; ?>
 </body>
+
+<script>
+    if(<?= $checkAdmin?> == 0)
+    {
+        window.location.href = "<?= SITE_URL?>";
+    }
+</script>
 
 </html>

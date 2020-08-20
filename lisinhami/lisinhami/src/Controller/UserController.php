@@ -63,27 +63,24 @@ class UserController extends AppController
             $inputData = $this->request->getParsedBody();
 
             $result = $this->{'User'}->getUser($inputData['email'], $inputData['pass']);
-            
-            if(empty($result))
-            {
-                $this->request->getSession()->write('error', $inputData['email'] . ' không tồn tại');
+            if (empty($result)) {
+                $this->request->getSession()->write(SESSION_ERROR, 'Email hoặc Password không chính xác');
                 $this->redirect($this->referer());
-            }
-            else
-            {
+            } else {
                 if ($result->delflg == 1) {
-                    $this->request->getSession()->write('error', $inputData['email'] . ' đã bị vô hiệu hóa');
+                    $this->request->getSession()->write(SESSION_ERROR, $inputData['email'] . ' đã bị vô hiệu hóa');
                     $this->redirect($this->referer());
                 } else {
-                    $this->request->getSession()->write('success', 'tài khoản ' . $inputData['email'] . ' đã đăng nhập thành công');
-                    $this->request->getSession()->write('email', $inputData['email']);
-
+                    $this->request->getSession()->write(SESSION_EMAIL, $result->uid);
+                    if ($result->admin_flg == 1) {
+                        $this->request->getSession()->write(SESSION_ADMIN, $result->admin_flg);
+                    }
                     if (isset($inputData['remember'])) {
                         $dataCookie['email'] = $inputData['email'];
                         $dataCookie['pass'] = $inputData['pass'];
-                        setcookie('COOKIE_LOGIN', json_encode($dataCookie), time() + $cookie_time);
+                        setcookie(COOKIE_LOGIN, json_encode($dataCookie), time() + $cookie_time);
                     } else {
-                        setcookie('COOKIE_LOGIN', '', time() - $cookie_time);
+                        setcookie(COOKIE_LOGIN, '', time() - $cookie_time);
                     }
                     $this->redirect($this->referer());
                 }
@@ -93,7 +90,8 @@ class UserController extends AppController
 
     public function logout()
     {
-        $this->request->getSession()->delete('email');
+        $this->request->getSession()->delete(SESSION_EMAIL);
+        $this->request->getSession()->delete(SESSION_ADMIN);
         $this->redirect(SITE_URL);
     }
 
