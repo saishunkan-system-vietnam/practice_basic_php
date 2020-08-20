@@ -22,6 +22,7 @@ class OrderComponent extends CommonComponent
                 'TOrderHeader.odr_date',
                 'TOrderHeader.shipping_unit',
                 'TOrderHeader.paymnt_method',
+                'TOrderHeader.odr_flg',
                 'status' => 'CASE WHEN TOrderHeader.status = 1 THEN "Đang chờ xác nhận"
                             WHEN TOrderHeader.status = 2 THEN "Đang chờ xuất hàng"
                             WHEN TOrderHeader.status = 3 THEN "Đang chờ vận chuyển"
@@ -30,6 +31,7 @@ class OrderComponent extends CommonComponent
                             WHEN TOrderHeader.status = 6 THEN "Hoàn thành"
                             ELSE "Đã hủy"
                             END',
+                'status_cd' => 'TOrderHeader.status' ,
                 'total_paymnt' => 'IFNULL(TOrderHeader.fee, 0)
                                     + Sum(IFNULL(TOrderDetail.amount,0) * IFNULL(TOrderDetail.price,0)) 
                                     + Sum(IFNULL(TOrderDetail.amount,0) * (IFNULL(TOrderDetail.price,0) * IFNULL(TOrderDetail.tax,0) / 100))'
@@ -51,7 +53,8 @@ class OrderComponent extends CommonComponent
                 'TOrderHeader.shipping_unit',
                 'TOrderHeader.paymnt_method',
                 'TOrderHeader.status',
-                'TOrderHeader.fee'
+                'TOrderHeader.fee',
+                'TOrderHeader.odr_flg'
         ])
         ->order(['TOrderHeader.create_datetime DESC']);
         return $query;
@@ -144,5 +147,37 @@ class OrderComponent extends CommonComponent
             'result' => 'success',
             'data' =>  $result
         ];
+    }
+
+    public function getAllOrderByID($uid)
+    {
+        $query = $this->TOrderHeader->find()
+        ->Select(['TOrderHeader.id',
+                'TOrderHeader.odr_date',
+                'TOrderHeader.shipping_unit',
+                'TOrderHeader.paymnt_method',
+                'TOrderHeader.status',
+                'total_paymnt' => 'IFNULL(TOrderHeader.fee, 0)
+                                    + Sum(IFNULL(TOrderDetail.amount,0) * IFNULL(TOrderDetail.price,0)) 
+                                    + Sum(IFNULL(TOrderDetail.amount,0) * (IFNULL(TOrderDetail.price,0) * IFNULL(TOrderDetail.tax,0) / 100))'
+                ])
+        ->join([
+            'table' => 't_order_detail',
+            'alias' => 'TOrderDetail',
+            "type" => "left",
+            "conditions" => ['TOrderHeader.id = TOrderDetail.id_odrh','TOrderDetail.del_flg'=> 0]
+            ])
+        ->where([
+                'TOrderHeader.id_user' => $uid 
+                ])
+        ->group(['TOrderHeader.id',
+        'TOrderHeader.odr_date',
+        'TOrderHeader.shipping_unit',
+        'TOrderHeader.paymnt_method',
+        'TOrderHeader.status',
+        'TOrderHeader.fee'
+        ]);
+
+        return $query;
     }
 }

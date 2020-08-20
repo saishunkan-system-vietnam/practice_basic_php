@@ -60,10 +60,12 @@ $routes->scope('/', function (RouteBuilder $builder) {
     // *******Hiển thị sản phẩm *********
     $builder->connect('/danhmuc/*', ['controller' => 'View', 'action' => 'viewList']);
     $builder->connect('/timkiem/*', ['controller' => 'View', 'action' => 'searchProduct']);
-    $builder->connect('/sendemail', ['controller' => 'View', 'action' => 'sendEmail']);
 
     // lịch sử mua hàng
-    $builder->connect('/lichsumuahang', ['controller' => 'User', 'action' => 'historyOrder']);
+    $builder->connect('/lichsumuahang/*', ['controller' => 'View', 'action' => 'getOrderHistory']);
+
+    // Gửi email
+    $builder->connect('/sendemail/*', ['controller' => 'Email', 'action' => 'sendEmail']);
     
 
     $builder->connect('/login', ['controller' => 'User', 'action' => 'login']);

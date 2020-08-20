@@ -16,7 +16,7 @@ class UserComponent extends CommonComponent
     public function getUser($email, $password)
     {
         $query = $this->TUser->find()
-            ->select(['uid', 'pass', 'del_flg'])
+            ->select(['uid', 'pass', 'del_flg', 'admin_flg'])
             ->where(['And' => ['uid' => $email, 'pass' => $password]])
             ->first();
 
@@ -49,5 +49,26 @@ class UserComponent extends CommonComponent
         ];
 
         return $result;
+    }
+
+    public function save($data): array
+    {
+        if (!empty($data['uid'])) {
+            $tableUser= $this->TUser->get($data['uid']);
+            $tableUser = $this->TUser->patchEntity($tableUser, $data);
+        } else {
+            $tableUser = $this->TUser->newEntity($data);
+        }
+        $result = $this->TUser->save($tableUser);
+        if ($tableUser->hasErrors()) {
+            return [
+                'result' => 'invalid',
+                'data' => $tableUser->getErrors()
+            ];
+        }
+        return [
+            'result' => 'success',
+            'data' =>  $result
+        ];
     }
 }

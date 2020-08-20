@@ -45,23 +45,23 @@
                             class="fa fa-file-image-o" aria-hidden="true"></i> View</a></td>
                 <td><?= $this->Form->postLink(
                 __('Xử lý'),
-                URL_PROC_ODR.$item->id.'/'.$item->status,
+                URL_PROC_ODR.$item->id.'/'.$item->status_cd,
                 ['confirm' => __('Bạn có chắc chắn muốn xử lý thực hiện thay đổi trạng thái cho đơn hàng "{0}" không?', $item->id),
-                'class' => $item->status > 4 || $item->status > 5 || $item->status == 0  ? 'btn btn-warning btn-lg btn-radius disabled' : 'btn btn-warning btn-lg btn-radius',
+                'class' => $item->status_cd > 4 || $item->status_cd > 5 || $item->status_cd == 0  ? 'btn btn-warning btn-lg btn-radius disabled' : 'btn btn-warning btn-lg btn-radius',
                 ]
                 ) ?></td>
                 <td><?= $this->Form->postLink(
                 __('Hoàn thành'),
-                URL_PROC_ODR.$item->id.'/'.'6',
+                URL_PROC_ODR.$item->id.'/'.'6'.'/'.$item->id_user.'/'.$item->odr_flg,
                 ['confirm' => __('Bạn có chắc chắn muốn xử lý hoàn thành cho đơn hàng "{0}" không?', $item->id),
-                'class' => $item->status > 5 || $item->status == 0 ? 'btn btn-success btn-lg btn-radius disabled' : 'btn btn-success btn-lg btn-radius'
+                'class' => $item->status_cd > 5 || $item->status_cd == 0 ? 'btn btn-success btn-lg btn-radius disabled' : 'btn btn-success btn-lg btn-radius'
                 ]
                 ) ?></td>
                 <td><?= $this->Form->postLink(
                 __('Hủy'),
                 URL_PROC_ODR.$item->id.'/'.'0',
                 ['confirm' => __('Bạn có chắc chắn muốn hủy đơn hàng "{0}" không?', $item->id), 
-                'class' => $item->status > 5 || $item->status == 0 ? 'btn btn-danger btn-lg btn-radius disabled':  'btn btn-danger btn-lg btn-radius']
+                'class' => $item->status_cd > 5 || $item->status_cd == 0 ? 'btn btn-danger btn-lg btn-radius disabled':  'btn btn-danger btn-lg btn-radius']
             ) ?></td>
             </tr>
             <? }?>
