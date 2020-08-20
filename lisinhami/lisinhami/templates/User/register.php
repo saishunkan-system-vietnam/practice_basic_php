@@ -1,4 +1,4 @@
-<?= $this->Flash->render('error'); ?>
+<?= $this->Flash->render(); ?>
 <div class="contai">
     <div class="row">
         <div class="well col-md-5 offset-md-4">
@@ -9,7 +9,7 @@
                 <label >Họ và tên</label>
                 <input class="form-control" name="full_name" placeholder="Họ và tên" required autofocus="" type="text">
                 <label for="">Email</label>
-                <input class="form-control" name="uid" placeholder="Email" type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" title="Email không hợp lệ">
+                <input class="form-control" name="uid" placeholder="Email" type="email" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}$" title="Email không hợp lệ">
                 <label for="">Mật khẩu</label>
                 <input class="form-control" name="pass" placeholder="Mật khẩu" required type="password">
                 <label for="">Xác nhận mật khẩu</label>

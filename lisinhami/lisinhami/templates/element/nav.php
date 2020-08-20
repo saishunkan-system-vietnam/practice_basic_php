@@ -74,9 +74,9 @@ if (isset($_COOKIE['COOKIE_LOGIN'])) {
         <div class="navbar-collapse collapse" id="dropdown6">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item"> <a class="nav-link" href=<?= SITE_URL ?> data-abc="true"><i class="fa fa-home" aria-hidden="true"></i> Trang chủ</a> </li>
-                <li class="nav-item"> <a class="nav-link" href=<?= URL_DANHMUC_MYPHAM ?> data-abc="true">Sản phẩm mỹ phẩm</a> </li>
+                <li class="nav-item"> <a class="nav-link" href=<?= URL_DANHMUC_SANPHAM."san-pham-my-pham" ?> data-abc="true">Sản phẩm mỹ phẩm</a> </li>
                 <?if(!isset($_SESSION['email'])):?>
-                <li class="nav-item"> <a class="nav-link" href=<?= URL_DANHMUC_DUNGTHU ?> data-abc="true">Sản phẩm dùng thử</a> </li>
+                <li class="nav-item"> <a class="nav-link" href=<?= URL_DANHMUC_SANPHAM."san-pham-dung-thu" ?> data-abc="true">Sản phẩm dùng thử</a> </li>
                 <? endif?>
             </ul>
         </div>
@@ -107,7 +107,7 @@ if (isset($_COOKIE['COOKIE_LOGIN'])) {
                     <?= $this->Form->create(null, ['url' => URL_LOGIN]); ?>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email</label>
-                        <input class="form-control" name="email" placeholder="Enter email" type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" title="Email không hợp lệ" value=<?= empty($email) ? '' : $email ?>>
+                        <input class="form-control" name="email" placeholder="Enter email" type="email" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}$" title="Email không hợp lệ" value=<?= empty($email) ? '' : $email ?>>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
