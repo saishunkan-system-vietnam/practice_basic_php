@@ -12,6 +12,7 @@
     // Đơn hàng
     define('URL_DONHANG',SITE_URL.'admin/order/');
     define('URL_PROC_ODR',SITE_URL.'admin/proc/');
+    define('URL_CONTENT_ODR',SITE_URL.'admin/content-order/');
 
     // IMG
     define('URL_IMG',SITE_URL.'admin/image/');

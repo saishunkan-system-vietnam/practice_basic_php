@@ -89,6 +89,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
         // Đơn hàng
         $routes->connect('/order/*', ['controller' => 'Order', 'action' => 'viewOrder']);
         $routes->connect('/proc/*', ['controller' => 'Order', 'action' => 'processOdr']);
+        $routes->connect('/content-order/*', ['controller' => 'Order', 'action' => 'viewContOrder']);
 
         $routes->fallbacks(DashedRoute::class);
     });

@@ -14,7 +14,7 @@
     <a href=<?= URL_ADD_SANPHAM?> title="Thêm sản phẩm" class="btn btn-primary btn-lg btn-radius" style="margin-bottom: 10px;"><i
             class="fa fa-plus" aria-hidden="true"></i> Add</a>      
 
-    <table id="employeeList" class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>ID</th>

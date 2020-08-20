@@ -19,7 +19,7 @@
     <!-- <a href=<?= URL_ADD_SANPHAM?> title="Thêm sản phẩm" class="btn btn-primary btn-lg btn-radius" style="margin-bottom: 10px;"><i
             class="fa fa-plus" aria-hidden="true"></i> Add</a>       -->
 
-    <table id="employeeList" class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>ID</th>
@@ -29,7 +29,7 @@
                 <th>Đơn vị vận chuyển</th>
                 <th>Loại thanh toán</th>
                 <th>Trạng thái</th>
-                <th colspan="3"></th>
+                <th colspan="4"></th>
             </tr>
             <? foreach($TOrder as $key => $item){?>
             <tr>
@@ -41,19 +41,27 @@
                 <td><?= $item->paymnt_method?></td>
                 <td><?= $item->status?></td>
                 
-                <td><a href= "<?= URL_IMG.$item->id?>" class="btn btn-info  btn-lg btn-radius"><i
-                            class="fa fa-file-image-o" aria-hidden="true"></i> IMG</a></td>
+                <td><a href= "<?= URL_CONTENT_ODR.$item->id?>" class="btn btn-info  btn-lg btn-radius"><i
+                            class="fa fa-file-image-o" aria-hidden="true"></i> View</a></td>
                 <td><?= $this->Form->postLink(
                 __('Xử lý'),
                 URL_PROC_ODR.$item->id.'/'.$item->status,
-                ['confirm' => __('Bạn có chắc chăn muốn xử lý thực hiện thay đổi trạng thái cho đơn hàng "{0}" không?', $item->id),
-                'class' => $item->status == '6' ? 'btn btn-warning btn-lg btn-radius disabled' : 'btn btn-warning btn-lg btn-radius',
+                ['confirm' => __('Bạn có chắc chắn muốn xử lý thực hiện thay đổi trạng thái cho đơn hàng "{0}" không?', $item->id),
+                'class' => $item->status > 4 || $item->status > 5 || $item->status == 0  ? 'btn btn-warning btn-lg btn-radius disabled' : 'btn btn-warning btn-lg btn-radius',
                 ]
                 ) ?></td>
                 <td><?= $this->Form->postLink(
-                __('Delete'),
-                URL_DEL_SANPHAM.$item->id,
-                ['confirm' => __('Bạn có chắc chăn muốn xóa "{0}" không?', $item->name), 'class' => 'btn btn-danger btn-lg btn-radius']
+                __('Hoàn thành'),
+                URL_PROC_ODR.$item->id.'/'.'6',
+                ['confirm' => __('Bạn có chắc chắn muốn xử lý hoàn thành cho đơn hàng "{0}" không?', $item->id),
+                'class' => $item->status > 5 || $item->status == 0 ? 'btn btn-success btn-lg btn-radius disabled' : 'btn btn-success btn-lg btn-radius'
+                ]
+                ) ?></td>
+                <td><?= $this->Form->postLink(
+                __('Hủy'),
+                URL_PROC_ODR.$item->id.'/'.'0',
+                ['confirm' => __('Bạn có chắc chắn muốn hủy đơn hàng "{0}" không?', $item->id), 
+                'class' => $item->status > 5 || $item->status == 0 ? 'btn btn-danger btn-lg btn-radius disabled':  'btn btn-danger btn-lg btn-radius']
             ) ?></td>
             </tr>
             <? }?>

@@ -9,7 +9,7 @@
             <i class="fa fa-plus" aria-hidden="true"></i> <span>Add</span>
         </label> </div>
     <?= $this->Form->end();?>
-    <table id="employeeList" class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th style="width: 5%;">ID</th>
