@@ -9,7 +9,7 @@
                             <div class="clr"></div>
                         </div>
                         <div class="body-box-category">
-                            <?= $this->element('cards', ['data' => $TProduct]); ?>
+                            <?= $this->element('cards', ['data' => $tableProduct]); ?>
                             <div class="clr"></div>
                         </div>
                     </div>
