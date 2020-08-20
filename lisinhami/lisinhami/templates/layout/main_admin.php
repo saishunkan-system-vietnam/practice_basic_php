@@ -1,40 +1,48 @@
-<?
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
-?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>  
-        <?= $this->fetch('title') ?>
+    <title>
+        <?= $title ?>
     </title>
+    <title>Sidebar template</title>
     <?= $this->Html->meta('icon') ?>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
 
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <?= $this->Html->css(['bootstrap.min']) ?>
 
-    <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'> 
+    <?= $this->Html->script(['jquery-3.3.1.min', 'jquery.cycle', 'bootstrap.min', 'nav_admin']) ?>
+
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
 
-    <?= $this->Html->css(['normalize.min', 'milligram.min', 'cake', 'admin_stylesheet']) ?>
-
-    <?= $this->fetch('admin/meta') ?>
-    <?= $this->fetch('admin/css') ?>
-    <?= $this->fetch('admin/script') ?>
+    <?= $this->Html->css(['footer', 'admin_stylesheet']) ?>
+    <?= $this->fetch('meta') ?>
+    <?= $this->fetch('css') ?>
+    <?= $this->fetch('script') ?>
 </head>
+
 <body>
-   
-    <main class="main">
-        <div class="container">
-            <?= $this->Flash->render() ?>
-            <?= $this->fetch('content') ?>
-        </div>
-    </main>
-  
+    <div class="page-wrapper chiller-theme toggled">
+        <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+            <i class="fas fa-bars"></i>
+        </a>
+        <?= $this->element('nav_admin') ?>
+
+        <main class="page-content">
+            <div class="container-fluid">
+                <?= $this->fetch('content') ?>
+            </div>
+        </main>
+    </div>
 </body>
 </html>

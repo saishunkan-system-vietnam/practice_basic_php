@@ -18,7 +18,7 @@ if (isset($_COOKIE['COOKIE_LOGIN'])) {
 <section class="header-main">
     <div class="container-fluid">
         <div class="row align-items-center">
-            <div class="col-lg-2 col-xl-2 col-sm-6 col-md-4 col-10"> <a href="#" class="brand-wrap" data-abc="true">
+            <div class="col-lg-2 col-xl-2 col-sm-6 col-md-4 col-10"> <a href=<?= SITE_URL ?> class="brand-wrap" data-abc="true">
                     <span class="logo"><?= $this->Html->image('logo.png', array('alt' => 'logo', 'border' => '0', 'width' => '171.28')); ?></span> </a> </div>
 
             <div class="col-lg-3 col-xl-4 col-sm-5 col-md-3 d-none d-md-block">
@@ -50,9 +50,9 @@ if (isset($_COOKIE['COOKIE_LOGIN'])) {
                     </a>
 
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <!-- <a class="dropdown-item" href="#"></a> -->
+                        <a class="dropdown-item" href=<?= URL_LICHSUMUAHANG ?>>Lịch sử mua hàng</a>
+                        <!-- <a class="dropdown-item" href="#">Something else here</a> -->
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href=<?= URL_LOGOUT?>>Đăng xuất</a>
                     </div>
@@ -65,8 +65,6 @@ if (isset($_COOKIE['COOKIE_LOGIN'])) {
 </section>
 <nav class="navbar navbar-expand-md navbar-main">
     <div class="container-fluid">
-
-
         <?= $this->Form->create(null, ['type' => 'get', 'class' => 'd-md-none my-2', 'url' => URL_SEARCH]); ?>
         <div class="input-group"> <input type="search" name="search" class="form-control" placeholder="Search">
             <div class="input-group-append"> <button type="submit" class="btn btn-secondary"> <i class="fa fa-search"></i> </button> </div>
@@ -76,11 +74,9 @@ if (isset($_COOKIE['COOKIE_LOGIN'])) {
         <div class="navbar-collapse collapse" id="dropdown6">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item"> <a class="nav-link" href=<?= SITE_URL ?> data-abc="true"><i class="fa fa-home" aria-hidden="true"></i> Trang chủ</a> </li>
-                <li class="nav-item"> <a class="nav-link" href="/danhmuc/san-pham-my-pham" data-abc="true">Sản phẩm mỹ phẩm</a> </li>
+                <li class="nav-item"> <a class="nav-link" href=<?= URL_DANHMUC_SANPHAM."san-pham-my-pham" ?> data-abc="true">Sản phẩm mỹ phẩm</a> </li>
                 <?if(!isset($_SESSION['email'])):?>
-                <li class="nav-item"> <a class="nav-link" href="/danhmuc/san-pham-dung-thu" data-abc="true">Sản phẩm dùng thử</a> </li>
-                <?else:?>
-                <li class="nav-item"> <a class="nav-link" href="/danhmuc/san-pham-qua-tang" data-abc="true">Sản phẩm quà tặng</a> </li>
+                <li class="nav-item"> <a class="nav-link" href=<?= URL_DANHMUC_SANPHAM."san-pham-dung-thu" ?> data-abc="true">Sản phẩm dùng thử</a> </li>
                 <? endif?>
             </ul>
         </div>
@@ -111,7 +107,7 @@ if (isset($_COOKIE['COOKIE_LOGIN'])) {
                     <?= $this->Form->create(null, ['url' => URL_LOGIN]); ?>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email</label>
-                        <input class="form-control" name="email" placeholder="Enter email" type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" title="Email không hợp lệ" value=<?= empty($email) ? '' : $email ?>>
+                        <input class="form-control" name="email" placeholder="Enter email" type="email" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}$" title="Email không hợp lệ" value=<?= empty($email) ? '' : $email ?>>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
