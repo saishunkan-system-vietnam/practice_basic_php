@@ -12,12 +12,13 @@
 <div class="content">
 <legend><?= __($title) ?></legend>
     <?= $this->Form->create(null,['type'=>'get']);?>
-     <div class="input-group w-100"> <input type="text" class="form-control search-form" name="key" id="key" style="width:55%;" placeholder="Search">
+    <select name="odr_flg" id="odr_flg" style="margin-bottom: 5px;">
+        <option value="1" <?= $this->request->getQuery('odr_flg') == "1" ? "selected" : ""?>>Mỹ phẩm</option>
+        <option value="2" <?= $this->request->getQuery('odr_flg') == "2" ? "selected" : ""?>>Dùng thử</option>
+    </select>
+     <div class="input-group w-100"> <input type="text" class="form-control search-form" name="key" id="key" value = "<?= $this->request->getQuery('key')?>" placeholder="Search">
      <div class="input-group-append"> <button class="btn btn-primary search-button" type="submit"> <i class="fa fa-search"></i> </button> </div></div>
     <?= $this->Form->end();?>
-
-    <!-- <a href=<?= URL_ADD_SANPHAM?> title="Thêm sản phẩm" class="btn btn-primary btn-lg btn-radius" style="margin-bottom: 10px;"><i
-            class="fa fa-plus" aria-hidden="true"></i> Add</a>       -->
 
     <table class="table table-bordered table-striped">
         <thead>
@@ -31,7 +32,7 @@
                 <th>Trạng thái</th>
                 <th colspan="4"></th>
             </tr>
-            <? foreach($TOrder as $key => $item){?>
+            <? foreach($tableOrd as $key => $item){?>
             <tr>
                 <td><?= $item->id?></td>
                 <td><?= $item->id_user?></td>

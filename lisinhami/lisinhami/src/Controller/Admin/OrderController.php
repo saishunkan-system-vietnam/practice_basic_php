@@ -18,54 +18,60 @@ class OrderController extends AppController
         $title = "";
         switch ($status) {
             case 'toan-bo':
-                $status_cd = 99;
+                $statusCd = 99;
                 $title = 'Danh sách toàn bộ đơn hàng';
                 break;
             case null:
-                $status_cd = 99;
+                $statusCd = 99;
                 $title = 'Danh sách toàn bộ đơn hàng';
                 break;
             case 'cho-xac-nhan':
-                $status_cd = 1;
+                $statusCd = 1;
                 $title = 'Danh sách đơn hàng chờ xác nhận';
                 break;
             case 'xac-nhan':
-                $status_cd = 2;
+                $statusCd = 2;
                 $title = 'Danh sách đơn hàng đã xác nhận và đang chờ xuất hàng';
                 break;
             case 'xuat-hang':
-                $status_cd = 3;
+                $statusCd = 3;
                 $title = 'Danh sách đơn hàng đã xuất hàng chờ vận chuyển';
                 break;
             case 'van-chuyen':
-                $status_cd = 4;
+                $statusCd = 4;
                 $title = 'Danh sách đơn hàng đang vận chuyển';
                 break;
             case 'giao-hang':
-                $status_cd = 5;
+                $statusCd = 5;
                 $title = 'Danh sách đơn hàng đang giao hàng';
                 break;
             case 'hoan-thanh':
-                $status_cd = 6;
+                $statusCd = 6;
                 $title = 'Danh sách đơn hàng đã nhận hàng - hoàn thành đơn hàng';
                 break;
             case 'da-huy':
-                $status_cd = 0;
+                $statusCd = 0;
                 $title = 'Danh sách đơn hàng đã hủy';
                 break;
             default:
-                $status_cd = -1;
+                $statusCd = -1;
         }
 
-        if ($status_cd == -1) {
+        if ($statusCd == -1) {
             $this->redirect(URL_DONHANG);
         }
 
-        $key = $this->request->getQuery('key');
-        $TOrder = $this->{'Order'}->getAllOrder($key, $status_cd);
-        $this->set('TOrder', $this->paginate($TOrder, ['limit' => LIMIT_PAGINATE]));
+            $key = $this->request->getQuery('key');
+            $odr_flg = $this->request->getQuery('odr_flg');
+            if(empty($odr_flg))
+            {
+                $odr_flg = 1;
+            }
+       
+        $tableOrd = $this->{'Order'}->getAllOrder($key, $odr_flg, $statusCd);
+        $this->set('tableOrd', $this->paginate($tableOrd, ['limit' => LIMIT_PAGINATE]));
         $this->set('title', $title);
-        $this->set('status', $status_cd);
+        $this->set('status', $statusCd);
     }
 
     public function processOdr($id = null, $status_ctn = '1', $uid = null, $odr_flg = null)
@@ -103,9 +109,9 @@ class OrderController extends AppController
         $this->loadComponent('Common');
         $this->loadComponent('User');
 
-        $result_check = $this->{'User'}->ExistUser($user_email);
+        $resultCheck = $this->{'User'}->ExistUser($user_email);
 
-        if (isset($result_check)) {
+        if (isset($resultCheck)) {
             $this->Flash->error("Tài khoản user đã tồn tại. Không thể gửi email");
         } else {
             $uid = $user_email;
@@ -114,7 +120,7 @@ class OrderController extends AppController
             $result_regist = $this->{'User'}->regisUser($inputData);
 
             if ($result_regist['result'] == "error") {
-                  $this->Flash->error("Lỗi. Đăng ký tài khoản không thành công. Không thể gửi email!");
+                $this->Flash->error("Lỗi. Đăng ký tài khoản không thành công. Không thể gửi email!");
             } else {
                 $content = " Xin chào " . $user_email . ",<br><br>
         Chúng tôi mà Lisinhami.com!<br>
@@ -129,11 +135,11 @@ class OrderController extends AppController
                 $result_email = $this->Common->sendEmail($user_email, $content);
 
                 if ($result_email == "success") {
-                     $this->Flash->success("Đã gửi mail thành công. Vui lòng check mail để xem thông tin chi tiết.");
+                    $this->Flash->success("Đã gửi mail thành công. Vui lòng check mail để xem thông tin chi tiết.");
                 } else {
                     $data = array("uid" => $user_email, "del_flg" => 1);
                     $this->{'User'}->save($data);
-                     $this->Flash->error("Lỗi. Gửi mail không thành công!");
+                    $this->Flash->error("Lỗi. Gửi mail không thành công!");
                 }
             }
         }

@@ -7,7 +7,7 @@
 <div class="content">
 <legend><?= __($title) ?></legend>
     <?= $this->Form->create(null,['type'=>'get']);?>
-    <div class="input-group w-100"> <input type="text" class="form-control search-form" name="key" id="key" style="width:55%;" placeholder="Search">
+    <div class="input-group w-100"> <input type="text" class="form-control search-form" name="key" id="key" value = "<?= $this->request->getQuery('key');?>" style="width:55%;" placeholder="Search">
      <div class="input-group-append"> <button class="btn btn-primary search-button" type="submit"> <i class="fa fa-search"></i> </button> </div></div>
     <?= $this->Form->end();?>
 
@@ -29,7 +29,7 @@
                 <th>Slug</th> -->
                 <th colspan="3"></th>
             </tr>
-            <? foreach($TProduct as $key => $item){?>
+            <? foreach($tableProduct as $key => $item){?>
             <tr>
                 <td><?= $item->id?></td>
                 <td><?= $item->name?></td>

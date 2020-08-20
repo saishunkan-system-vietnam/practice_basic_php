@@ -16,9 +16,9 @@ class ImageController extends AppController
     {
 
         $this->loadComponent('Product');
-        $TProduct = $this->{'Product'}->getProductById($id_prd);
+        $tableProduct = $this->{'Product'}->getProductById($id_prd);
 
-        if(empty($TProduct)){
+        if(empty($tableProduct)){
             $this->Flash->error('Sản phẩm không tồn tại');
             $this->redirect(URL_SANPHAM);
         }
@@ -79,7 +79,7 @@ class ImageController extends AppController
 
         if ($this->request->is('post')) {
 
-            $result = $this->{'Image'}->setTop($id, $id_prd);
+            $this->{'Image'}->setTop($id, $id_prd);
 
             $this->Flash->success(__("Set hình ảnh thành công"));
             $this->redirect($this->referer());

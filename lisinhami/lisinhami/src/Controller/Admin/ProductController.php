@@ -38,8 +38,8 @@ class ProductController extends AppController
             }
 
             $key = $this->request->getQuery('key');
-            $TProduct = $this->{'Product'}->getAllProduct($key, $category_cd);
-            $this->set('TProduct', $this->paginate($TProduct,['limit'=>LIMIT_PAGINATE]));
+            $tableProduct = $this->{'Product'}->getAllProduct($key, $category_cd);
+            $this->set('tableProduct', $this->paginate($tableProduct,['limit'=>LIMIT_PAGINATE]));
             $this->set('title','Danh sách sản phẩm');
             $this->set('category_cd',$category_cd);
         }
@@ -137,13 +137,13 @@ class ProductController extends AppController
                 }
             }
             else{
-                $TProduct = $this->{'Product'}->getProductById($id);
-                if(empty($TProduct)){
+                $tableProduct = $this->{'Product'}->getProductById($id);
+                if(empty($tableProduct)){
                     $this->Flash->error('Sản phẩm không tồn tại');
                     $this->redirect(URL_SANPHAM);
                 }
-                $TProduct += ['refererUrl'=>$this->referer()];
-                $this->set('data', $TProduct);
+                $tableProduct += ['refererUrl'=>$this->referer()];
+                $this->set('data', $tableProduct);
             }
         }
         

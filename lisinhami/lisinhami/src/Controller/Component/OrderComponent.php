@@ -1,5 +1,6 @@
 <?php
-  declare(strict_types=1);
+
+declare(strict_types=1);
 
 namespace App\Controller\Component;
 
@@ -13,10 +14,10 @@ class OrderComponent extends CommonComponent
         $this->loadModel(['TOrderDetail']);
     }
 
-    public function getAllOrder($key,$status = null)
+    public function getAllOrder($key, $odr_flg = '1', $status = null)
     {
         $query = $this->TOrderHeader->find()
-        ->Select([
+            ->Select([
                 'TOrderHeader.id',
                 'TOrderHeader.id_user',
                 'TOrderHeader.odr_date',
@@ -31,22 +32,24 @@ class OrderComponent extends CommonComponent
                             WHEN TOrderHeader.status = 6 THEN "Hoàn thành"
                             ELSE "Đã hủy"
                             END',
-                'status_cd' => 'TOrderHeader.status' ,
+                'status_cd' => 'TOrderHeader.status',
                 'total_paymnt' => 'IFNULL(TOrderHeader.fee, 0)
                                     + Sum(IFNULL(TOrderDetail.amount,0) * IFNULL(TOrderDetail.price,0)) 
                                     + Sum(IFNULL(TOrderDetail.amount,0) * (IFNULL(TOrderDetail.price,0) * IFNULL(TOrderDetail.tax,0) / 100))'
-                ])
-        ->join([
+            ])
+            ->join([
                 'table' => 't_order_detail',
                 'alias' => 'TOrderDetail',
                 "type" => "left",
-                "conditions" => ['TOrderHeader.id = TOrderDetail.id_odrh','TOrderDetail.del_flg'=>0]
+                "conditions" => ['TOrderHeader.id = TOrderDetail.id_odrh', 'TOrderDetail.del_flg' => 0]
             ])
-        ->where([
-                'TOrderHeader.status = CASE WHEN '.$status.' = 99 THEN TOrderHeader.status ELSE '. $status.' END'
-                ,'TOrderHeader.id_user like' => '%'.$key.'%' 
-                ])
-        ->group([
+            ->where([
+                'TOrderHeader.status = CASE WHEN ' . $status . ' = 99 THEN TOrderHeader.status ELSE ' . $status . ' END',
+                '(CASE WHEN TOrderHeader.odr_flg = 0 THEN 1 ELSE TOrderHeader.odr_flg END) = 
+                (CASE WHEN ' . $odr_flg . ' = 1 THEN 1 ELSE 2 END)',
+                'TOrderHeader.id_user like' => '%' . $key . '%'
+            ])
+            ->group([
                 'TOrderHeader.id',
                 'TOrderHeader.id_user',
                 'TOrderHeader.odr_date',
@@ -55,15 +58,15 @@ class OrderComponent extends CommonComponent
                 'TOrderHeader.status',
                 'TOrderHeader.fee',
                 'TOrderHeader.odr_flg'
-        ])
-        ->order(['TOrderHeader.create_datetime DESC']);
+            ])
+            ->order(['TOrderHeader.create_datetime DESC']);
         return $query;
     }
 
     public function getOrderHdrById($id = 0)
     {
         $query = $this->TOrderHeader->find()
-        ->Select([
+            ->Select([
                 'TOrderHeader.id',
                 'TOrderHeader.id_user',
                 'TOrderHeader.odr_date',
@@ -78,24 +81,24 @@ class OrderComponent extends CommonComponent
                             WHEN TOrderHeader.status = 6 THEN "Hoàn thành"
                             ELSE "Đã hủy"
                             END',
-                'status_cd'=> 'TOrderHeader.status',
+                'status_cd' => 'TOrderHeader.status',
                 'TOrderHeader.fee',
                 'paymnt' => '+ Sum(IFNULL(TOrderDetail.amount,0) * IFNULL(TOrderDetail.price,0)) 
                 + Sum(IFNULL(TOrderDetail.amount,0) * IFNULL(TOrderDetail.price,0) * IFNULL(TOrderDetail.tax,0) / 100)',
                 'total_paymnt' => 'IFNULL(TOrderHeader.fee, 0)
                                     + Sum(IFNULL(TOrderDetail.amount,0) * IFNULL(TOrderDetail.price,0)) 
                                     + Sum(IFNULL(TOrderDetail.amount,0) * IFNULL(TOrderDetail.price,0) * IFNULL(TOrderDetail.tax,0) / 100)'
-                ])
-        ->join([
+            ])
+            ->join([
                 'table' => 't_order_detail',
                 'alias' => 'TOrderDetail',
                 "type" => "left",
-                "conditions" => ['TOrderHeader.id = TOrderDetail.id_odrh','TOrderDetail.del_flg'=>0]
-                ])
-        ->where([
+                "conditions" => ['TOrderHeader.id = TOrderDetail.id_odrh', 'TOrderDetail.del_flg' => 0]
+            ])
+            ->where([
                 'TOrderHeader.id' => $id
-                ])
-        ->group([
+            ])
+            ->group([
                 'TOrderHeader.id',
                 'TOrderHeader.id_user',
                 'TOrderHeader.odr_date',
@@ -103,28 +106,29 @@ class OrderComponent extends CommonComponent
                 'TOrderHeader.paymnt_method',
                 'TOrderHeader.status',
                 'TOrderHeader.fee'
-                ]);
+            ]);
         return $query ? $query->toArray() : [];
     }
 
     public function getOrderDtlByIdOdrH($idOdrH = 0)
     {
         $query = $this->TOrderDetail->find()
-        ->Select([
+            ->Select([
                 'name' => 'tableProduct.name',
                 'TOrderDetail.amount',
                 'TOrderDetail.price',
                 'tax' => 'IFNULL(TOrderDetail.amount,0) * IFNULL(TOrderDetail.price,0) * IFNULL(TOrderDetail.tax,0) / 100',
-                'paymnt'=>'(IFNULL(TOrderDetail.amount,0) * IFNULL(TOrderDetail.price,0)) + (IFNULL(TOrderDetail.amount,0) * IFNULL(TOrderDetail.price,0) * IFNULL(TOrderDetail.tax,0) / 100)'])
-        ->join([
+                'paymnt' => '(IFNULL(TOrderDetail.amount,0) * IFNULL(TOrderDetail.price,0)) + (IFNULL(TOrderDetail.amount,0) * IFNULL(TOrderDetail.price,0) * IFNULL(TOrderDetail.tax,0) / 100)'
+            ])
+            ->join([
                 'table' => 't_product',
                 'alias' => 'tableProduct',
                 "type" => "left",
                 "conditions" => ['TOrderDetail.id_product = tableProduct.id']
-                ])
-        ->where([
+            ])
+            ->where([
                 'TOrderDetail.id_odrh' => $idOdrH
-                ]);
+            ]);
         return $query ? $query->toArray() : [];
     }
 
@@ -152,7 +156,8 @@ class OrderComponent extends CommonComponent
     public function getAllOrderByID($uid)
     {
         $query = $this->TOrderHeader->find()
-        ->Select(['TOrderHeader.id',
+            ->Select([
+                'TOrderHeader.id',
                 'TOrderHeader.odr_date',
                 'TOrderHeader.shipping_unit',
                 'TOrderHeader.paymnt_method',
@@ -160,23 +165,24 @@ class OrderComponent extends CommonComponent
                 'total_paymnt' => 'IFNULL(TOrderHeader.fee, 0)
                                     + Sum(IFNULL(TOrderDetail.amount,0) * IFNULL(TOrderDetail.price,0)) 
                                     + Sum(IFNULL(TOrderDetail.amount,0) * (IFNULL(TOrderDetail.price,0) * IFNULL(TOrderDetail.tax,0) / 100))'
-                ])
-        ->join([
-            'table' => 't_order_detail',
-            'alias' => 'TOrderDetail',
-            "type" => "left",
-            "conditions" => ['TOrderHeader.id = TOrderDetail.id_odrh','TOrderDetail.del_flg'=> 0]
             ])
-        ->where([
-                'TOrderHeader.id_user' => $uid 
-                ])
-        ->group(['TOrderHeader.id',
-        'TOrderHeader.odr_date',
-        'TOrderHeader.shipping_unit',
-        'TOrderHeader.paymnt_method',
-        'TOrderHeader.status',
-        'TOrderHeader.fee'
-        ]);
+            ->join([
+                'table' => 't_order_detail',
+                'alias' => 'TOrderDetail',
+                "type" => "left",
+                "conditions" => ['TOrderHeader.id = TOrderDetail.id_odrh', 'TOrderDetail.del_flg' => 0]
+            ])
+            ->where([
+                'TOrderHeader.id_user' => $uid
+            ])
+            ->group([
+                'TOrderHeader.id',
+                'TOrderHeader.odr_date',
+                'TOrderHeader.shipping_unit',
+                'TOrderHeader.paymnt_method',
+                'TOrderHeader.status',
+                'TOrderHeader.fee'
+            ]);
 
         return $query;
     }
