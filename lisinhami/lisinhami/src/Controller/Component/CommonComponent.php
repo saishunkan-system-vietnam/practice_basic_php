@@ -21,6 +21,17 @@ namespace App\Controller\Component;
 use Cake\Controller\Component;
 use Cake\Datasource\FactoryLocator;
 
+use Cake\Event\EventInterface;
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require_once ROOT.'\vendor\phpmailer\phpmailer\src\PHPMailer.php';
+require_once ROOT.'\vendor\phpmailer\phpmailer\src\Exception.php';
+require_once ROOT.'\vendor\phpmailer\phpmailer\src\OAuth.php';
+require_once ROOT.'\vendor\phpmailer\phpmailer\src\POP3.php';
+require_once ROOT.'\vendor\phpmailer\phpmailer\src\SMTP.php';
+
 class CommonComponent extends Component
 {
     protected $controller;
@@ -60,5 +71,36 @@ class CommonComponent extends Component
         $str = preg_replace("/()/", '', $str);
         $str = preg_replace("/ /", '-', $str);
 		return $str;
-	}
+    }
+    
+    // Gửi mail
+    public function sendEmail($user_email, $content){
+        $email_from = 'minhmailfortest@gmail.com';
+        $mail = new PHPMailer(true);  
+
+        try {
+            $mail->CharSet  = 'UTF-8';
+            $mail->SMTPDebug = 0;                                     
+            $mail->isSMTP();                                         
+            $mail->Host = 'smtp.gmail.com';                          
+            $mail->SMTPAuth = true;                                  
+            $mail->Username = $email_from;                           
+            $mail->Password = 'minhnnssv';                            
+            $mail->SMTPSecure = 'tls';                              
+            $mail->Port = 587;                                       
+        
+            $mail->setFrom($email_from, 'Lisinhami.com');        
+            $mail->addAddress($user_email); 
+
+            $mail->isHTML(true);                                  
+            $mail->Subject = '[Lisinhami.com] Xác nhận đơn hàng';
+            $mail ->Body = $content;
+           
+            $mail->send();
+
+            return 'success';
+        } catch (Exception $ex) {
+            return 'Error: '. $mail->ErrorInfo.' Exception '.$ex;
+        }
+    }
 }
