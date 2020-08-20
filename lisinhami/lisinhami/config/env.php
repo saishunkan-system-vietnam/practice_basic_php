@@ -39,4 +39,12 @@
     // LIMIT
     define('LIMIT_PAGINATE',12);
 
+    // Cookie
+    define('COOKIE_LOGIN','cookie_login');
+
+    // Seesion
+    define('SESSION_ERROR', 'error');
+    define('SESSION_EMAIL', 'email');
+    define('SESSION_ADMIN', 'admin');
+
 ?>
