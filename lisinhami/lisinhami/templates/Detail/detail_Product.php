@@ -48,7 +48,7 @@
 					<div class="box-add">
 						<?= $this->Form->create(null, [
 							'url' => [
-								'controller' => 'Pages',
+								'controller' => 'Home',
 								'action' => 'detailProduct',
 								$product->slug
 							]
