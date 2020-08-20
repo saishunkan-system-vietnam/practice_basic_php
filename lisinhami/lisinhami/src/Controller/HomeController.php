@@ -18,16 +18,7 @@ class HomeController extends AppController
          $category_cd = 1;
          $cosmetic = $this->{'Product'}->getProductByCategory($category_cd);
  
-         $category_cd = 2;
-         $sample = $this->{'Product'}->getProductByCategory($category_cd);
- 
-         $category_cd = 3;
-         $point = $this->{'Product'}->getProductByCategory($category_cd);
- 
          $this->set('cosmetic', $cosmetic);
-         $this->set('sample', $sample);
-         $this->set('point', $point);
+         $this->set('title', 'Trang chủ');
      }
 }
-
-?>

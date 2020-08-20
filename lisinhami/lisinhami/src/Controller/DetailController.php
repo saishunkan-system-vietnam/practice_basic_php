@@ -16,39 +16,50 @@ class DetailController extends AppController
      // chi tiết sản phẩm
      public function detailProduct($slug = '')
      {
-         $TProduct = $this->{'Product'}->getProductBySlug($slug);
+         $tableProduct = $this->{'Product'}->getProductBySlug($slug);
          
-         if(empty($TProduct)){
-             return $this->redirect(['Controller'=>'page','action' => 'home']);
+         if(empty($tableProduct)){
+             return $this->redirect(SITE_URL);
          }else{
-             $TImage = $this->{'Image'}->getImgByPrd($TProduct->id);
-             $data = $this->{'Product'}->getProductByCategory($TProduct->category_cd);
+             $tableImage = $this->{'Image'}->getImgByPrd($tableProduct->id);
+             $data = $this->{'Product'}->getProductByCategory($tableProduct->category_cd);
  
              if ($this->request->is('post')) {
                 $session = $this->getRequest()->getSession();
                  $inputData = $this->request->getParsedBody();
+                 if ($session->check('cart')) {
+                    $item = $session->read('cart');
+                    $category= $item[array_key_first($item)]['category_cd'];
+                    if ($category != $tableProduct->category_cd) {
+                        $this->Flash->error(__("Bạn không thể order sản phẩm khác loại"));
+                        return $this->redirect($this->referer());
+                    }
+                 }
                 
-                 if($session->check('cart.'.$TProduct->id)){
-                    $item = $session->read('cart.'.$TProduct->id);
+                 if($session->check(SESSION_CART.$tableProduct->id)){
+                    $item = $session->read(SESSION_CART.$tableProduct->id);
 
                     $item['amount'] =  $item['amount'] + $inputData['numberproduct'];
                  }else{
                     $item=[
-                        'id'        =>  $TProduct->id,
-                        'name'      =>  $TProduct->name,
-                        'price'     =>  $TProduct->price-$TProduct->discount,
-                        'amount'    =>  $inputData['numberproduct']
+                        'id'                =>  $tableProduct->id,
+                        'name'              =>  $tableProduct->name,
+                        'price'             =>  $tableProduct->price-$tableProduct->discount,
+                        'amount'            =>  $inputData['numberproduct'],
+                        'category_cd'       =>  $tableProduct->category_cd,
+                        'img'               =>  $tableImage[array_key_first($tableImage)]['img_url']
                     ];
                  }
                    
-                 $session->write('cart.'.$TProduct->id, $item);
+                 $session->write(SESSION_CART.$tableProduct->id, $item);
 
-                 $this->redirect(URL_CHITIET_SANPHAM.$slug);
+                 $this->redirect($this->referer());
              }
              
-             $this->set('product', $TProduct);
-             $this->set('image', $TImage);
+             $this->set('product', $tableProduct);
+             $this->set('image', $tableImage);
              $this->set('data', $data);
+             $this->set('title', 'Chi tiết sản phẩm');
          }
      }
 }
