@@ -27,10 +27,6 @@
     define('URL_LICHSU_MUAHANG',SITE_URL.'lichsumuahang/');
     define('URL_CHITIET_DONHANG',SITE_URL.'chitietdonhang/');
 
-    // gửi email
-    define('URL_SEND_EMAIL',SITE_URL.'sendemail/');
-
-
     // login
     define('URL_LOGIN',SITE_URL.'login');
     define('URL_REGISTER',SITE_URL.'dangky');
@@ -46,5 +42,6 @@
     define('SESSION_ERROR', 'error');
     define('SESSION_EMAIL', 'email');
     define('SESSION_ADMIN', 'admin');
+    define('SESSION_CART','cart.');
 
 ?>

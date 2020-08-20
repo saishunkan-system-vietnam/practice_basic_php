@@ -69,9 +69,8 @@ $routes->scope('/', function (RouteBuilder $builder) {
     // Chi tiết lịch sử mua hàng
     $builder->connect('/chitietdonhang/*', ['controller' => 'View', 'action' => 'viewContOrder']);
 
-    // Gửi email
-    $builder->connect('/sendemail/*', ['controller' => 'Email', 'action' => 'sendEmail']);
-
+    // giỏ hàng
+    $builder->connect('/giohang', ['controller' => 'Cart', 'action' => 'view']);
 
     $builder->connect('/login', ['controller' => 'User', 'action' => 'login']);
     $builder->connect('/dangky', ['controller' => 'User', 'action' => 'register']);

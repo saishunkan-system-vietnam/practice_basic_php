@@ -94,7 +94,7 @@ class ProductComponent extends CommonComponent
                 ])
                 ->where(['And' => ['TProduct.del_flg' => 0, 'TProduct.category_cd' => $category_cd]])
                 ->order(['TProduct.price - TProduct.discount ASC', 'TProduct.price ASC', 'TProduct.create_datetime ASC'])
-                ->limit(LIMIT_PAGINATE);
+                ->limit(24);
         }
 
         return $query;
