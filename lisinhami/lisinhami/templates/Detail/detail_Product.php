@@ -46,13 +46,7 @@
 				</div>
 				<div class="card-box">
 					<div class="box-add">
-						<?= $this->Form->create(null, [
-							'url' => [
-								'controller' => 'Home',
-								'action' => 'detailProduct',
-								$product->slug
-							]
-						]); ?>
+						<?= $this->Form->create(); ?>
 						<div class="number-card">
 							<span>Số lượng:</span>
 							<input type="number" name="numberproduct" id="numberproduct" class="form-control" value="1" min="1" max="99">
