@@ -1,22 +1,33 @@
 <?php
-    namespace App\Controller\Admin;
 
-    use App\Controller\AppController;
-    use Cake\Event\EventInterface;
+namespace App\Controller\Admin;
+
+use App\Controller\AppController;
+use Cake\Event\EventInterface;
 use phpDocumentor\Reflection\DocBlock\Tags\Reference\Reference;
 use Reflector;
 use Symfony\Component\Console\Input\Input;
 
 class DashboardController extends AppController
+{
+    public function beforeFilter(EventInterface $event)
     {
-        public function beforeFilter(EventInterface $event)
-        {
-            $this->viewBuilder()->setLayout('main_admin');
-            $this->loadComponent('Common');
-        }
-
-        public function top()
-        {
-
-        }
+        $this->viewBuilder()->setLayout('main_admin');
+        $this->loadComponent('Common');
+        $this->loadComponent('Dashboard');
     }
+
+    public function top()
+    {
+        $dataOrder = $this->{'Dashboard'}->getOrder();
+        $dataTotalAccount = $this->{'Dashboard'}->getTotalAccount();
+        $dataTotalProduct = $this->{'Dashboard'}->getTotalProduct();
+        $dataTotalPrice = $this->{'Dashboard'}->getTotalPrice();
+
+        $this->set('dataOrder', $dataOrder);
+        $this->set('dataTotalAccount', $dataTotalAccount);
+        $this->set('dataTotalProduct', $dataTotalProduct);
+        $this->set('dataTotalPrice', $dataTotalPrice);
+        $this->set('title', 'Dashboard');
+    }
+}

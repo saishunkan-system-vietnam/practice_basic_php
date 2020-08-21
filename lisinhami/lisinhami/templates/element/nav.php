@@ -28,7 +28,7 @@ if (isset($_COOKIE[COOKIE_LOGIN])) {
                 <?= $this->Form->end(); ?>
             </div>
             <div class="col-lg-4 col-xl-2 col-sm-4 col-md-3 col-5" id="div-cart">
-                <a href="" class="div-cart"><i class="fa fa-shopping-cart cart"></i><span class="cart"> Giỏ hàng</span></a>
+                <a href="<?= URL_CART ?>" class="div-cart"><i class="fa fa-shopping-cart cart"></i><span class="cart"> Giỏ hàng</span></a>
             </div>
             <div class="col-lg-3 col-xl-4 col-sm-2 col-2" style="text-align: right;">
                 <?if(!$this->request->getsession()->check(SESSION_EMAIL)):?>
@@ -46,9 +46,9 @@ if (isset($_COOKIE[COOKIE_LOGIN])) {
 
                     <div class="dropdown-menu">
                         <?if($this->request->getsession()->check(SESSION_ADMIN) && $this->request->getsession()->read(SESSION_ADMIN) == 1):?>
-                        <a class="dropdown-item" href=<?= SITE_URL.'admin'?>>Admin</a>
+                        <a class="dropdown-item" href=<?= SITE_URL . 'admin' ?>>Admin</a>
                         <? endif?>
-                        <a class="dropdown-item" href=<?= URL_LICHSUMUAHANG ?>>Lịch sử mua hàng</a>
+                        <a class="dropdown-item" href=<?= URL_LICHSU_MUAHANG . $this->request->getsession()->read(SESSION_EMAIL) ?>>Lịch sử mua hàng</a>
                         <!-- <a class="dropdown-item" href="#">Something else here</a> -->
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href=<?= URL_LOGOUT ?>>Đăng xuất</a>
