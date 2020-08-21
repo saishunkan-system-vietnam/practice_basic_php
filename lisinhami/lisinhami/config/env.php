@@ -38,6 +38,13 @@
     // Cookie
     define('COOKIE_LOGIN','cookie_login');
 
+    // Cart
+    define('SESSION_CART_ID','cart.');
+    define('URL_CART',SITE_URL.'giohang/');
+    define('URL_DEL_CART',SITE_URL.'delgiohang/');
+    define('URL_UPD_CART',SITE_URL.'updgiohang/');
+    define('URL_CLEAR_CART',SITE_URL.'cleargiohang/');
+
     // Seesion
     define('SESSION_ERROR', 'error');
     define('SESSION_EMAIL', 'email');

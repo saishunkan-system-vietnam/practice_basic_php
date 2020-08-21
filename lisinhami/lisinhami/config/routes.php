@@ -71,10 +71,14 @@ $routes->scope('/', function (RouteBuilder $builder) {
 
     // giỏ hàng
     $builder->connect('/giohang', ['controller' => 'Cart', 'action' => 'view']);
+    $builder->connect('/delgiohang/*', ['controller' => 'Cart', 'action' => 'delete']);
+    $builder->connect('/updgiohang', ['controller' => 'Cart', 'action' => 'update']);
+    $builder->connect('/cleargiohang', ['controller' => 'Cart', 'action' => 'clear']);
 
     $builder->connect('/login', ['controller' => 'User', 'action' => 'login']);
     $builder->connect('/dangky', ['controller' => 'User', 'action' => 'register']);
     $builder->connect('/logout', ['controller' => 'User', 'action' => 'logout']);
+
 
     Router::prefix('Admin', function (RouteBuilder $routes) {
         // Profile
