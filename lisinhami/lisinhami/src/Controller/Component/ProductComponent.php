@@ -81,19 +81,20 @@ class ProductComponent extends CommonComponent
         ];
     }
 
-    // Get danh sách theo danh mục sản phẩm
+    // Get dánh sách theo danh mục sản phẩm
     public function getProductByCategory($category_cd)
     {
         if ($category_cd) {
             $query = $this->TProduct->find()
-                ->select(['TProduct.name', 'TProduct.price', 'TProduct.discount', 'TProduct.slug', 't_image.img_url'])
+                ->select(['TProduct.name','TProduct.price','TProduct.discount','TProduct.slug', 'img'=>'TImage.img_url'])
                 ->join([
                     'table' => 't_image',
+                    'alias' => 'TImage',
                     "type" => "left",
-                    "conditions" => ['TProduct.id = t_image.id_prd', 't_image.top_flg' => 1]
-                ])
+                    "conditions" => ['TProduct.id = TImage.id_prd','TImage.top_flg'=>1]
+                    ])
                 ->where(['And' => ['TProduct.del_flg' => 0, 'TProduct.category_cd' => $category_cd]])
-                ->order(['TProduct.price - TProduct.discount ASC', 'TProduct.price ASC', 'TProduct.create_datetime ASC'])
+                ->order(['TProduct.id DESC'])
                 ->limit(24);
         }
 
