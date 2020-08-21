@@ -33,18 +33,21 @@ class DetailController extends AppController
              if ($this->request->is('post')) {
                 $session = $this->getRequest()->getSession();
                  $inputData = $this->request->getParsedBody();
-                 if ($session->check('cart')) {
-                    $item = $session->read('cart');
+
+                 if (!empty($session->read(SESSION_CART))) {
+                    $item = $session->read(SESSION_CART);
                     $category= $item[array_key_first($item)]['category_cd'];
-                    if ($category != $tableProduct->category_cd) {
-                        $this->Flash->error(__("Bạn không thể order sản phẩm khác loại"));
-                        return $this->redirect($this->referer());
+                    if($tableProduct->category_cd != 3)
+                    {
+                        if ($category != $tableProduct->category_cd) {
+                            $this->Flash->error(__("Bạn không thể order sản phẩm khác loại"));
+                            return $this->redirect($this->referer());
+                        }
                     }
                  }
                 
-                 if($session->check(SESSION_CART.$tableProduct->id)){
-                    $item = $session->read(SESSION_CART.$tableProduct->id);
-
+                 if($session->check(SESSION_CART_ID.$tableProduct->id)){
+                    $item = $session->read(SESSION_CART_ID.$tableProduct->id);
                     $item['amount'] =  $item['amount'] + $inputData['numberproduct'];
                  }else{
                     $item=[
@@ -53,11 +56,13 @@ class DetailController extends AppController
                         'price'             =>  $tableProduct->price-$tableProduct->discount,
                         'amount'            =>  $inputData['numberproduct'],
                         'category_cd'       =>  $tableProduct->category_cd,
-                        'img'               =>  $img
+                        'img'               =>  $img,
+                        'earn_point'        =>  $tableProduct->category_cd == 1 ? $tableProduct->point : 0,
                     ];
                  }
                    
-                 $session->write(SESSION_CART.$tableProduct->id, $item);
+                 $this->Flash->success(__("Thêm vào giò hàng thành công"));
+                 $session->write(SESSION_CART_ID.$tableProduct->id, $item);
 
                  $this->redirect($this->referer());
              }

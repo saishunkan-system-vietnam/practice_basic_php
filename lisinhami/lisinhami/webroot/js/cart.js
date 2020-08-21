@@ -1,4 +1,27 @@
 $(document).ready(function () {
+
+    getFee($('#shipUnit').find('option:selected').attr('fee'))
+    getAddress($('#ad_cd').find('option:selected').attr('address'))
+
+
+    $(document).on('change', '#shipUnit', function() {
+        getFee($(this).find('option:selected').attr('fee'));
+    });
+
+    function getFee(fee) {
+        var tt = $("#tt").attr('tt');
+    
+        $(".fee").html(parseInt(fee).toLocaleString('en-US'));
+        $("#tt_all").html((parseInt(tt) + parseInt(fee)).toLocaleString('en-US'));
+    }
+
+    $(document).on('change', '#ad_cd', function() {
+        getAddress($(this).find('option:selected').attr('address'));
+    });
+
+    function getAddress(Address) {
+        $("#address").val(Address);
+    }
   
     //validation
    $('input, select').tooltipster({
