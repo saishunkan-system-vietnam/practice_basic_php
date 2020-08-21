@@ -8,7 +8,7 @@
                 <div class="col-lg-12">
                     <div class="box-products-category">
                         <div class="head-box-category">
-                            <a href="/bestseller/top-100-san-pham-ban-chay.html" class="left-head">
+                            <a href="<?=URL_DANHMUC_SANPHAM?>" class="left-head">
                                 <img src="https://adminbeauty.hvnet.vn/images/sh11-128.png?v=17042020" alt="type icon">
                                 <h2>
                                     Mỹ Phẩm

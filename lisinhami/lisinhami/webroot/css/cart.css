@@ -23,6 +23,12 @@
     padding: 15px;
 }
 
+.update{
+    margin-top: 5px;
+    width: 70px;
+}
+
+
 .stepwizard>p {
     margin-top: 10px;
 }

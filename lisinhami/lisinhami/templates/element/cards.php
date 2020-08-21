@@ -1,3 +1,4 @@
+
 <?php foreach ($data as $key => $item) { ?>
     <div class="col-2-ct">
         <div class="pd-box pd-box-category">
@@ -14,11 +15,14 @@
                     ); ?>
                 </h3>
                 <div>
-                    <?php if ($item->discount == 0) { ?>
-                        <span class="price "><?= number_format($item->price, 0, '.', ',') ?>đ</span>
+                    <?php if ($item->category_cd == '3') { ?>
+                        <span class="price"><?= number_format($item->price, 0, '.', ',')?> Point</span>
+                        <span class="price-drop"></span>
+                    <?}else if ($item->discount == '0' && $item->category_cd == '1') { ?>
+                        <span class="price"><?= number_format($item->price, 0, '.', ',') ?>đ</span>
                         <span class="price-drop"></span>
                     <?php } else { ?>
-                        <span class="price "><?= number_format(($item->price - $item->discount), 0, '.', ',') ?>đ</span>
+                        <span class="price"><?= number_format(($item->price - $item->discount), 0, '.', ',') ?>đ</span>
                         <span class="price-drop"><?= number_format($item->price, 0, '.', ',') ?>đ</span>
                     <?php } ?>
                 </div>
