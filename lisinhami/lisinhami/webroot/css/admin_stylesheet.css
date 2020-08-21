@@ -408,3 +408,48 @@ body {
 .chiller-theme .sidebar-footer>a:last-child {
     border-right: none;
 }
+
+/* Dasboard */
+.white-box {
+    color: black !important;
+    padding: 25px;
+    margin-bottom: 55px;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    border-radius: 10px;
+}
+
+.text-h{
+    color: black;
+}
+.customer {
+    background: #ffc1079e;
+}
+.product{
+    background: #28a7454a;
+}
+
+.white-box-order {
+    border-radius: 10px;
+    background: rgb(0 123 255 / 15%);
+    padding: 10px 25px 10px 25px;
+    margin-bottom: 55px;
+}
+
+.white-box-order h6 {
+    margin-bottom: 30px;
+}
+
+.white-box-sum {
+    border-radius: 10px;
+    background: #e9ecef;
+    padding: 25px;
+    margin-bottom: 55px;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.bg-title {
+    overflow: hidden;
+    margin-bottom: 25px;
+}

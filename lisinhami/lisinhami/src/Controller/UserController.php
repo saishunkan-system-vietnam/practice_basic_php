@@ -63,14 +63,25 @@ class UserController extends AppController
             $inputData = $this->request->getParsedBody();
 
             $result = $this->{'User'}->getUser($inputData['email'], $inputData['pass']);
+
             if (empty($result)) {
                 $this->request->getSession()->write(SESSION_ERROR, 'Email hoặc Password không chính xác');
                 $this->redirect($this->referer());
             } else {
-                if ($result->delflg == 1) {
+                if ($result->del_flg == 1) {
                     $this->request->getSession()->write(SESSION_ERROR, $inputData['email'] . ' đã bị vô hiệu hóa');
                     $this->redirect($this->referer());
                 } else {
+
+                    if (!empty($this->request->getSession()->read(SESSION_CART))) {
+                        $item = $this->request->getSession()->read(SESSION_CART);
+                        $category = $item[array_key_first($item)]['category_cd'];
+
+                        if ($category == 2) {
+                            $this->request->getSession()->delete(SESSION_CART);
+                        }
+                    }
+
                     $this->request->getSession()->write(SESSION_EMAIL, $result->uid);
                     if ($result->admin_flg == 1) {
                         $this->request->getSession()->write(SESSION_ADMIN, $result->admin_flg);

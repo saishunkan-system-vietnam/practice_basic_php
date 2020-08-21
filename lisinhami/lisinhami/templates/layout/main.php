@@ -23,7 +23,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
 
-    <?= $this->Html->css(['nav', 'footer']) ?>
+    <?= $this->Html->css(['nav', 'footer', 'admin_stylesheet']) ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -31,9 +31,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 </head>
 
 <body>
-    <main class="main" style="min-height: 100%;">
+    <main class="main" style="min-height: 100vh;">
         <?= $this->element('nav') ?>
-        <? if($this->request->getParam('action') != "register"){
+        <? if($this->request->getParam('action') != "register" && $this->request->getParam('action') != "viewContOrder"){
         echo $this->element('banner') ;
         }
         ?>
