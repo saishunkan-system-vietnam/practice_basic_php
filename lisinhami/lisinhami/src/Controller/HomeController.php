@@ -17,7 +17,7 @@ class HomeController extends AppController
      {
          $category_cd = 1;
          $cosmetic = $this->{'Product'}->getProductByCategory($category_cd);
- 
+         
          $this->set('cosmetic', $cosmetic);
          $this->set('title', 'Trang chủ');
      }

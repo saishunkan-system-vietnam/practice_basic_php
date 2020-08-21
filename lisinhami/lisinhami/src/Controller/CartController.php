@@ -16,6 +16,9 @@ class CartController extends AppController
      public function view()
      {
         $session =$this->getRequest()->getSession();
+        $data = $session->read('cart');
+
+        $this->set('data',$data );
         $this->set('session',$session );
         $this->set('title', 'Giỏ hàng');
      }

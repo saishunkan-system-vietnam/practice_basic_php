@@ -3,7 +3,7 @@
         <div class="pd-box pd-box-category">
             <div class="box-images">
                 <a href=<?= URL_CHITIET_SANPHAM . $item->slug ?> title="<?= $item->slug ?>">
-                    <?= $this->Html->image(isset($item->t_image['img_url']) ? $item->t_image['img_url'] : "/img/noproduct.png", ['class' => 'img-reponsive lazy']); ?>
+                    <?= $this->Html->image(isset($item->img) ? $item->img : "/img/noproduct.png", ['class' => 'img-reponsive lazy']); ?>
                 </a>
             </div>
             <div class="box-content">
