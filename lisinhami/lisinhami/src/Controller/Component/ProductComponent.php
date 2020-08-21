@@ -23,13 +23,13 @@ class ProductComponent extends CommonComponent
                                 'info_gen like'=>'%'.$key.'%'
                             ]]
                      ]])
-            ->order(['id DESC']);
+            ->order(['create_datetime DESC']);
         }
         else
         {
             $query = $this->TProduct->find()
             -> where(['TProduct.del_flg' => 0, 'category_cd' => $category_cd])
-            ->order(['TProduct.id DESC']);
+            ->order(['TProduct.create_datetime DESC']);
         }
        
         // return $query->all()->toArray();

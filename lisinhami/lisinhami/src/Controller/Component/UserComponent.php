@@ -23,6 +23,16 @@ class UserComponent extends CommonComponent
         return $query;
     }
 
+    public function getInfoUser($uid)
+    {
+        $query = $this->TUser->find()
+            ->select(['address1', 'address2', 'uid', 'full_name'])
+            ->where(['uid' => $uid])
+            ->first();
+
+        return $query;
+    }
+
     public function ExistUser($email)
     {
         $query = $this->TUser->find()
