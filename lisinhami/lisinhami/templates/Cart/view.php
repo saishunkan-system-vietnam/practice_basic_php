@@ -76,14 +76,14 @@
 
                                     <td data-th="Subtotal" class="text-center">
                                         <?= number_format($item['amount'] * $item['earn_point'], 0, '.', ',') ?></td>
-                                    <td><?= $this->Form->postLink(
+                                    <td>
+                                        <?= $this->Form->postLink(
                                             __('Delete'),
                                             URL_DEL_CART . $item['id_product'],
                                             ['confirm' => __('Bạn có chắc chăn muốn xóa "{0}" không?', $item['name']), 'class' => 'btn btn-danger btn-sm']
-                                        ) ?></td>
-
+                                        ) ?>
+                                    </td>
                                 </tr>
-
                         <?php }
                         } ?>
 
@@ -179,7 +179,7 @@
                                     <option value="3" address="">Địa chỉ khác</option>
                                 </select>
                                 <?}?>
-                                <textarea class="form-control" style="margin-top: 5px;" name="address" id="address"  rows="3"></textarea>
+                                <textarea class="form-control" style="margin-top: 5px;" name="address" id="address" rows="3" required="required"></textarea>
                             </div>
                             <button class="btn btn-primary nextBtn pull-right" type="button">
                                 Next
@@ -210,7 +210,7 @@
                                         <option fee="<?= $item->fee ?>" value="<?= $item->shipping_unit ?>"><?= $item->shipping_unit ?></option>
                                         <?}?>
                                     </select>
-                                    <input type="hidden" id="fee-order" class="fee" name="fee">
+                                    <input type="hidden" id="fee-order" class="fee-order" name="fee">
                                 </div>
                             </div>
                             <button class="btn btn-primary nextBtn pull-right" type="button">

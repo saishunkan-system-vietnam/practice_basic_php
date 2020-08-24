@@ -2,14 +2,6 @@
 <?= $this->Html->script(['jquery.cycle', 'owl.carousel.min', 'smoothproducts.min']) ?>
 <?= $this->fetch('css') ?>
 <div class="detail-product">
-	<div class="bracum">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-			<li class="breadcrumb-item"><a href="#">Trang cấp 1</a></li>
-			<li class="breadcrumb-item"><a href="#">Trang cấp 2</a></li>
-			<li class="breadcrumb-item active" aria-current="page">Trang hiện tại</li>
-		</ol>
-	</div>
 	<div class="container">
 		<div class="row">
 			<div class="product-detail-left col-lg-4">
