@@ -81,29 +81,12 @@ class CartController extends AppController
         $this->redirect($this->referer());
     }
 
-    // Get số lượng sản phẩm
-    public function getCoount()
-    {
-        $count = 0;
-        $session = $this->getRequest()->getSession();
-        $data = $session->read(SESSION_CART);
-
-        if (!empty($data)) {
-            foreach ($data as $key => $item) {
-                $count = $count + $item['amount'];
-            }
-        }
-        dd($count);
-        $this->set('count', $count);
-    }
-
     // Xoa toàn bộ giỏ hàng
     public function add()
     {
         if ($this->request->is('post')) {
 
             $inputData = $this->request->getParsedBody();
-
             $session = $this->getRequest()->getSession();
             $data = $session->read(SESSION_CART);
             $category= $data[array_key_first($data)]['category_cd'];

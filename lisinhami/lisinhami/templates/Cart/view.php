@@ -36,7 +36,7 @@
                                 $price =  $item['price'] + ($item['price'] * $item['tax']) / 100;
                                 $total = $total + ($item['category_cd'] == '1' ? ($item['amount'] * $price) : 0);
                                 $point = $point + ($item['category_cd'] == '3' ? ($item['amount'] * $item['price']) : 0);
-                                $earn_point = $earn_point + ($item['category_cd'] == '3' ? ($item['amount'] * $item['earn_point']) : 0);
+                                $earn_point = $earn_point + ($item['category_cd'] == '1' ? ($item['amount'] * $item['earn_point']) : 0);
                         ?>
                                 <tr>
                                     <td data-th="Product">
@@ -146,7 +146,6 @@
                         <p>Xác nhận đơn hàng</p>
                     </div>
                 </div>
-                <!-- <form role="form" id="form"> -->
                 <?= $this->Form->create(null, [
                     'id' => 'form',
                     'url' => [
@@ -228,15 +227,11 @@
                             <p>
                                 Số điểm của bạn không đủ để đổi quà.
                             </p>
-                            <button class="btn btn-success pull-right disabled" type="submit">
-                                Mua hàng
-                            </button>
-
                             <?} else {?>
                             <p>
-                                Bạn đồng ý mau hàng.
+                                Bạn đồng ý mua hàng.
                             </p>
-                            <button class="btn btn-success pull-right" type="submit">
+                            <button class="btn btn-success pull-right" type="button" onClick="this.form.submit()">
                                 Mua hàng
                             </button>
                             <?}?>
@@ -244,7 +239,6 @@
                     </div>
                 </div>
                 <?= $this->Form->end(); ?>
-                <!-- </form> -->
             </div>
         </div>
     </div>
