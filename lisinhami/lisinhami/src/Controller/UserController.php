@@ -103,6 +103,7 @@ class UserController extends AppController
     {
         $this->request->getSession()->delete(SESSION_EMAIL);
         $this->request->getSession()->delete(SESSION_ADMIN);
+        $this->request->getSession()->delete(SESSION_CART);
         $this->redirect(SITE_URL);
     }
 

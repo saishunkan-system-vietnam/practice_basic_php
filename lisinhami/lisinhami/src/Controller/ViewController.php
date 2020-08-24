@@ -1,12 +1,9 @@
 <?php
-
 declare(strict_types=1);
 
 namespace App\Controller;
 
 use Cake\Event\EventInterface;
-//use Cake\Mailer\Mailer;
-// use Cake\Mailer\Email;
 
 /**
  * View Controller
@@ -46,12 +43,11 @@ class ViewController extends AppController
                 $title = 'Sản phẩm mỹ phẩm';
                 break;
             case "san-pham-dung-thu":
+                if($this->request->getsession()->check(SESSION_EMAIL)){
+                    $this->redirect(SITE_URL);
+                }
                 $category_cd = 2;
                 $title = 'Sản phẩm dùng thử';
-                break;
-            case "san-pham-qua-tang":
-                $category_cd = 3;
-                $title = 'Sản phẩm quà tặng';
                 break;
             case null:
                 $category_cd = 1;
@@ -74,6 +70,7 @@ class ViewController extends AppController
 
     public function getOrderHistory($uid = null)
     {
+        $this->set('title', 'Lịch sử mua hàng');
         $this->loadComponent('Order');
         $tableOrder = $this->{'Order'}->getAllOrderByID($uid);
         $this->set('tableOrder', $tableOrder);
@@ -89,7 +86,7 @@ class ViewController extends AppController
         $this->set('dataOdrH', $dataOdrH[0]);
         $this->set('dataOdrD', $dataOdrD);
         $this->set('stt', 0);
-        $this->set('title', 'Chit tiết đơn hàng');
+        $this->set('title', 'Chi tiết đơn hàng');
         $this->set('refererUrl', $this->referer());
     }
 }

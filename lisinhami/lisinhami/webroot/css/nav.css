@@ -1,7 +1,3 @@
-/* body {
-    background-color: #eee !important;
-} */
-
 .header-main {
     position        : relative;
     padding         : 7px 16%;
@@ -53,7 +49,7 @@ a {
 }
 
 .navbar-toggler-icon {
-    background-image: url(https://img.icons8.com/ios/50/000000/menu.png)
+    background-image: url(http://lisinhami.com/img/menu.png)
 }
 
 .navbar-toggler {

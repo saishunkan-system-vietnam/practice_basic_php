@@ -1,5 +1,4 @@
 <?php
-
 if (isset($_COOKIE[COOKIE_LOGIN])) {
     $dataSaveUser = json_decode($_COOKIE[COOKIE_LOGIN], true);
     $email = $dataSaveUser['email'];
@@ -8,6 +7,16 @@ if (isset($_COOKIE[COOKIE_LOGIN])) {
     $email = '';
     $pass = '';
 }
+
+$count = 0;
+$session = $this->getRequest()->getSession();
+$data = $session->read(SESSION_CART);
+
+if (!empty($data)) {
+    foreach ($data as $key => $item) {
+        $count = $count + $item['amount'];
+    }
+}
 ?>
 
 <section class="header-main">
@@ -15,7 +24,6 @@ if (isset($_COOKIE[COOKIE_LOGIN])) {
         <div class="row align-items-center">
             <div class="col-lg-2 col-xl-2 col-sm-6 col-md-4 col-10"> <a href=<?= SITE_URL ?> class="brand-wrap" data-abc="true">
                     <span class="logo"><?= $this->Html->image('logo.png', array('alt' => 'logo', 'border' => '0', 'width' => '171.28')); ?></span> </a> </div>
-
             <div class="col-lg-3 col-xl-4 col-sm-5 col-md-3 d-none d-md-block">
                 <?= $this->Form->create(null, ['type' => 'get', 'class' => 'search-wrap', 'url' => URL_SEARCH]); ?>
                 <div class="input-group w-100">
@@ -28,7 +36,7 @@ if (isset($_COOKIE[COOKIE_LOGIN])) {
                 <?= $this->Form->end(); ?>
             </div>
             <div class="col-lg-4 col-xl-2 col-sm-4 col-md-3 col-5" id="div-cart">
-                <a href="<?= URL_CART ?>" class="div-cart"><i class="fa fa-shopping-cart cart"></i><span class="cart"> Giỏ hàng</span></a>
+                <a href="<?= URL_CART ?>" class="div-cart"><i class="fa fa-shopping-cart cart"></i><span class="cart"> Giỏ hàng </span><span class="badge badge-danger"><?= $count ?></span></a>
             </div>
             <div class="col-lg-3 col-xl-4 col-sm-2 col-2" style="text-align: right;">
                 <?if(!$this->request->getsession()->check(SESSION_EMAIL)):?>
@@ -43,13 +51,11 @@ if (isset($_COOKIE[COOKIE_LOGIN])) {
                     <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-user-o" aria-hidden="true"></i> <span class="user"><?= $_SESSION['email'] ?></span>
                     </a>
-
                     <div class="dropdown-menu">
                         <?if($this->request->getsession()->check(SESSION_ADMIN) && $this->request->getsession()->read(SESSION_ADMIN) == 1):?>
                         <a class="dropdown-item" href=<?= SITE_URL . 'admin' ?>>Admin</a>
                         <? endif?>
                         <a class="dropdown-item" href=<?= URL_LICHSU_MUAHANG . $this->request->getsession()->read(SESSION_EMAIL) ?>>Lịch sử mua hàng</a>
-                        <!-- <a class="dropdown-item" href="#">Something else here</a> -->
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href=<?= URL_LOGOUT ?>>Đăng xuất</a>
                     </div>
@@ -79,14 +85,13 @@ if (isset($_COOKIE[COOKIE_LOGIN])) {
         </div>
     </div>
 </nav>
-<!-- Modal -->
 
-<?if ($this->request->getSession()->check('error')) :?>
+<?if ($this->request->getSession()->check(SESSION_ERROR)) :?>
 
 <div class="modal" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: block; padding-right: 17px;">
 
-    <?= "<script type='text/javascript'>alert('$_SESSION[error]'); $('#modalLRForm').modal('show')</script>";
-    $this->request->getSession()->delete('error'); ?>
+    <?= "<script type='text/javascript'>alert('" . $this->request->getSession()->read(SESSION_ERROR) . "'); $('#modalLRForm').modal('show')</script>";
+    $this->request->getSession()->delete(SESSION_ERROR); ?>
     <?else: ?>
     <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <?endif?>
@@ -99,8 +104,6 @@ if (isset($_COOKIE[COOKIE_LOGIN])) {
                     </button>
                 </div>
                 <div class="modal-body">
-                    <!--Body-->
-
                     <?= $this->Form->create(null, ['url' => URL_LOGIN]); ?>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email</label>

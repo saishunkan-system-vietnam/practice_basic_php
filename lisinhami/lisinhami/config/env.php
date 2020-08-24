@@ -1,8 +1,6 @@
 <?php
     define('SITE_URL',(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[SERVER_NAME]/");
 
-    // ADMIN
-
     // Sản phẩm
     define('URL_SANPHAM',SITE_URL.'admin/sanpham/');
     define('URL_ADD_SANPHAM',SITE_URL.'admin/addsanpham');
@@ -38,8 +36,7 @@
     // Cookie
     define('COOKIE_LOGIN','cookie_login');
 
-    // Cart
-    define('SESSION_CART_ID','cart.');
+    // Cart 
     define('URL_CART',SITE_URL.'giohang/');
     define('URL_DEL_CART',SITE_URL.'delgiohang/');
     define('URL_UPD_CART',SITE_URL.'updgiohang/');
@@ -50,5 +47,5 @@
     define('SESSION_EMAIL', 'email');
     define('SESSION_ADMIN', 'admin');
     define('SESSION_CART','cart');
-
+    define('SESSION_CART_ID','cart.');
 ?>

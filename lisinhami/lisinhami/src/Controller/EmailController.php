@@ -16,7 +16,5 @@ class EmailController extends AppController
     public function beforeFilter(EventInterface $event)
     {
         $this->viewBuilder()->setLayout('main');
-    }
-
-    
+    } 
 }
