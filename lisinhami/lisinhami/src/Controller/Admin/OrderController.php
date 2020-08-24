@@ -85,7 +85,6 @@ class OrderController extends AppController
 
             $data = ['id' => $id, 'status' => $status];
             $result = $this->{'Order'}->saveOdrHdr($data);
-
             if ($result['result'] == "invalid") {
                 foreach ($result['data'] as $key => $item) {
                     foreach ($item as $err) {
@@ -97,14 +96,14 @@ class OrderController extends AppController
             }
 
             if ($status == '6' && ($odr_flg == '1' || $odr_flg == '2')) {
-                $this->sendEmail($uid);
+                $this->sendEmail($uid,$result['data']);
             }
 
             $this->redirect($this->referer());
         }
     }
 
-    public function sendEmail($user_email = null)
+    public function sendEmail($user_email = null, $info = null)
     {
         $this->loadComponent('Common');
         $this->loadComponent('User');
@@ -116,7 +115,13 @@ class OrderController extends AppController
         } else {
             $uid = $user_email;
             $password = substr(str_shuffle("mncv!$^&bzxafsdg@h12345ujkio~lpqwer#tyui67890"), 0, 8);
-            $data = ["uid" => $uid, "pass" => $password];
+            $data = ["uid" => $uid,
+                    "pass" => $password,
+                    "full_name" => $info->reciever,
+                    "phone" => $info->phone,
+                    "address1" => $info->address,
+                    "gender"=>1,
+                    ];
             $result_regist = $this->{'User'}->regisUser($data);
 
             if ($result_regist['result'] == "error") {

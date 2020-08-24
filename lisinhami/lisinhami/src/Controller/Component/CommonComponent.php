@@ -93,7 +93,7 @@ class CommonComponent extends Component
             $mail->addAddress($user_email); 
 
             $mail->isHTML(true);                                  
-            $mail->Subject = '[Lisinhami.com] Xác nhận đơn hàng';
+            $mail->Subject = '[Lisinhami.com] Thư cảm ơn';
             $mail ->Body = $content;
            
             $mail->send();
