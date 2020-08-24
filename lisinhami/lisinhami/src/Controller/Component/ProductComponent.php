@@ -1,5 +1,6 @@
 <?php
-  declare(strict_types=1);
+
+declare(strict_types=1);
 
 namespace App\Controller\Component;
 
@@ -14,24 +15,21 @@ class ProductComponent extends CommonComponent
 
     public function getAllProduct($key, $category_cd)
     {
-        if($key){
+        if ($key) {
             $query = $this->TProduct->find()
-            -> where(['And'=>['del_flg' => 0, 'category_cd' => $category_cd,
-                     ['Or'=>[
-                                'name like'=>'%'.$key.'%',
-                                'made_in like'=>'%'.$key.'%',
-                                'info_gen like'=>'%'.$key.'%'
-                            ]]
-                     ]])
-            ->order(['create_datetime DESC']);
-        }
-        else
-        {
+                ->where(['And' => [
+                    'del_flg' => 0, 'category_cd' => $category_cd,
+                    ['Or' => [
+                        'name like' => '%' . $key . '%',
+                    ]]
+                ]])
+                ->order(['create_datetime DESC']);
+        } else {
             $query = $this->TProduct->find()
-            -> where(['TProduct.del_flg' => 0, 'category_cd' => $category_cd])
-            ->order(['TProduct.create_datetime DESC']);
+                ->where(['TProduct.del_flg' => 0, 'category_cd' => $category_cd])
+                ->order(['TProduct.create_datetime DESC']);
         }
-       
+
         // return $query->all()->toArray();
         return $query;
     }
@@ -39,24 +37,23 @@ class ProductComponent extends CommonComponent
     public function getProductById($id)
     {
         $data = $this->TProduct
-                ->find()
-                ->where([
-                    'TProduct.id' =>  $id
-                ])
-                ->first();
+            ->find()
+            ->where([
+                'TProduct.id' =>  $id
+            ])
+            ->first();
 
         return $data ? $data->toArray() : [];
     }
-    
+
     public function checkSlug($id, $slug)
     {
         $checkSlug = $this->TProduct
-                ->find()
-                ->where([
-                    'TProduct.slug' => $slug
-                    ,'TProduct.id !=' => $id
-                ])
-                ->first();
+            ->find()
+            ->where([
+                'TProduct.slug' => $slug, 'TProduct.id !=' => $id
+            ])
+            ->first();
         return $checkSlug ? $checkSlug->toArray() : [];
     }
 
@@ -86,13 +83,13 @@ class ProductComponent extends CommonComponent
     {
         if ($category_cd) {
             $query = $this->TProduct->find()
-                ->select(['TProduct.name','TProduct.price','TProduct.discount','TProduct.slug' ,'TProduct.category_cd','TProduct.point','TProduct.tax' ,'img'=>'TImage.img_url'])
+                ->select(['TProduct.name', 'TProduct.price', 'TProduct.discount', 'TProduct.slug', 'TProduct.category_cd', 'TProduct.point', 'TProduct.tax', 'img' => 'TImage.img_url'])
                 ->join([
                     'table' => 't_image',
                     'alias' => 'TImage',
                     "type" => "left",
-                    "conditions" => ['TProduct.id = TImage.id_prd','TImage.top_flg'=>1]
-                    ])
+                    "conditions" => ['TProduct.id = TImage.id_prd', 'TImage.top_flg' => 1]
+                ])
                 ->where(['And' => ['TProduct.del_flg' => 0, 'TProduct.category_cd' => $category_cd]])
                 ->order(['TProduct.id DESC'])
                 ->limit(24);
@@ -105,7 +102,7 @@ class ProductComponent extends CommonComponent
     public function searchAllProduct($key = null)
     {
         $query = $this->TProduct->find()
-            ->select(['TProduct.name', 'TProduct.price', 'TProduct.discount', 'TProduct.slug', 'img'=>'TImage.img_url'])
+            ->select(['TProduct.name', 'TProduct.price', 'TProduct.discount', 'TProduct.slug', 'img' => 'TImage.img_url'])
             ->join([
                 'table' => 't_image',
                 'alias' => 'TImage',
@@ -121,13 +118,13 @@ class ProductComponent extends CommonComponent
     // Get product theo slug
     public function getProductBySlug($slug)
     {
-        $data = $this->TProduct 
-                ->find()
-                ->where([
-                    'TProduct.slug' =>  $slug
-                ])
-                ->first();
+        $data = $this->TProduct
+            ->find()
+            ->where([
+                'TProduct.slug' =>  $slug
+            ])
+            ->first();
 
-        return $data ;
+        return $data;
     }
 }

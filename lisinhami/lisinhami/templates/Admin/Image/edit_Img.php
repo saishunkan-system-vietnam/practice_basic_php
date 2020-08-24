@@ -5,7 +5,7 @@
 
     <div class="row"><label class="btn btn-success  btn-lg btn-radius">
             <input type="file" id="inpimg" name="image_file" onchange="this.form.submit()" style="display: none;"
-                accept=".png, .jpeg" onchange="preview()">
+                accept=".png, .jpeg, .jpg" onchange="preview()">
             <i class="fa fa-plus" aria-hidden="true"></i> <span>Add</span>
         </label> </div>
     <?= $this->Form->end();?>

@@ -1,5 +1,6 @@
 <?php
-  declare(strict_types=1);
+
+declare(strict_types=1);
 
 namespace App\Controller\Component;
 
@@ -15,11 +16,10 @@ class ImageComponent extends CommonComponent
     public function getImgByPrd($id_prd)
     {
         $data = $this->TImage
-                ->find()
-                ->where([
-                    'TImage.id_prd' =>  $id_prd
-                    ,'TImage.del_flg' =>  0
-                ]);
+            ->find()
+            ->where([
+                'TImage.id_prd' =>  $id_prd, 'TImage.del_flg' =>  0
+            ]);
 
         return $data;
     }
@@ -48,43 +48,40 @@ class ImageComponent extends CommonComponent
     public function setTop($id, $id_prd)
     {
         $data = $this->TImage
-                ->find()
-                ->select([
-                    'id',
-                    'top_flg'=>'CASE WHEN id ='.$id.' THEN 1 ELSE 0 END'
-                ])
-                ->where([
-                    'TImage.id_prd' =>  $id_prd,
-                    'TImage.del_flg' =>  0,
-                    'OR'=>['TImage.top_flg' =>  1, 'TImage.id' => $id]
-                ]);
-                
-        foreach($data as $item)
-        {
+            ->find()
+            ->select([
+                'id',
+                'top_flg' => 'CASE WHEN id =' . $id . ' THEN 1 ELSE 0 END'
+            ])
+            ->where([
+                'TImage.id_prd' =>  $id_prd,
+                'TImage.del_flg' =>  0,
+                'OR' => ['TImage.top_flg' =>  1, 'TImage.id' => $id]
+            ]);
+
+        foreach ($data as $item) {
             $prd = $this->TImage->get($item['id']);
             $prd = $this->TImage->patchEntity($prd, $item->toArray());
-            $this->TImage->save($prd);            
+            $this->TImage->save($prd);
         }
     }
 
     public function delAllImg($id_prd)
     {
         $data = $this->TImage
-                ->find()
-                ->select([
-                    'id',
-                    'del_flg'=>'1'
-                ])
-                ->where([
-                    'TImage.id_prd' =>  $id_prd
-                    ,'TImage.del_flg' =>  0
-                ]);
-                
-        foreach($data as $item)
-        {
+            ->find()
+            ->select([
+                'id',
+                'del_flg' => '1'
+            ])
+            ->where([
+                'TImage.id_prd' =>  $id_prd, 'TImage.del_flg' =>  0
+            ]);
+
+        foreach ($data as $item) {
             $prd = $this->TImage->get($item['id']);
             $prd = $this->TImage->patchEntity($prd, $item->toArray());
-            $this->TImage->save($prd);            
+            $this->TImage->save($prd);
         }
     }
 }

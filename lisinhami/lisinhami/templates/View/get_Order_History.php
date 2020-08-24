@@ -17,7 +17,7 @@
             <? foreach($tableOrder as $key => $item){?>
             <tr>
                 <td><?= $item->id ?></td>
-                <td><?= $item->odr_date ?></td>
+                <td><?= $item->odr_date->format('d-m-Y')?></td>
                 <td style="text-align: right ;"><?= $this->Number->format($item->total_paymnt, ['locale' => '']); ?></td>
                 <td><?= $item->shipping_unit ?></td>
                 <td><?= $item->paymnt_method ?></td>

@@ -11,17 +11,18 @@
     <br>
     <div class="row">
     <table class="table table-bordered table-striped">
+    <legend>Chi tiết đơn hàng</legend>
         <thead>
             <tr>
                 <th>STT</th>
                 <th>Tên Sản phẩm</th>
                 <th>Số lượng</th>
-                <th>ĐƠn giá</th>
+                <th>Đơn giá</th>
                 <th>Thuế</th>
                 <th>Thành tiền</th>
-            </tr>            
+            </tr>     
             <? foreach($dataOdrD as $key => $item)
-            { $stt++;?>
+            { if($item->category_cd != 3){$stt++;?>
             <tr>
                 <td><?= $stt?></td>
                 <td><?= $item->name?></td>
@@ -30,13 +31,39 @@
                 <td style="text-align: right ;"><?=  $this->Number->format($item->tax, ['locale' => '']); ?></td>
                 <td style="text-align: right ;"><?=  $this->Number->format($item->paymnt, ['locale' => '']); ?></td>
             </tr>
-            <? }?>
+            <? }}?>
         </thead>
     </table>
     </div>
     <div class="row"><b>Tổng: </b><span><?= $this->Number->format( $dataOdrH->paymnt, ['locale' => '']); ?></span></div>
     <div class="row"><b>Phí vận chuyển: </b><span><?= $this->Number->format( $dataOdrH->fee, ['locale' => '']); ?></span></div>
     <div class="row"><b>Tổng tiền đơn hàng: </b><span><?= $this->Number->format( $dataOdrH->total_paymnt, ['locale' => '']); ?></span></div>
+    <br>
+    <div class="row">
+    <table class="table table-bordered table-striped">
+    <legend>Sản phẩm quà tặng</legend>
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Tên Sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Số điểm đổi thưởng</th>
+                <th>Tổng điểm đổi thưởng</th>
+            </tr>     
+            <? $stt = 0;
+            foreach($dataOdrD as $key => $item)
+            { if($item->category_cd == 3){$stt++;?>
+            <tr>
+                <td><?= $stt?></td>
+                <td><?= $item->name?></td>
+                <td style="text-align: right ;"><?=  $this->Number->format($item->amount, ['locale' => '']); ?></td>
+                <td style="text-align: right ;"><?=  $this->Number->format($item->price, ['locale' => '']); ?></td>
+                <td style="text-align: right ;"><?=  $this->Number->format($item->paymnt, ['locale' => '']); ?></td>
+            </tr>
+            <? }}?>
+        </thead>
+    </table>
+    </div>
     <br>
     <div style="width: 90%;">
     <a href=<?= $refererUrl?> title="Trở về" style="font-size: 40px;">

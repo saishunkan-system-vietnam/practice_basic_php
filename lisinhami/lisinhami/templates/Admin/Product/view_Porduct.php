@@ -33,8 +33,8 @@
             <tr>
                 <td><?= $item->id?></td>
                 <td><?= $item->name?></td>
-                <td><?= $item->odr_date?></td>
-                <td><?= $item->discount?></td>
+                <td><?= $this->Number->format($item->price, ['locale' => ''])?></td>
+                <td><?= $this->Number->format($item->discount, ['locale' => ''])?></td>
                 <td><?= $item->tax?></td>
                 <td><?= $item->point?></td>
                 <td><?= $item->made_in?></td>

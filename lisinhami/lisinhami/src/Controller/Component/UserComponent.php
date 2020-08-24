@@ -26,7 +26,7 @@ class UserComponent extends CommonComponent
     public function getInfoUser($uid)
     {
         $query = $this->TUser->find()
-            ->select(['address1', 'address2', 'uid', 'full_name','phone'])
+            ->select(['address1', 'address2', 'uid', 'full_name', 'phone'])
             ->where(['uid' => $uid])
             ->first();
 
@@ -44,7 +44,7 @@ class UserComponent extends CommonComponent
 
     public function regisUser($data)
     {
-        
+
         $user = $this->TUser->newEntity($data);
         $result = $this->TUser->save($user);
         if ($user->hasErrors()) {
@@ -64,7 +64,7 @@ class UserComponent extends CommonComponent
     public function save($data): array
     {
         if (!empty($data['uid'])) {
-            $tableUser= $this->TUser->get($data['uid']);
+            $tableUser = $this->TUser->get($data['uid']);
             $tableUser = $this->TUser->patchEntity($tableUser, $data);
         } else {
             $tableUser = $this->TUser->newEntity($data);

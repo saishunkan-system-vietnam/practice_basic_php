@@ -20,11 +20,13 @@ class DashboardComponent extends CommonComponent
     {
         $query = $this->TOrderHeader->find()
             ->Select([
-                'prdWaiting' => 'sum(case when status = 1 && odr_flg = 1 || odr_flg = 0 then 1 else 0 end)',
+                'prdTotal' => 'sum(case when odr_flg = 1 || odr_flg = 0 then 1 else 0 end)',
+                'prdWaiting' => 'sum(case when status = 1 && (odr_flg = 1 || odr_flg = 0) then 1 else 0 end)',
                 'prdProcessing' => 'sum(case when (status > 1 && status < 6 &&(  odr_flg = 1 || odr_flg = 0)) then 1 else 0 end)',
-                'prdComplete' => 'sum(case when status = 6 && odr_flg = 1 || odr_flg = 0 then 1 else 0 end)',
-                'prdCancel' => 'sum(case when status = 0 && odr_flg = 1 || odr_flg = 0 then 1 else 0 end)',
+                'prdComplete' => 'sum(case when status = 6 && (odr_flg = 1 || odr_flg = 0) then 1 else 0 end)',
+                'prdCancel' => 'sum(case when status = 0 && (odr_flg = 1 || odr_flg = 0) then 1 else 0 end)',
 
+                'sampleTotal' => 'sum(case when odr_flg = 2 then 1 else 0 end)',
                 'sampleWaiting' => 'sum(case when status = 1 && odr_flg = 2 then 1 else 0 end)',
                 'sampleProcessing' => 'sum(case when (status > 1 && status < 6 && odr_flg = 2) then 1 else 0 end)',
                 'sampleComplete' => 'sum(case when status = 6 && odr_flg = 2 then 1 else 0 end)',

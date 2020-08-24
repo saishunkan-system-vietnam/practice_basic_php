@@ -32,6 +32,12 @@
 </div>
 
 <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h4 class="text-h">Tổng đơn hàng sản phẩm mỹ phẩm: <?= $dataOrder->prdTotal ?></h4>
+    </div>
+</div>
+
+<div class="row">
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
         <div class="white-box-order">
             <h6 class="text-muted">Đơn hàng Mỹ Phẩm</h6>
@@ -83,6 +89,12 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h4 class="text-h">Tổng đơn hàng sản phẩm dùng thử: <?= $dataOrder->sampleTotal ?></h4>
     </div>
 </div>
 
@@ -149,7 +161,8 @@
                     <h2>Tổng doanh thu</h2>
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-6">
-                    <h1 class="counter text-right m-t-15 text-danger"><?= number_format(($dataTotalPrice->totalPrice), 0, '.', ',') ?>đ</h1>
+                    <h1 class="counter text-right m-t-15 text-danger">
+                        <?= number_format(($dataTotalPrice->totalPrice), 0, '.', ',') ?>đ</h1>
                 </div>
             </div>
         </div>

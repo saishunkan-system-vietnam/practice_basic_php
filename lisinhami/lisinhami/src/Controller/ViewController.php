@@ -72,7 +72,7 @@ class ViewController extends AppController
     {
         $this->set('title', 'Lịch sử mua hàng');
         $this->loadComponent('Order');
-        $tableOrder = $this->{'Order'}->getAllOrderByID($uid);
+        $tableOrder = $this->{'Order'}->getAllOrderByUid($uid);
         $this->set('tableOrder', $tableOrder);
         $this->set('tableOrder', $this->paginate($tableOrder, ['limit' => LIMIT_PAGINATE]));
     }

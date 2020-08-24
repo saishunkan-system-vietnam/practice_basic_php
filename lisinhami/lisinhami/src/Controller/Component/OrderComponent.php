@@ -117,6 +117,7 @@ class OrderComponent extends CommonComponent
                 'name' => 'tableProduct.name',
                 'TOrderDetail.amount',
                 'TOrderDetail.price',
+                'category_cd' => 'tableProduct.category_cd',
                 'tax' => 'IFNULL(TOrderDetail.amount,0) * IFNULL(TOrderDetail.price,0) * IFNULL(TOrderDetail.tax,0) / 100',
                 'paymnt' => '(IFNULL(TOrderDetail.amount,0) * IFNULL(TOrderDetail.price,0)) + (IFNULL(TOrderDetail.amount,0) * IFNULL(TOrderDetail.price,0) * IFNULL(TOrderDetail.tax,0) / 100)'
             ])
@@ -124,7 +125,7 @@ class OrderComponent extends CommonComponent
                 'table' => 't_product',
                 'alias' => 'tableProduct',
                 "type" => "left",
-                "conditions" => ['TOrderDetail.id_product = tableProduct.id']
+                "conditions" => ['TOrderDetail.id_product = tableProduct.id', 'tableProduct.del_flg = 0']
             ])
             ->where([
                 'TOrderDetail.id_odrh' => $idOdrH
@@ -174,7 +175,7 @@ class OrderComponent extends CommonComponent
         ];
     }
 
-    public function getAllOrderByID($uid)
+    public function getAllOrderByUid($uid)
     {
         $query = $this->TOrderHeader->find()
             ->Select([
@@ -182,7 +183,14 @@ class OrderComponent extends CommonComponent
                 'TOrderHeader.odr_date',
                 'TOrderHeader.shipping_unit',
                 'TOrderHeader.paymnt_method',
-                'TOrderHeader.status',
+                'status' => 'CASE WHEN TOrderHeader.status = 1 THEN "Đang chờ xác nhận"
+                            WHEN TOrderHeader.status = 2 THEN "Đang chờ xuất hàng"
+                            WHEN TOrderHeader.status = 3 THEN "Đang chờ vận chuyển"
+                            WHEN TOrderHeader.status = 4 THEN "Đang vận chuyển"
+                            WHEN TOrderHeader.status = 5 THEN "Đang giao hàng"
+                            WHEN TOrderHeader.status = 6 THEN "Hoàn thành"
+                            ELSE "Đã hủy"
+                            END',
                 'total_paymnt' => 'IFNULL(TOrderHeader.fee, 0)
                                     + Sum(IFNULL(TOrderDetail.amount,0) * IFNULL(TOrderDetail.price,0)) 
                                     + Sum(IFNULL(TOrderDetail.amount,0) * (IFNULL(TOrderDetail.price,0) * IFNULL(TOrderDetail.tax,0) / 100))'

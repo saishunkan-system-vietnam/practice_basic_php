@@ -61,13 +61,12 @@ class OrderController extends AppController
             $this->redirect(URL_DONHANG);
         }
 
-            $key = $this->request->getQuery('key');
-            $odr_flg = $this->request->getQuery('odr_flg');
-            if(empty($odr_flg))
-            {
-                $odr_flg = 1;
-            }
-       
+        $key = $this->request->getQuery('key');
+        $odr_flg = $this->request->getQuery('odr_flg');
+        if (empty($odr_flg)) {
+            $odr_flg = 1;
+        }
+
         $tableOrd = $this->{'Order'}->getAllOrder($key, $odr_flg, $statusCd);
         $this->set('tableOrd', $this->paginate($tableOrd, ['limit' => LIMIT_PAGINATE]));
         $this->set('title', $title);
@@ -96,7 +95,7 @@ class OrderController extends AppController
             }
 
             if ($status == '6' && ($odr_flg == '1' || $odr_flg == '2')) {
-                $this->sendEmail($uid,$result['data']);
+                $this->sendEmail($uid, $result['data']);
             }
 
             $this->redirect($this->referer());
@@ -115,13 +114,14 @@ class OrderController extends AppController
         } else {
             $uid = $user_email;
             $password = substr(str_shuffle("mncv!$^&bzxafsdg@h12345ujkio~lpqwer#tyui67890"), 0, 8);
-            $data = ["uid" => $uid,
-                    "pass" => $password,
-                    "full_name" => $info->reciever,
-                    "phone" => $info->phone,
-                    "address1" => $info->address,
-                    "gender"=>1,
-                    ];
+            $data = [
+                "uid" => $uid,
+                "pass" => $password,
+                "full_name" => $info->reciever,
+                "phone" => $info->phone,
+                "address1" => $info->address,
+                "gender" => 1,
+            ];
             $result_regist = $this->{'User'}->regisUser($data);
 
             if ($result_regist['result'] == "error") {

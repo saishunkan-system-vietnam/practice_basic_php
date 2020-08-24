@@ -26,11 +26,11 @@ use Cake\Event\EventInterface;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require_once ROOT.'\vendor\phpmailer\phpmailer\src\PHPMailer.php';
-require_once ROOT.'\vendor\phpmailer\phpmailer\src\Exception.php';
-require_once ROOT.'\vendor\phpmailer\phpmailer\src\OAuth.php';
-require_once ROOT.'\vendor\phpmailer\phpmailer\src\POP3.php';
-require_once ROOT.'\vendor\phpmailer\phpmailer\src\SMTP.php';
+require_once ROOT . '\vendor\phpmailer\phpmailer\src\PHPMailer.php';
+require_once ROOT . '\vendor\phpmailer\phpmailer\src\Exception.php';
+require_once ROOT . '\vendor\phpmailer\phpmailer\src\OAuth.php';
+require_once ROOT . '\vendor\phpmailer\phpmailer\src\POP3.php';
+require_once ROOT . '\vendor\phpmailer\phpmailer\src\SMTP.php';
 
 class CommonComponent extends Component
 {
@@ -52,55 +52,57 @@ class CommonComponent extends Component
         }
     }
 
-    public function crtSlug($str) {
-		$str = preg_replace("/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/", 'a', $str);
-		$str = preg_replace("/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/", 'e', $str);
-		$str = preg_replace("/(ì|í|ị|ỉ|ĩ)/", 'i', $str);
-		$str = preg_replace("/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/", 'o', $str);
-		$str = preg_replace("/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/", 'u', $str);
-		$str = preg_replace("/(ỳ|ý|ỵ|ỷ|ỹ)/", 'y', $str);
-		$str = preg_replace("/(đ)/", 'd', $str);
-		$str = preg_replace("/(À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ)/", 'A', $str);
-		$str = preg_replace("/(È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ)/", 'E', $str);
-		$str = preg_replace("/(Ì|Í|Ị|Ỉ|Ĩ)/", 'I', $str);
-		$str = preg_replace("/(Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ)/", 'O', $str);
-		$str = preg_replace("/(Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ)/", 'U', $str);
-		$str = preg_replace("/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/", 'Y', $str);
-		$str = preg_replace("/(Đ)/", 'D', $str);
-		$str = preg_replace("/(\“|\”|\‘|\’|\,|\!|\&|\;|\@|\#|\%|\~|\`|\=|\_|\'|\]|\[|\}|\{|\)|\(|\+|\^)/", '', $str);
+    public function crtSlug($str)
+    {
+        $str = preg_replace("/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/", 'a', $str);
+        $str = preg_replace("/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/", 'e', $str);
+        $str = preg_replace("/(ì|í|ị|ỉ|ĩ)/", 'i', $str);
+        $str = preg_replace("/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/", 'o', $str);
+        $str = preg_replace("/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/", 'u', $str);
+        $str = preg_replace("/(ỳ|ý|ỵ|ỷ|ỹ)/", 'y', $str);
+        $str = preg_replace("/(đ)/", 'd', $str);
+        $str = preg_replace("/(À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ)/", 'A', $str);
+        $str = preg_replace("/(È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ)/", 'E', $str);
+        $str = preg_replace("/(Ì|Í|Ị|Ỉ|Ĩ)/", 'I', $str);
+        $str = preg_replace("/(Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ)/", 'O', $str);
+        $str = preg_replace("/(Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ)/", 'U', $str);
+        $str = preg_replace("/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/", 'Y', $str);
+        $str = preg_replace("/(Đ)/", 'D', $str);
+        $str = preg_replace("/(\“|\”|\‘|\’|\,|\!|\&|\;|\@|\#|\%|\~|\`|\=|\_|\'|\]|\[|\}|\{|\)|\(|\+|\^)/", '', $str);
         $str = preg_replace("/()/", '', $str);
         $str = preg_replace("/ /", '-', $str);
-		return $str;
+        return $str;
     }
-    
+
     // Gửi mail
-    public function sendEmail($user_email, $content){
+    public function sendEmail($user_email, $content)
+    {
         $email_from = 'minhmailfortest@gmail.com';
-        $mail = new PHPMailer(true);  
+        $mail = new PHPMailer(true);
 
         try {
             $mail->CharSet  = 'UTF-8';
-            $mail->SMTPDebug = 0;                                     
-            $mail->isSMTP();                                         
-            $mail->Host = 'smtp.gmail.com';                          
-            $mail->SMTPAuth = true;                                  
-            $mail->Username = $email_from;                           
-            $mail->Password = 'minhnnssv';                            
-            $mail->SMTPSecure = 'tls';                              
-            $mail->Port = 587;                                       
-        
-            $mail->setFrom($email_from, 'Lisinhami.com');        
-            $mail->addAddress($user_email); 
+            $mail->SMTPDebug = 0;
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = $email_from;
+            $mail->Password = 'minhnnssv';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587;
 
-            $mail->isHTML(true);                                  
+            $mail->setFrom($email_from, 'Lisinhami.com');
+            $mail->addAddress($user_email);
+
+            $mail->isHTML(true);
             $mail->Subject = '[Lisinhami.com] Thư cảm ơn';
-            $mail ->Body = $content;
-           
+            $mail->Body = $content;
+
             $mail->send();
 
             return 'success';
         } catch (Exception $ex) {
-            return 'Error: '. $mail->ErrorInfo.' Exception '.$ex;
+            return 'Error: ' . $mail->ErrorInfo . ' Exception ' . $ex;
         }
     }
 }
