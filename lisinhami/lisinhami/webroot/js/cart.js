@@ -12,6 +12,7 @@ $(document).ready(function () {
         var tt = $("#tt").attr('tt');
     
         $(".fee").html(parseInt(fee).toLocaleString('en-US'));
+        $("#fee-order").val(parseInt(fee));
         $("#tt_all").html((parseInt(tt) + parseInt(fee)).toLocaleString('en-US'));
     }
 
@@ -23,7 +24,7 @@ $(document).ready(function () {
         $("#address").val(Address);
     }
   
-   $('input, select').tooltipster({
+   $('input, select,textarea').tooltipster({
        trigger: 'custom',
        onlyOne: false,
        position: 'right',
@@ -61,7 +62,7 @@ $(document).ready(function () {
       if (!$item.hasClass('disabled')) {
           navListItems.removeClass('btn-primary').addClass('btn-default');
           $item.addClass('btn-primary');
-          $('input, select').tooltipster("hide");
+          $('input, select,textarea').tooltipster("hide");
           allWells.hide();
           $target.show();
           $target.find('input:eq(0)').focus();
