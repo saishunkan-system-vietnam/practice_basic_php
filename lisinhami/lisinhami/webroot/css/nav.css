@@ -135,6 +135,12 @@ a {
     }
 }
 
+@media(max-width: 476px) {
+    .cart_text {
+        display: none;
+    }
+}
+
 @media(max-width: 735px) {
     #div-car {
         margin-top: 10px;

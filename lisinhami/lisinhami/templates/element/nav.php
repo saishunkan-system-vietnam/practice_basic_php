@@ -22,9 +22,9 @@ if (!empty($data)) {
 <section class="header-main">
     <div class="container-fluid">
         <div class="row align-items-center">
-            <div class="col-lg-2 col-xl-2 col-sm-6 col-md-4 col-10"> <a href=<?= SITE_URL ?> class="brand-wrap" data-abc="true">
+            <div class="col-lg-3 col-xl-3 col-sm-6 col-md-4 col-6"> <a href=<?= SITE_URL ?> class="brand-wrap" data-abc="true">
                     <span class="logo"><?= $this->Html->image('logo.png', array('alt' => 'logo', 'border' => '0', 'width' => '171.28')); ?></span> </a> </div>
-            <div class="col-lg-3 col-xl-4 col-sm-5 col-md-3 d-none d-md-block">
+            <div class="col-lg-3 col-xl-3 col-sm-5 col-md-4 d-none d-md-block">
                 <?= $this->Form->create(null, ['type' => 'get', 'class' => 'search-wrap', 'url' => URL_SEARCH]); ?>
                 <div class="input-group w-100">
                     <input type="text" class="form-control search-form" name="key" id="key" value="<?= $this->request->getQuery('key') ?>" style="width:55%;" placeholder="Search">
@@ -35,10 +35,10 @@ if (!empty($data)) {
                 </div>
                 <?= $this->Form->end(); ?>
             </div>
-            <div class="col-lg-4 col-xl-2 col-sm-4 col-md-3 col-5" id="div-cart">
-                <a href="<?= URL_CART ?>" class="div-cart"><i class="fa fa-shopping-cart cart"></i><span class="cart"> Giỏ hàng </span><span class="badge badge-danger"><?= $count ?></span></a>
+            <div class="col-lg-3 col-xl-3 col-sm-5 col-md-4 col-6" id="div-cart">
+                <a href="<?= URL_CART ?>" class="div-cart"><i class="fa fa-shopping-cart cart"> </i><span class="cart cart_text"> Giỏ hàng </span><span class="badge badge-danger"> <?= $count ?></span></a>
             </div>
-            <div class="col-lg-3 col-xl-4 col-sm-2 col-2" style="text-align: right;">
+            <div class="col-lg-3 col-xl-3 col-sm-4 col-md-11 col-7" style="text-align: right;">
                 <?if(!$this->request->getsession()->check(SESSION_EMAIL)):?>
                 <a href="#" data-toggle="modal" data-target="#modalLRForm" data-abc="true">
                     <span class="login">Đăng nhập</span>
