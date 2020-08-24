@@ -19,13 +19,19 @@ class CartController extends AppController
     // Hiên thị trang đặt hàng
     public function view()
     {
+        $buy_flg = 0;
         $session = $this->getRequest()->getSession();
         $data = $session->read(SESSION_CART);
-
+        
         if ($session->check(SESSION_EMAIL)) {
             $uid = $session->read(SESSION_EMAIL);
+            $buy_flg = 1;
         } else {
             $uid = "";
+            if($session->check(SESSION_BUY_FLG))
+            {
+                $buy_flg = 1;
+            }
         }
 
         $category_cd = 3;
@@ -42,6 +48,8 @@ class CartController extends AppController
         $this->set('shipUnit', $shipUnit);
         $this->set('paymentMethod', $paymentMethod);
         $this->set('infoUser', $infoUser);
+        $this->set('buy_flg', $buy_flg);
+        
     }
 
     // Xóa sản phẩm trong giỏ hàng
@@ -120,11 +128,21 @@ class CartController extends AppController
                     }
                 }
                 $session->delete(SESSION_CART);
+                if($session->check(SESSION_BUY_FLG))
+                {
+                    $session->delete(SESSION_BUY_FLG);
+                }
                 $this->redirect(SITE_URL);
                 $this->Flash->success(__("Thêm đơn hàng thành công"));
             }
         }
 
+        $this->redirect($this->referer());
+    }
+
+    public function acceptBuyNonLogin(){
+        $session = $this->getRequest()->getSession();
+        $session->write(SESSION_BUY_FLG, 1 );
         $this->redirect($this->referer());
     }
 }

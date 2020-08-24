@@ -22,7 +22,7 @@
                             <th style="width: 10%;">Price</th>
                             <th style="width: 8%;">Quantity</th>
                             <th style="width: 22%;" class="text-center">Subtotal</th>
-                            <th style="width: 22%;" class="text-center">Earn point</th>
+                            <th style="width: 22%;" class="text-center"><?=!empty($infoUser) ? 'Earn point' : '' ?></th>
                             <th style="width: 10%;"></th>
                         </tr>
                     </thead>
@@ -75,7 +75,8 @@
                                     </td>
 
                                     <td data-th="Subtotal" class="text-center">
-                                        <?= number_format($item['amount'] * $item['earn_point'], 0, '.', ',') ?></td>
+                                        <?= !empty($infoUser) ? number_format($item['amount'] * $item['earn_point'], 0, '.', ',') : '' ?>
+                                    </td>
                                     <td>
                                         <?= $this->Form->postLink(
                                             __('Delete'),
@@ -91,9 +92,10 @@
                     <tfoot>
                         <?if (!empty($data)){?>
                         <tr>
+                            <?if (!empty($infoUser)) {?>
                             <td class="text-right"><strong>Số Point nhận được: <?= number_format($earn_point, 0, '.', ',') ?>P</strong> </td>
                             <td colspan="5" class="text-right"><strong>Số Point đổi quà: <?= number_format($point, 0, '.', ',') ?>P</strong></td>
-
+                            <?}?>
                         </tr>
                         <tr>
                             <td class="text-right">
@@ -132,7 +134,7 @@
                 </table>
             </div>
             <div id="formStep" class="col-sm-4 stepwizard">
-                <div class="stepwizard-row setup-panel">
+            <div class="stepwizard-row setup-panel">
                     <div class="stepwizard-step">
                         <a href="#step-1" type="button" class="btn btn-primary btn-circle border border-primary">1</a>
                         <p>Thông tin người nhận</p>
@@ -146,6 +148,15 @@
                         <p>Xác nhận đơn hàng</p>
                     </div>
                 </div>
+                <?if($buy_flg == 0)
+                {?>
+                <?= $this->Form->postLink(
+                                    __('Mua hàng'),
+                                    URL_CONF_BUY,
+                                    ['confirm' => __('Bạn cần phải đăng nhập trước khi mua hàng. Nếu bạn không có tài khoản hoặc không muốn đăng nhập thì xác nhận đồng ý mua hàng không đăng nhập?'), 'class' => 'btn btn-primary btn-block']
+                                )?>
+                <?}
+                else{?>
                 <?= $this->Form->create(null, [
                     'id' => 'form',
                     'url' => [
@@ -227,6 +238,10 @@
                             <p>
                                 Số điểm của bạn không đủ để đổi quà.
                             </p>
+                            <? }else if(empty($data)){?>
+                                <p>
+                                Giỏ hàng không có sản phẩm nào
+                                </p>
                             <?} else {?>
                             <p>
                                 Bạn đồng ý mua hàng.
@@ -238,7 +253,7 @@
                         </div>
                     </div>
                 </div>
-                <?= $this->Form->end(); ?>
+                <? $this->Form->end(); }?>
             </div>
         </div>
     </div>

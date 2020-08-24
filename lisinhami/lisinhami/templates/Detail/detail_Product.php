@@ -11,7 +11,7 @@
 				</div>
 				<div class="sp-wrap">
 					<?php foreach ($image as $key => $item) { ?>
-						<a href=<?= SITE_URL . 'img/' . $item->img_url ?>><?= $this->Html->image($item->img_url) ?></a>
+						<a href="<?= SITE_URL.'img/'.$item->img_url ?>"><?= $this->Html->image($item->img_url) ?></a>
 					<?php }; ?>
 				</div>
 			</div>
@@ -75,7 +75,7 @@
 							<div class="clr"></div>
 						</div>
 						<div class="box-shas rig-limit">
-							<?= $this->Html->image('chinh-sach-05.png', array('class' => 'img-reponsive lazy')) ?>
+							<?= $this->Html->image('chinh-sach-05.png', ['class' => 'img-reponsive lazy']) ?>
 							<div class="content-shas">
 								<strong>
 									LUÔN ĐƯỢC TÍCH ĐIỂM
@@ -87,7 +87,7 @@
 							<div class="clr"></div>
 						</div>
 						<div class="box-shas rig-limit">
-							<?= $this->Html->image('chinh-sach-06.png', array('class' => 'img-reponsive lazy')) ?>
+							<?= $this->Html->image('chinh-sach-06.png', ['class' => 'img-reponsive lazy']) ?>
 							<div class="content-shas">
 								<strong>MIỄN PHÍ GIAO HÀNG </strong>
 								<p>Đơn hàng trên 200k nội thành HCM</p>
@@ -95,7 +95,7 @@
 							<div class="clr"></div>
 						</div>
 						<div class="box-shas rig-limit">
-							<?= $this->Html->image('chinh-sach-07.png', array('class' => 'img-reponsive lazy')) ?>
+							<?= $this->Html->image('chinh-sach-07.png', ['class' => 'img-reponsive lazy']) ?>
 							<div class="content-shas">
 								<strong>TRI ÂN KHÁCH HÀNG</strong>
 								<p>Với các chương trình khuyến mãi, các sự kiện &amp; quà tặng đặc biệt vô cùng hấp dẫn</p>
@@ -119,7 +119,7 @@
 	</div>
 	<div class="box-products">
 		<div class="head-box-category">
-			<a href="/bestseller/top-100-san-pham-ban-chay.html" class="left-head">
+			<a href="" class="left-head">
 				<img src="https://adminbeauty.hvnet.vn/images/sh11-128.png?v=17042020" alt="type icon">
 				<h2>
 					Sản phẩm cùng loại

@@ -17,7 +17,6 @@
     define('URL_DEL_IMG',SITE_URL.'admin/xoahinhanh/');
     define('URL_SETTOP_IMG',SITE_URL.'admin/settop/');
     
-
     // CLIENT
     define('URL_CHITIET_SANPHAM',SITE_URL.'chitiet/');
     define('URL_DANHMUC_SANPHAM',SITE_URL.'danhmuc/');
@@ -41,6 +40,7 @@
     define('URL_DEL_CART',SITE_URL.'delgiohang/');
     define('URL_UPD_CART',SITE_URL.'updgiohang/');
     define('URL_CLEAR_CART',SITE_URL.'cleargiohang/');
+    define('URL_CONF_BUY',SITE_URL.'confirm-buy');
 
     // Seesion
     define('SESSION_ERROR', 'error');
@@ -48,4 +48,6 @@
     define('SESSION_ADMIN', 'admin');
     define('SESSION_CART','cart');
     define('SESSION_CART_ID','cart.');
+    define('SESSION_BUY_FLG','buy_flg');
+
 ?>

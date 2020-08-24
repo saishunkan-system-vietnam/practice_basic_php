@@ -74,6 +74,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
     $builder->connect('/delgiohang/*', ['controller' => 'Cart', 'action' => 'delete']);
     $builder->connect('/updgiohang', ['controller' => 'Cart', 'action' => 'update']);
     $builder->connect('/cleargiohang', ['controller' => 'Cart', 'action' => 'clear']);
+    $builder->connect('/confirm-buy', ['controller' => 'Cart', 'action' => 'acceptBuyNonLogin']);
 
     $builder->connect('/login', ['controller' => 'User', 'action' => 'login']);
     $builder->connect('/dangky', ['controller' => 'User', 'action' => 'register']);
