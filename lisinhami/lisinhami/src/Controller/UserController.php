@@ -82,6 +82,10 @@ class UserController extends AppController
                         }
                     }
 
+                    if ($this->request->getSession()->check(SESSION_BUY_FLG)) {
+                        $this->request->getSession()->delete(SESSION_BUY_FLG);
+                    }
+
                     $this->request->getSession()->write(SESSION_EMAIL, $result->uid);
                     if ($result->admin_flg == 1) {
                         $this->request->getSession()->write(SESSION_ADMIN, $result->admin_flg);
@@ -109,6 +113,7 @@ class UserController extends AppController
 
     public function register()
     {
+        $this->set('title', 'Đăng ký');
         if ($this->request->is('post')) {
 
             $inputData = $this->request->getParsedBody();

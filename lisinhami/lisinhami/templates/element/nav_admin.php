@@ -16,7 +16,6 @@
                 </span>
                 <span class="user-role">Administrator</span>
                 <a class="user-role" href=<?= URL_LOGOUT ?>>logout</a>
-                <!-- <span class="user-role">logout</span> -->
             </div>
         </div>
 
@@ -47,12 +46,6 @@
                     <a href=<?= URL_DONHANG ?>>
                         <i class="fa fa-shopping-cart"></i>
                         <span>Order</span>
-                    </a>
-                </li>
-                <li class="sidebar">
-                    <a href="#">
-                        <i class="fas fa-users"></i>
-                        <span>User</span>
                     </a>
                 </li>
         </div>
