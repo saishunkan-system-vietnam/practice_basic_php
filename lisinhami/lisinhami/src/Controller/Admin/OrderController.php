@@ -116,8 +116,8 @@ class OrderController extends AppController
         } else {
             $uid = $user_email;
             $password = substr(str_shuffle("mncv!$^&bzxafsdg@h12345ujkio~lpqwer#tyui67890"), 0, 8);
-            $inputData = array("uid" => $uid, "pass" => $password);
-            $result_regist = $this->{'User'}->regisUser($inputData);
+            $data = ["uid" => $uid, "pass" => $password];
+            $result_regist = $this->{'User'}->regisUser($data);
 
             if ($result_regist['result'] == "error") {
                 $this->Flash->error("Lỗi. Đăng ký tài khoản không thành công. Không thể gửi email!");
@@ -143,8 +143,6 @@ class OrderController extends AppController
                 }
             }
         }
-
-        // $this->redirect($this->referer());
     }
 
     public function viewContOrder($id = 0)
