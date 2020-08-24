@@ -153,6 +153,27 @@ class OrderComponent extends CommonComponent
         ];
     }
 
+    public function saveOdrDetail($data): array
+    {
+        if (!empty($data['id'])) {
+            $prd = $this->TOrderDetail->get($data['id']);
+            $prd = $this->TOrderDetail->patchEntity($prd, $data);
+        } else {
+            $prd = $this->TOrderDetail->newEntity($data);
+        }
+        $result = $this->TOrderDetail->save($prd);
+        if ($prd->hasErrors()) {
+            return [
+                'result' => 'invalid',
+                'data' => $prd->getErrors()
+            ];
+        }
+        return [
+            'result' => 'success',
+            'data' =>  $result
+        ];
+    }
+
     public function getAllOrderByID($uid)
     {
         $query = $this->TOrderHeader->find()

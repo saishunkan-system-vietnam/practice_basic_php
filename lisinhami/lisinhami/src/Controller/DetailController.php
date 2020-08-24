@@ -51,10 +51,12 @@ class DetailController extends AppController
                     $item['amount'] =  $item['amount'] + $inputData['numberproduct'];
                  }else{
                     $item=[
-                        'id'                =>  $tableProduct->id,
+                        'id_odrh'           =>'',         
+                        'id_product'        =>  $tableProduct->id,
                         'name'              =>  $tableProduct->name,
-                        'price'             =>  $tableProduct->price-$tableProduct->discount,
+                        'price'             =>  $tableProduct->price-$tableProduct->discount, 
                         'amount'            =>  $inputData['numberproduct'],
+                        'tax'               =>  $tableProduct->tax,
                         'category_cd'       =>  $tableProduct->category_cd,
                         'img'               =>  $img,
                         'earn_point'        =>  $tableProduct->category_cd == 1 ? $tableProduct->point : 0,

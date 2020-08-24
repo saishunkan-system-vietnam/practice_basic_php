@@ -86,7 +86,7 @@ class ProductComponent extends CommonComponent
     {
         if ($category_cd) {
             $query = $this->TProduct->find()
-                ->select(['TProduct.name','TProduct.price','TProduct.discount','TProduct.slug' ,'TProduct.category_cd','TProduct.point' ,'img'=>'TImage.img_url'])
+                ->select(['TProduct.name','TProduct.price','TProduct.discount','TProduct.slug' ,'TProduct.category_cd','TProduct.point','TProduct.tax' ,'img'=>'TImage.img_url'])
                 ->join([
                     'table' => 't_image',
                     'alias' => 'TImage',

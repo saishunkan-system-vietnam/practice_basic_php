@@ -49,6 +49,6 @@
     define('SESSION_ERROR', 'error');
     define('SESSION_EMAIL', 'email');
     define('SESSION_ADMIN', 'admin');
-    define('SESSION_CART','cart.');
+    define('SESSION_CART','cart');
 
 ?>

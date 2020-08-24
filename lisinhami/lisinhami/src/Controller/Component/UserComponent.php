@@ -26,7 +26,7 @@ class UserComponent extends CommonComponent
     public function getInfoUser($uid)
     {
         $query = $this->TUser->find()
-            ->select(['address1', 'address2', 'uid', 'full_name'])
+            ->select(['address1', 'address2', 'uid', 'full_name','phone'])
             ->where(['uid' => $uid])
             ->first();
 
