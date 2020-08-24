@@ -118,8 +118,8 @@ class OrderComponent extends CommonComponent
                 'TOrderDetail.amount',
                 'TOrderDetail.price',
                 'category_cd' => 'tableProduct.category_cd',
-                'tax' => 'IFNULL(TOrderDetail.amount,0) * IFNULL(TOrderDetail.price,0) * IFNULL(TOrderDetail.tax,0) / 100',
-                'paymnt' => '(IFNULL(TOrderDetail.amount,0) * IFNULL(TOrderDetail.price,0)) + (IFNULL(TOrderDetail.amount,0) * IFNULL(TOrderDetail.price,0) * IFNULL(TOrderDetail.tax,0) / 100)'
+                'tax' => ' IFNULL(TOrderDetail.price,0) * IFNULL(TOrderDetail.tax,0) / 100',
+                'paymnt' => 'IFNULL(TOrderDetail.amount,0) * ( IFNULL(TOrderDetail.price,0) + (IFNULL(TOrderDetail.price,0) * IFNULL(TOrderDetail.tax,0) / 100))'
             ])
             ->join([
                 'table' => 't_product',
@@ -183,6 +183,7 @@ class OrderComponent extends CommonComponent
                 'TOrderHeader.odr_date',
                 'TOrderHeader.shipping_unit',
                 'TOrderHeader.paymnt_method',
+                'TOrderHeader.odr_flg',
                 'status' => 'CASE WHEN TOrderHeader.status = 1 THEN "Đang chờ xác nhận"
                             WHEN TOrderHeader.status = 2 THEN "Đang chờ xuất hàng"
                             WHEN TOrderHeader.status = 3 THEN "Đang chờ vận chuyển"
@@ -211,8 +212,19 @@ class OrderComponent extends CommonComponent
                 'TOrderHeader.paymnt_method',
                 'TOrderHeader.status',
                 'TOrderHeader.fee'
-            ]);
+            ])
+            ->order(['TOrderHeader.create_datetime DESC']);
 
         return $query;
+    }
+    public function getOrderSample($uid)
+    {
+        $query = $this->TOrderHeader->find()
+            ->where([
+                'TOrderHeader.id_user' => $uid,
+                'TOrderHeader.odr_flg' => 2,
+            ]);
+
+        return $query->toArray();
     }
 }

@@ -18,12 +18,13 @@
                 <table id="cart" class="table table-hover table-condensed">
                     <thead>
                         <tr>
-                            <th style="width: 50%;">Product</th>
-                            <th style="width: 10%;">Price</th>
-                            <th style="width: 8%;">Quantity</th>
-                            <th style="width: 22%;" class="text-center">Subtotal</th>
-                            <th style="width: 22%;" class="text-center"><?=!empty($infoUser) ? 'Earn point' : '' ?></th>
-                            <th style="width: 10%;"></th>
+                            <th >Product</th>
+                            <th >Price</th>
+                            <th >Tax</th>
+                            <th >Quantity</th>
+                            <th class="text-center">Subtotal</th>
+                            <th ><?=!empty($infoUser) ? 'Earn point' : '' ?></th>
+                            <th style="width: 5%;"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,8 +34,9 @@
                         $earn_point = 0;
                         if (!empty($data)) {
                             foreach ($data as $key => $item) {
-                                $price =  $item['price'] + ($item['price'] * $item['tax']) / 100;
-                                $total = $total + ($item['category_cd'] == '1' ? ($item['amount'] * $price) : 0);
+                                $price =  $item['price'];
+                                $tax = ($item['price'] * $item['tax']) / 100;
+                                $total = $total + ($item['category_cd'] == '1' ? ($item['amount'] * ($price + $tax)) : 0);
                                 $point = $point + ($item['category_cd'] == '3' ? ($item['amount'] * $item['price']) : 0);
                                 $earn_point = $earn_point + ($item['category_cd'] == '1' ? ($item['amount'] * $item['earn_point']) : 0);
                         ?>
@@ -54,6 +56,11 @@
                                     <?} else{?>
                                     <td data-th="Price"><?= number_format($price, 0, '.', ',') ?>đ</td>
                                     <?}?>
+                                    <? if ($item['category_cd'] == '3') {?>
+                                    <td data-th="Tax"></td>
+                                    <?} else{?>
+                                    <td data-th="Tax"><?= number_format($tax, 0, '.', ',') ?>đ</td>
+                                    <?}?>
                                     <td data-th="Quantity">
                                         <?= $this->Form->create(null, [
                                             'url' => [
@@ -68,9 +75,9 @@
                                     </td>
                                     <td data-th="Subtotal" class="text-center">
                                         <?if ($item['category_cd'] == '3') {?>
-                                        <?= number_format($item['amount'] * $price, 0, '.', ',') ?>P
+                                        <?= number_format($item['amount'] * ($price) , 0, '.', ',') ?>P
                                         <?} else{?>
-                                        <?= number_format($item['amount'] * $price, 0, '.', ',') ?>đ
+                                        <?= number_format($item['amount'] * ($price +$tax) , 0, '.', ',') ?>đ
                                         <?}?>
                                     </td>
 
@@ -94,7 +101,7 @@
                         <tr>
                             <?if (!empty($infoUser)) {?>
                             <td class="text-right"><strong>Số Point nhận được: <?= number_format($earn_point, 0, '.', ',') ?>P</strong> </td>
-                            <td colspan="5" class="text-right"><strong>Số Point đổi quà: <?= number_format($point, 0, '.', ',') ?>P</strong></td>
+                            <td colspan="6" class="text-right"><strong>Số Point đổi quà: <?= number_format($point, 0, '.', ',') ?>P</strong></td>
                             <?}?>
                         </tr>
                         <tr>
@@ -107,10 +114,8 @@
                             <td class="hidden-xs text-center">
                                 <strong tt=<?= $total ?> id="tt"><?= number_format($total, 0, '.', ',') ?>đ</strong>
                             </td>
-                            <td>
-                                <strong>Tổng tiền:</strong>
-                            </td>
-                            <td class="hidden-xs text-center">
+                            <td class="hidden-xs text-right" colspan="3">
+                                <strong>Tổng tiền: </strong>
                                 <strong id="tt_all"></strong>
                                 <strong>đ</strong>
                             </td>
@@ -121,7 +126,7 @@
                                 <a href="<?= SITE_URL ?>" class="btn btn-success"><i class="fa fa-angle-left"></i>
                                     Continue Shopping</a>
                             </td>
-                            <td colspan="4"></td>
+                            <td colspan="5"></td>
                             <td>
                                 <?= $this->Form->postLink(
                                     __('Clear'),

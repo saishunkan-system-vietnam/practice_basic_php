@@ -20,9 +20,14 @@
                 <th>Đơn giá</th>
                 <th>Thuế</th>
                 <th>Thành tiền</th>
-            </tr>     
-            <? foreach($dataOdrD as $key => $item)
-            { if($item->category_cd != 3){$stt++;?>
+            </tr>   
+            <? 
+            $total_paymnt = 0;
+            foreach($dataOdrD as $key => $item)
+            { if($item->category_cd != 3){
+                $total_paymnt += $item->paymnt;
+                $stt++;
+                ?>
             <tr>
                 <td><?= $stt?></td>
                 <td><?= $item->name?></td>
@@ -35,9 +40,9 @@
         </thead>
     </table>
     </div>
-    <div class="row"><b>Tổng: </b><span><?= $this->Number->format( $dataOdrH->paymnt, ['locale' => '']); ?></span></div>
+    <div class="row"><b>Tổng: </b><span><?= $this->Number->format( $total_paymnt, ['locale' => '']); ?></span></div>
     <div class="row"><b>Phí vận chuyển: </b><span><?= $this->Number->format( $dataOdrH->fee, ['locale' => '']); ?></span></div>
-    <div class="row"><b>Tổng tiền đơn hàng: </b><span><?= $this->Number->format( $dataOdrH->total_paymnt, ['locale' => '']); ?></span></div>
+    <div class="row"><b>Tổng tiền đơn hàng: </b><span><?= $this->Number->format( ($total_paymnt + $dataOdrH->fee), ['locale' => '']); ?></span></div>
     <br>
     <div class="row">
     <table class="table table-bordered table-striped">

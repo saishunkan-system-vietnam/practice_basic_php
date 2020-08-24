@@ -8,7 +8,7 @@ $(document).ready(function () {
         getFee($(this).find('option:selected').attr('fee'));
     });
 
-    function getFee(fee) {
+    function getFee(fee = 0) {
         var tt = $("#tt").attr('tt');
     
         $(".fee").html(parseInt(fee).toLocaleString('en-US'));

@@ -20,18 +20,23 @@ class CartController extends AppController
     public function view()
     {
         $buy_flg = 0;
+        $category = 0;
         $session = $this->getRequest()->getSession();
         $data = $session->read(SESSION_CART);
-        
+
+        if (!empty($data))
+            $category = $data[array_key_first($data)]['category_cd'];
+
         if ($session->check(SESSION_EMAIL)) {
             $uid = $session->read(SESSION_EMAIL);
             $buy_flg = 1;
         } else {
             $uid = "";
-            if($session->check(SESSION_BUY_FLG))
-            {
+            if ($session->check(SESSION_BUY_FLG))
                 $buy_flg = 1;
-            }
+
+            if ($category == '2')
+                $buy_flg = 1;
         }
 
         $category_cd = 3;
@@ -49,7 +54,6 @@ class CartController extends AppController
         $this->set('paymentMethod', $paymentMethod);
         $this->set('infoUser', $infoUser);
         $this->set('buy_flg', $buy_flg);
-        
     }
 
     // Xóa sản phẩm trong giỏ hàng
@@ -78,7 +82,7 @@ class CartController extends AppController
         $this->redirect($this->referer());
     }
 
-    // Xoa toàn bộ giỏ hàng
+    // Xóa toàn bộ giỏ hàng
     public function clear()
     {
         if ($this->request->is('post')) {
@@ -89,7 +93,7 @@ class CartController extends AppController
         $this->redirect($this->referer());
     }
 
-    // Xoa toàn bộ giỏ hàng
+    // Lưu đơn hàng
     public function add()
     {
         if ($this->request->is('post')) {
@@ -97,14 +101,25 @@ class CartController extends AppController
             $inputData = $this->request->getParsedBody();
             $session = $this->getRequest()->getSession();
             $data = $session->read(SESSION_CART);
-            $category= $data[array_key_first($data)]['category_cd'];
+            $category = $data[array_key_first($data)]['category_cd'];
 
-            if ($category =='2') {
-                $orderHdr = $this->{'Order'}->getAllOrderByID($inputData['id_user']);
-                if (!empty($orderHdr)) {
+            if ($category == '2') {
+                $orderHdr = $this->{'Order'}->getOrderSample($inputData['id_user']);
+
+                if ($orderHdr) {
                     $this->Flash->error(__("Bạn đã từng mua sản phẩm dùng thử"));
                     return $this->redirect($this->referer());
-                }            
+                }
+            }
+
+            if ($category == 2) {
+                $inputData += ['odr_flg' => '2'];
+            } else {
+                if ($session->check(SESSION_EMAIL)) {
+                    $inputData += ['odr_flg' => '0'];
+                } else {
+                    $inputData += ['odr_flg' => '1'];
+                }
             }
 
             $result = $this->{'Order'}->saveOdrHdr($inputData);
@@ -128,8 +143,7 @@ class CartController extends AppController
                     }
                 }
                 $session->delete(SESSION_CART);
-                if($session->check(SESSION_BUY_FLG))
-                {
+                if ($session->check(SESSION_BUY_FLG)) {
                     $session->delete(SESSION_BUY_FLG);
                 }
                 $this->redirect(SITE_URL);
@@ -140,9 +154,10 @@ class CartController extends AppController
         $this->redirect($this->referer());
     }
 
-    public function acceptBuyNonLogin(){
+    public function acceptBuyNonLogin()
+    {
         $session = $this->getRequest()->getSession();
-        $session->write(SESSION_BUY_FLG, 1 );
+        $session->write(SESSION_BUY_FLG, 1);
         $this->redirect($this->referer());
     }
 }
