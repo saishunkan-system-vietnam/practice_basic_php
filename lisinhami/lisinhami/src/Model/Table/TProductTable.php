@@ -85,7 +85,7 @@ class TProductTable extends Table
 
         $validator
             ->scalar('info_gen')
-            ->maxLength('info_gen', 200)
+            ->maxLength('info_gen', 300)
             ->requirePresence('info_gen', 'create')
             ->notEmptyString('info_gen');
 

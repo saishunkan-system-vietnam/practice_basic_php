@@ -30,7 +30,7 @@ class TProductFixture extends TestFixture
         'discount' => ['type' => 'decimal', 'length' => 10, 'precision' => 0, 'unsigned' => false, 'null' => false, 'default' => '0', 'comment' => 'Giảm giá'],
         'tax' => ['type' => 'integer', 'length' => null, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => 'Thuế ', 'precision' => null, 'autoIncrement' => null],
         'made_in' => ['type' => 'string', 'length' => 30, 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => 'Xuất xứ', 'precision' => null],
-        'info_gen' => ['type' => 'string', 'length' => 200, 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => 'Mô tả', 'precision' => null],
+        'info_gen' => ['type' => 'string', 'length' => 300, 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => 'Mô tả', 'precision' => null],
         'info_dtl' => ['type' => 'text', 'length' => null, 'null' => true, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => 'Nội dung', 'precision' => null],
         'point' => ['type' => 'integer', 'length' => null, 'unsigned' => false, 'null' => false, 'default' => '0', 'comment' => 'Điểm thưởng', 'precision' => null, 'autoIncrement' => null],
         'slug' => ['type' => 'string', 'length' => 60, 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => 'link thân thiện', 'precision' => null],
@@ -68,8 +68,8 @@ class TProductFixture extends TestFixture
                 'point' => 1,
                 'slug' => 'Lorem ipsum dolor sit amet',
                 'del_flg' => 1,
-                'create_datetime' => '2020-08-18 09:24:34',
-                'update_datetime' => '2020-08-18 09:24:34',
+                'create_datetime' => '2020-08-24 02:12:18',
+                'update_datetime' => '2020-08-24 02:12:18',
             ],
         ];
         parent::init();
